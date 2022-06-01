@@ -13,6 +13,7 @@ const CreateTask = () => {
 
   const submitTaskHandler = (e) => {
     e.preventDefault();
+
     setTasks([
       ...tasks,
       {
@@ -93,6 +94,7 @@ const CreateTask = () => {
           />
         </label>
         <button>I AM DONE</button>
+
         <Tasks tasks={tasks} />
       </form>
     </div>

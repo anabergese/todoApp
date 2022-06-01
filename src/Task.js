@@ -29,7 +29,6 @@ const Task = (props) => {
     // Uncomeplete tasks van a tener una menos
     // Redirect to complete tasks list
   };
-
   return (
     <div className="task">
       <h1>{props.title}</h1>
@@ -39,7 +38,7 @@ const Task = (props) => {
       <p>{props.deadline}</p>
       <p>{props.id}</p>
 
-      {/* <img src={URL.createObjectURL(props.photo)} alt={props.title} /> */}
+      {/* <img src={URL.createObjectURL(initialValue)} alt={props.title} /> */}
       <Link
         to={`/details/${props.id}`}
         state={{ taskProps: props }}
@@ -53,6 +52,9 @@ const Task = (props) => {
       <button onClick={completeHandler} className="button">
         Mark as Complete
       </button>
+      <Link to="/tasks" state={{ taskProps: props }} className="button">
+        See alltasks
+      </Link>
       {showModal ? (
         <Modal>
           <div style={{ backgroundColor: "blue" }}>

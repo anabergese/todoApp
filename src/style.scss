@@ -83,15 +83,14 @@ p {
 /* Cambiar de colores app */
 .theme-options {
   max-width: 800px;
-  margin: 0 auto;
-  text-align: right;
+
   div {
     cursor: pointer;
     width: 20px;
     height: 20px;
     border-radius: 4px;
     margin: 2px 10px;
-    border: 1px solid #fff;
+    border: 1px solid rgb(114, 112, 112);
     display: inline-block;
     opacity: 0.5;
     &.active {
@@ -129,6 +128,7 @@ p {
 // Theming colors
 .App {
   height: 100vh;
+  margin-left: 160px; /* Same as the width of the sidenav */
 }
 .App.theme-blue {
   background-color: #18227c;

@@ -11,7 +11,7 @@ import About from "./About";
 
 // Data flows from the parent (App) to the child (Todo) via props.
 const App = () => {
-  const [colorTheme, setColorTheme] = useState("theme-white");
+  const [colorTheme, setColorTheme] = useState("theme-orange");
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem("theme-color");
@@ -26,7 +26,7 @@ const App = () => {
     <BrowserRouter>
       <div className={`App ${colorTheme}`}>
         <ColorTheme colorTheme={colorTheme} setColorTheme={setColorTheme} />
-        <Menu />
+        <Menu colorTheme={colorTheme} setColorTheme={setColorTheme} />
         <h1>Todo List Project</h1>
         <Routes>
           <Route path="/details/:id" element={<Details />} />
