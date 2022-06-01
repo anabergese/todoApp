@@ -1,0 +1,42 @@
+// devDependencies are used when you work in your project
+// Dependencies are thouse used when you are in production
+
+Commands:
+command + shift + p ==> open browser
+command + , ==> open settings
+control + ` ==> open terminal
+npm run lint -- --fix ==> fix problems with ESlint automatically
+(el primer doble -- sirve para salir de npm, porque npm no tiene fix, es Eslint que le tiene fix command)
+npm run lint -- --debug ==> see more comments about errors at Eslint
+npm audit fix ==> fix automatically the vulnerabilities
+
+** command -D es por development dependencies not production dependencies **
+
+What is a bundler?
+A module bundler is a tool that takes pieces of JavaScript and their dependencies and bundles them into a single file, usually for use in the browser. You may have used tools such as Browserify, Webpack, Rollup or one of many others.
+
+Parcel is the bundler of this project. Take your code and then it's repacking in such a way that is
+generally applicable to the browsers that you are targeting.
+
+Function components:
+const Details = () => { return (<h2>Hello</h2>); };
+export default Details;
+
+Class components:
+You cannot use useState, useEffect, etc
+
+COSAS TO FIX:
+Return all tasks in path /tasks
+Make delete and edit with redirects
+
+Display images
+
+Upload github
+
+Al crear una nueva task cuando click en I am Done, el array se muestra vacío []. Si clicko otra vez o si añado
+una nueva task el array se muestra [{...}]. Hago 3 tasks, el array tiene 2.
+
+bueno hay algo que me tiene parada, no puedo hacer el display de "all my tasks" array
+en el path que quiero path="/tasks". La route en App.js es asi:
+<Route exact path="/tasks" element={<Tasks />} />
+<Route path="/task/create" element={<CreateTask />} />
