@@ -7,18 +7,18 @@ const Task = (props) => {
 
   const toggleModal = () => setShowModal(!showModal);
 
-  const deleteHandler = () => {
-    console.log("Deleting...");
-    // Alert are you sure you want to delete?
-    //    let confirm = prompt ("are you sure you want to delete?");
-    // if
+  // const deleteHandler = () => {
+  //   console.log("Deleting...");
+  //   // Alert are you sure you want to delete?
+  //   //    let confirm = prompt ("are you sure you want to delete?");
+  //   // if
 
-    // All tasks tiene menos la current task:
-    // setTasks(tasks.filter((curr) => curr.id !== task.id));
-    // popup your task has been deleted!
-    // Redirect al path="/tasks"
-    // <Navigate to="/tasks" />; import Navigate from "react-router-dom";
-  };
+  //   // All tasks tiene menos la current task:
+  //   // setTasks(tasks.filter((curr) => curr.id !== task.id));
+  //   // popup your task has been deleted!
+  //   // Redirect al path="/tasks"
+  //   // <Navigate to="/tasks" />; import Navigate from "react-router-dom";
+  // };
 
   const completeHandler = () => {
     console.log("Mark as complete...");
