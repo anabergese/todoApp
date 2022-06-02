@@ -3,7 +3,6 @@ import nextId from "react-id-generator";
 import Task from "./Task";
 
 const CreateTask = () => {
-  //const title = "Make a coffee";
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
@@ -16,7 +15,6 @@ const CreateTask = () => {
     if (localStorage.getItem("allTasks")) {
       const storedTasks = JSON.parse(localStorage.getItem("allTasks"));
       setTasks(storedTasks);
-      console.log("second tasks", tasks);
     }
   }, []);
 
@@ -27,17 +25,18 @@ const CreateTask = () => {
       photo: inputPhoto,
       video: inputVideo,
       deadline: inputDeadline,
-      key: tasks.length,
+      key: Math.floor(Math.random() * 1000),
       id: nextId("task-"),
     });
     setTasks([...tasks, task]);
     localStorage.setItem("allTasks", JSON.stringify([...tasks, task]));
-    console.log("first tasks", tasks);
+
     setInputTitle("");
     setInputDescription("");
     setInputPhoto("");
     setInputVideo("");
     setInputDeadline("");
+    // navigate(`/details/${task.id}`, { state: { taskProps: task } }); // creo que no
   };
 
   return (
@@ -107,7 +106,6 @@ const CreateTask = () => {
         </label>
         <button>I AM DONE</button>
       </form>
-
       <Task task={task} tasks={tasks} setTasks={setTasks} />
     </div>
   );

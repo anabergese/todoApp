@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import Modal from "./Modal";
+import Modal from "../Modal";
 import { useState } from "react";
 
 const Details = () => {

@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useContext } from "react";
-import ThemeContext from "./ThemeContext";
+import ThemeContext from "../ThemeContext";
 
 const ColorTheme = () => {
   const [theme, setTheme] = useContext(ThemeContext);

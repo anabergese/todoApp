@@ -1,4 +1,6 @@
 import Task from "./Task";
+
+// retornar tasks segun la ruta? ruta delete, only deleted tasks
 const Tasks = ({ tasks }) => {
   return (
     <div>

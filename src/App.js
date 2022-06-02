@@ -1,14 +1,14 @@
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import CreateTask from "./CreateTask";
-import Tasks from "./Tasks";
-import Home from "./Home";
-import Details from "./Details";
-import ColorTheme from "./ColorTheme";
+import CreateTask from "./Components/CreateTask";
+import Tasks from "./Components/Tasks";
+import Home from "./Components/Home";
+import Details from "./Components/Details";
+import ColorTheme from "./Components/ColorTheme";
 import ThemeContext from "./ThemeContext";
-import Menu from "./Menu";
-import About from "./About";
+import Menu from "./Components/Menu";
+import About from "./Components/About";
 
 const App = () => {
   const theme = useState(localStorage.getItem("theme-color"));

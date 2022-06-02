@@ -31,12 +31,5 @@ Make delete and edit with redirects
 
 Display images
 
-Upload github
-
 Al crear una nueva task cuando click en I am Done, el array se muestra vacío []. Si clicko otra vez o si añado
 una nueva task el array se muestra [{...}]. Hago 3 tasks, el array tiene 2.
-
-bueno hay algo que me tiene parada, no puedo hacer el display de "all my tasks" array
-en el path que quiero path="/tasks". La route en App.js es asi:
-<Route exact path="/tasks" element={<Tasks />} />
-<Route path="/task/create" element={<CreateTask />} />
