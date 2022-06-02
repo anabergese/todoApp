@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ColorTheme from "./ColorTheme";
 
-const Menu = ({ colorTheme, setColorTheme }) => {
+const Menu = () => {
   return (
     <div className="sidenav">
       <Link to="/tasks">See All Tasks</Link>
@@ -11,7 +11,7 @@ const Menu = ({ colorTheme, setColorTheme }) => {
       <Link to="/tasks/uncompleted">Uncompleted Tasks</Link>
       <Link to="/tasks/deleted">Recycle Bin</Link>
       <Link to="/about">About the site</Link>
-      <ColorTheme colorTheme={colorTheme} setColorTheme={setColorTheme} />
+      <ColorTheme />
     </div>
   );
 };

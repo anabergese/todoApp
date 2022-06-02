@@ -1,46 +1,44 @@
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CreateTask from "./CreateTask";
 import Tasks from "./Tasks";
 import Home from "./Home";
 import Details from "./Details";
 import ColorTheme from "./ColorTheme";
+import ThemeContext from "./ThemeContext";
 import Menu from "./Menu";
 import About from "./About";
 
-// Data flows from the parent (App) to the child (Todo) via props.
 const App = () => {
-  const [colorTheme, setColorTheme] = useState("theme-orange");
-
-  useEffect(() => {
-    const currentThemeColor = localStorage.getItem("theme-color");
-
-    // if found set selected theme value in state
-    if (currentThemeColor) {
-      setColorTheme(currentThemeColor);
-    }
-  }, []);
+  const theme = useState(localStorage.getItem("theme-color"));
 
   return (
-    <BrowserRouter>
-      <div className={`App ${colorTheme}`}>
-        <ColorTheme colorTheme={colorTheme} setColorTheme={setColorTheme} />
-        <Menu colorTheme={colorTheme} setColorTheme={setColorTheme} />
-        <h1>Todo List Project</h1>
-        <Routes>
-          <Route path="/details/:id" element={<Details />} />
-          <Route path="/task/create" element={<CreateTask />} />
-          <Route path="/tasks/completed" />
-          <Route path="/tasks/uncompleted" />
-          <Route path="/tasks/delete" />
-          <Route path="/recycled" />
-          <Route path="/about" element={<About />} />
-          <Route exact path="/tasks" element={<Tasks />} />
-          <Route exact path="/" element={<Home />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <ThemeContext.Provider value={theme}>
+      <BrowserRouter>
+        <ThemeContext.Consumer>
+          {([theme]) => (
+            <div className={`App ${theme}`}>
+              <ColorTheme />
+              <Menu />
+              <h1>Todo List Project</h1>
+
+              <Routes>
+                <Route path="/details/:id" element={<Details />} />
+                <Route path="/task/create" element={<CreateTask />} />
+                <Route path="/tasks/completed" />
+                <Route path="/tasks/uncompleted" />
+                <Route exact path="/tasks/delete" />
+                <Route path="/recycled" />
+                <Route path="/about" element={<About />} />
+                <Route exact path="/tasks" element={<Tasks />} />
+                <Route exact path="/" element={<Home />} />
+              </Routes>
+            </div>
+          )}
+        </ThemeContext.Consumer>
+      </BrowserRouter>
+    </ThemeContext.Provider>
   );
 };
 

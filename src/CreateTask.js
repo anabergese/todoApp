@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Tasks from "./Tasks";
+import { useState, useEffect } from "react";
 import nextId from "react-id-generator";
+import Task from "./Task";
 
 const CreateTask = () => {
   //const title = "Make a coffee";
@@ -10,23 +10,29 @@ const CreateTask = () => {
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState({});
 
-  const submitTaskHandler = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (localStorage.getItem("allTasks")) {
+      const storedTasks = JSON.parse(localStorage.getItem("allTasks"));
+      setTasks(storedTasks);
+      console.log("second tasks", tasks);
+    }
+  }, []);
 
-    setTasks([
-      ...tasks,
-      {
-        title: inputTitle,
-        description: inputDescription,
-        photo: inputPhoto,
-        video: inputVideo,
-        deadline: inputDeadline,
-        key: Math.random() * 1000, // use index of the array
-        id: nextId("task-"),
-      },
-    ]);
-    console.log(tasks);
+  const submitTaskHandler = () => {
+    setTask({
+      title: inputTitle,
+      description: inputDescription,
+      photo: inputPhoto,
+      video: inputVideo,
+      deadline: inputDeadline,
+      key: tasks.length,
+      id: nextId("task-"),
+    });
+    setTasks([...tasks, task]);
+    localStorage.setItem("allTasks", JSON.stringify([...tasks, task]));
+    console.log("first tasks", tasks);
     setInputTitle("");
     setInputDescription("");
     setInputPhoto("");
@@ -39,7 +45,13 @@ const CreateTask = () => {
       <header>
         <h1>Create a new task</h1>
       </header>
-      <form className="form-create" onSubmit={submitTaskHandler}>
+      <form
+        className="form-create"
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitTaskHandler();
+        }}
+      >
         <label>
           <p>Title:</p>
           <input
@@ -94,9 +106,9 @@ const CreateTask = () => {
           />
         </label>
         <button>I AM DONE</button>
-
-        <Tasks tasks={tasks} />
       </form>
+
+      <Task task={task} tasks={tasks} setTasks={setTasks} />
     </div>
   );
 };

@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useContext } from "react";
+import ThemeContext from "./ThemeContext";
 
-const ColorTheme = ({ colorTheme, setColorTheme }) => {
+const ColorTheme = () => {
+  const [theme, setTheme] = useContext(ThemeContext);
+
   const changeColor = (e) => {
-    console.log(e.target.id);
-    setColorTheme(e.target.id);
-    localStorage.setItem("theme-color", colorTheme);
+    setTheme(e.target.id);
+    localStorage.setItem("theme-color", e.target.id);
   };
 
   return (
@@ -18,42 +20,42 @@ const ColorTheme = ({ colorTheme, setColorTheme }) => {
             changeColor(e);
           }}
           id="theme-white"
-          className={`${colorTheme === "theme-white" ? "active" : ""}`}
+          className={`${theme === "theme-white" ? "active" : ""}`}
         ></div>
         <div
           onClick={(e) => {
             changeColor(e);
           }}
           id="theme-blue"
-          className={`${colorTheme === "theme-blue" ? "active" : ""}`}
+          className={`${theme === "theme-blue" ? "active" : ""}`}
         ></div>
         <div
           onClick={(e) => {
             changeColor(e);
           }}
           id="theme-orange"
-          className={`${colorTheme === "theme-orange" ? "active" : ""}`}
+          className={`${theme === "theme-orange" ? "active" : ""}`}
         ></div>
         <div
           onClick={(e) => {
             changeColor(e);
           }}
           id="theme-red"
-          className={`${colorTheme === "theme-red" ? "active" : ""}`}
+          className={`${theme === "theme-red" ? "active" : ""}`}
         ></div>
         <div
           onClick={(e) => {
             changeColor(e);
           }}
           id="theme-green"
-          className={`${colorTheme === "theme-green" ? "active" : ""}`}
+          className={`${theme === "theme-green" ? "active" : ""}`}
         ></div>
         <div
           onClick={(e) => {
             changeColor(e);
           }}
           id="theme-black"
-          className={`${colorTheme === "theme-black" ? "active" : ""}`}
+          className={`${theme === "theme-black" ? "active" : ""}`}
         ></div>
       </div>
     </div>
