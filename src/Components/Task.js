@@ -1,25 +1,45 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 
-import AlltasksContext from "../AlltasksContext";
+import AlltasksContext from "../Contexts/AlltasksContext";
 
 const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
 
-  const completeHandler = () => {
-    console.log("Mark as complete...");
-  };
-  const deleteHandler = (task, alltasks) => {
-    // Creating all tasks with less the current task:
+  const completeHandler = (task, alltasks) => {
     const currentTask = task;
-    console.log("before", alltasks);
-    const deleted = alltasks.filter((t) => t.id !== currentTask.id);
-    setAlltasks(deleted);
-    localStorage.setItem("allTasks", JSON.stringify(deleted));
-    console.log("after", alltasks);
+    currentTask.status = "completed";
+
+    const completedTasks = alltasks.filter((t) =>
+      t.status === "completed" ? t : null
+    );
+    const storedCompletedTasks = localStorage.getItem("allcompletedTasks");
+
+    const allCompletedTasks =
+      JSON.stringify(completedTasks) + JSON.stringify(storedCompletedTasks);
+
+    localStorage.setItem("allcompletedTasks", allCompletedTasks);
   };
+
+  const deleteHandler = (task, alltasks) => {
+    const currentTask = task;
+    currentTask.status = "deleted";
+
+    const currentAlltasks = alltasks.filter((t) => t.id !== currentTask.id);
+    setAlltasks(currentAlltasks);
+    localStorage.setItem("allTasks", JSON.stringify(currentAlltasks));
+
+    const deletedTask = alltasks.filter((t) => t.id === currentTask.id);
+    const storedDeletedTasks = localStorage.getItem("allDeletedTasks");
+
+    const deletedTasks =
+      JSON.stringify(deletedTask) + JSON.stringify(storedDeletedTasks);
+
+    localStorage.setItem("allDeletedTasks", deletedTasks);
+  };
+
   return (
-    <div className="task">
+    <div>
       {alltasks?.map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
@@ -27,6 +47,7 @@ const Task = () => {
             <h1>Title: {task.title}</h1>
             <p>Description: {task.description}</p>
             <p>{task.key}</p>
+            <p>Status: {task.status}</p>
             <p>Photo: {task.photo}</p>
             <p>Video: {task.video}</p>
             <p>Deadline: {task.deadline}</p>
@@ -49,18 +70,18 @@ const Task = () => {
               >
                 Delete Task
               </button>
+              <button
+                className="button"
+                onClick={() => {
+                  completeHandler(task, alltasks);
+                }}
+              >
+                Mark as Complete
+              </button>
             </div>
           </div>
         );
       })}
-
-      <button onClick={completeHandler} className="button">
-        Mark as Complete
-      </button>
-
-      <Link to="/tasks" className="button">
-        See alltasks
-      </Link>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import Modal from "../Modal";
 import { useState } from "react";
 import { useContext } from "react";
-import AlltasksContext from "../AlltasksContext";
+import AlltasksContext from "../Contexts/AlltasksContext";
 
 const Details = () => {
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +31,7 @@ const Details = () => {
       <p>Deadline: {taskProps.deadline}</p>
       <p>ID: {taskProps.id}</p>
 
-      <img src={URL.createObjectURL(taskProps.photo)} alt={"file.name"} />
+      {/* <img src={URL.createObjectURL(taskProps.photo)} alt={"file.name"} /> */}
       <button className="button">Edit</button>
       <button className="button" onClick={toggleModal}>
         Delete Task

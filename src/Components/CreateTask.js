@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import AlltasksContext from "../AlltasksContext";
+import AlltasksContext from "../Contexts/AlltasksContext";
 
 import nextId from "react-id-generator";
 import Task from "./Task";
@@ -7,7 +7,7 @@ import Task from "./Task";
 const CreateTask = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
-  const [inputPhoto, setInputPhoto] = useState(null);
+  const [inputPhoto, setInputPhoto] = useState("");
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
@@ -27,6 +27,7 @@ const CreateTask = () => {
       photo: inputPhoto,
       video: inputVideo,
       deadline: inputDeadline,
+      status: "uncompleted",
       key: nextId("key-"),
       id: nextId("task-"),
     });
@@ -81,7 +82,7 @@ const CreateTask = () => {
               setInputPhoto(e.target.value);
             }}
             type="file"
-            name="photo"
+            name="file"
           />
         </label>
         <label>
@@ -106,8 +107,10 @@ const CreateTask = () => {
             name="deadline"
           />
         </label>
+
         <button>I AM DONE</button>
       </form>
+
       <Task />
     </div>
   );

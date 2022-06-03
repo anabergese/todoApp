@@ -6,10 +6,11 @@ import Task from "./Components/Task";
 import Home from "./Components/Home";
 import Details from "./Components/Details";
 import ColorTheme from "./Components/ColorTheme";
-import ThemeContext from "./ThemeContext";
-import AlltasksContext from "./AlltasksContext";
+import ThemeContext from "./Contexts/ThemeContext";
+import AlltasksContext from "./Contexts/AlltasksContext";
 import Menu from "./Components/Menu";
 import About from "./Components/About";
+import CompletedTasks from "./Components/CompletedTasks";
 
 const App = () => {
   const theme = useState(localStorage.getItem("theme-color"));
@@ -28,7 +29,7 @@ const App = () => {
                 <Routes>
                   <Route path="/details/:id" element={<Details />} />
                   <Route path="/task/create" element={<CreateTask />} />
-                  <Route path="/tasks/completed" />
+                  <Route path="/tasks/completed" element={<CompletedTasks />} />
                   <Route path="/tasks/uncompleted" />
                   <Route exact path="/tasks/delete" />
                   <Route path="/recycled" />
