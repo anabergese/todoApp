@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import AlltasksContext from "../AlltasksContext";
-
-import nextId from "react-id-generator";
+import { useId } from "react";
 import Task from "./Task";
 
 const CreateTask = () => {
@@ -12,6 +11,7 @@ const CreateTask = () => {
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const [task, setTask] = useState({});
+  const id = useId();
 
   useEffect(() => {
     if (localStorage.getItem("allTasks")) {
@@ -27,8 +27,8 @@ const CreateTask = () => {
       photo: inputPhoto,
       video: inputVideo,
       deadline: inputDeadline,
-      key: Math.floor(Math.random() * 1000),
-      id: nextId("task-"),
+      key: id,
+      id: id,
     });
     setAlltasks([...alltasks, task]);
     localStorage.setItem("allTasks", JSON.stringify([...alltasks, task]));
