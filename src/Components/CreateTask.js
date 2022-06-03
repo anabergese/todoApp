@@ -1,20 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AlltasksContext from "../AlltasksContext";
+
 import nextId from "react-id-generator";
 import Task from "./Task";
 
 const CreateTask = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
-  const [inputPhoto, setInputPhoto] = useState("");
+  const [inputPhoto, setInputPhoto] = useState(null);
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const [task, setTask] = useState({});
 
   useEffect(() => {
     if (localStorage.getItem("allTasks")) {
       const storedTasks = JSON.parse(localStorage.getItem("allTasks"));
-      setTasks(storedTasks);
+      setAlltasks(storedTasks);
     }
   }, []);
 
@@ -28,8 +30,8 @@ const CreateTask = () => {
       key: Math.floor(Math.random() * 1000),
       id: nextId("task-"),
     });
-    setTasks([...tasks, task]);
-    localStorage.setItem("allTasks", JSON.stringify([...tasks, task]));
+    setAlltasks([...alltasks, task]);
+    localStorage.setItem("allTasks", JSON.stringify([...alltasks, task]));
 
     setInputTitle("");
     setInputDescription("");
@@ -106,7 +108,7 @@ const CreateTask = () => {
         </label>
         <button>I AM DONE</button>
       </form>
-      <Task task={task} tasks={tasks} setTasks={setTasks} />
+      <Task />
     </div>
   );
 };

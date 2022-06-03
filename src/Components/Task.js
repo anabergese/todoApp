@@ -1,64 +1,66 @@
 import { Link } from "react-router-dom";
-import Modal from "../Modal";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
-const Task = ({ task, tasks, setTasks }) => {
-  const [showModal, setShowModal] = useState(false);
-  let navigate = useNavigate();
+import AlltasksContext from "../AlltasksContext";
 
-  const toggleModal = () => setShowModal(!showModal);
-
-  const deleteHandler = (task) => {
-    console.log("Deleting...");
-    // Creating all tasks with less the current task:
-    const deleted = tasks.filter((t) => t.id !== task.id);
-    setTasks(deleted);
-    localStorage.setItem("allTasks", JSON.stringify(deleted));
-
-    navigate("/tasks/delete", { replace: true });
-  };
+const Task = () => {
+  const [alltasks, setAlltasks] = useContext(AlltasksContext);
 
   const completeHandler = () => {
     console.log("Mark as complete...");
   };
-
+  const deleteHandler = (task, alltasks) => {
+    // Creating all tasks with less the current task:
+    const currentTask = task;
+    console.log("before", alltasks);
+    const deleted = alltasks.filter((t) => t.id !== currentTask.id);
+    setAlltasks(deleted);
+    localStorage.setItem("allTasks", JSON.stringify(deleted));
+    console.log("after", alltasks);
+  };
   return (
     <div className="task">
-      <h1>{task.title}</h1>
-      <p>{task.description}</p>
-      <p>{task.photo}</p>
-      <p>{task.video}</p>
-      <p>{task.deadline}</p>
-      <p>{task.id}</p>
+      {alltasks?.map((task) => {
+        return (
+          // eslint-disable-next-line react/jsx-key
+          <div className="task">
+            <h1>Title: {task.title}</h1>
+            <p>Description: {task.description}</p>
+            <p>{task.key}</p>
+            <p>Photo: {task.photo}</p>
+            <p>Video: {task.video}</p>
+            <p>Deadline: {task.deadline}</p>
+            <p>ID: {task.id}</p>
+            {/* <img src={URL.createObjectURL(task.photo)} alt={"file.name"} /> */}
 
-      <Link
-        to={`/details/${task.id}`}
-        state={{ taskProps: task }}
-        className="button"
-      >
-        See details
-      </Link>
-      <button className="button" onClick={toggleModal}>
-        Delete Task
-      </button>
+            <div>
+              <Link
+                to={`/details/${task.id}`}
+                state={{ taskProps: task }}
+                className="button"
+              >
+                See details
+              </Link>
+              <button
+                className="button"
+                onClick={() => {
+                  deleteHandler(task, alltasks);
+                }}
+              >
+                Delete Task
+              </button>
+            </div>
+          </div>
+        );
+      })}
+
       <button onClick={completeHandler} className="button">
         Mark as Complete
       </button>
-      <Link to="/tasks" state={{ taskProps: task }} className="button">
+
+      <Link to="/tasks" className="button">
         See alltasks
       </Link>
-      {showModal ? (
-        <Modal>
-          <div style={{ backgroundColor: "blue" }}>
-            <h1>Are you sure you want to delete this task: {task.title}?</h1>
-            <div>
-              <button onClick={deleteHandler(task)}>Yes</button>
-              <button onClick={toggleModal}>No</button>
-            </div>
-          </div>
-        </Modal>
-      ) : null}
     </div>
   );
 };
