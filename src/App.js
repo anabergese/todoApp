@@ -23,7 +23,6 @@ const App = () => {
           <ThemeContext.Consumer>
             {([theme]) => (
               <div className={`App ${theme}`}>
-                <ColorTheme />
                 <Menu />
                 <h1>Todo List Project</h1>
                 <Routes>
