@@ -5,7 +5,6 @@ import CreateTask from "./Components/CreateTask";
 import Task from "./Components/Task";
 import Home from "./Components/Home";
 import Details from "./Components/Details";
-import ColorTheme from "./Components/ColorTheme";
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
 import Menu from "./Components/Menu";
