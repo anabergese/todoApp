@@ -29,8 +29,7 @@ const App = () => {
                   <Route path="/task/create" element={<CreateTask />} />
                   <Route path="/tasks/completed" element={<CompletedTasks />} />
                   <Route path="/tasks/uncompleted" />
-                  <Route exact path="/tasks/delete" />
-                  <Route path="/recycled" />
+                  <Route path="/tasks/deleted" />
                   <Route path="/about" element={<About />} />
                   <Route exact path="/tasks" element={<Task />} />
                   <Route exact path="/" element={<Home />} />

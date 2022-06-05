@@ -20,7 +20,9 @@ const CreateTask = () => {
     }
   }, []);
 
-  const submitTaskHandler = () => {
+  const submitTaskHandler = (e) => {
+    e.preventDefault();
+
     setTask({
       title: inputTitle,
       description: inputDescription,
@@ -50,8 +52,7 @@ const CreateTask = () => {
       <form
         className="form-create"
         onSubmit={(e) => {
-          e.preventDefault();
-          submitTaskHandler();
+          submitTaskHandler(e);
         }}
       >
         <label>
@@ -108,7 +109,7 @@ const CreateTask = () => {
           />
         </label>
 
-        <button>I AM DONE</button>
+        <button type="submit">I AM DONE</button>
       </form>
 
       <Task />
