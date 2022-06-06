@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
 import nextId from "react-id-generator";
-import Task from "./Task";
+import Tasks from "./Task";
 
 const CreateTask = () => {
   const [inputTitle, setInputTitle] = useState("");
@@ -112,7 +112,7 @@ const CreateTask = () => {
         <button type="submit">I AM DONE</button>
       </form>
 
-      <Task />
+      <Tasks />
     </div>
   );
 };

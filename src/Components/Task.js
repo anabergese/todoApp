@@ -53,7 +53,6 @@ const Task = () => {
             <p>Deadline: {task.deadline}</p>
             <p>ID: {task.id}</p>
             {/* <img src={URL.createObjectURL(task.photo)} alt="file.name" /> */}
-
             <div>
               <Link
                 to={`/details/${task.id}`}
