@@ -8,7 +8,7 @@ const Tasks = () => {
 
   return (
     <AlltasksContext.Consumer>
-      <div>
+      <div className="container">
         {alltasks?.map((alltasks) => {
           return (
             // eslint-disable-next-line react/jsx-key

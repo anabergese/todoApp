@@ -1,16 +1,16 @@
 body {
-  background: linear-gradient(
-      180deg,
-      rgba(57, 52, 93, 0.8) 0%,
-      rgba(27, 25, 51, 0.8) 55%
-    )
-    no-repeat center center fixed;
+  background-color: #212121;
   height: 100%;
   color: #f4ecff;
   font-family: "TT Hoves", sans-serif;
   text-align: justify;
   -webkit-font-smoothing: antialiased;
   margin-left: 160px; /* Same as the width of the sidenav */
+}
+
+.container {
+  background-color: #212121;
+  padding-bottom: 4%;
 }
 
 p {
@@ -21,38 +21,67 @@ p {
   margin: 10%;
   padding: 4%;
   border-radius: 4px;
-  background: linear-gradient(180deg, #39345d 0%, #24213b 55%);
+  background-color: #484848;
 }
 
+/* Star task */
 .task {
   margin: 10%;
   padding: 4%;
   border-radius: 4px;
-  background: linear-gradient(180deg, #25223d 0%, #0f0e18 55%);
+  background-color: #484848;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.task-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
 }
 
 .button {
-  padding: 1.3em 3em;
-  font-size: 12px;
+  width: 108px;
+  height: 42px;
+  padding: 2%;
+  font-size: 10px;
+  font-weight: 500;
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 2.5px;
-  font-weight: 500;
+  text-align: center;
   color: #000;
   background-color: #fff;
   border: none;
-  border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
 }
 
 .button:hover {
   background-color: #000;
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
   color: #fff;
 }
+
+.button-1 {
+  border-radius: 20px 0px 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-2 {
+  border-radius: 0;
+}
+
+.button-3 {
+  border-radius: 0px 20px 20px 0px;
+}
+/* End task */
 
 /* start sidenav */
 .sidenav {
@@ -77,6 +106,7 @@ p {
 
 .sidenav a:hover {
   color: #f1f1f1;
+  background-color: #484848;
 }
 /* end sidenav */
 
@@ -131,23 +161,50 @@ p {
   margin-left: 160px; /* Same as the width of the sidenav */
 }
 .App.theme-blue {
-  background-color: #18227c;
   color: #ffffff;
+  .container,
+  body,
+  .sidenav a:hover {
+    background-color: #18227c;
+  }
 }
 
 .App.theme-orange {
-  background-color: #ff9800;
   color: #000000;
+  .container,
+  body,
+  .sidenav a:hover {
+    background-color: #ff9800;
+  }
 }
 
 .App.theme-red {
-  background-color: #d32f2f;
   color: #ffffff;
+  .container,
+  body,
+  .sidenav a:hover {
+    background-color: #d32f2f;
+  }
 }
 
 .App.theme-green {
-  background-color: #d7ffd9;
-  color: #000000;
+  .container,
+  body,
+  .sidenav a:hover {
+    background-color: #003636;
+  }
+  .task,
+  .form-create,
+  .sidenav {
+    background-color: #48848f;
+    p,
+    h2 {
+      color: #c8f7c5;
+    }
+  }
+  .sidenav a {
+    color: #c8f7c5;
+  }
 }
 
 .App.theme-black {
@@ -156,6 +213,10 @@ p {
 }
 
 .App.theme-white {
-  background-color: #cfd8dc;
   color: #000000;
+  .container,
+  body,
+  .sidenav a:hover {
+    background-color: #cfd8dc;
+  }
 }

@@ -39,45 +39,60 @@ const Task = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       {alltasks?.map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
           <div className="task">
-            <h1>Title: {task.title}</h1>
-            <p>Description: {task.description}</p>
-            <p>{task.key}</p>
-            <p>Status: {task.status}</p>
-            <p>Photo: {task.photo}</p>
-            <p>Video: {task.video}</p>
-            <p>Deadline: {task.deadline}</p>
-            <p>ID: {task.id}</p>
-            {/* <img src={URL.createObjectURL(task.photo)} alt="file.name" /> */}
-            <div>
-              <Link
-                to={`/details/${task.id}`}
-                state={{ taskProps: task }}
-                className="button"
-              >
-                See details
-              </Link>
-              <button
-                className="button"
-                onClick={() => {
-                  deleteHandler(task, alltasks);
-                }}
-              >
-                Delete Task
-              </button>
-              <button
-                className="button"
-                onClick={() => {
-                  completeHandler(task, alltasks);
-                }}
-              >
-                Mark as Complete
-              </button>
+            <div className="task-title">
+              <div>
+                <h2>Title:</h2>
+                <p> {task.title}</p>
+              </div>
+              <div className="task-buttons">
+                <Link
+                  className="button button-1"
+                  to={`/details/${task.id}`}
+                  state={{ taskProps: task }}
+                >
+                  See details
+                </Link>
+                <button
+                  className="button button-2"
+                  onClick={() => {
+                    deleteHandler(task, alltasks);
+                  }}
+                >
+                  Delete Task
+                </button>
+                <button
+                  className="button button-3"
+                  onClick={() => {
+                    completeHandler(task, alltasks);
+                  }}
+                >
+                  Mark as Complete
+                </button>
+              </div>
             </div>
+
+            <div>
+              <h2>Description: </h2>
+              <p>{task.description}</p>
+              <p>{task.key}</p>
+              <p>Status: {task.status}</p>
+            </div>
+            <div>
+              <p>Photo: {task.photo}</p>
+              <p>Video: {task.video}</p>
+            </div>
+            <div>
+              <h2>Deadline: </h2>
+              <p>{task.deadline}</p>
+              <p>ID: {task.id}</p>
+            </div>
+
+            {/* <img src={URL.createObjectURL(task.photo)} alt="file.name" /> */}
           </div>
         );
       })}

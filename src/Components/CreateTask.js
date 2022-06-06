@@ -45,7 +45,7 @@ const CreateTask = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <header>
         <h1>Create a new task</h1>
       </header>
