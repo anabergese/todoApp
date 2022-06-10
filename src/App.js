@@ -11,6 +11,8 @@ import Menu from "./Components/Menu";
 import About from "./Components/About";
 import CompletedTasks from "./Components/CompletedTasks";
 
+import "./colorThemes.scss";
+
 const App = () => {
   const theme = useState(localStorage.getItem("theme-color"));
   const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")));

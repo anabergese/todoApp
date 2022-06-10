@@ -1,7 +1,7 @@
 body {
   background-color: #212121;
   height: 100%;
-  color: #f4ecff;
+  color: #ffffff;
   font-family: "TT Hoves", sans-serif;
   text-align: justify;
   -webkit-font-smoothing: antialiased;
@@ -14,7 +14,7 @@ body {
 }
 
 p {
-  color: #ada9bb;
+  color: #ffffff;
 }
 
 .form-create {
@@ -91,7 +91,7 @@ p {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #484848;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -100,123 +100,12 @@ p {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 18px;
-  color: #818181;
+  color: #ffffff;
   display: block;
+  &:hover {
+    color: #ffffff;
+    background-color: #000000;
+  }
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-  background-color: #484848;
-}
 /* end sidenav */
-
-/* Cambiar de colores app */
-.theme-options {
-  max-width: 800px;
-
-  div {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    margin: 2px 10px;
-    border: 1px solid rgb(114, 112, 112);
-    display: inline-block;
-    opacity: 0.5;
-    &.active {
-      opacity: 1;
-      width: 30px;
-      height: 30px;
-    }
-  }
-}
-
-#theme-white {
-  background-color: white;
-}
-
-#theme-blue {
-  background-color: #18227c;
-}
-
-#theme-orange {
-  background-color: #ff9800;
-}
-
-#theme-red {
-  background-color: #d32f2f;
-}
-
-#theme-green {
-  background-color: green;
-}
-
-#theme-black {
-  background-color: black;
-}
-
-// Theming colors
-.App {
-  height: 100vh;
-  margin-left: 160px; /* Same as the width of the sidenav */
-}
-.App.theme-blue {
-  color: #ffffff;
-  .container,
-  body,
-  .sidenav a:hover {
-    background-color: #18227c;
-  }
-}
-
-.App.theme-orange {
-  color: #000000;
-  .container,
-  body,
-  .sidenav a:hover {
-    background-color: #ff9800;
-  }
-}
-
-.App.theme-red {
-  color: #ffffff;
-  .container,
-  body,
-  .sidenav a:hover {
-    background-color: #d32f2f;
-  }
-}
-
-.App.theme-green {
-  .container,
-  body,
-  .sidenav a:hover {
-    background-color: #003636;
-  }
-  .task,
-  .form-create,
-  .sidenav {
-    background-color: #48848f;
-    p,
-    h2 {
-      color: #c8f7c5;
-    }
-  }
-  .sidenav a {
-    color: #c8f7c5;
-  }
-}
-
-.App.theme-black {
-  background-color: #212121;
-  color: #ffffff;
-}
-
-.App.theme-white {
-  color: #000000;
-  .container,
-  body,
-  .sidenav a:hover {
-    background-color: #cfd8dc;
-  }
-}
