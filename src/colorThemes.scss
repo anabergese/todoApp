@@ -48,6 +48,8 @@
   margin-left: 160px; /* Same as the width of the sidenav */
 }
 .App.theme-blue {
+  background-color: #5288ca;
+
   .container,
   body,
   .sidenav a:hover {
@@ -73,6 +75,8 @@
 }
 
 .App.theme-orange {
+  background-color: #ff9800;
+
   .container,
   body,
   .sidenav a:hover {
@@ -98,6 +102,8 @@
 }
 
 .App.theme-red {
+  background-color: #d32f2f;
+
   .container,
   body,
   .sidenav a:hover {
@@ -129,6 +135,8 @@
 }
 
 .App.theme-green {
+  background-color: #003636;
+
   .container,
   body,
   .sidenav a:hover {
@@ -159,6 +167,8 @@
 }
 
 .App.theme-white {
+  background-color: #cfd8dc;
+
   .container,
   body,
   .sidenav a:hover {
