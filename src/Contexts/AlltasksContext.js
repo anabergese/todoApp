@@ -1,8 +1,7 @@
 import { createContext } from "react";
 
-const task = [{}];
+const task = [];
 
-localStorage.setItem("allTasks", JSON.stringify(task));
 
 const AlltasksContext = createContext([task, () => {}]);
 

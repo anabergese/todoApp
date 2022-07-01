@@ -15,7 +15,7 @@ import "./colorThemes.scss";
 
 const App = () => {
   const theme = useState(localStorage.getItem("theme-color"));
-  const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")));
+  const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")) || []);
 
   return (
     <AlltasksContext.Provider value={alltasks}>

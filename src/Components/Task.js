@@ -7,18 +7,26 @@ const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
 
   const completeHandler = (task, alltasks) => {
-    const currentTask = task;
-    currentTask.status = "completed";
-
+    const taskIndex = alltasks.findIndex((item) => item.id === task.id)
+    const copy = [...alltasks]
+    copy[taskIndex].status = "completed"
+    setAlltasks(copy)
+    localStorage.setItem("allTasks", JSON.stringify(copy))
     const completedTasks = alltasks.filter((t) =>
       t.status === "completed" ? t : null
     );
-    const storedCompletedTasks = localStorage.getItem("allcompletedTasks");
+    const storedCompletedTasks = JSON.parse(localStorage.getItem("allcompletedTasks")) || [];
+    localStorage.setItem("allcompletedTasks", JSON.stringify([...storedCompletedTasks, ...completedTasks]));
 
-    const allCompletedTasks =
-      JSON.stringify(completedTasks) + JSON.stringify(storedCompletedTasks);
+    // const currentTask = task;
+    // currentTask.status = "completed";
 
-    localStorage.setItem("allcompletedTasks", allCompletedTasks);
+    // const completedTasks = alltasks.filter((t) =>
+    //   t.status === "completed" ? t : null
+    // );
+
+    // const allCompletedTasks =
+    // localStorage.setItem("allcompletedTasks", allCompletedTasks);
   };
 
   const deleteHandler = (task, alltasks) => {
@@ -83,7 +91,7 @@ const Task = () => {
               <p>Status: {task.status}</p>
             </div>
             <div>
-              <p>Photo: {task.photo}</p>
+              <p>Photo: {task.photo ? <img src={URL.createObjectURL(task.photo)} alt="file.name"/> : null}</p>
               <p>Video: {task.video}</p>
             </div>
             <div>

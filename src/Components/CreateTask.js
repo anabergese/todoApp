@@ -13,17 +13,12 @@ const CreateTask = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const [task, setTask] = useState({});
 
-  useEffect(() => {
-    if (localStorage.getItem("allTasks")) {
-      const storedTasks = JSON.parse(localStorage.getItem("allTasks"));
-      setAlltasks(storedTasks);
-    }
-  }, []);
-
   const submitTaskHandler = (e) => {
     e.preventDefault();
 
-    setTask({
+
+    // sincrono
+    const newTask = { // creas nuevo objeto con estructura Task
       title: inputTitle,
       description: inputDescription,
       photo: inputPhoto,
@@ -32,9 +27,13 @@ const CreateTask = () => {
       status: "uncompleted",
       key: nextId("key-"),
       id: nextId("task-"),
-    });
-    setAlltasks([...alltasks, task]);
-    localStorage.setItem("allTasks", JSON.stringify([...alltasks, task]));
+    }
+
+    // alltasks -> [{ title: '....' }]
+
+    setAlltasks([...alltasks, newTask]);
+
+    localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
 
     setInputTitle("");
     setInputDescription("");
@@ -43,6 +42,10 @@ const CreateTask = () => {
     setInputDeadline("");
     // navigate(`/details/${task.id}`, { state: { taskProps: task } }); // creo que no
   };
+
+  useEffect(() => {
+    console.log(alltasks)
+  }, [alltasks])
 
   return (
     <div className="container">
@@ -78,9 +81,11 @@ const CreateTask = () => {
         <label>
           <p>Photo:</p>
           <input
-            value={inputPhoto}
+            // value={inputPhoto.filename}
             onChange={(e) => {
-              setInputPhoto(e.target.value);
+              // e.target.value === C:\....nombre_de_la_foto
+              console.log(e.target.files[0])
+              setInputPhoto(e.target.files[0]);
             }}
             type="file"
             name="file"
