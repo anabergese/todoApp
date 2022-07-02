@@ -11,7 +11,7 @@ const CreateTask = () => {
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
-  const [task, setTask] = useState({});
+  // const [task, setTask] = useState({});
 
   const submitTaskHandler = (e) => {
     e.preventDefault();
@@ -30,9 +30,7 @@ const CreateTask = () => {
     }
 
     // alltasks -> [{ title: '....' }]
-
     setAlltasks([...alltasks, newTask]);
-
     localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
 
     setInputTitle("");
@@ -116,8 +114,6 @@ const CreateTask = () => {
 
         <button type="submit">I AM DONE</button>
       </form>
-
-      <Tasks />
     </div>
   );
 };

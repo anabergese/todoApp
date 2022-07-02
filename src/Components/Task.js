@@ -15,18 +15,15 @@ const Task = () => {
     const completedTasks = alltasks.filter((t) =>
       t.status === "completed" ? t : null
     );
-    const storedCompletedTasks = JSON.parse(localStorage.getItem("allcompletedTasks")) || [];
-    localStorage.setItem("allcompletedTasks", JSON.stringify([...storedCompletedTasks, ...completedTasks]));
 
-    // const currentTask = task;
-    // currentTask.status = "completed";
 
-    // const completedTasks = alltasks.filter((t) =>
-    //   t.status === "completed" ? t : null
-    // );
+    if (localStorage.getItem('allcompletedTasks') !== null) {
+      const storedCompletedTasks = JSON.parselocalStorage.getItem("allcompletedTasks");
+      localStorage.setItem("allcompletedTasks", JSON.stringify([...storedCompletedTasks, ...completedTasks]));
+    } else {
+      localStorage.setItem("allcompletedTasks", JSON.stringify([...completedTasks]));
+    }
 
-    // const allCompletedTasks =
-    // localStorage.setItem("allcompletedTasks", allCompletedTasks);
   };
 
   const deleteHandler = (task, alltasks) => {
@@ -92,15 +89,13 @@ const Task = () => {
             </div>
             <div>
               <p>Photo: {task.photo ? <img src={URL.createObjectURL(task.photo)} alt="file.name"/> : null}</p>
-              <p>Video: {task.video}</p>
+              <p>Video: { task.video ? <video src={video} width="750" height="500" controls></video> : null } </p>
             </div>
             <div>
               <h2>Deadline: </h2>
               <p>{task.deadline}</p>
               <p>ID: {task.id}</p>
             </div>
-
-            {/* <img src={URL.createObjectURL(task.photo)} alt="file.name" /> */}
           </div>
         );
       })}
