@@ -2,28 +2,27 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 import AlltasksContext from "../Contexts/AlltasksContext";
+import AllDeletedTasksContext from "../Contexts/AllDeletedTasksContext";
 
 const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
+  const [allDeletedTasks] = useContext(AllDeletedTasksContext);
 
   const completeHandler = (task, alltasks) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === task.id)
-    const copy = [...alltasks]
-    copy[taskIndex].status = "completed"
-    setAlltasks(copy)
-    localStorage.setItem("allTasks", JSON.stringify(copy))
+    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
+    const copy = [...alltasks];
+    copy[taskIndex].status = "completed";
+    setAlltasks(copy);
+
+    localStorage.setItem("allTasks", JSON.stringify(copy));
     const completedTasks = alltasks.filter((t) =>
       t.status === "completed" ? t : null
     );
 
-
-    if (localStorage.getItem('allcompletedTasks') !== null) {
-      const storedCompletedTasks = JSON.parselocalStorage.getItem("allcompletedTasks");
-      localStorage.setItem("allcompletedTasks", JSON.stringify([...storedCompletedTasks, ...completedTasks]));
-    } else {
-      localStorage.setItem("allcompletedTasks", JSON.stringify([...completedTasks]));
-    }
-
+    localStorage.setItem(
+      "allcompletedTasks",
+      JSON.stringify([...completedTasks])
+    );
   };
 
   const deleteHandler = (task, alltasks) => {
@@ -34,13 +33,16 @@ const Task = () => {
     setAlltasks(currentAlltasks);
     localStorage.setItem("allTasks", JSON.stringify(currentAlltasks));
 
-    const deletedTask = alltasks.filter((t) => t.id === currentTask.id);
-    const storedDeletedTasks = localStorage.getItem("allDeletedTasks");
+    // Hacer push de esa current task a local storage para guardarla
+    // como array de alltasksdeleted
 
-    const deletedTasks =
-      JSON.stringify(deletedTask) + JSON.stringify(storedDeletedTasks);
-
-    localStorage.setItem("allDeletedTasks", deletedTasks);
+    // push the new task into the allDeletedTasksContext
+    allDeletedTasks.push(currentTask);
+    // save that in local storage
+    localStorage.setItem(
+      "allDeletedTasks",
+      JSON.stringify([...allDeletedTasks])
+    );
   };
 
   return (
@@ -88,8 +90,18 @@ const Task = () => {
               <p>Status: {task.status}</p>
             </div>
             <div>
-              <p>Photo: {task.photo ? <img src={URL.createObjectURL(task.photo)} alt="file.name"/> : null}</p>
-              <p>Video: { task.video ? <video src={video} width="750" height="500" controls></video> : null } </p>
+              <p>
+                Photo:{" "}
+                {task.photo ? (
+                  <img src={URL.createObjectURL(task.photo)} alt="file.name" />
+                ) : null}
+              </p>
+              <p>
+                Video:{" "}
+                {task.video ? (
+                  <video src={video} width="750" height="500" controls></video>
+                ) : null}{" "}
+              </p>
             </div>
             <div>
               <h2>Deadline: </h2>

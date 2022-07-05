@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
 import nextId from "react-id-generator";
-import Tasks from "./Task";
 
 const CreateTask = () => {
   const [inputTitle, setInputTitle] = useState("");
@@ -16,9 +15,9 @@ const CreateTask = () => {
   const submitTaskHandler = (e) => {
     e.preventDefault();
 
-
     // sincrono
-    const newTask = { // creas nuevo objeto con estructura Task
+    const newTask = {
+      // creas nuevo objeto con estructura Task
       title: inputTitle,
       description: inputDescription,
       photo: inputPhoto,
@@ -27,7 +26,7 @@ const CreateTask = () => {
       status: "uncompleted",
       key: nextId("key-"),
       id: nextId("task-"),
-    }
+    };
 
     // alltasks -> [{ title: '....' }]
     setAlltasks([...alltasks, newTask]);
@@ -42,8 +41,8 @@ const CreateTask = () => {
   };
 
   useEffect(() => {
-    console.log(alltasks)
-  }, [alltasks])
+    console.log(alltasks);
+  }, [alltasks]);
 
   return (
     <div className="container">
@@ -82,7 +81,7 @@ const CreateTask = () => {
             // value={inputPhoto.filename}
             onChange={(e) => {
               // e.target.value === C:\....nombre_de_la_foto
-              console.log(e.target.files[0])
+              console.log(e.target.files[0]);
               setInputPhoto(e.target.files[0]);
             }}
             type="file"
