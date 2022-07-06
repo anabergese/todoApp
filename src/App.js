@@ -8,6 +8,7 @@ import Details from "./Components/Details";
 import Menu from "./Components/Menu";
 import About from "./Components/About";
 import CompletedTasks from "./Components/CompletedTasks";
+import DeletedTasks from "./Components/DeletedTasks";
 
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
@@ -40,7 +41,7 @@ const App = () => {
                       element={<CompletedTasks />}
                     />
                     <Route path="/tasks/uncompleted" />
-                    <Route path="/tasks/deleted" />
+                    <Route path="/tasks/deleted" element={<DeletedTasks />} />
                     <Route path="/about" element={<About />} />
                     <Route exact path="/tasks" element={<Task />} />
                     <Route exact path="/" element={<Home />} />
