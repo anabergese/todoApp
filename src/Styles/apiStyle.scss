@@ -1,0 +1,25 @@
+body {
+  background-color: #212121;
+  height: 100%;
+  color: #ffffff;
+  font-family: "TT Hoves", sans-serif;
+  text-align: justify;
+  -webkit-font-smoothing: antialiased;
+  margin-left: 160px; /* Same as the width of the sidenav */
+}
+
+.container {
+  background-color: #212121;
+  padding-bottom: 4%;
+}
+
+p {
+  color: #ffffff;
+}
+
+.form-create {
+  margin: 10%;
+  padding: 4%;
+  border-radius: 4px;
+  background-color: #484848;
+}

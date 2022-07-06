@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ColorTheme from "./ColorTheme";
 
-const Menu = () => {
+const Navbar = () => {
   return (
     <div className="sidenav">
       <Link to="/tasks">See All Tasks</Link>
@@ -16,4 +16,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default Navbar;

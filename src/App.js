@@ -5,7 +5,7 @@ import CreateTask from "./Components/CreateTask";
 import Task from "./Components/Task";
 import Home from "./Components/Home";
 import Details from "./Components/Details";
-import Menu from "./Components/Menu";
+import Navbar from "./Components/Navbar";
 import About from "./Components/About";
 import CompletedTasks from "./Components/CompletedTasks";
 import DeletedTasks from "./Components/DeletedTasks";
@@ -14,7 +14,10 @@ import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
 import AllDeletedTasks from "./Contexts/AllDeletedTasksContext";
 
-import "./colorThemes.scss";
+import "./Styles/colorThemes.scss";
+import "./Styles/apiStyle.scss";
+import "./Styles/navbar.scss";
+import "./Styles/task.scss";
 
 const App = () => {
   const theme = useState(localStorage.getItem("theme-color"));
@@ -31,7 +34,7 @@ const App = () => {
             <ThemeContext.Consumer>
               {([theme]) => (
                 <div className={`App ${theme}`}>
-                  <Menu />
+                  <Navbar />
                   <h1>Todo List Project</h1>
                   <Routes>
                     <Route path="/details/:id" element={<Details />} />

@@ -53,7 +53,11 @@ const CompletedTasks = () => {
               <p>
                 Photo:{" "}
                 {task.photo ? (
-                  <img src={URL.createObjectURL(task.photo)} alt="file.name" />
+                  <img
+                    src={URL.createObjectURL(task.photo)}
+                    className="task-image"
+                    alt="file.name"
+                  />
                 ) : null}
               </p>
               <p>

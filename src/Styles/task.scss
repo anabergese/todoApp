@@ -1,0 +1,62 @@
+/* Star task */
+.task {
+  margin: 10%;
+  padding: 4%;
+  border-radius: 4px;
+  background-color: #484848;
+  display: flex;
+  flex-direction: column;
+
+  .task-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .task-image {
+    max-width: 300px;
+  }
+
+  .task-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+  }
+
+  .button {
+    width: 108px;
+    height: 42px;
+    padding: 2%;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .button-1 {
+    border-radius: 20px 0px 0px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-2 {
+    border-radius: 0;
+  }
+
+  .button-3 {
+    border-radius: 0px 20px 20px 0px;
+  }
+}
+/* End task */
