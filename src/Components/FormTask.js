@@ -3,7 +3,7 @@ import AlltasksContext from "../Contexts/AlltasksContext";
 
 import nextId from "react-id-generator";
 
-const CreateTask = () => {
+const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
@@ -23,7 +23,7 @@ const CreateTask = () => {
       photo: inputPhoto,
       video: inputVideo,
       deadline: inputDeadline,
-      status: "uncompleted",
+      status: "Uncompleted",
       key: nextId("key-"),
       id: nextId("task-"),
     };
@@ -45,18 +45,16 @@ const CreateTask = () => {
   }, [alltasks]);
 
   return (
-    <div className="container">
-      <header>
-        <h1>Create a new task</h1>
-      </header>
+    <div className="container center">
       <form
         className="form-create"
         onSubmit={(e) => {
           submitTaskHandler(e);
         }}
       >
+        <h1>Create a new task</h1>
         <label>
-          <p>Title:</p>
+          <h4>Title:</h4>
           <input
             value={inputTitle}
             onChange={(e) => {
@@ -66,7 +64,7 @@ const CreateTask = () => {
           />
         </label>
         <label>
-          <p>Description:</p>
+          <h4>Description:</h4>
           <input
             value={inputDescription}
             onChange={(e) => {
@@ -76,7 +74,7 @@ const CreateTask = () => {
           />
         </label>
         <label>
-          <p>Photo:</p>
+          <h4>Photo:</h4>
           <input
             // value={inputPhoto.filename}
             onChange={(e) => {
@@ -89,7 +87,7 @@ const CreateTask = () => {
           />
         </label>
         <label>
-          <p>Video:</p>
+          <h4>Video:</h4>
           <input
             value={inputVideo}
             onChange={(e) => {
@@ -100,7 +98,7 @@ const CreateTask = () => {
           />
         </label>
         <label>
-          <p>Deadline:</p>
+          <h4>Deadline:</h4>
           <input
             value={inputDeadline}
             onChange={(e) => {
@@ -117,4 +115,4 @@ const CreateTask = () => {
   );
 };
 
-export default CreateTask;
+export default FormTask;

@@ -23,40 +23,48 @@ const Details = () => {
   };
 
   return (
-    <div className="task">
-      <h1>Title: {taskProps.title}</h1>
-      <p>Description: {taskProps.description}</p>
-      <p>Photo: {taskProps.photo}</p>
-      <p>Video: {taskProps.video}</p>
-      <p>Deadline: {taskProps.deadline}</p>
-      <p>ID: {taskProps.id}</p>
-
-      {/* <img src={URL.createObjectURL(taskProps.photo)} alt={"file.name"} /> */}
-      <button className="button">Edit</button>
-      <button className="button" onClick={toggleModal}>
-        Delete Task
-      </button>
-      <button className="button">Mark as Done</button>
-      {showModal ? (
-        <Modal>
-          <div style={{ backgroundColor: "blue" }}>
-            <h1>
-              Are you sure you want to delete this task: {taskProps.title}?
-            </h1>
-            <div>
-              <button
-                className="button"
-                onClick={() => {
-                  deleteHandler(taskProps, alltasks);
-                }}
-              >
-                Yes
-              </button>
-              <button onClick={toggleModal}>No</button>
-            </div>
+    <div className="container">
+      <div className="task">
+        <div className="task-title">
+          <div>
+            <h2> {taskProps.title}</h2>
           </div>
-        </Modal>
-      ) : null}
+          <div className="task-buttons">
+            <button className="button button-1">Edit</button>
+            <button className="button button-2" onClick={toggleModal}>
+              Delete Task
+            </button>
+            <button className="button button-3">Mark as Done</button>
+            {showModal ? (
+              <Modal>
+                <div style={{ backgroundColor: "blue" }}>
+                  <h1>
+                    Are you sure you want to delete this task: {taskProps.title}
+                    ?
+                  </h1>
+                  <div>
+                    <button
+                      className="button"
+                      onClick={() => {
+                        deleteHandler(taskProps, alltasks);
+                      }}
+                    >
+                      Yes
+                    </button>
+                    <button onClick={toggleModal}>No</button>
+                  </div>
+                </div>
+              </Modal>
+            ) : null}
+          </div>
+        </div>
+
+        <p>Description: {taskProps.description}</p>
+        <p>Photo: {taskProps.photo}</p>
+        <p>Video: {taskProps.video}</p>
+        <p>Deadline: {taskProps.deadline}</p>
+        <p>ID: {taskProps.id}</p>
+      </div>
     </div>
   );
 };

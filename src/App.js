@@ -1,7 +1,7 @@
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import CreateTask from "./Components/CreateTask";
+import FormTask from "./Components/FormTask";
 import Task from "./Components/Task";
 import Home from "./Components/Home";
 import Details from "./Components/Details";
@@ -16,6 +16,7 @@ import AllDeletedTasks from "./Contexts/AllDeletedTasksContext";
 
 import "./Styles/colorThemes.scss";
 import "./Styles/apiStyle.scss";
+import "./Styles/formTask.scss";
 import "./Styles/navbar.scss";
 import "./Styles/task.scss";
 
@@ -35,10 +36,9 @@ const App = () => {
               {([theme]) => (
                 <div className={`App ${theme}`}>
                   <Navbar />
-                  <h1>Todo List Project</h1>
                   <Routes>
                     <Route path="/details/:id" element={<Details />} />
-                    <Route path="/task/create" element={<CreateTask />} />
+                    <Route path="/task/create" element={<FormTask />} />
                     <Route
                       path="/tasks/completed"
                       element={<CompletedTasks />}

@@ -14,8 +14,7 @@ const DeletedTasks = () => {
           <div className="task">
             <div className="task-title">
               <div>
-                <h2>Title:</h2>
-                <p> {task.title}</p>
+                <h2> {task.title}</h2>
               </div>
               <div className="task-buttons">
                 <Link
@@ -28,7 +27,7 @@ const DeletedTasks = () => {
                 <button
                   className="button button-2"
                   onClick={() => {
-                    deleteHandler(task, allDeletedTasks);
+                    deleteHandler(task, alltasks);
                   }}
                 >
                   Delete Task
@@ -36,31 +35,25 @@ const DeletedTasks = () => {
                 <button
                   className="button button-3"
                   onClick={() => {
-                    restoreHandler(task, allDeletedTasks);
+                    completeHandler(task, alltasks);
                   }}
                 >
-                  Restore Task
+                  Mark as Complete
                 </button>
               </div>
             </div>
 
             <div>
-              <h2>Description: </h2>
               <p>{task.description}</p>
-              <p>{task.key}</p>
-              <p>Status: {task.status}</p>
             </div>
             <div>
-              <p>
-                Photo:{" "}
-                {task.photo ? (
-                  <img
-                    src={URL.createObjectURL(task.photo)}
-                    className="task-image"
-                    alt="file.name"
-                  />
-                ) : null}
-              </p>
+              {task.photo ? (
+                <img
+                  src={URL.createObjectURL(task.photo)}
+                  className="task-image center"
+                  alt="file.name"
+                />
+              ) : null}
               <p>
                 Video:{" "}
                 {task.video ? (
@@ -69,9 +62,10 @@ const DeletedTasks = () => {
               </p>
             </div>
             <div>
-              <h2>Deadline: </h2>
+              <h4>Status: </h4>
+              <p>{task.status}</p>
+              <h4>Deadline: </h4>
               <p>{task.deadline}</p>
-              <p>ID: {task.id}</p>
             </div>
           </div>
         );

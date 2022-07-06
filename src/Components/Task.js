@@ -11,12 +11,12 @@ const Task = () => {
   const completeHandler = (task, alltasks) => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
-    copy[taskIndex].status = "completed";
+    copy[taskIndex].status = "Completed";
     setAlltasks(copy);
 
     localStorage.setItem("allTasks", JSON.stringify(copy));
     const completedTasks = alltasks.filter((t) =>
-      t.status === "completed" ? t : null
+      t.status === "Completed" ? t : null
     );
 
     localStorage.setItem(
@@ -53,8 +53,7 @@ const Task = () => {
           <div className="task">
             <div className="task-title">
               <div>
-                <h2>Title:</h2>
-                <p> {task.title}</p>
+                <h2> {task.title}</h2>
               </div>
               <div className="task-buttons">
                 <Link
@@ -84,22 +83,16 @@ const Task = () => {
             </div>
 
             <div>
-              <h2>Description: </h2>
               <p>{task.description}</p>
-              <p>{task.key}</p>
-              <p>Status: {task.status}</p>
             </div>
             <div>
-              <p>
-                Photo:{" "}
-                {task.photo ? (
-                  <img
-                    src={URL.createObjectURL(task.photo)}
-                    className="task-image"
-                    alt="file.name"
-                  />
-                ) : null}
-              </p>
+              {task.photo ? (
+                <img
+                  src={URL.createObjectURL(task.photo)}
+                  className="task-image center"
+                  alt="file.name"
+                />
+              ) : null}
               <p>
                 Video:{" "}
                 {task.video ? (
@@ -108,9 +101,10 @@ const Task = () => {
               </p>
             </div>
             <div>
-              <h2>Deadline: </h2>
+              <h4>Status: </h4>
+              <p>{task.status}</p>
+              <h4>Deadline: </h4>
               <p>{task.deadline}</p>
-              <p>ID: {task.id}</p>
             </div>
           </div>
         );

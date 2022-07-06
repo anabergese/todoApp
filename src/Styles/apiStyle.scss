@@ -5,21 +5,20 @@ body {
   font-family: "TT Hoves", sans-serif;
   text-align: justify;
   -webkit-font-smoothing: antialiased;
-  margin-left: 160px; /* Same as the width of the sidenav */
+  margin-left: 10px;
 }
 
 .container {
   background-color: #212121;
-  padding-bottom: 4%;
 }
 
 p {
   color: #ffffff;
 }
 
-.form-create {
-  margin: 10%;
-  padding: 4%;
-  border-radius: 4px;
-  background-color: #484848;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
