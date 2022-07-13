@@ -47,69 +47,71 @@ const FormTask = () => {
   return (
     <div className="container center">
       <form
-        className="form-create"
         onSubmit={(e) => {
           submitTaskHandler(e);
         }}
       >
-        <h1>Create a new task</h1>
-        <label>
-          <h4>Title:</h4>
-          <input
-            value={inputTitle}
-            onChange={(e) => {
-              setInputTitle(e.target.value);
-            }}
-            type="text"
-          />
-        </label>
-        <label>
-          <h4>Description:</h4>
-          <input
-            value={inputDescription}
-            onChange={(e) => {
-              setInputDescription(e.target.value);
-            }}
-            type="textarea"
-          />
-        </label>
-        <label>
-          <h4>Photo:</h4>
-          <input
-            // value={inputPhoto.filename}
-            onChange={(e) => {
-              // e.target.value === C:\....nombre_de_la_foto
-              console.log(e.target.files[0]);
-              setInputPhoto(e.target.files[0]);
-            }}
-            type="file"
-            name="file"
-          />
-        </label>
-        <label>
-          <h4>Video:</h4>
-          <input
-            value={inputVideo}
-            onChange={(e) => {
-              setInputVideo(e.target.value);
-            }}
-            type="file"
-            name="video"
-          />
-        </label>
-        <label>
-          <h4>Deadline:</h4>
-          <input
-            value={inputDeadline}
-            onChange={(e) => {
-              setInputDeadline(e.target.value);
-            }}
-            type="date"
-            name="deadline"
-          />
-        </label>
-
-        <button type="submit">I AM DONE</button>
+        <div className="form-create">
+          <h1>Create a new task</h1>
+          <label>
+            <h4>Title:</h4>
+            <input
+              value={inputTitle}
+              onChange={(e) => {
+                setInputTitle(e.target.value);
+              }}
+              type="text"
+            />
+          </label>
+          <label>
+            <h4>Description:</h4>
+            <input
+              value={inputDescription}
+              onChange={(e) => {
+                setInputDescription(e.target.value);
+              }}
+              type="textarea"
+            />
+          </label>
+          <label>
+            <h4>Photo:</h4>
+            <input
+              // value={inputPhoto.filename}
+              onChange={(e) => {
+                // e.target.value === C:\....nombre_de_la_foto
+                console.log(e.target.files[0]);
+                setInputPhoto(e.target.files[0]);
+              }}
+              type="file"
+              name="file"
+            />
+          </label>
+          <label>
+            <h4>Video:</h4>
+            <input
+              value={inputVideo}
+              onChange={(e) => {
+                setInputVideo(e.target.value);
+              }}
+              type="file"
+              name="video"
+            />
+          </label>
+          <label>
+            <h4>Deadline:</h4>
+            <input
+              value={inputDeadline}
+              onChange={(e) => {
+                setInputDeadline(e.target.value);
+              }}
+              type="date"
+              name="deadline"
+            />
+          </label>
+        </div>
+        <button type="submit" className="center">
+          I AM DONE
+        </button>
       </form>
     </div>
   );
