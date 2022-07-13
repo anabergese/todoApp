@@ -1,10 +1,35 @@
 import { useContext } from "react";
 import AllDeletedTasksContext from "../Contexts/AllDeletedTasksContext";
+import AlltasksContext from "../Contexts/AlltasksContext";
 import { Link } from "react-router-dom";
 
 const DeletedTasks = () => {
   // eslint-disable-next-line no-undef
-  const [allDeletedTasks] = useContext(AllDeletedTasksContext);
+  const [allDeletedTasks, setAllDeletedTasks] = useContext(
+    AllDeletedTasksContext
+  );
+  const [alltasks] = useContext(AlltasksContext);
+
+  const deleteHandler = (task, alltasks) => {
+    console.log(task, alltasks);
+  };
+
+  const restoreHandler = (task, allDeletedTasks) => {
+    // buscar entre las deletes tasks, la current task
+    const taskIndex = allDeletedTasks.findIndex((item) => item.id === task.id);
+    console.log("taskindex", taskIndex);
+    const copy = [...allDeletedTasks];
+    // marcarla con el status "uncompleted"
+    copy[taskIndex].status = "Uncompleted";
+    setAllDeletedTasks(copy);
+    // de las alldeletedtasks actualizar para que en localstorage queden todas las que tienen status = deleted
+    const deletedTasks = copy.filter((t) =>
+      t.status === "Deleted" ? t : null
+    );
+    localStorage.setItem("allDeletedTasks", JSON.stringify([...deletedTasks]));
+    // actualizar las alltasks con la nueva uncomplete task
+    localStorage.setItem("allTasks", JSON.stringify(copy));
+  };
 
   return (
     <div className="container">
@@ -35,38 +60,14 @@ const DeletedTasks = () => {
                 <button
                   className="button button-3"
                   onClick={() => {
-                    completeHandler(task, alltasks);
+                    restoreHandler(task, allDeletedTasks);
                   }}
                 >
-                  Mark as Complete
+                  Restore
                 </button>
               </div>
             </div>
-
-            <div>
-              <p>{task.description}</p>
-            </div>
-            <div>
-              {task.photo ? (
-                <img
-                  src={URL.createObjectURL(task.photo)}
-                  className="task-image center"
-                  alt="file.name"
-                />
-              ) : null}
-              <p>
-                Video:{" "}
-                {task.video ? (
-                  <video src={video} width="750" height="500" controls></video>
-                ) : null}{" "}
-              </p>
-            </div>
-            <div>
-              <h4>Status: </h4>
-              <p>{task.status}</p>
-              <h4>Deadline: </h4>
-              <p>{task.deadline}</p>
-            </div>
+            <p>Deadline: {task.deadline}</p>
           </div>
         );
       })}

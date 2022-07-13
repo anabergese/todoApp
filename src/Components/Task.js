@@ -33,12 +33,7 @@ const Task = () => {
     setAlltasks(currentAlltasks);
     localStorage.setItem("allTasks", JSON.stringify(currentAlltasks));
 
-    // Hacer push de esa current task a local storage para guardarla
-    // como array de alltasksdeleted
-
-    // push the new task into the allDeletedTasksContext
     allDeletedTasks.push(currentTask);
-    // save that in local storage
     localStorage.setItem(
       "allDeletedTasks",
       JSON.stringify([...allDeletedTasks])
@@ -53,7 +48,7 @@ const Task = () => {
           <div className="task">
             <div className="task-title">
               <div>
-                <h2> {task.title}</h2>
+                <h2>{task.title}</h2>
               </div>
               <div className="task-buttons">
                 <Link
@@ -81,31 +76,7 @@ const Task = () => {
                 </button>
               </div>
             </div>
-
-            <div>
-              <p>{task.description}</p>
-            </div>
-            <div>
-              {task.photo ? (
-                <img
-                  src={URL.createObjectURL(task.photo)}
-                  className="task-image center"
-                  alt="file.name"
-                />
-              ) : null}
-              <p>
-                Video:{" "}
-                {task.video ? (
-                  <video src={video} width="750" height="500" controls></video>
-                ) : null}{" "}
-              </p>
-            </div>
-            <div>
-              <h4>Status: </h4>
-              <p>{task.status}</p>
-              <h4>Deadline: </h4>
-              <p>{task.deadline}</p>
-            </div>
+            <p>Deadline: {task.deadline}</p>
           </div>
         );
       })}

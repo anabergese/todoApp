@@ -59,11 +59,30 @@ const Details = () => {
           </div>
         </div>
 
-        <p>Description: {taskProps.description}</p>
-        <p>Photo: {taskProps.photo}</p>
-        <p>Video: {taskProps.video}</p>
-        <p>Deadline: {taskProps.deadline}</p>
-        <p>ID: {taskProps.id}</p>
+        <div>
+          <p>{taskProps.description}</p>
+        </div>
+        <div>
+          {taskProps.photo ? (
+            <img
+              src={URL.createObjectURL(taskProps.photo)}
+              className="task-image center"
+              alt="file.name"
+            />
+          ) : null}
+          <p>
+            Video:{" "}
+            {taskProps.video ? (
+              <video src={video} width="750" height="500" controls></video>
+            ) : null}{" "}
+          </p>
+        </div>
+        <div>
+          <h4>Status: </h4>
+          <p>{taskProps.status}</p>
+          <h4>Deadline: </h4>
+          <p>{taskProps.deadline}</p>
+        </div>
       </div>
     </div>
   );

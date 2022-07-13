@@ -3,8 +3,26 @@ import AlltasksContext from "../Contexts/AlltasksContext";
 import { Link } from "react-router-dom";
 
 const CompletedTasks = () => {
-  const [alltasks] = useContext(AlltasksContext);
+  const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const allcompletedTasks = alltasks.filter((t) => t.status === "Completed");
+
+  const redoHandler = (task, alltasks) => {
+    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
+    const copy = [...alltasks];
+    copy[taskIndex].status = "Uncompleted";
+    setAlltasks(copy);
+
+    localStorage.setItem("allTasks", JSON.stringify(copy));
+
+    const completedTasks = alltasks.filter((t) =>
+      t.status === "Completed" ? t : null
+    );
+
+    localStorage.setItem(
+      "allcompletedTasks",
+      JSON.stringify([...completedTasks])
+    );
+  };
 
   return (
     <div className="container">
@@ -35,38 +53,14 @@ const CompletedTasks = () => {
                 <button
                   className="button button-3"
                   onClick={() => {
-                    completeHandler(task, alltasks);
+                    redoHandler(task, alltasks);
                   }}
                 >
-                  Mark as Complete
+                  Redo
                 </button>
               </div>
             </div>
-
-            <div>
-              <p>{task.description}</p>
-            </div>
-            <div>
-              {task.photo ? (
-                <img
-                  src={URL.createObjectURL(task.photo)}
-                  className="task-image center"
-                  alt="file.name"
-                />
-              ) : null}
-              <p>
-                Video:{" "}
-                {task.video ? (
-                  <video src={video} width="750" height="500" controls></video>
-                ) : null}{" "}
-              </p>
-            </div>
-            <div>
-              <h4>Status: </h4>
-              <p>{task.status}</p>
-              <h4>Deadline: </h4>
-              <p>{task.deadline}</p>
-            </div>
+            <p>Deadline: {task.deadline}</p>
           </div>
         );
       })}
