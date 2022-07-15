@@ -1,48 +1,65 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-
+import { Link, useLocation } from "react-router-dom";
+import { useContext, useCallback } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
-import AllDeletedTasksContext from "../Contexts/AllDeletedTasksContext";
+
+const Button = ({ onClick, children, className }) => {
+  return (
+    <button className={className} onClick={onClick}>
+      {children}
+    </button>
+  );
+};
 
 const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
-  const [allDeletedTasks] = useContext(AllDeletedTasksContext);
+  const location = useLocation();
+  const query = useCallback(
+    () => new URLSearchParams(location.search),
+    [location]
+  );
+  const filter = (query().get("filter") || "").toLowerCase();
+
+  const allFilteredTask = useCallback(() => {
+    switch (filter) {
+      case "deleted":
+        return alltasks.filter((task) => task.status === "deleted");
+      case "completed":
+        return alltasks.filter((task) => task.status === "completed");
+      case "uncompleted":
+        return alltasks.filter((task) => task.status === "uncompleted");
+      default:
+        return alltasks;
+    }
+  }, [alltasks, filter]);
 
   const completeHandler = (task, alltasks) => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
-    copy[taskIndex].status = "Completed";
+    copy[taskIndex].status = "completed";
     setAlltasks(copy);
-
-    localStorage.setItem("allTasks", JSON.stringify(copy));
-    const completedTasks = alltasks.filter((t) =>
-      t.status === "Completed" ? t : null
-    );
-
-    localStorage.setItem(
-      "allcompletedTasks",
-      JSON.stringify([...completedTasks])
-    );
+    localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
   const deleteHandler = (task, alltasks) => {
-    const currentTask = task;
-    currentTask.status = "deleted";
+    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
+    const copy = [...alltasks];
+    copy[taskIndex].status = "deleted";
+    setAlltasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+  };
 
-    const currentAlltasks = alltasks.filter((t) => t.id !== currentTask.id);
-    setAlltasks(currentAlltasks);
-    localStorage.setItem("allTasks", JSON.stringify(currentAlltasks));
-
-    allDeletedTasks.push(currentTask);
-    localStorage.setItem(
-      "allDeletedTasks",
-      JSON.stringify([...allDeletedTasks])
-    );
+  const permanentDeleteHandler = (task, alltasks) => {
+    console.log(task.id);
+    console.log(alltasks);
+    const copy = alltasks.filter((item) => item.id !== task.id);
+    console.log("second tasks:", copy);
+    setAlltasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
   return (
     <div className="container">
-      {alltasks?.map((task) => {
+      {allFilteredTask().map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
           <div className="task">
@@ -58,22 +75,44 @@ const Task = () => {
                 >
                   See details
                 </Link>
-                <button
-                  className="button button-2"
-                  onClick={() => {
-                    deleteHandler(task, alltasks);
-                  }}
-                >
-                  Delete Task
-                </button>
-                <button
-                  className="button button-3"
-                  onClick={() => {
-                    completeHandler(task, alltasks);
-                  }}
-                >
-                  Mark as Complete
-                </button>
+                {filter === "deleted" ? (
+                  <Button
+                    className={"button button-2"}
+                    onClick={() => {
+                      permanentDeleteHandler(task, alltasks);
+                    }}
+                  >
+                    Permanent Delete
+                  </Button>
+                ) : (
+                  <Button
+                    className={"button button-2"}
+                    onClick={() => {
+                      deleteHandler(task, alltasks);
+                    }}
+                  >
+                    Delete Task
+                  </Button>
+                )}
+                {filter === "deleted" ? (
+                  <Button
+                    className={"button button-3"}
+                    onClick={() => {
+                      // redo task
+                    }}
+                  >
+                    Redo
+                  </Button>
+                ) : (
+                  <Button
+                    className={"button button-3"}
+                    onClick={() => {
+                      completeHandler(task, alltasks);
+                    }}
+                  >
+                    Mark as complete
+                  </Button>
+                )}
               </div>
             </div>
             <p>Deadline: {task.deadline}</p>

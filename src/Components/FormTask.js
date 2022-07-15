@@ -10,7 +10,6 @@ const FormTask = () => {
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
-  // const [task, setTask] = useState({});
 
   const submitTaskHandler = (e) => {
     e.preventDefault();
@@ -23,7 +22,7 @@ const FormTask = () => {
       photo: inputPhoto,
       video: inputVideo,
       deadline: inputDeadline,
-      status: "Uncompleted",
+      status: "uncompleted",
       key: nextId("key-"),
       id: nextId("task-"),
     };
@@ -41,7 +40,7 @@ const FormTask = () => {
   };
 
   useEffect(() => {
-    console.log(alltasks);
+    console.log("alltasks from Form:", alltasks);
   }, [alltasks]);
 
   return (
@@ -76,10 +75,7 @@ const FormTask = () => {
           <label>
             <h4>Photo:</h4>
             <input
-              // value={inputPhoto.filename}
               onChange={(e) => {
-                // e.target.value === C:\....nombre_de_la_foto
-                console.log(e.target.files[0]);
                 setInputPhoto(e.target.files[0]);
               }}
               type="file"
