@@ -25,7 +25,7 @@ const CompletedTasks = () => {
   };
 
   return (
-    <div className="container">
+    <div>
       {allcompletedTasks?.map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key

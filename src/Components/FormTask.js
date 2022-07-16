@@ -14,11 +14,10 @@ const FormTask = () => {
   const submitTaskHandler = (e) => {
     e.preventDefault();
 
-    // sincrono
     const newTask = {
-      // creas nuevo objeto con estructura Task
-      title: inputTitle,
-      description: inputDescription,
+      title: inputTitle.charAt(0).toUpperCase() + inputTitle.slice(1),
+      description:
+        inputDescription.charAt(0).toUpperCase() + inputDescription.slice(1),
       photo: inputPhoto,
       video: inputVideo,
       deadline: inputDeadline,
@@ -27,7 +26,6 @@ const FormTask = () => {
       id: nextId("task-"),
     };
 
-    // alltasks -> [{ title: '....' }]
     setAlltasks([...alltasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
 
@@ -36,7 +34,6 @@ const FormTask = () => {
     setInputPhoto("");
     setInputVideo("");
     setInputDeadline("");
-    // navigate(`/details/${task.id}`, { state: { taskProps: task } }); // creo que no
   };
 
   useEffect(() => {
@@ -44,7 +41,7 @@ const FormTask = () => {
   }, [alltasks]);
 
   return (
-    <div className="container center">
+    <div className="center">
       <form
         onSubmit={(e) => {
           submitTaskHandler(e);

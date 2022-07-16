@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="container center">
+    <div className="center">
       <h1>What's the plan for today?</h1>
 
       <div className="task">

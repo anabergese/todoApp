@@ -49,16 +49,21 @@ const Task = () => {
   };
 
   const permanentDeleteHandler = (task, alltasks) => {
-    console.log(task.id);
-    console.log(alltasks);
     const copy = alltasks.filter((item) => item.id !== task.id);
-    console.log("second tasks:", copy);
+    setAlltasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+  };
+
+  const redoHandler = (task, alltasks) => {
+    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
+    const copy = [...alltasks];
+    copy[taskIndex].status = "uncompleted";
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
   return (
-    <div className="container">
+    <div>
       {allFilteredTask().map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
@@ -94,11 +99,11 @@ const Task = () => {
                     Delete Task
                   </Button>
                 )}
-                {filter === "deleted" ? (
+                {filter === "deleted" || filter === "completed" ? (
                   <Button
                     className={"button button-3"}
                     onClick={() => {
-                      // redo task
+                      redoHandler(task, alltasks);
                     }}
                   >
                     Redo

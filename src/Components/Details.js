@@ -23,7 +23,7 @@ const Details = () => {
   };
 
   return (
-    <div className="container">
+    <div>
       <div className="task">
         <div className="task-title">
           <div>

@@ -32,7 +32,7 @@ const DeletedTasks = () => {
   };
 
   return (
-    <div className="container">
+    <div>
       {allDeletedTasks?.map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
