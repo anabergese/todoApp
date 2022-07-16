@@ -11,11 +11,7 @@ import About from "./Components/About";
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
 
-import "./Styles/colorThemes.scss";
 import "./Styles/app.scss";
-import "./Styles/formTask.scss";
-import "./Styles/navbar.scss";
-import "./Styles/task.scss";
 
 const App = () => {
   const theme = useState(localStorage.getItem("theme-color"));
