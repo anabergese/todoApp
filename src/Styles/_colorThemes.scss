@@ -43,16 +43,12 @@
 }
 
 // Theming colors
-body {
-  background-color: blue;
-}
 .App {
   height: 100%;
   margin-left: 200px; /* Same as the width of the sidenav */
 
   &.theme-blue {
     background-color: #5288ca;
-
     .task,
     .form-create,
     .sidenav {

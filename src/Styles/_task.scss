@@ -4,8 +4,6 @@
   padding: 4%;
   border-radius: 4px;
   background-color: #484848;
-  display: flex;
-  flex-direction: column;
 
   .task-title {
     display: flex;
@@ -20,8 +18,7 @@
 
   .task-buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: right;
+    justify-content: center;
   }
 
   .btn-left {

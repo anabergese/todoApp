@@ -8,7 +8,7 @@ const Home = () => {
       <div className="task">
         <div className="task-title">
           <h2>See all tasks</h2>
-          <Link to="/tasks" className="button button-3">
+          <Link to="/tasks" className="btn btn-3">
             Go
           </Link>
         </div>
@@ -16,7 +16,7 @@ const Home = () => {
       <div className="task">
         <div className="task-title">
           <h2>Create a new task</h2>
-          <Link to="/task/create" className="button button-3">
+          <Link to="/task/create" className="btn btn-3">
             Go
           </Link>
         </div>
