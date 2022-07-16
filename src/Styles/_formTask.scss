@@ -1,18 +1,26 @@
-.form-create {
-  margin: 8%;
-  border-radius: 4px;
-  background-color: #484848;
+form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.form-create {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 
   h1 {
     text-align: center;
     padding: 4% 2%;
-    border-bottom: solid;
   }
 
   label {
     padding: 4% 8%;
+    &:last-child {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
   }
 
   input {

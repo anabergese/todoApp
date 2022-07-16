@@ -1,0 +1,7 @@
+$primary-color: #fff;
+$secondary-color: #212121;
+$yellow-color: #f6ddc3;
+$pink-color: #ecd6ec;
+$brown-color: adjust-hue($pink-color, 90deg);
+$green-color: adjust-hue($pink-color, 180deg);
+$blue-color: adjust-hue($pink-color, 270deg);

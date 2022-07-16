@@ -32,15 +32,15 @@ const ColorTheme = () => {
         onClick={(e) => {
           changeColor(e);
         }}
-        id="theme-orange"
-        className={`${theme === "theme-orange" ? "active" : ""}`}
+        id="theme-brown"
+        className={`${theme === "theme-brown" ? "active" : ""}`}
       ></div>
       <div
         onClick={(e) => {
           changeColor(e);
         }}
-        id="theme-red"
-        className={`${theme === "theme-red" ? "active" : ""}`}
+        id="theme-pink"
+        className={`${theme === "theme-pink" ? "active" : ""}`}
       ></div>
       <div
         onClick={(e) => {

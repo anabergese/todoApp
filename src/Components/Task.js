@@ -67,7 +67,7 @@ const Task = () => {
       {allFilteredTask().map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
-          <div className="task">
+          <div className="task center">
             <div className="task-title">
               <h2>{task.title}</h2>
               <div className="task-buttons">
@@ -118,8 +118,10 @@ const Task = () => {
                 )}
               </div>
             </div>
-            <p>Deadline: {task.deadline}</p>
-            <p>Status: {task.status}</p>
+            <div className="task-content">
+              <p>Deadline: {task.deadline}</p>
+              <p>Status: {task.status}</p>
+            </div>
           </div>
         );
       })}

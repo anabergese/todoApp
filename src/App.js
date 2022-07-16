@@ -7,6 +7,7 @@ import Home from "./Components/Home";
 import Details from "./Components/Details";
 import Navbar from "./Components/Navbar";
 import About from "./Components/About";
+import ColorTheme from "./Components/ColorTheme";
 
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
@@ -24,6 +25,7 @@ const App = () => {
           {([theme]) => (
             <div className={`App ${theme}`}>
               <BrowserRouter>
+                <ColorTheme />
                 <Navbar />
                 <Routes>
                   <Route path="/details/:id" element={<Details />} />

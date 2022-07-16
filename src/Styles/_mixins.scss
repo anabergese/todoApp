@@ -1,0 +1,50 @@
+@mixin theme($theme-color) {
+  $lighten-color: lighten($theme-color, 8%);
+  $darken-color: darken($theme-color, 70%);
+  $secondary-darken-color: darken($theme-color, 40%);
+
+  .sidenav {
+    a {
+      color: $secondary-color;
+      &:hover {
+        background-color: $primary-color;
+      }
+    }
+  }
+
+  form {
+    .form-create {
+      background-color: $theme-color;
+    }
+    label {
+      background-color: $lighten-color;
+    }
+    .btn {
+      background-color: $theme-color;
+    }
+  }
+
+  .task-title,
+  .sidenav {
+    background-color: $theme-color;
+    p,
+    h2 {
+      color: $secondary-color;
+    }
+  }
+
+  .task-content {
+    background-color: $lighten-color;
+  }
+
+  .task {
+    .btn-left {
+      background-color: $darken-color;
+      color: #ffffff;
+    }
+    .btn-center {
+      background-color: $secondary-darken-color;
+      color: #ffffff;
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ColorTheme from "./ColorTheme";
 
 const Navbar = () => {
   return (
@@ -11,7 +10,6 @@ const Navbar = () => {
       <Link to="/tasks?filter=uncompleted">Uncompleted Tasks</Link>
       <Link to="/tasks?filter=deleted">Recycle Bin</Link>
       <Link to="/about">About the site</Link>
-      <ColorTheme />
     </div>
   );
 };

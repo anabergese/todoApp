@@ -41,7 +41,7 @@ const FormTask = () => {
   }, [alltasks]);
 
   return (
-    <div className="center">
+    <div>
       <form
         onSubmit={(e) => {
           submitTaskHandler(e);
@@ -102,8 +102,8 @@ const FormTask = () => {
             />
           </label>
         </div>
-        <button type="submit" className="btn center">
-          I AM DONE
+        <button type="submit" className="btn">
+          I am done
         </button>
       </form>
     </div>
