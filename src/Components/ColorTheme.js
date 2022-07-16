@@ -13,51 +13,49 @@ const ColorTheme = () => {
   };
 
   return (
-    <div>
-      <div className="theme-options">
-        <div
-          onClick={(e) => {
-            changeColor(e);
-          }}
-          id="theme-white"
-          className={`${theme === "theme-white" ? "active" : ""}`}
-        ></div>
-        <div
-          onClick={(e) => {
-            changeColor(e);
-          }}
-          id="theme-blue"
-          className={`${theme === "theme-blue" ? "active" : ""}`}
-        ></div>
-        <div
-          onClick={(e) => {
-            changeColor(e);
-          }}
-          id="theme-orange"
-          className={`${theme === "theme-orange" ? "active" : ""}`}
-        ></div>
-        <div
-          onClick={(e) => {
-            changeColor(e);
-          }}
-          id="theme-red"
-          className={`${theme === "theme-red" ? "active" : ""}`}
-        ></div>
-        <div
-          onClick={(e) => {
-            changeColor(e);
-          }}
-          id="theme-green"
-          className={`${theme === "theme-green" ? "active" : ""}`}
-        ></div>
-        <div
-          onClick={(e) => {
-            changeColor(e);
-          }}
-          id="theme-black"
-          className={`${theme === "theme-black" ? "active" : ""}`}
-        ></div>
-      </div>
+    <div className="theme-options">
+      <div
+        onClick={(e) => {
+          changeColor(e);
+        }}
+        id="theme-white"
+        className={`${theme === "theme-white" ? "active" : ""}`}
+      ></div>
+      <div
+        onClick={(e) => {
+          changeColor(e);
+        }}
+        id="theme-blue"
+        className={`${theme === "theme-blue" ? "active" : ""}`}
+      ></div>
+      <div
+        onClick={(e) => {
+          changeColor(e);
+        }}
+        id="theme-orange"
+        className={`${theme === "theme-orange" ? "active" : ""}`}
+      ></div>
+      <div
+        onClick={(e) => {
+          changeColor(e);
+        }}
+        id="theme-red"
+        className={`${theme === "theme-red" ? "active" : ""}`}
+      ></div>
+      <div
+        onClick={(e) => {
+          changeColor(e);
+        }}
+        id="theme-green"
+        className={`${theme === "theme-green" ? "active" : ""}`}
+      ></div>
+      <div
+        onClick={(e) => {
+          changeColor(e);
+        }}
+        id="theme-black"
+        className={`${theme === "theme-black" ? "active" : ""}`}
+      ></div>
     </div>
   );
 };

@@ -2,18 +2,20 @@
   margin: 8%;
   border-radius: 4px;
   background-color: #484848;
-
-  label {
-    display: grid;
-    padding: 1% 4%;
-  }
+  display: flex;
+  flex-direction: column;
 
   h1 {
     text-align: center;
     padding: 4% 2%;
     border-bottom: solid;
   }
-  h4 {
-    margin: 8% 0 1% 0;
+
+  label {
+    padding: 4% 8%;
+  }
+
+  input {
+    width: 100%;
   }
 }
