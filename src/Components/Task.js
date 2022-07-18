@@ -44,7 +44,7 @@ const Task = () => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
     copy[taskIndex].status = "Deleted";
-    setAlltasks(copy);
+    console.log("ss");
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
@@ -78,7 +78,7 @@ const Task = () => {
                 >
                   See details
                 </Link>
-                {filter === "Deleted" ? (
+                {filter === "deleted" ? (
                   <Button
                     className={"buttons btn-center"}
                     onClick={() => {
@@ -97,7 +97,7 @@ const Task = () => {
                     Delete Task
                   </Button>
                 )}
-                {filter === "Deleted" || filter === "Completed" ? (
+                {filter === "deleted" || filter === "completed" ? (
                   <Button
                     className={"buttons btn-right"}
                     onClick={() => {
