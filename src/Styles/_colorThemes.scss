@@ -20,8 +20,8 @@
       height: 26px;
     }
   }
-  #theme-white {
-    background-color: $primary-color;
+  #theme-red {
+    background-color: $red-color;
   }
 
   #theme-blue {
@@ -70,7 +70,7 @@
     @include theme(#a3a6a8);
   }
 
-  &.theme-white {
-    @include theme($yellow-color);
+  &.theme-red {
+    @include theme($red-color);
   }
 }

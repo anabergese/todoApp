@@ -1,7 +1,7 @@
 @mixin theme($theme-color) {
   $lighten-color: lighten($theme-color, 8%);
   $darken-color: darken($theme-color, 70%);
-  $secondary-darken-color: darken($theme-color, 40%);
+  $secondary-darken-color: darken($theme-color, 48%);
 
   .sidenav {
     a {
@@ -38,13 +38,16 @@
   }
 
   .task {
+    .btn {
+      &:focus {
+        box-shadow: 0 0 0 0.1rem $darken-color;
+      }
+    }
     .btn-left {
       background-color: $darken-color;
-      color: #ffffff;
     }
     .btn-center {
       background-color: $secondary-darken-color;
-      color: #ffffff;
     }
   }
 }

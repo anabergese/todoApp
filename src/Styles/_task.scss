@@ -39,26 +39,26 @@
     outline: none;
   }
 
-  &:hover {
-    background-color: #000;
-    color: #fff;
-  }
-
   .task & {
     font-size: 12px;
 
     &.btn-left {
       border-radius: 20px 0px 0px 20px;
+      color: $primary-color;
     }
 
     &.btn-center {
       border-radius: 0;
+      color: $primary-color;
     }
 
     &.btn-right {
       border-radius: 0px 20px 20px 0px;
       background-color: $primary-color;
       color: $secondary-color;
+      // &:focus {
+      //   box-shadow: 0 0 0 0.1rem rgba(253, 65, 13, 0.25);
+      // }
     }
   }
 }
