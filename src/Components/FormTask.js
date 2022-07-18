@@ -21,7 +21,7 @@ const FormTask = () => {
       photo: inputPhoto,
       video: inputVideo,
       deadline: inputDeadline,
-      status: "uncompleted",
+      status: "Uncompleted",
       key: nextId("key-"),
       id: nextId("task-"),
     };

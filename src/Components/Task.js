@@ -22,11 +22,11 @@ const Task = () => {
   const allFilteredTask = useCallback(() => {
     switch (filter) {
       case "deleted":
-        return alltasks.filter((task) => task.status === "deleted");
+        return alltasks.filter((task) => task.status === "Deleted");
       case "completed":
-        return alltasks.filter((task) => task.status === "completed");
+        return alltasks.filter((task) => task.status === "Completed");
       case "uncompleted":
-        return alltasks.filter((task) => task.status === "uncompleted");
+        return alltasks.filter((task) => task.status === "Uncompleted");
       default:
         return alltasks;
     }
@@ -35,7 +35,7 @@ const Task = () => {
   const completeHandler = (task, alltasks) => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
-    copy[taskIndex].status = "completed";
+    copy[taskIndex].status = "Completed";
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
@@ -43,7 +43,7 @@ const Task = () => {
   const deleteHandler = (task, alltasks) => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
-    copy[taskIndex].status = "deleted";
+    copy[taskIndex].status = "Deleted";
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
@@ -57,7 +57,7 @@ const Task = () => {
   const redoHandler = (task, alltasks) => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
-    copy[taskIndex].status = "uncompleted";
+    copy[taskIndex].status = "Uncompleted";
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
@@ -78,7 +78,7 @@ const Task = () => {
                 >
                   See details
                 </Link>
-                {filter === "deleted" ? (
+                {filter === "Deleted" ? (
                   <Button
                     className={"btn btn-center"}
                     onClick={() => {
@@ -97,7 +97,7 @@ const Task = () => {
                     Delete Task
                   </Button>
                 )}
-                {filter === "deleted" || filter === "completed" ? (
+                {filter === "Deleted" || filter === "Completed" ? (
                   <Button
                     className={"btn btn-right"}
                     onClick={() => {
@@ -122,7 +122,7 @@ const Task = () => {
               <p>Deadline: {task.deadline}</p>
               <p
                 className={
-                  task.status === "completed" || task.status === "deleted"
+                  task.status === "Completed" || task.status === "Deleted"
                     ? "highlight"
                     : ""
                 }
