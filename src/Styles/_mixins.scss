@@ -35,6 +35,11 @@
 
   .task-content {
     background-color: $lighten-color;
+    p {
+      &.highlight {
+        background-color: $theme-color;
+      }
+    }
   }
 
   .task {

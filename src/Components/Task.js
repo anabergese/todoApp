@@ -120,7 +120,15 @@ const Task = () => {
             </div>
             <div className="task-content">
               <p>Deadline: {task.deadline}</p>
-              <p>Status: {task.status}</p>
+              <p
+                className={
+                  task.status === "completed" || task.status === "deleted"
+                    ? "highlight"
+                    : ""
+                }
+              >
+                Status: {task.status}
+              </p>
             </div>
           </div>
         );

@@ -19,6 +19,9 @@
   padding-top: 2%;
   p {
     padding-left: 6%;
+    &.highlight {
+      font-weight: 700;
+    }
   }
 }
 
