@@ -48,9 +48,9 @@ const FormTask = () => {
         }}
       >
         <div className="form-create">
-          <h1>Create a new task</h1>
+          <h3>Create a new task</h3>
           <label>
-            <h4>Title:</h4>
+            <h5>Title:</h5>
             <input
               value={inputTitle}
               onChange={(e) => {
@@ -60,7 +60,7 @@ const FormTask = () => {
             />
           </label>
           <label>
-            <h4>Description:</h4>
+            <h5>Description:</h5>
             <input
               value={inputDescription}
               onChange={(e) => {
@@ -70,7 +70,7 @@ const FormTask = () => {
             />
           </label>
           <label>
-            <h4>Photo:</h4>
+            <h5>Photo:</h5>
             <input
               onChange={(e) => {
                 setInputPhoto(e.target.files[0]);
@@ -80,7 +80,7 @@ const FormTask = () => {
             />
           </label>
           <label>
-            <h4>Video:</h4>
+            <h5>Video:</h5>
             <input
               value={inputVideo}
               onChange={(e) => {
@@ -91,7 +91,7 @@ const FormTask = () => {
             />
           </label>
           <label>
-            <h4>Deadline:</h4>
+            <h5>Deadline:</h5>
             <input
               value={inputDeadline}
               onChange={(e) => {
@@ -102,7 +102,7 @@ const FormTask = () => {
             />
           </label>
         </div>
-        <button type="submit" className="btn">
+        <button type="submit" className="buttons">
           I am done
         </button>
       </form>

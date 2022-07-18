@@ -72,7 +72,7 @@ const Task = () => {
               <h2>{task.title}</h2>
               <div className="task-buttons">
                 <Link
-                  className="btn btn-left"
+                  className="buttons btn-left"
                   to={`/details/${task.id}`}
                   state={{ taskProps: task }}
                 >
@@ -80,7 +80,7 @@ const Task = () => {
                 </Link>
                 {filter === "Deleted" ? (
                   <Button
-                    className={"btn btn-center"}
+                    className={"buttons btn-center"}
                     onClick={() => {
                       permanentDeleteHandler(task, alltasks);
                     }}
@@ -89,7 +89,7 @@ const Task = () => {
                   </Button>
                 ) : (
                   <Button
-                    className={"btn btn-center"}
+                    className={"buttons btn-center"}
                     onClick={() => {
                       deleteHandler(task, alltasks);
                     }}
@@ -99,7 +99,7 @@ const Task = () => {
                 )}
                 {filter === "Deleted" || filter === "Completed" ? (
                   <Button
-                    className={"btn btn-right"}
+                    className={"buttons btn-right"}
                     onClick={() => {
                       redoHandler(task, alltasks);
                     }}
@@ -108,7 +108,7 @@ const Task = () => {
                   </Button>
                 ) : (
                   <Button
-                    className={"btn btn-right"}
+                    className={"buttons btn-right"}
                     onClick={() => {
                       completeHandler(task, alltasks);
                     }}

@@ -2,6 +2,7 @@
 @import "mixins";
 @import "colorThemes";
 @import "formTask";
+@import "buttons";
 @import "navbar";
 @import "task";
 
@@ -15,4 +16,12 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+}
+
+.modal_alert {
+  margin-left: 200px;
+  background-color: grey;
+  color: $primary-color;
+  text-align: center;
+  padding-bottom: 2%;
 }

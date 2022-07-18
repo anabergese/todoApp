@@ -7,60 +7,56 @@ import AlltasksContext from "../Contexts/AlltasksContext";
 const Details = () => {
   const [showModal, setShowModal] = useState(false);
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
-
   const location = useLocation();
   const { taskProps } = location.state;
 
   const toggleModal = () => setShowModal(!showModal);
+
   const deleteHandler = (taskProps, alltasks) => {
-    // Creating all tasks with less the current task:
-    const currentTask = taskProps;
-    console.log("before", alltasks);
-    const deleted = alltasks.filter((t) => t.id !== currentTask.id);
-    setAlltasks(deleted);
-    localStorage.setItem("allTasks", JSON.stringify(deleted));
-    console.log("after", alltasks);
+    const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
+    const copy = [...alltasks];
+    copy[taskIndex].status = "Deleted";
+    setAlltasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
   return (
-    <div className="task">
+    <div className="task center">
       <div className="task-title">
-        <div>
-          <h2> {taskProps.title}</h2>
-        </div>
+        <h2>{taskProps.title}</h2>
         <div className="task-buttons">
-          <button className="btn btn-left">Edit</button>
-          <button className="btn btn-center" onClick={toggleModal}>
+          <button className="buttons btn-left">Edit</button>
+          <button className="buttons btn-center" onClick={toggleModal}>
             Delete Task
           </button>
-          <button className="btn btn-right">Mark as Done</button>
+          <button className="buttons btn-right">Mark as Done</button>
           {showModal ? (
             <Modal>
-              <div style={{ backgroundColor: "blue" }}>
+              <div>
                 <h1>
-                  Are you sure you want to delete this task: {taskProps.title}?
+                  Are you sure you want to delete this task:
+                  <br /> {taskProps.title}?
                 </h1>
                 <div>
                   <button
-                    className="btn"
+                    className="buttons"
                     onClick={() => {
                       deleteHandler(taskProps, alltasks);
                     }}
                   >
                     Yes
                   </button>
-                  <button onClick={toggleModal}>No</button>
+                  <button className="buttons" onClick={toggleModal}>
+                    No
+                  </button>
                 </div>
               </div>
             </Modal>
           ) : null}
         </div>
       </div>
-
-      <div>
+      <div className="task-content">
         <p>{taskProps.description}</p>
-      </div>
-      <div>
         {taskProps.photo ? (
           <img
             src={URL.createObjectURL(taskProps.photo)}
@@ -69,17 +65,12 @@ const Details = () => {
           />
         ) : null}
         <p>
-          Video:{" "}
           {taskProps.video ? (
             <video src={video} width="750" height="500" controls></video>
           ) : null}{" "}
         </p>
-      </div>
-      <div>
-        <h4>Status: </h4>
-        <p>{taskProps.status}</p>
-        <h4>Deadline: </h4>
-        <p>{taskProps.deadline}</p>
+        <p>Deadline: {taskProps.deadline}</p>
+        <p>Status: {taskProps.status}</p>
       </div>
     </div>
   );

@@ -1,0 +1,30 @@
+.buttons {
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  border-width: 0;
+  form & {
+    margin: 2%;
+    font-weight: 700;
+  }
+
+  .modal_alert & {
+    width: 8%;
+    margin: 1% 2%;
+  }
+
+  &.btn-left {
+    border-radius: 20px 0px 0px 20px;
+    text-decoration: none;
+  }
+
+  &.btn-center {
+    border-radius: 0;
+  }
+
+  &.btn-right {
+    border-radius: 0px 20px 20px 0px;
+  }
+}

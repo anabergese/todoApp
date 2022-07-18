@@ -19,9 +19,6 @@
     label {
       background-color: $lighten-color;
     }
-    .btn {
-      background-color: $theme-color;
-    }
   }
 
   .task-title,
@@ -42,17 +39,22 @@
     }
   }
 
-  .task {
-    .btn {
-      &:focus {
-        box-shadow: 0 0 0 0.1rem $darken-color;
-      }
-    }
-    .btn-left {
+  .buttons {
+    background-color: $theme-color;
+    color: $secondary-color;
+    &.btn-left {
       background-color: $darken-color;
+      color: $primary-color;
     }
-    .btn-center {
+
+    &.btn-center {
       background-color: $secondary-darken-color;
+      color: $primary-color;
+    }
+
+    &.btn-right {
+      background-color: $primary-color;
+      color: $secondary-color;
     }
   }
 }
