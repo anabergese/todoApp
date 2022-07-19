@@ -18,6 +18,7 @@ const Details = () => {
     copy[taskIndex].status = "Deleted";
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    toggleModal();
   };
 
   return (

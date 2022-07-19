@@ -41,5 +41,8 @@
     line-height: normal;
     text-align: center;
     padding: 4px 10px;
+    .modal_alert & {
+      width: 12%;
+    }
   }
 }
