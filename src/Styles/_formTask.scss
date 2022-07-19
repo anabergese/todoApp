@@ -5,9 +5,9 @@ form {
 }
 
 .form-create {
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
   width: 40%;
 
   h3 {
@@ -30,5 +30,11 @@ form {
     &:focus {
       outline: none;
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .form-create {
+    width: 80%;
   }
 }

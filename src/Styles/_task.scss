@@ -4,9 +4,9 @@
 .task-title {
   display: flex;
   justify-content: space-between;
-  border-radius: 8px 8px 0px 0px;
-  height: 63px;
   align-items: center;
+  height: 63px;
+  border-radius: 8px 8px 0px 0px;
   padding-left: 6%;
   padding-right: 2%;
 }
@@ -31,4 +31,13 @@
 .task-image {
   max-width: 300px;
   border-radius: 4px;
+}
+
+@media only screen and (max-width: 600px) {
+  .task-title {
+    flex-direction: column;
+    justify-content: center;
+    height: 80px;
+    padding-bottom: 2%;
+  }
 }

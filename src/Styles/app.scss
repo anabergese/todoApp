@@ -40,3 +40,10 @@ body {
   padding-left: 6%;
   padding-right: 2%;
 }
+
+@media only screen and (max-width: 600px) {
+  .App,
+  .modal_alert {
+    margin-left: 100px;
+  }
+}
