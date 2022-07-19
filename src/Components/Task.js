@@ -44,6 +44,7 @@ const Task = () => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
     copy[taskIndex].status = "Deleted";
+    setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
@@ -121,7 +122,7 @@ const Task = () => {
               <p>Deadline: {task.deadline}</p>
               <p
                 className={
-                  task.status === "Completed" || task.status === "Deleted"
+                  task.status === "Deleted" || task.status === "Completed"
                     ? "highlight"
                     : ""
                 }
