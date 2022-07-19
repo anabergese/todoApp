@@ -16,7 +16,6 @@ import "./Styles/app.scss";
 
 const App = () => {
   const theme = useState(localStorage.getItem("theme-color") || "theme-blue");
-  console.log(theme);
   const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")) || []);
 
   return (
