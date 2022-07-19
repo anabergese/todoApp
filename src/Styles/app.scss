@@ -25,3 +25,18 @@ body {
   text-align: center;
   padding-bottom: 2%;
 }
+
+.home-card {
+  border-radius: 8px;
+  margin: 4% auto;
+}
+
+.home-content {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px 8px 0px 0px;
+  height: 63px;
+  align-items: center;
+  padding-left: 6%;
+  padding-right: 2%;
+}

@@ -44,7 +44,6 @@ const Task = () => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
     copy[taskIndex].status = "Deleted";
-    console.log("ss");
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 

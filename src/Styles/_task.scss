@@ -3,13 +3,17 @@
 }
 .task-title {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   border-radius: 8px 8px 0px 0px;
   height: 63px;
   align-items: center;
   padding-left: 6%;
   padding-right: 2%;
+}
+
+.task-buttons {
+  display: flex;
+  justify-content: center;
 }
 
 .task-content {
@@ -22,11 +26,6 @@
       font-weight: 700;
     }
   }
-}
-
-.task-buttons {
-  display: flex;
-  justify-content: center;
 }
 
 .task-image {
