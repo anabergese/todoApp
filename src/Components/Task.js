@@ -113,7 +113,7 @@ const Task = () => {
                       completeHandler(task, alltasks);
                     }}
                   >
-                    Mark as complete
+                    Mark as Complete
                   </Button>
                 )}
               </div>

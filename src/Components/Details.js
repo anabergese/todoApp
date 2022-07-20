@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Modal from "../Modal";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
 const Details = () => {
@@ -19,6 +18,16 @@ const Details = () => {
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
     toggleModal();
+    taskProps.status = "Deleted";
+  };
+
+  const completeHandler = (taskProps, alltasks) => {
+    const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
+    const copy = [...alltasks];
+    copy[taskIndex].status = "Completed";
+    setAlltasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    taskProps.status = "Completed";
   };
 
   return (
@@ -30,7 +39,14 @@ const Details = () => {
           <button className="buttons btn-center" onClick={toggleModal}>
             Delete Task
           </button>
-          <button className="buttons btn-right">Mark as Done</button>
+          <button
+            className="buttons btn-right"
+            onClick={() => {
+              completeHandler(taskProps, alltasks);
+            }}
+          >
+            Mark as Complete
+          </button>
           {showModal ? (
             <Modal>
               <div>
@@ -71,7 +87,15 @@ const Details = () => {
           ) : null}{" "}
         </p>
         <p>Deadline: {taskProps.deadline}</p>
-        <p>Status: {taskProps.status}</p>
+        <p
+          className={
+            taskProps.status === "Deleted" || taskProps.status === "Completed"
+              ? "highlight"
+              : ""
+          }
+        >
+          Status: {taskProps.status}
+        </p>
       </div>
     </div>
   );
