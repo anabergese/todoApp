@@ -19,7 +19,6 @@ const Details = () => {
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
     toggleModal();
     taskProps.status = "Deleted";
-    console.log(location);
   };
 
   const completeHandler = (taskProps, alltasks) => {
