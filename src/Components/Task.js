@@ -76,7 +76,7 @@ const Task = () => {
                 >
                   See details
                 </Link>
-                {filter === "deleted" ? (
+                {filter === "deleted" || task.status === "Deleted" ? (
                   <Button
                     className={"buttons btn-center"}
                     onClick={() => {
@@ -95,7 +95,9 @@ const Task = () => {
                     Delete Task
                   </Button>
                 )}
-                {filter === "deleted" || filter === "completed" ? (
+                {filter === "deleted" ||
+                (filter === "completed") & (task.status === "Deleted") ||
+                task.status === "Completed" ? (
                   <Button
                     className={"buttons btn-right"}
                     onClick={() => {
@@ -111,7 +113,7 @@ const Task = () => {
                       completeHandler(task, alltasks);
                     }}
                   >
-                    Mark as Complete
+                    Mark as Completed
                   </Button>
                 )}
               </div>
