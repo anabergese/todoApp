@@ -15,7 +15,7 @@ import AlltasksContext from "./Contexts/AlltasksContext";
 import "./Styles/app.scss";
 
 const App = () => {
-  const theme = useState(localStorage.getItem("theme-color") || "theme-blue");
+  const theme = useState(localStorage.getItem("theme-color") || "theme-red");
   const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")) || []);
 
   return (

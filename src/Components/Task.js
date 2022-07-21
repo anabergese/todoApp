@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useContext, useCallback } from "react";
+import { useContext } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
 const Button = ({ onClick, children, className }) => {
@@ -13,13 +13,11 @@ const Button = ({ onClick, children, className }) => {
 const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
-  const query = useCallback(
-    () => new URLSearchParams(location.search),
-    [location]
-  );
-  const filter = (query().get("filter") || "").toLowerCase();
+  const filter = (
+    new URLSearchParams(location.search).get("filter") || ""
+  ).toLowerCase();
 
-  const allFilteredTask = useCallback(() => {
+  const allFilteredTask = () => {
     switch (filter) {
       case "deleted":
         return alltasks.filter((task) => task.status === "Deleted");
@@ -30,7 +28,7 @@ const Task = () => {
       default:
         return alltasks;
     }
-  }, [alltasks, filter]);
+  };
 
   const completeHandler = (task, alltasks) => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
