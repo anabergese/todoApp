@@ -11,11 +11,23 @@ body {
   color: $secondary-color;
 }
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.flex-center {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  height: 63px;
   width: 80%;
+  padding-left: 6%;
+  padding-right: 2%;
+  margin: 4% auto;
 }
 
 .modal_alert {
@@ -24,21 +36,6 @@ body {
   color: $primary-color;
   text-align: center;
   padding-bottom: 2%;
-}
-
-.home-card {
-  border-radius: 8px;
-  margin: 4% auto;
-}
-
-.home-content {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 8px 8px 0px 0px;
-  height: 63px;
-  align-items: center;
-  padding-left: 6%;
-  padding-right: 2%;
 }
 
 @media only screen and (max-width: 600px) {

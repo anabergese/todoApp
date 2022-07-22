@@ -41,17 +41,19 @@ const FormTask = () => {
   }, [alltasks]);
 
   return (
-    <div>
+    <>
       <form
+        className="flex-center"
         onSubmit={(e) => {
           submitTaskHandler(e);
         }}
       >
         <div className="form-create">
           <h3>Create a new task</h3>
-          <label>
+          <label className="form-create__label">
             <h5>Title:</h5>
             <input
+              className="form-create__input"
               value={inputTitle}
               onChange={(e) => {
                 setInputTitle(e.target.value);
@@ -59,9 +61,10 @@ const FormTask = () => {
               type="text"
             />
           </label>
-          <label>
+          <label className="form-create__label">
             <h5>Description:</h5>
             <input
+              className="form-create__input"
               value={inputDescription}
               onChange={(e) => {
                 setInputDescription(e.target.value);
@@ -69,9 +72,10 @@ const FormTask = () => {
               type="textarea"
             />
           </label>
-          <label>
+          <label className="form-create__label">
             <h5>Photo:</h5>
             <input
+              className="form-create__input"
               onChange={(e) => {
                 setInputPhoto(e.target.files[0]);
               }}
@@ -79,9 +83,10 @@ const FormTask = () => {
               name="file"
             />
           </label>
-          <label>
+          <label className="form-create__label">
             <h5>Video:</h5>
             <input
+              className="form-create__input"
               value={inputVideo}
               onChange={(e) => {
                 setInputVideo(e.target.value);
@@ -90,9 +95,10 @@ const FormTask = () => {
               name="video"
             />
           </label>
-          <label>
+          <label className="form-create__label">
             <h5>Deadline:</h5>
             <input
+              className="form-create__input"
               value={inputDeadline}
               onChange={(e) => {
                 setInputDeadline(e.target.value);
@@ -106,7 +112,7 @@ const FormTask = () => {
           I am done
         </button>
       </form>
-    </div>
+    </>
   );
 };
 
