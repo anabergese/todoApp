@@ -3,21 +3,21 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 1.5%;
+  padding: 1.5rem;
 
   div {
     cursor: pointer;
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     border-radius: $border-radius;
-    margin: 2px 10px;
-    border: 1px solid $secondary-color;
+    margin: 0.01rem 0.8rem;
+    border: 0.06rem solid $secondary-color;
     opacity: 0.5;
     &.active {
       opacity: 1;
-      width: 26px;
-      height: 26px;
-      border-radius: 20px;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 1rem;
     }
   }
   #theme-red {

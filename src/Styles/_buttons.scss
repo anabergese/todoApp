@@ -1,7 +1,7 @@
 .buttons {
-  font-size: 14px;
-  padding: 6px 12px;
-  border-radius: 20px;
+  font-size: 0.8rem;
+  padding: 0.5em 0.8em;
+  border-radius: 1.3em;
   cursor: pointer;
   outline: none;
   border-width: 0;
@@ -13,7 +13,7 @@
   }
 
   &.btn-left {
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 1.3em 0em 0em 1.3em;
     text-decoration: none;
   }
 
@@ -22,13 +22,13 @@
   }
 
   &.btn-right {
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0px 1.3em 1.3em 0px;
   }
 }
 
 @media only screen and (max-width: 600px) {
   .buttons {
-    font-size: 10px;
+    font-size: 90%;
     line-height: normal;
     text-align: center;
     padding: 4px 10px;

@@ -14,11 +14,11 @@
 
   h3 {
     text-align: center;
-    padding: 4% 2%;
+    padding: $primary-padding;
   }
 
   &__label {
-    padding: 4% 8%;
+    padding: 1rem 3rem;
     &:last-child {
       border-bottom-left-radius: $border-radius;
       border-bottom-right-radius: $border-radius;

@@ -6,6 +6,10 @@
 @import "navbar";
 @import "task";
 
+html {
+  font-size: 100%;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   color: $secondary-color;
