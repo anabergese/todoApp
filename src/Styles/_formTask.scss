@@ -1,7 +1,7 @@
 .form-create {
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: $border-radius;
   width: 40%;
 
   h3 {
@@ -13,8 +13,8 @@
   &__label {
     padding: 4% 8%;
     &:last-child {
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
     }
   }
 
