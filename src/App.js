@@ -25,15 +25,17 @@ const App = () => {
           {([theme]) => (
             <div className={`App ${theme}`}>
               <BrowserRouter>
-                <ColorTheme />
                 <Navbar />
-                <Routes>
-                  <Route path="/details/:id" element={<Details />} />
-                  <Route path="/task/create" element={<FormTask />} />
-                  <Route path="/about" element={<About />} />
-                  <Route exact path="/tasks" element={<Task />} />
-                  <Route exact path="/" element={<Home />} />
-                </Routes>
+                <div className="content">
+                  <ColorTheme />
+                  <Routes>
+                    <Route path="/details/:id" element={<Details />} />
+                    <Route path="/task/create" element={<FormTask />} />
+                    <Route path="/about" element={<About />} />
+                    <Route exact path="/tasks" element={<Task />} />
+                    <Route exact path="/" element={<Home />} />
+                  </Routes>
+                </div>
               </BrowserRouter>
             </div>
           )}

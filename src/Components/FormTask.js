@@ -43,7 +43,7 @@ const FormTask = () => {
   return (
     <>
       <form
-        className="flex-center"
+        className="form"
         onSubmit={(e) => {
           submitTaskHandler(e);
         }}

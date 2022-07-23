@@ -5,16 +5,7 @@
   cursor: pointer;
   outline: none;
   border-width: 0;
-
-  &.home {
-    background-color: $primary-color !important;
-    text-decoration: none;
-  }
-
-  form & {
-    margin: 2%;
-    font-weight: 700;
-  }
+  text-decoration: none;
 
   .modal_alert & {
     width: 8%;

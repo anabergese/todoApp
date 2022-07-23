@@ -1,6 +1,6 @@
 .task {
-  margin: 4% auto;
-  display: block;
+  margin: $primary-margin;
+  align-self: center;
   width: 80%;
 }
 
@@ -10,8 +10,7 @@
   align-items: center;
   height: 63px;
   border-radius: 8px 8px 0px 0px;
-  padding-left: 6%;
-  padding-right: 2%;
+  padding: $primary-padding;
 }
 
 .task-buttons {
@@ -22,10 +21,9 @@
 .task-content {
   min-height: 100px;
   border-radius: 0px 0px 8px 8px;
-  padding-top: 2%;
-  padding-bottom: 2%;
+  padding: $primary-padding;
+
   p {
-    padding-left: 6%;
     &.highlight {
       font-weight: 700;
     }

@@ -9,24 +9,65 @@
 body {
   font-family: "Roboto", sans-serif;
   color: $secondary-color;
+  h1 {
+    text-align: center;
+    color: $secondary-color;
+  }
 }
 
-.flex-center {
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0 !important;
 }
+
+// Start App Theming colors
+.App {
+  height: 100%;
+  display: flex;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &.theme-blue {
+    @include theme($blue-color);
+  }
+
+  &.theme-brown {
+    @include theme($brown-color);
+  }
+
+  &.theme-pink {
+    @include theme($pink-color);
+  }
+
+  &.theme-green {
+    @include theme($green-color);
+  }
+
+  &.theme-black {
+    @include theme(#a3a6a8);
+  }
+
+  &.theme-red {
+    @include theme($red-color);
+  }
+}
+// End of App Theming colors
 
 .home-content {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   border-radius: $border-radius;
   height: 63px;
   width: 80%;
-  padding-left: 6%;
-  padding-right: 2%;
+  padding: $primary-padding;
   margin: 4% auto;
 }
 
@@ -39,7 +80,6 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  .App,
   .modal_alert {
     margin-left: 100px;
   }

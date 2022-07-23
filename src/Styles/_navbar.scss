@@ -1,10 +1,9 @@
 .sidenav {
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
+  position: sticky;
   top: 0;
   left: 0;
+  height: 100vh;
+  width: 200px;
   overflow-x: hidden;
   padding-top: 40px;
   a {
