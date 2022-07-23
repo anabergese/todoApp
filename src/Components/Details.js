@@ -39,14 +39,27 @@ const Details = () => {
           <button className="buttons btn-center" onClick={toggleModal}>
             Delete Task
           </button>
-          <button
-            className="buttons btn-right"
-            onClick={() => {
-              completeHandler(taskProps, alltasks);
-            }}
-          >
-            Mark as Complete
-          </button>
+          {taskProps.status === "Completed" ||
+          taskProps.status === "Deleted" ? (
+            <button
+              className="buttons btn-right"
+              onClick={() => {
+                completeHandler(taskProps, alltasks);
+              }}
+            >
+              Redo
+            </button>
+          ) : (
+            <button
+              className="buttons btn-right"
+              onClick={() => {
+                completeHandler(taskProps, alltasks);
+              }}
+            >
+              Mark as Complete
+            </button>
+          )}
+
           {showModal ? (
             <Modal>
               <div>

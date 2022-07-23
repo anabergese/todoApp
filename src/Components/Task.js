@@ -96,7 +96,8 @@ const Task = () => {
                   </Button>
                 )}
                 {filter === "deleted" ||
-                (filter === "completed") & (task.status === "Deleted") ||
+                filter === "completed" ||
+                task.status === "Deleted" ||
                 task.status === "Completed" ? (
                   <Button
                     className={"buttons btn-right"}
