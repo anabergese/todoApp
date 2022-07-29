@@ -1,3 +1,31 @@
+// Start App Theming colors
+.App {
+  &.theme-blue {
+    @include theme($blue-color);
+  }
+
+  &.theme-brown {
+    @include theme($brown-color);
+  }
+
+  &.theme-pink {
+    @include theme($pink-color);
+  }
+
+  &.theme-green {
+    @include theme($green-color);
+  }
+
+  &.theme-black {
+    @include theme($purple-color);
+  }
+
+  &.theme-red {
+    @include theme($red-color);
+  }
+}
+// End of App Theming colors
+
 .theme-options {
   width: 100%;
   display: flex;
@@ -19,6 +47,7 @@
       height: 1.6rem;
     }
   }
+
   #theme-red {
     background-color: $red-color;
   }

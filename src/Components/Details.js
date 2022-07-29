@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import Modal from "../Modal";
 import { useState, useContext } from "react";
+import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
 const Details = () => {
