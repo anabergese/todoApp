@@ -8,7 +8,6 @@ const Details = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
   const { taskProps } = location.state;
-
   const toggleModal = () => setShowModal(!showModal);
 
   const deleteHandler = (taskProps, alltasks) => {

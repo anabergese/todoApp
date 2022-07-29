@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AlltasksContext from "../Contexts/AlltasksContext";
-
 import nextId from "react-id-generator";
 
 const FormTask = () => {
@@ -10,7 +10,9 @@ const FormTask = () => {
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
+  const navigate = useNavigate();
 
+  // const { taskProps } = location.state;
   const submitTaskHandler = (e) => {
     e.preventDefault();
 
@@ -28,6 +30,7 @@ const FormTask = () => {
 
     setAlltasks([...alltasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
+    navigate(`/details/${newTask.id}`, { state: { taskProps: newTask } });
 
     setInputTitle("");
     setInputDescription("");
