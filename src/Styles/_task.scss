@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   height: 4rem;
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  border-radius: $border-radius $border-radius 0rem 0rem;
   padding: $primary-padding;
 }
 
@@ -20,7 +20,7 @@
 
 .task-content {
   min-height: 6.25rem;
-  border-radius: 0px 0px 0.5rem 0.5rem;
+  border-radius: 0px 0px $border-radius $border-radius;
   padding: $primary-padding;
 
   p {

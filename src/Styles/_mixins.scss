@@ -1,7 +1,7 @@
 @mixin theme($theme-color) {
   $lighten-color: lighten($theme-color, 8%);
-  $darken-color: darken($theme-color, 70%);
-  $secondary-darken-color: darken($theme-color, 48%);
+  $super-darken-color: darken($theme-color, 75%);
+  $darken-color: darken($theme-color, 60%);
 
   .sidenav {
     a {
@@ -44,12 +44,12 @@
     background-color: $theme-color;
     color: $secondary-color;
     &.btn-left {
-      background-color: $darken-color;
+      background-color: $super-darken-color;
       color: $primary-color;
     }
 
     &.btn-center {
-      background-color: $secondary-darken-color;
+      background-color: $darken-color;
       color: $primary-color;
     }
 

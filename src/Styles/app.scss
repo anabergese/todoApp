@@ -55,7 +55,7 @@ h5 {
   }
 
   &.theme-black {
-    @include theme(#a3a6a8);
+    @include theme($purple-color);
   }
 
   &.theme-red {
