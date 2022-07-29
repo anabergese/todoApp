@@ -1,7 +1,7 @@
 .buttons {
   font-size: 0.8rem;
   padding: 0.5em 0.8em;
-  border-radius: $border-radius;
+  border-radius: $border-buttons;
   cursor: pointer;
   outline: none;
   border-width: 0;
@@ -13,7 +13,7 @@
   }
 
   &.btn-left {
-    border-radius: $border-radius 0em 0em $border-radius;
+    border-radius: $border-buttons 0em 0em $border-buttons;
     text-decoration: none;
   }
 
@@ -22,7 +22,7 @@
   }
 
   &.btn-right {
-    border-radius: 0px $border-radius $border-radius 0px;
+    border-radius: 0px $border-buttons $border-buttons 0px;
   }
 }
 

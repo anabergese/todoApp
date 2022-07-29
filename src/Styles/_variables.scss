@@ -6,6 +6,7 @@ $brown-color: adjust-hue($pink-color, 90deg);
 $green-color: adjust-hue($pink-color, 180deg);
 $blue-color: adjust-hue($pink-color, 270deg);
 $purple-color: adjust-hue($pink-color, 300deg);
-$border-radius: 0.4rem;
+$border-radius: 0.5rem;
+$border-buttons: calc($border-radius / 2);
 $primary-padding: 0.5rem 2rem;
 $primary-margin: 2rem auto;
