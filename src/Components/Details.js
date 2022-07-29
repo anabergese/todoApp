@@ -36,7 +36,9 @@ const Details = () => {
         <div className="task-buttons">
           <button className="buttons btn-left">Edit</button>
           <button className="buttons btn-center" onClick={toggleModal}>
-            Delete Task
+            {taskProps.status === "Deleted"
+              ? "Permanent Delete"
+              : "Delete Task"}
           </button>
           {taskProps.status === "Completed" ||
           taskProps.status === "Deleted" ? (
