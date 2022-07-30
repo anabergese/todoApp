@@ -1,13 +1,12 @@
 .buttons {
   font-size: 0.8rem;
-  padding: 0.5em 0.8em;
+  padding: 0.4em 1.2em;
   border-radius: $border-buttons;
+  border-width: 0;
   margin: auto $border-buttons;
   cursor: pointer;
   outline: none;
-  border-width: 0;
   text-decoration: none;
-  border-radius: $border-buttons;
 
   .modal_alert & {
     width: 8%;

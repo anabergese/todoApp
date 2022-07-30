@@ -1,16 +1,15 @@
 .task {
-  margin: $primary-margin;
   align-self: center;
   width: 80%;
+  margin: $primary-margin;
 }
 
 .task-title {
-  display: flex;
+  @extend %flex-row-center;
   justify-content: space-between;
-  align-items: center;
   height: 4rem;
-  border-radius: $border-radius $border-radius 0rem 0rem;
   padding: $primary-padding;
+  border-radius: $border-radius $border-radius 0rem 0rem;
 }
 
 .task-buttons {
@@ -20,8 +19,8 @@
 
 .task-content {
   min-height: 6.25rem;
-  border-radius: 0px 0px $border-radius $border-radius;
   padding: $primary-padding;
+  border-radius: 0px 0px $border-radius $border-radius;
 
   p {
     &.highlight {
@@ -31,6 +30,6 @@
 }
 
 .task-image {
-  max-width: 18rem;
+  min-width: 18rem;
   border-radius: $border-radius;
 }

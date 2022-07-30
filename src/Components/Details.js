@@ -32,7 +32,7 @@ const Details = () => {
   return (
     <div className="task">
       <div className="task-title">
-        <h2>{taskProps.title}</h2>
+        <h4>{taskProps.title}</h4>
         <div className="task-buttons">
           <button className="buttons btn-left">Edit</button>
           <button className="buttons btn-center" onClick={toggleModal}>

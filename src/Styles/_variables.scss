@@ -1,5 +1,5 @@
 $primary-color: #fff;
-$secondary-color: #212121;
+$secondary-color: #333;
 $red-color: #ffc7cd;
 $pink-color: #ecd6ec;
 $brown-color: adjust-hue($pink-color, 90deg);
@@ -9,4 +9,14 @@ $purple-color: adjust-hue($pink-color, 300deg);
 $border-radius: 0.5rem;
 $border-buttons: calc($border-radius / 2);
 $primary-padding: 0.5rem 2rem;
-$primary-margin: 2rem auto;
+$primary-margin: 2rem 1rem;
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+%flex-row-center {
+  display: flex;
+  align-items: center;
+}

@@ -67,7 +67,7 @@ const Task = () => {
           // eslint-disable-next-line react/jsx-key
           <div className="task">
             <div className="task-title">
-              <h2>{task.title}</h2>
+              <h4>{task.title}</h4>
               <div className="task-buttons">
                 <Link
                   className="buttons btn-left"

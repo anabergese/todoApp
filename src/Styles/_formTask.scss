@@ -1,21 +1,14 @@
 .form {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
   align-items: center;
 }
 
 .form-create {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
   border-radius: $border-radius;
-  width: 40%;
+  min-width: 40%;
   margin: $primary-margin;
   color: $secondary-color;
-
-  h3 {
-    text-align: center;
-    padding: $primary-padding;
-  }
 
   &__label {
     padding: 1rem 3rem;
@@ -26,7 +19,8 @@
   }
 
   &__input {
-    width: 100%;
+    min-width: 100%;
+    border-radius: $border-buttons;
     border-color: transparent;
     &:focus {
       outline: none;

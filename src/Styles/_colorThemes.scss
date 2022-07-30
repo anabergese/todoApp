@@ -16,24 +16,21 @@ $themes: (
 }
 
 .theme-options {
-  width: 100%;
-  display: flex;
-  align-items: center;
+  @extend %flex-row-center;
   justify-content: flex-end;
-  padding: 1.5rem;
 
   div {
-    cursor: pointer;
-    width: 1rem;
-    height: 1rem;
+    min-width: 1rem;
+    min-height: 1rem;
+    margin: $primary-margin;
     border-radius: $border-buttons;
-    margin: 0.01rem 0.8rem;
-    border: 0.06rem solid $secondary-color;
-    opacity: 0.5;
+    border: 0.06rem solid #dadce0;
+    cursor: pointer;
+
     &.active {
       opacity: 1;
-      width: 1.6rem;
-      height: 1.6rem;
+      min-width: 1.6rem;
+      min-height: 1.6rem;
     }
   }
 

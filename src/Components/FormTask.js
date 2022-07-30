@@ -112,7 +112,7 @@ const FormTask = () => {
           </label>
         </div>
         <button type="submit" className="buttons">
-          I am done
+          <strong>I am done</strong>
         </button>
       </form>
     </>

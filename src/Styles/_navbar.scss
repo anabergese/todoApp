@@ -3,12 +3,16 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 12.5rem;
+  width: 16.25rem;
+  padding-top: 5.65rem;
   overflow-x: hidden;
-  padding-top: 5rem;
+  @extend %flex-column;
+
   a {
-    padding: 0.8rem;
+    padding: 1rem 4rem 1rem 2rem;
     text-decoration: none;
-    display: block;
+    h2 {
+      font-size: 1.2rem;
+    }
   }
 }

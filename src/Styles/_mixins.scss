@@ -26,13 +26,15 @@
   .home-content {
     background-color: $theme-color;
     p,
-    h2 {
+    h3,
+    h4 {
       color: $secondary-color;
     }
   }
 
   .task-content {
     background-color: $lighten-color;
+    color: $secondary-color;
     p {
       &.highlight {
         background-color: $theme-color;
