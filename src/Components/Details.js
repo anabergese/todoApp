@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import { useLocation } from "react-router-dom";
 import { useState, useContext } from "react";
+import { FocusScope } from "react-aria";
+
 import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
@@ -63,25 +66,27 @@ const Details = () => {
 
           {showModal ? (
             <Modal>
-              <div>
-                <h1>
-                  Are you sure you want to delete this task:
-                  <br /> {taskProps.title}?
-                </h1>
+              <FocusScope contain restoreFocus autoFocus>
                 <div>
-                  <button
-                    className="buttons"
-                    onClick={() => {
-                      deleteHandler(taskProps, alltasks);
-                    }}
-                  >
-                    Yes
-                  </button>
-                  <button className="buttons" onClick={toggleModal}>
-                    No
-                  </button>
+                  <h1>
+                    Are you sure you want to delete this task:
+                    <br /> {taskProps.title}?
+                  </h1>
+                  <div>
+                    <button
+                      className="buttons"
+                      onClick={() => {
+                        deleteHandler(taskProps, alltasks);
+                      }}
+                    >
+                      Yes
+                    </button>
+                    <button className="buttons" onClick={toggleModal}>
+                      No
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </FocusScope>
             </Modal>
           ) : null}
         </div>
