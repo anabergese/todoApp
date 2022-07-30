@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 16.25rem;
+  min-width: 16%;
   padding-top: 5.65rem;
   overflow-x: hidden;
   @extend %flex-column;
@@ -13,6 +13,15 @@
     text-decoration: none;
     h2 {
       font-size: 1.2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .sidenav {
+    min-width: 30%;
+    a {
+      padding: 1rem 0.5rem;
     }
   }
 }

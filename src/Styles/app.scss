@@ -39,7 +39,7 @@ body {
   @extend %flex-row-center;
   justify-content: space-between;
   align-self: center;
-  min-height: 10%;
+  max-height: 10%;
   min-width: 80%;
   margin: $primary-margin;
   padding: $primary-padding;
@@ -53,4 +53,20 @@ body {
   color: $primary-color;
   text-align: center;
   padding-bottom: 2%;
+}
+
+@media screen and (max-width: 1024px) {
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-size: 1.1rem !important;
+  }
+
+  .home-content {
+    align-self: unset;
+    h3 {
+      padding: 0.5rem 1rem;
+    }
+  }
 }

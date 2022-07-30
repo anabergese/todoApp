@@ -33,3 +33,25 @@
   min-width: 18rem;
   border-radius: $border-radius;
 }
+
+@media screen and (max-width: 1024px) {
+  .task {
+    margin: 2rem auto;
+  }
+
+  .task-title {
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 5rem;
+  }
+
+  .task-buttons {
+    margin: 0.5rem 1rem;
+  }
+
+  .task-content {
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
