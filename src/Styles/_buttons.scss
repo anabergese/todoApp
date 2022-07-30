@@ -14,15 +14,3 @@
     margin: 1% 2%;
   }
 }
-
-@media only screen and (max-width: 600px) {
-  .buttons {
-    font-size: 90%;
-    line-height: normal;
-    text-align: center;
-    padding: 4px 10px;
-    .modal_alert & {
-      width: 12%;
-    }
-  }
-}

@@ -12,13 +12,3 @@
     display: block;
   }
 }
-
-@media only screen and (max-width: 600px) {
-  .sidenav {
-    width: 50%;
-    a {
-      font-size: 12px;
-      padding-left: 4px;
-    }
-  }
-}
