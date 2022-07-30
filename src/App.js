@@ -8,10 +8,8 @@ import Details from "./Components/Details";
 import Navbar from "./Components/Navbar";
 import About from "./Components/About";
 import ColorTheme from "./Components/ColorTheme";
-
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
-
 import "./Styles/app.scss";
 
 const App = () => {

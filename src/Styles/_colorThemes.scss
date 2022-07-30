@@ -1,30 +1,19 @@
-// Start App Theming colors
+$themes: (
+  "blue": $blue-color,
+  "brown": $brown-color,
+  "pink": $pink-color,
+  "red": $red-color,
+  "green": $green-color,
+  "purple": $purple-color,
+);
+
 .App {
-  &.theme-blue {
-    @include theme($blue-color);
-  }
-
-  &.theme-brown {
-    @include theme($brown-color);
-  }
-
-  &.theme-pink {
-    @include theme($pink-color);
-  }
-
-  &.theme-green {
-    @include theme($green-color);
-  }
-
-  &.theme-black {
-    @include theme($purple-color);
-  }
-
-  &.theme-red {
-    @include theme($red-color);
+  @each $theme, $color in $themes {
+    &.theme-#{$theme} {
+      @include theme($color);
+    }
   }
 }
-// End of App Theming colors
 
 .theme-options {
   width: 100%;
@@ -48,27 +37,9 @@
     }
   }
 
-  #theme-red {
-    background-color: $red-color;
-  }
-
-  #theme-blue {
-    background-color: $blue-color;
-  }
-
-  #theme-brown {
-    background-color: $brown-color;
-  }
-
-  #theme-pink {
-    background-color: $pink-color;
-  }
-
-  #theme-green {
-    background-color: $green-color;
-  }
-
-  #theme-black {
-    background-color: $purple-color;
+  @each $theme, $color in $themes {
+    #theme-#{$theme} {
+      background-color: $color;
+    }
   }
 }
