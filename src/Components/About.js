@@ -1,5 +1,5 @@
 const About = () => {
-  return <h1>About this site styled</h1>;
+  return <h1>Styled component branch</h1>;
 };
 
 export default About;
