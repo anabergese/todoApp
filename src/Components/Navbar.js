@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Sidenav } from "./Styles/Navbar.styled";
 
 const Navbar = () => {
   return (
-    <div className="sidenav">
+    <Sidenav>
+      <Link to="/">
+        <h2>Home page</h2>
+      </Link>
       <Link to="/tasks">
         <h2>See All Tasks</h2>
       </Link>
@@ -22,7 +26,7 @@ const Navbar = () => {
       <Link to="/about">
         <h2>About The Site</h2>
       </Link>
-    </div>
+    </Sidenav>
   );
 };
 
