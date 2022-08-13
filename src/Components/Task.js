@@ -13,6 +13,7 @@ const Button = ({ onClick, children, className }) => {
 const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
+
   const filter = (
     new URLSearchParams(location.search).get("filter") || ""
   ).toLowerCase();
