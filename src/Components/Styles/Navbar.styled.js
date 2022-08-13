@@ -1,4 +1,5 @@
 import styled from "styled-components";
+const theme = localStorage.getItem("theme-color") || "red";
 
 export const Sidenav = styled.div`
   position: sticky;
@@ -9,7 +10,7 @@ export const Sidenav = styled.div`
   padding-top: 5.65rem;
   display: flex;
   flex-direction: column;
-  background-color: #ffc7cd;
+  background-color: ${theme};
 
   a {
     padding: 1rem 4rem 1rem 2rem;

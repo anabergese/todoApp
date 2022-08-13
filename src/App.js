@@ -13,31 +13,27 @@ import AlltasksContext from "./Contexts/AlltasksContext";
 import "./Styles/app.scss";
 
 const App = () => {
-  const theme = useState(localStorage.getItem("theme-color") || "theme-red");
+  const theme = useState(localStorage.getItem("theme-color") || "blue");
   const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")) || []);
 
   return (
     <AlltasksContext.Provider value={alltasks}>
       <ThemeContext.Provider value={theme}>
-        <ThemeContext.Consumer>
-          {([theme]) => (
-            <div className={`App ${theme}`}>
-              <BrowserRouter>
-                <Navbar />
-                <div className="content">
-                  <ColorTheme />
-                  <Routes>
-                    <Route path="/details/:id" element={<Details />} />
-                    <Route path="/task/create" element={<FormTask />} />
-                    <Route path="/about" element={<About />} />
-                    <Route exact path="/tasks" element={<Task />} />
-                    <Route exact path="/" element={<Home />} />
-                  </Routes>
-                </div>
-              </BrowserRouter>
+        <div className="App">
+          <BrowserRouter>
+            <Navbar />
+            <div className="content">
+              <ColorTheme />
+              <Routes>
+                <Route path="/details/:id" element={<Details />} />
+                <Route path="/task/create" element={<FormTask />} />
+                <Route path="/about" element={<About />} />
+                <Route exact path="/tasks" element={<Task />} />
+                <Route exact path="/" element={<Home />} />
+              </Routes>
             </div>
-          )}
-        </ThemeContext.Consumer>
+          </BrowserRouter>
+        </div>
       </ThemeContext.Provider>
     </AlltasksContext.Provider>
   );

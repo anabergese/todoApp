@@ -20,3 +20,8 @@ $primary-margin: 2rem 1rem;
   display: flex;
   align-items: center;
 }
+
+.content {
+  @extend %flex-column;
+  flex-grow: 1;
+}

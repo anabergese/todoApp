@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
+import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
+import { Button } from "./Styles/Button.styled";
 
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
@@ -44,78 +46,68 @@ const FormTask = () => {
   }, [alltasks]);
 
   return (
-    <>
-      <form
-        className="form"
-        onSubmit={(e) => {
-          submitTaskHandler(e);
-        }}
-      >
-        <div className="form-create">
-          <h3>Create a new task</h3>
-          <label className="form-create__label">
-            <h5>Title:</h5>
-            <input
-              className="form-create__input"
-              value={inputTitle}
-              onChange={(e) => {
-                setInputTitle(e.target.value);
-              }}
-              type="text"
-            />
-          </label>
-          <label className="form-create__label">
-            <h5>Description:</h5>
-            <input
-              className="form-create__input"
-              value={inputDescription}
-              onChange={(e) => {
-                setInputDescription(e.target.value);
-              }}
-              type="textarea"
-            />
-          </label>
-          <label className="form-create__label">
-            <h5>Photo:</h5>
-            <input
-              className="form-create__input"
-              onChange={(e) => {
-                setInputPhoto(e.target.files[0]);
-              }}
-              type="file"
-              name="file"
-            />
-          </label>
-          <label className="form-create__label">
-            <h5>Video:</h5>
-            <input
-              className="form-create__input"
-              value={inputVideo}
-              onChange={(e) => {
-                setInputVideo(e.target.value);
-              }}
-              type="file"
-              name="video"
-            />
-          </label>
-          <label className="form-create__label">
-            <h5>Deadline:</h5>
-            <input
-              className="form-create__input"
-              value={inputDeadline}
-              onChange={(e) => {
-                setInputDeadline(e.target.value);
-              }}
-              type="date"
-              name="deadline"
-            />
-          </label>
-        </div>
-        <button type="submit" className="buttons">
-          <strong>I am done</strong>
-        </button>
-      </form>
-    </>
+    <StyledFormTask
+      onSubmit={(e) => {
+        submitTaskHandler(e);
+      }}
+    >
+      <FormBody>
+        <h3>Create a new task</h3>
+        <label>
+          <h5>Title:</h5>
+          <input
+            value={inputTitle}
+            onChange={(e) => {
+              setInputTitle(e.target.value);
+            }}
+            type="text"
+          />
+        </label>
+        <label>
+          <h5>Description:</h5>
+          <input
+            value={inputDescription}
+            onChange={(e) => {
+              setInputDescription(e.target.value);
+            }}
+            type="textarea"
+          />
+        </label>
+        <label>
+          <h5>Photo:</h5>
+          <input
+            onChange={(e) => {
+              setInputPhoto(e.target.files[0]);
+            }}
+            type="file"
+            name="file"
+          />
+        </label>
+        <label>
+          <h5>Video:</h5>
+          <input
+            value={inputVideo}
+            onChange={(e) => {
+              setInputVideo(e.target.value);
+            }}
+            type="file"
+            name="video"
+          />
+        </label>
+        <label>
+          <h5>Deadline:</h5>
+          <input
+            value={inputDeadline}
+            onChange={(e) => {
+              setInputDeadline(e.target.value);
+            }}
+            type="date"
+            name="deadline"
+          />
+        </label>
+      </FormBody>
+      <Button type="submit">I am done</Button>
+    </StyledFormTask>
   );
 };
 

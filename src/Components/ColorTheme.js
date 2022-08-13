@@ -3,60 +3,56 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
-
+import { StyledColorTheme } from "./Styles/ColorTheme.styled";
+import { ThemeButton } from "./Styles/Button.styled";
 const ColorTheme = () => {
   const [theme, setTheme] = useContext(ThemeContext);
 
   const changeColor = (e) => {
     setTheme(e.target.id);
+    console.log(e.target.id);
     localStorage.setItem("theme-color", e.target.id);
   };
 
   return (
-    <div className="theme-options">
-      <div
+    <StyledColorTheme>
+      <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="theme-red"
-        className={`${theme === "theme-red" ? "active" : ""}`}
-      ></div>
-      <div
+        id="blue"
+      />
+      <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="theme-blue"
-        className={`${theme === "theme-blue" ? "active" : ""}`}
-      ></div>
-      <div
+        id="yellow"
+      />
+      <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="theme-brown"
-        className={`${theme === "theme-brown" ? "active" : ""}`}
-      ></div>
-      <div
+        id="brown"
+      />
+      <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="theme-pink"
-        className={`${theme === "theme-pink" ? "active" : ""}`}
-      ></div>
-      <div
+        id="pink"
+      />
+      <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="theme-green"
-        className={`${theme === "theme-green" ? "active" : ""}`}
-      ></div>
-      <div
+        id="green"
+      />
+      <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="theme-purple"
-        className={`${theme === "theme-purple" ? "active" : ""}`}
-      ></div>
-    </div>
+        id="purple"
+      ></ThemeButton>
+    </StyledColorTheme>
   );
 };
 
