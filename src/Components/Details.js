@@ -41,8 +41,8 @@ const Details = () => {
       <TitleTask theme={themes}>
         <h4>{taskProps.title}</h4>
         <div className="task-buttons">
-          <StyledButton>Edit</StyledButton>
-          <StyledButton onClick={toggleModal}>
+          <StyledButton theme={themes}>Edit</StyledButton>
+          <StyledButton onClick={toggleModal} theme={themes}>
             {taskProps.status === "Deleted"
               ? "Permanent Delete"
               : "Delete Task"}
@@ -50,6 +50,7 @@ const Details = () => {
           {taskProps.status === "Completed" ||
           taskProps.status === "Deleted" ? (
             <StyledButton
+              theme={themes}
               onClick={() => {
                 completeHandler(taskProps, alltasks);
               }}
@@ -58,6 +59,7 @@ const Details = () => {
             </StyledButton>
           ) : (
             <StyledButton
+              theme={themes}
               onClick={() => {
                 completeHandler(taskProps, alltasks);
               }}
@@ -76,13 +78,16 @@ const Details = () => {
                   </h1>
                   <div>
                     <StyledButton
+                      theme={themes}
                       onClick={() => {
                         deleteHandler(taskProps, alltasks);
                       }}
                     >
                       Yes
                     </StyledButton>
-                    <StyledButton onClick={toggleModal}>No</StyledButton>
+                    <StyledButton theme={themes} onClick={toggleModal}>
+                      No
+                    </StyledButton>
                   </div>
                 </div>
               </FocusScope>
@@ -90,7 +95,7 @@ const Details = () => {
           ) : null}
         </div>
       </TitleTask>
-      <ContentTask>
+      <ContentTask theme={themes}>
         <p>{taskProps.description}</p>
         {taskProps.photo ? (
           <img

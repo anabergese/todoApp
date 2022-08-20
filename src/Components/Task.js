@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
@@ -66,11 +66,16 @@ const Task = () => {
             <TitleTask theme={themes}>
               <h4>{task.title}</h4>
               <div className="task-buttons">
-                <StyledLink to={`/details/${task.id}`} state={task}>
+                <StyledLink
+                  theme={themes}
+                  to={`/details/${task.id}`}
+                  state={task}
+                >
                   See details
                 </StyledLink>
                 {filter === "deleted" || task.status === "Deleted" ? (
                   <StyledButton
+                    theme={themes}
                     onClick={() => {
                       permanentDeleteHandler(task, alltasks);
                     }}
@@ -79,6 +84,7 @@ const Task = () => {
                   </StyledButton>
                 ) : (
                   <StyledButton
+                    theme={themes}
                     onClick={() => {
                       deleteHandler(task, alltasks);
                     }}
@@ -91,6 +97,7 @@ const Task = () => {
                 task.status === "Deleted" ||
                 task.status === "Completed" ? (
                   <StyledButton
+                    theme={themes}
                     onClick={() => {
                       redoHandler(task, alltasks);
                     }}
@@ -99,6 +106,7 @@ const Task = () => {
                   </StyledButton>
                 ) : (
                   <StyledButton
+                    theme={themes}
                     onClick={() => {
                       completeHandler(task, alltasks);
                     }}
@@ -108,7 +116,7 @@ const Task = () => {
                 )}
               </div>
             </TitleTask>
-            <ContentTask>
+            <ContentTask theme={themes}>
               <p>Deadline: {task.deadline}</p>
               <p
                 className={

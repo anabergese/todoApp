@@ -10,9 +10,10 @@ const ColorTheme = () => {
   const { themes, setTheme } = useContext(ThemeContext);
 
   const changeColor = (e) => {
-    setTheme(e.target.id);
-    console.log("theme from ColorTheme:", themes); // no entiendo porqué el theme no se corresponde con el e.target.id
-    localStorage.setItem("theme-color", e.target.id);
+    // setTheme(e.target.id);
+    setTheme([e.target.id, e.target.value]);
+    console.log("theme from ColorTheme:", themes);
+    localStorage.setItem("theme-color", JSON.stringify(themes));
   };
 
   return (
@@ -21,36 +22,41 @@ const ColorTheme = () => {
         onClick={(e) => {
           changeColor(e);
         }}
-        id="#5e8e67"
-        color="#5e8e67"
+        id="#ffc7cd"
+        color="#ffc7cd"
+        value="#fff0f1"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="#c3bf81"
-        color="#c3bf81"
+        id="#d6e1ec"
+        color="#d6e1ec"
+        value="#f2f5f9"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="#7e494c"
-        color="#7e494c"
+        id="#ece1d6"
+        color="#ece1d6"
+        value="#f9f5f2"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="#97b9bf"
-        color="#97b9bf"
+        id="#ecd6ec"
+        color="#ecd6ec"
+        value="#f9f2f9"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="#34384e"
-        color="#34384e"
+        id="#d6ecd6"
+        color="#d6ecd6"
+        value="#f2f9f2"
       />
       <ThemeButton
         onClick={(e) => {
@@ -58,6 +64,7 @@ const ColorTheme = () => {
         }}
         id="black"
         color="black"
+        value="#e6e6e6"
       />
     </StyledColorTheme>
   );

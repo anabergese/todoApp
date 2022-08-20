@@ -9,7 +9,7 @@ export const Sidenav = styled.div`
   padding-top: 5.65rem;
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme};
+  background-color: ${(props) => props.theme[0]};
 
   a {
     padding: 1rem 4rem 1rem 2rem;

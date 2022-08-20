@@ -7,10 +7,10 @@ export const Content = styled.div`
 `;
 
 export const LightColors = [
-  "#eef4f0",
-  "#f9f9f2",
-  "#f4ebec",
-  "#f5f8f9",
-  "#e8e9f0",
+  "fff0f1",
+  "#f2f5f9",
+  "#f9f5f2",
+  "#f9f2f9",
+  "#f2f9f2",
   "#e6e6e6",
 ];

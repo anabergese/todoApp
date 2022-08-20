@@ -13,13 +13,13 @@ const Home = () => {
       <h1>What&apos;s the plan for today?</h1>
       <StyledHome theme={themes}>
         <h3>See all tasks</h3>
-        <StyledLink as="a" href="/tasks">
+        <StyledLink theme={themes} as="a" href="/tasks">
           Go
         </StyledLink>
       </StyledHome>
       <StyledHome theme={themes}>
         <h3>Create a new task</h3>
-        <StyledLink as="a" href="/task/create">
+        <StyledLink theme={themes} as="a" href="/task/create">
           Go
         </StyledLink>
       </StyledHome>

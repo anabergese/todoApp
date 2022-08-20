@@ -9,7 +9,7 @@ export const StyledButton = styled.button`
   margin: auto 0.25rem;
   text-decoration: none;
   text-align: center;
-  background-color: tomato !important;
+  background-color: ${(props) => props.theme[1]};
 `;
 
 export const StyledLink = styled(Link)`
@@ -20,7 +20,7 @@ export const StyledLink = styled(Link)`
   margin: auto 0.25rem;
   text-decoration: none;
   text-align: center;
-  background-color: tomato !important;
+  background-color: ${(props) => props.theme[1]};
   color: black;
   &:hover {
     text-decoration: none;
@@ -37,16 +37,16 @@ export const ThemeButton = styled.button`
   cursor: pointer;
   background-color: ${({ color }) => {
     switch (color) {
-      case "#5e8e67":
-        return "#5e8e67";
-      case "#c3bf81":
-        return "#c3bf81";
-      case "#7e494c":
-        return "#7e494c";
-      case "#97b9bf":
-        return "#97b9bf";
-      case "#34384e":
-        return "#34384e";
+      case "#ffc7cd":
+        return "#ffc7cd";
+      case "#d6e1ec":
+        return "#d6e1ec";
+      case "#ece1d6":
+        return "#ece1d6";
+      case "#ecd6ec":
+        return "#ecd6ec";
+      case "#d6ecd6":
+        return "#d6ecd6";
       default:
         return "black";
     }

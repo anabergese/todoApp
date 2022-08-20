@@ -10,5 +10,5 @@ export const StyledHome = styled.div`
   margin: 2rem 1rem;
   padding: 0.5rem 2rem;
   border-radius: 0.25rem;
-  background-color: ${(props) => props.theme};
+  background-color: ${(props) => props.theme[0]};
 `;
