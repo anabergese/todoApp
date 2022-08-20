@@ -6,6 +6,7 @@ import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
+import { StyledButton } from "./Styles/Button.styled";
 
 const Details = () => {
   const [showModal, setShowModal] = useState(false);
@@ -40,31 +41,29 @@ const Details = () => {
       <TitleTask theme={themes}>
         <h4>{taskProps.title}</h4>
         <div className="task-buttons">
-          <button className="buttons">Edit</button>
-          <button className="buttons" onClick={toggleModal}>
+          <StyledButton>Edit</StyledButton>
+          <StyledButton onClick={toggleModal}>
             {taskProps.status === "Deleted"
               ? "Permanent Delete"
               : "Delete Task"}
-          </button>
+          </StyledButton>
           {taskProps.status === "Completed" ||
           taskProps.status === "Deleted" ? (
-            <button
-              className="buttons"
+            <StyledButton
               onClick={() => {
                 completeHandler(taskProps, alltasks);
               }}
             >
               Redo
-            </button>
+            </StyledButton>
           ) : (
-            <button
-              className="buttons"
+            <StyledButton
               onClick={() => {
                 completeHandler(taskProps, alltasks);
               }}
             >
               Mark as Complete
-            </button>
+            </StyledButton>
           )}
 
           {showModal ? (
@@ -76,17 +75,14 @@ const Details = () => {
                     <br /> {taskProps.title}?
                   </h1>
                   <div>
-                    <button
-                      className="buttons"
+                    <StyledButton
                       onClick={() => {
                         deleteHandler(taskProps, alltasks);
                       }}
                     >
                       Yes
-                    </button>
-                    <button className="buttons" onClick={toggleModal}>
-                      No
-                    </button>
+                    </StyledButton>
+                    <StyledButton onClick={toggleModal}>No</StyledButton>
                   </div>
                 </div>
               </FocusScope>

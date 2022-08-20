@@ -22,6 +22,10 @@ export const StyledLink = styled(Link)`
   text-align: center;
   background-color: tomato !important;
   color: black;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
 `;
 
 export const ThemeButton = styled.button`

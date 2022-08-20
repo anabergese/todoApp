@@ -3,7 +3,7 @@ import { StyledHome } from "./Styles/Home.styled";
 import { Content } from "./Styles/Global.styled";
 import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
-import { StyledButton } from "./Styles/Button.styled";
+import { StyledLink } from "./Styles/Button.styled";
 
 const Home = () => {
   const { themes } = useContext(ThemeContext);
@@ -13,15 +13,15 @@ const Home = () => {
       <h1>What&apos;s the plan for today?</h1>
       <StyledHome theme={themes}>
         <h3>See all tasks</h3>
-        <StyledButton as="a" href="/tasks">
+        <StyledLink as="a" href="/tasks">
           Go
-        </StyledButton>
+        </StyledLink>
       </StyledHome>
       <StyledHome theme={themes}>
         <h3>Create a new task</h3>
-        <StyledButton as="a" href="/task/create">
+        <StyledLink as="a" href="/task/create">
           Go
-        </StyledButton>
+        </StyledLink>
       </StyledHome>
     </Content>
   );
