@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Sidenav } from "./Styles/Navbar.styled";
+import { useContext } from "react";
+import ThemeContext from "../Contexts/ThemeContext";
 
 const Navbar = () => {
+  const { themes } = useContext(ThemeContext);
+
   return (
-    <Sidenav>
+    <Sidenav theme={themes}>
       <Link to="/">
         <h2>Home page</h2>
       </Link>

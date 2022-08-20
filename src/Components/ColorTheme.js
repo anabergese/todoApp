@@ -5,12 +5,13 @@ import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledColorTheme } from "./Styles/ColorTheme.styled";
 import { ThemeButton } from "./Styles/Button.styled";
+
 const ColorTheme = () => {
-  const [theme, setTheme] = useContext(ThemeContext);
+  const { themes, setTheme } = useContext(ThemeContext);
 
   const changeColor = (e) => {
     setTheme(e.target.id);
-    console.log(e.target.id);
+    console.log("theme from ColorTheme:", themes); // no entiendo porqué el theme no se corresponde con el e.target.id
     localStorage.setItem("theme-color", e.target.id);
   };
 
@@ -21,37 +22,43 @@ const ColorTheme = () => {
           changeColor(e);
         }}
         id="blue"
+        color="blue"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
         id="yellow"
+        color="yellow"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
         id="brown"
+        color="brown"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
         id="pink"
+        color="pink"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
         id="green"
+        color="green"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
         id="purple"
-      ></ThemeButton>
+        color="purple"
+      />
     </StyledColorTheme>
   );
 };

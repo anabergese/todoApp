@@ -1,18 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
-
-const Button = ({ onClick, children, className }) => {
-  return (
-    <button className={className} onClick={onClick}>
-      {children}
-    </button>
-  );
-};
+import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
+import ThemeContext from "../Contexts/ThemeContext";
+import { StyledButton } from "./Styles/Button.styled";
 
 const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
+  const { themes } = useContext(ThemeContext);
 
   const filter = (
     new URLSearchParams(location.search).get("filter") || ""
@@ -66,61 +62,57 @@ const Task = () => {
       {allFilteredTask().map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
-          <div className="task">
-            <div className="task-title">
+          <StyledTask>
+            <TitleTask theme={themes}>
               <h4>{task.title}</h4>
               <div className="task-buttons">
                 <Link
-                  className="buttons btn-left"
+                  className="buttons"
                   to={`/details/${task.id}`}
-                  state={{ taskProps: task }}
+                  state={task}
                 >
                   See details
                 </Link>
                 {filter === "deleted" || task.status === "Deleted" ? (
-                  <Button
-                    className={"buttons btn-center"}
+                  <StyledButton
                     onClick={() => {
                       permanentDeleteHandler(task, alltasks);
                     }}
                   >
                     Permanent Delete
-                  </Button>
+                  </StyledButton>
                 ) : (
-                  <Button
-                    className={"buttons btn-center"}
+                  <StyledButton
                     onClick={() => {
                       deleteHandler(task, alltasks);
                     }}
                   >
                     Delete Task
-                  </Button>
+                  </StyledButton>
                 )}
                 {filter === "deleted" ||
                 filter === "completed" ||
                 task.status === "Deleted" ||
                 task.status === "Completed" ? (
-                  <Button
-                    className={"buttons btn-right"}
+                  <StyledButton
                     onClick={() => {
                       redoHandler(task, alltasks);
                     }}
                   >
                     Redo
-                  </Button>
+                  </StyledButton>
                 ) : (
-                  <Button
-                    className={"buttons btn-right"}
+                  <StyledButton
                     onClick={() => {
                       completeHandler(task, alltasks);
                     }}
                   >
                     Mark as Completed
-                  </Button>
+                  </StyledButton>
                 )}
               </div>
-            </div>
-            <div className="task-content">
+            </TitleTask>
+            <ContentTask>
               <p>Deadline: {task.deadline}</p>
               <p
                 className={
@@ -131,8 +123,8 @@ const Task = () => {
               >
                 Status: {task.status}
               </p>
-            </div>
-          </div>
+            </ContentTask>
+          </StyledTask>
         );
       })}
     </>

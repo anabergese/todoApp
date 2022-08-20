@@ -1,9 +1,3 @@
-.task {
-  align-self: center;
-  width: 80%;
-  margin: $primary-margin;
-}
-
 .task-title {
   @extend %flex-row-center;
   justify-content: space-between;
@@ -15,18 +9,6 @@
 .task-buttons {
   display: flex;
   justify-content: space-evenly;
-}
-
-.task-content {
-  min-height: 6.25rem;
-  padding: $primary-padding;
-  border-radius: 0px 0px $border-radius $border-radius;
-
-  p {
-    &.highlight {
-      font-weight: 700;
-    }
-  }
 }
 
 .task-image {

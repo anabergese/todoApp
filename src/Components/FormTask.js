@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
-import { Button } from "./Styles/Button.styled";
+import { StyledButton } from "./Styles/Button.styled";
+import { useContext } from "react";
+import ThemeContext from "../Contexts/ThemeContext";
 
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
@@ -12,9 +14,10 @@ const FormTask = () => {
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
+  const { themes } = useContext(ThemeContext);
+
   const navigate = useNavigate();
 
-  // const { taskProps } = location.state;
   const submitTaskHandler = (e) => {
     e.preventDefault();
 
@@ -32,7 +35,7 @@ const FormTask = () => {
 
     setAlltasks([...alltasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
-    navigate(`/details/${newTask.id}`, { state: { taskProps: newTask } });
+    navigate(`/details/${newTask.id}`, { state: newTask });
 
     setInputTitle("");
     setInputDescription("");
@@ -51,7 +54,7 @@ const FormTask = () => {
         submitTaskHandler(e);
       }}
     >
-      <FormBody>
+      <FormBody theme={themes}>
         <h3>Create a new task</h3>
         <label>
           <h5>Title:</h5>
@@ -106,7 +109,7 @@ const FormTask = () => {
           />
         </label>
       </FormBody>
-      <Button type="submit">I am done</Button>
+      <StyledButton type="submit">I am done</StyledButton>
     </StyledFormTask>
   );
 };

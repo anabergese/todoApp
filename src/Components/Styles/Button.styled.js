@@ -1,27 +1,25 @@
 import styled from "styled-components";
 
-const theme = localStorage.getItem("theme-color") || "red";
-
-export const Button = styled.button`
-  font-size: 1rem;
+export const StyledButton = styled.button`
+  font-size: 0.8rem;
   padding: 0.4em 1.2em;
   border-radius: 0.25rem;
   border-width: 0;
   margin: auto 0.25rem;
-  cursor: pointer;
   text-decoration: none;
   text-align: center;
+  background-color: tomato;
 `;
 
 export const ThemeButton = styled.button`
   min-width: 1rem;
   min-height: 1rem;
-  margin: 2rem 1rem;
+  margin: 2rem 0.6rem;
   border-radius: 0.25rem;
   border: 0.06rem solid #dadce0;
   cursor: pointer;
-  background-color: ${(props) => {
-    switch (props.id) {
+  background-color: ${({ color }) => {
+    switch (color) {
       case "blue":
         return "blue";
       case "green":
@@ -35,13 +33,13 @@ export const ThemeButton = styled.button`
       case "pink":
         return "pink";
       default:
-        return "green";
+        return "red";
     }
   }};
 
   &:focus {
     opacity: 1;
-    min-width: 1.6rem;
-    min-height: 1.6rem;
+    min-width: 1.8rem;
+    min-height: 1.8rem;
   }
 `;

@@ -13,9 +13,10 @@ export const FormBody = styled.div`
   min-width: 40%;
   margin: 2rem 1rem;
   color: #333;
-
+  background-color: ${(props) => props.theme};
   label {
     padding: 1rem 3rem;
+    background-color: grey;
     &:last-child {
       border-bottom-left-radius: 0.5rem;
       border-bottom-right-radius: 0.5rem;

@@ -2,16 +2,20 @@
 import { useLocation } from "react-router-dom";
 import { useState, useContext } from "react";
 import { FocusScope } from "react-aria";
-
 import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
+import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
+import ThemeContext from "../Contexts/ThemeContext";
 
 const Details = () => {
   const [showModal, setShowModal] = useState(false);
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
-  const { taskProps } = location.state;
+  const taskProps = location.state;
+  console.log(taskProps);
+
   const toggleModal = () => setShowModal(!showModal);
+  const { themes } = useContext(ThemeContext);
 
   const deleteHandler = (taskProps, alltasks) => {
     const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
@@ -33,12 +37,12 @@ const Details = () => {
   };
 
   return (
-    <div className="task">
-      <div className="task-title">
+    <StyledTask>
+      <TitleTask theme={themes}>
         <h4>{taskProps.title}</h4>
         <div className="task-buttons">
-          <button className="buttons btn-left">Edit</button>
-          <button className="buttons btn-center" onClick={toggleModal}>
+          <button className="buttons">Edit</button>
+          <button className="buttons" onClick={toggleModal}>
             {taskProps.status === "Deleted"
               ? "Permanent Delete"
               : "Delete Task"}
@@ -46,7 +50,7 @@ const Details = () => {
           {taskProps.status === "Completed" ||
           taskProps.status === "Deleted" ? (
             <button
-              className="buttons btn-right"
+              className="buttons"
               onClick={() => {
                 completeHandler(taskProps, alltasks);
               }}
@@ -55,7 +59,7 @@ const Details = () => {
             </button>
           ) : (
             <button
-              className="buttons btn-right"
+              className="buttons"
               onClick={() => {
                 completeHandler(taskProps, alltasks);
               }}
@@ -90,9 +94,8 @@ const Details = () => {
             </Modal>
           ) : null}
         </div>
-      </div>
-
-      <div className="task-content">
+      </TitleTask>
+      <ContentTask>
         <p>{taskProps.description}</p>
         {taskProps.photo ? (
           <img
@@ -116,8 +119,8 @@ const Details = () => {
         >
           Status: {taskProps.status}
         </p>
-      </div>
-    </div>
+      </ContentTask>
+    </StyledTask>
   );
 };
 
