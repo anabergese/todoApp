@@ -3,7 +3,7 @@ import { useContext } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
-import { StyledButton } from "./Styles/Button.styled";
+import { StyledButton, StyledLink } from "./Styles/Button.styled";
 
 const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
@@ -66,13 +66,9 @@ const Task = () => {
             <TitleTask theme={themes}>
               <h4>{task.title}</h4>
               <div className="task-buttons">
-                <Link
-                  className="buttons"
-                  to={`/details/${task.id}`}
-                  state={task}
-                >
+                <StyledLink to={`/details/${task.id}`} state={task}>
                   See details
-                </Link>
+                </StyledLink>
                 {filter === "deleted" || task.status === "Deleted" ? (
                   <StyledButton
                     onClick={() => {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledButton = styled.button`
   font-size: 0.8rem;
@@ -8,7 +9,19 @@ export const StyledButton = styled.button`
   margin: auto 0.25rem;
   text-decoration: none;
   text-align: center;
-  background-color: tomato;
+  background-color: tomato !important;
+`;
+
+export const StyledLink = styled(Link)`
+  font-size: 0.8rem;
+  padding: 0.4em 1.2em;
+  border-radius: 0.25rem;
+  border-width: 0;
+  margin: auto 0.25rem;
+  text-decoration: none;
+  text-align: center;
+  background-color: tomato !important;
+  color: black;
 `;
 
 export const ThemeButton = styled.button`

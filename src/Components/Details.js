@@ -12,8 +12,7 @@ const Details = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
   const taskProps = location.state;
-  console.log(taskProps);
-
+  console.log(location);
   const toggleModal = () => setShowModal(!showModal);
   const { themes } = useContext(ThemeContext);
 
