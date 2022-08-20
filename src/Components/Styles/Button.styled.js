@@ -37,20 +37,18 @@ export const ThemeButton = styled.button`
   cursor: pointer;
   background-color: ${({ color }) => {
     switch (color) {
-      case "blue":
-        return "blue";
-      case "green":
-        return "green";
-      case "yellow":
-        return "yellow";
-      case "brown":
-        return "brown";
-      case "purple":
-        return "purple";
-      case "pink":
-        return "pink";
+      case "#5e8e67":
+        return "#5e8e67";
+      case "#c3bf81":
+        return "#c3bf81";
+      case "#7e494c":
+        return "#7e494c";
+      case "#97b9bf":
+        return "#97b9bf";
+      case "#34384e":
+        return "#34384e";
       default:
-        return "red";
+        return "black";
     }
   }};
 

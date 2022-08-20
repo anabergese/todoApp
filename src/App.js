@@ -17,7 +17,7 @@ import { Content } from "./Components/Styles/Global.styled";
 
 const App = () => {
   const [themes, setTheme] = useState(
-    localStorage.getItem("theme-color") || "pink"
+    localStorage.getItem("theme-color") || "black"
   );
   const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")) || []);
 

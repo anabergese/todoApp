@@ -21,43 +21,43 @@ const ColorTheme = () => {
         onClick={(e) => {
           changeColor(e);
         }}
-        id="blue"
-        color="blue"
+        id="#5e8e67"
+        color="#5e8e67"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="yellow"
-        color="yellow"
+        id="#c3bf81"
+        color="#c3bf81"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="brown"
-        color="brown"
+        id="#7e494c"
+        color="#7e494c"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="pink"
-        color="pink"
+        id="#97b9bf"
+        color="#97b9bf"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="green"
-        color="green"
+        id="#34384e"
+        color="#34384e"
       />
       <ThemeButton
         onClick={(e) => {
           changeColor(e);
         }}
-        id="purple"
-        color="purple"
+        id="black"
+        color="black"
       />
     </StyledColorTheme>
   );

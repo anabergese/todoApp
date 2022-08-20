@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LightColors } from "./Global.styled";
 
 export const StyledFormTask = styled.form`
   display: flex;
@@ -16,7 +17,7 @@ export const FormBody = styled.div`
   background-color: ${(props) => props.theme};
   label {
     padding: 1rem 3rem;
-    background-color: grey;
+    background-color: ${LightColors[3]};
     &:last-child {
       border-bottom-left-radius: 0.5rem;
       border-bottom-right-radius: 0.5rem;

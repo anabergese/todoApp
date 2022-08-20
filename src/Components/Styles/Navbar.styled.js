@@ -19,5 +19,8 @@ export const Sidenav = styled.div`
     h2 {
       font-size: 1.2rem;
     }
+    &:hover {
+      background-color: white;
+    }
   }
 `;
