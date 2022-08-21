@@ -4,7 +4,6 @@ import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
 import { StyledButton } from "./Styles/Button.styled";
-import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 
 const FormTask = () => {

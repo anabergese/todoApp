@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import { StyledHome } from "./Styles/Home.styled";
-import { Content } from "./Styles/Global.styled";
+import { Content } from "./Styles/Global";
 import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledLink } from "./Styles/Button.styled";

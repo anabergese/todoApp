@@ -9,11 +9,10 @@ import Navbar from "./Components/Navbar";
 import About from "./Components/About";
 import ColorTheme from "./Components/ColorTheme";
 import FormTask from "./Components/FormTask";
-
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
+import { Content, GlobalStyles } from "./Components/Styles/Global";
 import "./Styles/app.scss";
-import { Content } from "./Components/Styles/Global.styled";
 
 const App = () => {
   const storage = JSON.parse(localStorage.getItem("theme-color"));
@@ -28,6 +27,7 @@ const App = () => {
       <ThemeContext.Provider value={{ themes, setThemes }}>
         <ThemeProvider theme={{ themes }}>
           {console.log("themesColorApp:", themes)}
+          <GlobalStyles />
           <div className="App">
             <BrowserRouter>
               <Navbar />

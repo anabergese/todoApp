@@ -25,7 +25,7 @@ export const StyledLink = styled(Link)`
   color: black;
   &:hover {
     text-decoration: none;
-    color: white;
+    color: black;
   }
 `;
 
