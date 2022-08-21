@@ -9,7 +9,8 @@ export const StyledButton = styled.button`
   margin: auto 0.25rem;
   text-decoration: none;
   text-align: center;
-  background-color: ${(props) => props.theme[1]};
+  background-color: ${(props) =>
+    props.submit ? props.theme[0] : props.theme[1]};
 `;
 
 export const StyledLink = styled(Link)`

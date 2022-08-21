@@ -109,7 +109,9 @@ const FormTask = () => {
           />
         </label>
       </FormBody>
-      <StyledButton type="submit">I am done</StyledButton>
+      <StyledButton type="submit" theme={themes} submit>
+        I am done
+      </StyledButton>
     </StyledFormTask>
   );
 };

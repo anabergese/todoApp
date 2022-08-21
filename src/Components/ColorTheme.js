@@ -7,13 +7,14 @@ import { StyledColorTheme } from "./Styles/ColorTheme.styled";
 import { ThemeButton } from "./Styles/Button.styled";
 
 const ColorTheme = () => {
-  const { themes, setTheme } = useContext(ThemeContext);
+  const { setThemes } = useContext(ThemeContext);
 
   const changeColor = (e) => {
-    // setTheme(e.target.id);
-    setTheme([e.target.id, e.target.value]);
-    console.log("theme from ColorTheme:", themes);
-    localStorage.setItem("theme-color", JSON.stringify(themes));
+    setThemes([e.target.id, e.target.value]);
+    localStorage.setItem(
+      "theme-color",
+      JSON.stringify([e.target.id, e.target.value])
+    );
   };
 
   return (

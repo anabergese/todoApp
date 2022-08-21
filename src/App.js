@@ -16,14 +16,16 @@ import "./Styles/app.scss";
 import { Content } from "./Components/Styles/Global.styled";
 
 const App = () => {
-  const [themes, setTheme] = useState(
+  const storage = JSON.parse(localStorage.getItem("theme-color"));
+  console.log("storage:", storage);
+  const [themes, setThemes] = useState(
     JSON.parse(localStorage.getItem("theme-color")) || ["#ffc7cd", "#fff0f1"]
   );
   const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")) || []);
 
   return (
     <AlltasksContext.Provider value={alltasks}>
-      <ThemeContext.Provider value={{ themes, setTheme }}>
+      <ThemeContext.Provider value={{ themes, setThemes }}>
         <ThemeProvider theme={{ themes }}>
           {console.log("themesColorApp:", themes)}
           <div className="App">
