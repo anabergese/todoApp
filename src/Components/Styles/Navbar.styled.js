@@ -21,6 +21,9 @@ export const Sidenav = styled.div`
     }
     &:hover {
       background-color: white;
+      h2 {
+        color: black;
+      }
     }
   }
 `;

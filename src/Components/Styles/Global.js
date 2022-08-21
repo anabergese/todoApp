@@ -25,7 +25,7 @@ export const GlobalStyles = createGlobalStyle`
       margin: 0 !important;
       padding: $primary-padding;
     }
-    h2, h3, h4{
+    h3, h4{
       margin: 0 !important;
       color: ${(props) =>
         props.theme.themes[0] === "black" ? props.theme.themes[1] : "black"}
