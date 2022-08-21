@@ -1,24 +1,4 @@
-@import "variables";
-@import "mixins";
-@import "buttons";
 @import "task";
-
-.App {
-  display: flex;
-  height: 100%;
-}
-
-// Home component style
-.home-content {
-  @extend %flex-row-center;
-  justify-content: space-between;
-  align-self: center;
-  max-height: 10%;
-  min-width: 80%;
-  margin: $primary-margin;
-  padding: $primary-padding;
-  border-radius: $border-radius;
-}
 
 // Modal component style
 .modal_alert {

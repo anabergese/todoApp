@@ -11,8 +11,7 @@ import ColorTheme from "./Components/ColorTheme";
 import FormTask from "./Components/FormTask";
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
-import { Content, GlobalStyles } from "./Components/Styles/Global";
-import "./Styles/app.scss";
+import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
 
 const App = () => {
   const storage = JSON.parse(localStorage.getItem("theme-color"));
@@ -28,7 +27,7 @@ const App = () => {
         <ThemeProvider theme={{ themes }}>
           {console.log("themesColorApp:", themes)}
           <GlobalStyles />
-          <div className="App">
+          <StyledApp>
             <BrowserRouter>
               <Navbar />
               <Content>
@@ -42,7 +41,7 @@ const App = () => {
                 </Routes>
               </Content>
             </BrowserRouter>
-          </div>
+          </StyledApp>
         </ThemeProvider>
       </ThemeContext.Provider>
     </AlltasksContext.Provider>
