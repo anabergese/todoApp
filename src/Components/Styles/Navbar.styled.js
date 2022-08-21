@@ -14,11 +14,13 @@ export const Sidenav = styled.div`
   a {
     padding: 1rem 4rem 1rem 2rem;
     text-decoration: none;
-    color: #333;
 
     h2 {
       font-size: 1.2rem;
+      color: ${(props) =>
+        props.theme[0] === "black" ? props.theme[1] : "black"};
     }
+
     &:hover {
       background-color: white;
       h2 {
