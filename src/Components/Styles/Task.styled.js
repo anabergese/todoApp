@@ -14,6 +14,10 @@ export const TitleTask = styled.div`
   padding: 0.5rem 2rem;
   border-radius: 0.5rem 0.5rem 0rem 0rem;
   background-color: ${(props) => props.theme[0]};
+
+  h4 {
+    color: ${(props) => (props.theme[0] == "black" ? "white" : "black")};
+  }
 `;
 
 export const ContentTask = styled.div`
