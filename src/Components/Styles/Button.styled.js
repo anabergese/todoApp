@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 
 export const StyledButton = styled.button`
   font-size: 0.8rem;
-  padding: 0.4em 1.2em;
+  padding: 0.4rem 1.2rem;
+  min-height: 8px;
   border-radius: 0.25rem;
   border-width: 0;
-  margin: auto 0.25rem;
+  margin: 1rem 0.25rem;
   text-decoration: none;
   text-align: center;
   background-color: ${(props) =>
@@ -14,17 +15,16 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledLink = styled(Link)`
+  background-color: ${(props) => props.theme[1]};
   font-size: 0.8rem;
-  padding: 0.4em 1.2em;
+  padding: 0.4rem 1.2rem;
   border-radius: 0.25rem;
   border-width: 0;
-  margin: auto 0.25rem;
+  margin: 1rem 0.25rem;
   text-decoration: none;
   text-align: center;
-  background-color: ${(props) => props.theme[1]};
   color: black;
   &:hover {
-    text-decoration: none;
     color: black;
   }
 `;

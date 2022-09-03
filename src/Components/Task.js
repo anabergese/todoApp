@@ -73,6 +73,7 @@ const Task = () => {
                 >
                   See details
                 </StyledLink>
+
                 {filter === "deleted" || task.status === "Deleted" ? (
                   <StyledButton
                     theme={themes}
