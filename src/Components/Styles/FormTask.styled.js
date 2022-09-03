@@ -12,8 +12,12 @@ export const FormBody = styled.div`
   border-radius: 0.5rem;
   min-width: 40%;
   margin: 2rem 1rem;
-  color: #333;
   background-color: ${(props) => props.theme[0]};
+
+  h1 {
+    padding: 1rem 0;
+    font-size: 1.8rem;
+  }
 
   label {
     padding: 1rem 3rem;

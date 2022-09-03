@@ -2,7 +2,7 @@ import { StyledHome } from "./Styles/Home.styled";
 import { Content } from "./Styles/Global";
 import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
-import { StyledLink } from "./Styles/Button.styled";
+import { StyledLink } from "./Styles/Buttons.styled";
 
 const Home = () => {
   const { themes } = useContext(ThemeContext);

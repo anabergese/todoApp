@@ -5,8 +5,10 @@ import { FocusScope } from "react-aria";
 import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
+import { StyledModal } from "./Styles/Modal.styled";
+
 import ThemeContext from "../Contexts/ThemeContext";
-import { StyledButton } from "./Styles/Button.styled";
+import { StyledButton } from "./Styles/Buttons.styled";
 
 const Details = () => {
   const [showModal, setShowModal] = useState(false);
@@ -40,7 +42,7 @@ const Details = () => {
     <StyledTask>
       <TitleTask theme={themes}>
         <h4>{taskProps.title}</h4>
-        <div className="task-buttons">
+        <div>
           <StyledButton theme={themes}>Edit</StyledButton>
           <StyledButton onClick={toggleModal} theme={themes}>
             {taskProps.status === "Deleted"
@@ -70,12 +72,11 @@ const Details = () => {
 
           {showModal ? (
             <Modal>
-              <FocusScope contain restoreFocus autoFocus>
-                <div>
-                  <h1>
-                    Are you sure you want to delete this task:
-                    <br /> {taskProps.title}?
-                  </h1>
+              <StyledModal theme={themes}>
+                <FocusScope contain restoreFocus autoFocus>
+                  <h1> Are you sure you want to delete this task?</h1>
+                  <p>{taskProps.title}</p>
+
                   <div>
                     <StyledButton
                       theme={themes}
@@ -89,8 +90,8 @@ const Details = () => {
                       No
                     </StyledButton>
                   </div>
-                </div>
-              </FocusScope>
+                </FocusScope>
+              </StyledModal>
             </Modal>
           ) : null}
         </div>

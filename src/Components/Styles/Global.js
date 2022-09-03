@@ -23,11 +23,7 @@ export const GlobalStyles = createGlobalStyle`
     h3, h4 {
       text-align: center;
       margin: 0 !important;
-      padding: $primary-padding;
+      color: black;
     }
-    h3, h4{
-      margin: 0 !important;
-      color: ${(props) =>
-        props.theme.themes[0] === "black" ? props.theme.themes[1] : "black"}
-  }
+  
 `;

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledColorTheme } from "./Styles/ColorTheme.styled";
-import { ThemeButton } from "./Styles/Button.styled";
+import { ThemeButton } from "./Styles/Buttons.styled";
 
 const ColorTheme = () => {
   const { setThemes } = useContext(ThemeContext);

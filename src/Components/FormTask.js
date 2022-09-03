@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
-import { StyledButton } from "./Styles/Button.styled";
+import { StyledButton } from "./Styles/Buttons.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 
 const FormTask = () => {
@@ -54,7 +54,7 @@ const FormTask = () => {
       }}
     >
       <FormBody theme={themes}>
-        <h3>Create a new task</h3>
+        <h1>Create a new task</h1>
         <label>
           <h5>Title:</h5>
           <input
@@ -109,7 +109,7 @@ const FormTask = () => {
         </label>
       </FormBody>
       <StyledButton type="submit" theme={themes} submit>
-        <h4>I am done</h4>
+        I am done
       </StyledButton>
     </StyledFormTask>
   );

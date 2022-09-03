@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledButton = styled.button`
-  font-size: 0.8rem;
+  font-size: ${(props) => (props.submit ? "1.2rem" : "0.8rem")};
+  font-weight: ${(props) => (props.submit ? "bold" : "normal")};
   padding: 0.4rem 1.2rem;
   min-height: 8px;
   border-radius: 0.25rem;
