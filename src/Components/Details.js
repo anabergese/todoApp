@@ -15,36 +15,29 @@ const Details = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
   const taskProps = location.state;
-  console.log(location);
   const toggleModal = () => setShowModal(!showModal);
   const { themes } = useContext(ThemeContext);
 
-  const deleteHandler = (taskProps, alltasks) => {
+  const tasksHandler = (status) => {
     const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
     const copy = [...alltasks];
-    copy[taskIndex].status = "Deleted";
+    copy[taskIndex].status = status;
+    taskProps.status = status;
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
+  };
+
+  const deleteHandler = () => {
+    tasksHandler("Deleted");
     toggleModal();
-    taskProps.status = "Deleted";
   };
 
-  const completeHandler = (taskProps, alltasks) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
-    const copy = [...alltasks];
-    copy[taskIndex].status = "Completed";
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
-    taskProps.status = "Completed";
+  const completeHandler = () => {
+    tasksHandler("Completed");
   };
 
-  const redoHandler = (taskProps, alltasks) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
-    const copy = [...alltasks];
-    copy[taskIndex].status = "Uncompleted";
-    taskProps.status = "Uncompleted";
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+  const redoHandler = () => {
+    tasksHandler("Uncompleted");
   };
 
   return (
@@ -61,7 +54,7 @@ const Details = () => {
             <StyledButton
               theme={themes}
               onClick={() => {
-                redoHandler(taskProps, alltasks);
+                redoHandler();
               }}
             >
               Redo
@@ -70,7 +63,7 @@ const Details = () => {
             <StyledButton
               theme={themes}
               onClick={() => {
-                completeHandler(taskProps, alltasks);
+                completeHandler();
               }}
             >
               Complete
@@ -88,7 +81,7 @@ const Details = () => {
                     <StyledButton
                       theme={themes}
                       onClick={() => {
-                        deleteHandler(taskProps, alltasks);
+                        deleteHandler();
                       }}
                     >
                       Yes

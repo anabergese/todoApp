@@ -27,32 +27,28 @@ const Task = () => {
     }
   };
 
-  const completeHandler = (task, alltasks) => {
+  const tasksHandler = (status, task) => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
-    copy[taskIndex].status = "Completed";
+    copy[taskIndex].status = status;
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
-  const deleteHandler = (task, alltasks) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
-    const copy = [...alltasks];
-    copy[taskIndex].status = "Deleted";
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+  const completeHandler = (task) => {
+    tasksHandler("Completed", task);
   };
 
-  const permanentDeleteHandler = (task, alltasks) => {
+  const deleteHandler = (task) => {
+    tasksHandler("Deleted", task);
+  };
+
+  const redoHandler = (task) => {
+    tasksHandler("Uncompleted", task);
+  };
+
+  const permanentDeleteHandler = (task) => {
     const copy = alltasks.filter((item) => item.id !== task.id);
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
-  };
-
-  const redoHandler = (task, alltasks) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
-    const copy = [...alltasks];
-    copy[taskIndex].status = "Uncompleted";
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
@@ -77,7 +73,7 @@ const Task = () => {
                   <StyledButton
                     theme={themes}
                     onClick={() => {
-                      permanentDeleteHandler(task, alltasks);
+                      permanentDeleteHandler(task);
                     }}
                   >
                     Permanent Delete
@@ -86,7 +82,7 @@ const Task = () => {
                   <StyledButton
                     theme={themes}
                     onClick={() => {
-                      deleteHandler(task, alltasks);
+                      deleteHandler(task);
                     }}
                   >
                     Delete
@@ -99,7 +95,7 @@ const Task = () => {
                   <StyledButton
                     theme={themes}
                     onClick={() => {
-                      redoHandler(task, alltasks);
+                      redoHandler(task);
                     }}
                   >
                     Redo
@@ -108,7 +104,7 @@ const Task = () => {
                   <StyledButton
                     theme={themes}
                     onClick={() => {
-                      completeHandler(task, alltasks);
+                      completeHandler(task);
                     }}
                   >
                     Complete
