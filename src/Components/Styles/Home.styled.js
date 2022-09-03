@@ -12,7 +12,7 @@ export const StyledHome = styled.div`
   border-radius: 0.25rem;
   background-color: ${(props) => props.theme[0]};
 
-  & h1 {
-    color: red !important;
+  h3 {
+    color: ${(props) => (props.theme[0] == "black" ? "white" : "black")};
   }
 `;

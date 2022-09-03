@@ -18,12 +18,7 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledLink = styled(Link)`
-  background-color: ${(props) => props.theme[1]};
   font-size: 0.8rem;
-  padding: 0.4rem 1.2rem;
-  border-radius: 0.25rem;
-  border-width: 0;
-  margin: 1rem 0.25rem;
   text-decoration: none;
   text-align: center;
   color: black;
