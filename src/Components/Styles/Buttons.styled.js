@@ -13,6 +13,8 @@ export const StyledButton = styled.button`
   text-align: center;
   background-color: ${(props) =>
     props.submit ? props.theme[0] : props.theme[1]};
+  color: ${(props) =>
+    props.theme[0] == "black" && props.submit ? "white" : "black"};
 `;
 
 export const StyledLink = styled(Link)`
@@ -55,7 +57,6 @@ export const ThemeButton = styled.button`
   }};
 
   &:focus {
-    opacity: 1;
     min-width: 1.8rem;
     min-height: 1.8rem;
   }

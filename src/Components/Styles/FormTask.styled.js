@@ -17,6 +17,8 @@ export const FormBody = styled.div`
   h1 {
     padding: 1rem 0;
     font-size: 1.8rem;
+    color: ${(props) =>
+      props.theme[0] === "black" ? props.theme[1] : "black"};
   }
 
   label {
