@@ -96,30 +96,31 @@ const Details = () => {
           ) : null}
         </div>
       </TitleTask>
-      <ContentTask theme={themes}>
-        <p>{taskProps.description}</p>
-        {taskProps.photo ? (
-          <img
-            src={URL.createObjectURL(taskProps.photo)}
-            className="task-image flex-center"
-            alt="file.name"
-          />
-        ) : null}
-        <p>
+      <ContentTask theme={themes} detail>
+        <div>
+          <p>{taskProps.description}</p>
+          <p>Deadline: {taskProps.deadline}</p>
+          <p
+            className={
+              taskProps.status === "Deleted" || taskProps.status === "Completed"
+                ? "highlight"
+                : ""
+            }
+          >
+            Status: {taskProps.status}
+          </p>
+        </div>
+        <div>
+          {taskProps.photo ? (
+            <img
+              src={URL.createObjectURL(taskProps.photo)}
+              alt={console.log(taskProps.photo.name)}
+            />
+          ) : null}
           {taskProps.video ? (
             <video src={video} width="750" height="500" controls></video>
-          ) : null}{" "}
-        </p>
-        <p>Deadline: {taskProps.deadline}</p>
-        <p
-          className={
-            taskProps.status === "Deleted" || taskProps.status === "Completed"
-              ? "highlight"
-              : ""
-          }
-        >
-          Status: {taskProps.status}
-        </p>
+          ) : null}
+        </div>
       </ContentTask>
     </StyledTask>
   );

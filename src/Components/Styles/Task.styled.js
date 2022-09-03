@@ -17,10 +17,19 @@ export const TitleTask = styled.div`
 `;
 
 export const ContentTask = styled.div`
+  display: ${(props) => (props.detail ? "flex" : "1")};
+  align-items: center;
+  justify-content: space-between;
   min-height: 6.25rem;
   padding: 0.5rem 2rem;
   border-radius: 0px 0px 0.5rem 0.5rem;
   background-color: ${(props) => props.theme[1]};
+
+  img {
+    max-width: 10rem;
+    border-radius: 0.25rem;
+    margin-right: 0.25rem;
+  }
 
   p {
     &.highlight {
