@@ -73,7 +73,6 @@ const Task = () => {
                 >
                   See details
                 </StyledLink>
-
                 {filter === "deleted" || task.status === "Deleted" ? (
                   <StyledButton
                     theme={themes}
@@ -90,7 +89,7 @@ const Task = () => {
                       deleteHandler(task, alltasks);
                     }}
                   >
-                    Delete Task
+                    Delete
                   </StyledButton>
                 )}
                 {filter === "deleted" ||
@@ -112,7 +111,7 @@ const Task = () => {
                       completeHandler(task, alltasks);
                     }}
                   >
-                    Mark as Completed
+                    Complete
                   </StyledButton>
                 )}
               </div>

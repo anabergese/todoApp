@@ -38,6 +38,15 @@ const Details = () => {
     taskProps.status = "Completed";
   };
 
+  const redoHandler = (taskProps, alltasks) => {
+    const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
+    const copy = [...alltasks];
+    copy[taskIndex].status = "Uncompleted";
+    taskProps.status = "Uncompleted";
+    setAlltasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+  };
+
   return (
     <StyledTask>
       <TitleTask theme={themes}>
@@ -45,16 +54,14 @@ const Details = () => {
         <div>
           <StyledButton theme={themes}>Edit</StyledButton>
           <StyledButton onClick={toggleModal} theme={themes}>
-            {taskProps.status === "Deleted"
-              ? "Permanent Delete"
-              : "Delete Task"}
+            {taskProps.status === "Deleted" ? "Permanent Delete" : "Delete"}
           </StyledButton>
           {taskProps.status === "Completed" ||
           taskProps.status === "Deleted" ? (
             <StyledButton
               theme={themes}
               onClick={() => {
-                completeHandler(taskProps, alltasks);
+                redoHandler(taskProps, alltasks);
               }}
             >
               Redo
@@ -66,7 +73,7 @@ const Details = () => {
                 completeHandler(taskProps, alltasks);
               }}
             >
-              Mark as Complete
+              Complete
             </StyledButton>
           )}
 
