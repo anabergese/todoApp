@@ -18,9 +18,7 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledLink = styled(Link)`
-  font-size: 0.8rem;
   text-decoration: none;
-  text-align: center;
   color: black;
   &:hover {
     color: black;
@@ -51,8 +49,8 @@ export const ThemeButton = styled.button`
     }
   }};
 
-  &:focus {
-    min-width: 1.8rem;
-    min-height: 1.8rem;
+  &.active {
+    min-width: 1.6rem;
+    min-height: 1.6rem;
   }
 `;
