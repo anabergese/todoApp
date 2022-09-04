@@ -43,10 +43,6 @@ const FormTask = () => {
     setInputDeadline("");
   };
 
-  useEffect(() => {
-    console.log("alltasks from Form:", alltasks);
-  }, [alltasks]);
-
   return (
     <StyledFormTask
       onSubmit={(e) => {

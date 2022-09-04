@@ -14,8 +14,6 @@ import AlltasksContext from "./Contexts/AlltasksContext";
 import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
 
 const App = () => {
-  const storage = JSON.parse(localStorage.getItem("theme-color"));
-  console.log("storage:", storage);
   const [themes, setThemes] = useState(
     JSON.parse(localStorage.getItem("theme-color")) || ["#ffc7cd", "#fff0f1"]
   );
@@ -25,7 +23,6 @@ const App = () => {
     <AlltasksContext.Provider value={alltasks}>
       <ThemeContext.Provider value={{ themes, setThemes }}>
         <ThemeProvider theme={{ themes }}>
-          {console.log("themesColorApp:", themes)}
           <GlobalStyles />
           <StyledApp>
             <BrowserRouter>

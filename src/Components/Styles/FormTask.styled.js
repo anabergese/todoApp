@@ -1,14 +1,13 @@
 import styled from "styled-components";
+import { flexColumn } from "./Global";
 
 export const StyledFormTask = styled.form`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn}
   align-items: center;
 `;
 
 export const FormBody = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn}
   border-radius: 0.5rem;
   min-width: 40%;
   margin: 2rem 1rem;

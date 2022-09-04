@@ -15,7 +15,6 @@ const ColorTheme = () => {
       "theme-color",
       JSON.stringify([e.target.id, e.target.value])
     );
-    console.log("teme from color:", themes[0] == "#ffc7cd");
   };
 
   return (

@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { flexColumn } from "./Global";
 
 export const Sidenav = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn}
   position: sticky;
   top: 0;
   left: 0;

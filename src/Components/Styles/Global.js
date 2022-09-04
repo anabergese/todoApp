@@ -1,14 +1,18 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 
+export const flexColumn = `
+display: flex;
+flex-direction: column;
+`;
+
 export const StyledApp = styled.div`
   display: flex;
   height: 100%;
 `;
 
 export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${flexColumn}
   flex-grow: 1;
 `;
 
