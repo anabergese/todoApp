@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const Sidenav = styled.div`
+  display: flex;
+  flex-direction: column;
   position: sticky;
   top: 0;
   left: 0;
   height: 100vh;
+  min-width: 20%;
   overflow-x: auto;
   padding-top: 5.65rem;
-  display: flex;
-  flex-direction: column;
   background-color: ${(props) => props.theme[0]};
 
   a {

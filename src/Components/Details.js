@@ -99,7 +99,9 @@ const Details = () => {
       <ContentTask theme={themes} detail>
         <div>
           <p>{taskProps.description}</p>
-          <p>Deadline: {taskProps.deadline}</p>
+          <p>
+            <strong>Deadline:</strong> {taskProps.deadline}
+          </p>
           <p
             className={
               taskProps.status === "Deleted" || taskProps.status === "Completed"
@@ -107,7 +109,8 @@ const Details = () => {
                 : ""
             }
           >
-            Status: {taskProps.status}
+            <strong> Status: </strong>
+            {taskProps.status}
           </p>
         </div>
         <div>

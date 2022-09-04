@@ -111,7 +111,9 @@ const Task = () => {
               </div>
             </TitleTask>
             <ContentTask theme={themes}>
-              <p>Deadline: {task.deadline}</p>
+              <p>
+                <strong>Deadline:</strong> {task.deadline}
+              </p>
               <p
                 className={
                   task.status === "Deleted" || task.status === "Completed"
@@ -119,7 +121,8 @@ const Task = () => {
                     : ""
                 }
               >
-                Status: {task.status}
+                <strong>Status: </strong>
+                {task.status}
               </p>
             </ContentTask>
           </StyledTask>

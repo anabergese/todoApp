@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledModal = styled.div`
-  background-color: ${(props) => props.theme[0]};
+  background-color: ${(props) =>
+    props.theme[0] == "black" ? "white" : props.theme[0]};
   text-align: center;
   border-radius: 8px;
   z-index: 1000;
