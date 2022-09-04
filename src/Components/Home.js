@@ -12,16 +12,16 @@ const Home = () => {
       <h1>What&apos;s the plan for today?</h1>
       <StyledHome theme={themes}>
         <h3>See all tasks</h3>
-        <StyledButton>
-          <StyledLink theme={themes} as="a" href="/tasks">
+        <StyledButton theme={themes}>
+          <StyledLink as="a" href="/tasks">
             Go
           </StyledLink>
         </StyledButton>
       </StyledHome>
       <StyledHome theme={themes}>
         <h3>Create a new task</h3>
-        <StyledButton>
-          <StyledLink theme={themes} as="a" href="/task/create">
+        <StyledButton theme={themes}>
+          <StyledLink as="a" href="/task/create">
             Go
           </StyledLink>
         </StyledButton>

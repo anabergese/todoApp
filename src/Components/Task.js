@@ -62,16 +62,11 @@ const Task = () => {
             <TitleTask theme={themes}>
               <h4>{task.title}</h4>
               <div>
-                <StyledButton>
-                  <StyledLink
-                    theme={themes}
-                    to={`/details/${task.id}`}
-                    state={task}
-                  >
+                <StyledButton theme={themes}>
+                  <StyledLink to={`/details/${task.id}`} state={task}>
                     See details
                   </StyledLink>
                 </StyledButton>
-
                 {filter === "deleted" || task.status === "Deleted" ? (
                   <StyledButton
                     theme={themes}
