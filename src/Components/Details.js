@@ -34,9 +34,7 @@ const Details = () => {
   };
 
   const permanentDeleteHandler = () => {
-    console.log("heleted");
     const copy = alltasks.filter((item) => item.id !== taskProps.id);
-    console.log(copy);
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
     navigate(`/tasks`);
