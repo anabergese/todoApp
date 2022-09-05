@@ -34,5 +34,10 @@ export const GlobalStyles = createGlobalStyle`
     h2, h5 {
       font-size: 1rem;
     }
+    @media screen and (max-width: 400px) {
+      * {
+      font-size: 0.8rem !important;
+      }
+      }
   }
 `;
