@@ -35,4 +35,20 @@ export const FormBody = styled.div`
     border-radius: 0.25rem;
     border-color: transparent;
   }
+
+  @media screen and (max-width: 400px) {
+    margin: 0;
+
+    label {
+      padding: 0.5rem 2rem;
+      &:last-child {
+        padding-bottom: 2rem;
+      }
+    }
+
+    input {
+      font-size: 0.8rem;
+      max-width: 8rem;
+    }
+  }
 `;

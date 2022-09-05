@@ -15,4 +15,10 @@ export const StyledHome = styled.div`
   h3 {
     color: ${(props) => (props.theme[0] == "black" ? "white" : "black")};
   }
+
+  @media screen and (max-width: 400px) {
+    h3 {
+      text-align: left;
+    }
+  }
 `;

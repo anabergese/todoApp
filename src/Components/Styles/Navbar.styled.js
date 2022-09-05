@@ -30,9 +30,12 @@ export const Sidenav = styled.div`
   }
 
   @media screen and (max-width: 400px) {
+    min-width: 120px;
     max-width: 120px;
+
     padding-top: 4rem;
     a {
+      min-width: 120px;
       max-width: 120px;
       padding: 0.8rem 1rem;
     }
