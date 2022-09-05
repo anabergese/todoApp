@@ -17,6 +17,7 @@ export const StyledHome = styled.div`
   }
 
   @media screen and (max-width: 400px) {
+    padding: 0.5rem 1rem;
     h3 {
       text-align: left;
     }

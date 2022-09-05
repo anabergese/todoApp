@@ -4,6 +4,9 @@ export const StyledTask = styled.div`
   align-self: center;
   width: 80%;
   margin: 2rem 1rem;
+  @media screen and (max-width: 400px) {
+    margin: 1rem;
+  }
 `;
 
 export const TitleTask = styled.div`
@@ -17,6 +20,14 @@ export const TitleTask = styled.div`
 
   h4 {
     color: ${(props) => (props.theme[0] == "black" ? "white" : "black")};
+  }
+
+  @media screen and (max-width: 400px) {
+    flex-direction: column;
+
+    div {
+      display: flex;
+    }
   }
 `;
 
@@ -40,6 +51,13 @@ export const ContentTask = styled.div`
     margin-right: 2rem;
     &.highlight {
       font-weight: 700;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    flex-direction: ${(props) => (props.detail ? "column" : "row")};
+    img {
+      margin: 0;
     }
   }
 `;

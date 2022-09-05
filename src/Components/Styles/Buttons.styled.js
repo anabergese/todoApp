@@ -5,16 +5,24 @@ export const StyledButton = styled.button`
   font-size: ${(props) => (props.submit ? "1rem" : "0.8rem")};
   letter-spacing: 0.05rem;
   padding: 0.4rem 1.2rem;
+  margin: 1rem 0.25rem;
   min-height: 8px;
   border-radius: 0.25rem;
   border-width: 0;
-  margin: 1rem 0.25rem;
   text-decoration: none;
   text-align: center;
   background-color: ${(props) =>
     props.submit ? props.theme[0] : props.theme[1]};
   color: ${(props) =>
     props.theme[0] == "black" && props.submit ? "white" : "black"};
+
+  @media screen and (max-width: 400px) {
+    font-size: ${(props) => (props.submit ? "0.8rem" : "0.6rem !important")};
+    padding: 0.2rem 0.6rem;
+    margin: 0.2rem;
+    letter-spacing: 0;
+    line-height: normal;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -22,6 +30,9 @@ export const StyledLink = styled(Link)`
   color: black;
   &:hover {
     color: black;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 0.6rem !important;
   }
 `;
 
