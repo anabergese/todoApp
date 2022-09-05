@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "./Modal";
@@ -17,6 +17,7 @@ const Details = () => {
   const taskProps = location.state;
   const toggleModal = () => setShowModal(!showModal);
   const { themes } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   const tasksHandler = (status) => {
     const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
@@ -28,8 +29,17 @@ const Details = () => {
   };
 
   const deleteHandler = () => {
-    tasksHandler("Deleted");
+    taskProps.status = "Deleted";
     toggleModal();
+  };
+
+  const permanentDeleteHandler = () => {
+    console.log("heleted");
+    const copy = alltasks.filter((item) => item.id !== taskProps.id);
+    console.log(copy);
+    setAlltasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    navigate(`/tasks`);
   };
 
   const completeHandler = () => {
@@ -46,9 +56,16 @@ const Details = () => {
         <h4>{taskProps.title}</h4>
         <div>
           <StyledButton theme={themes}>Edit</StyledButton>
-          <StyledButton onClick={toggleModal} theme={themes}>
-            {taskProps.status === "Deleted" ? "Permanent Delete" : "Delete"}
-          </StyledButton>
+          {taskProps.status === "Deleted" ? (
+            <StyledButton onClick={permanentDeleteHandler} theme={themes}>
+              Permanent Delete
+            </StyledButton>
+          ) : (
+            <StyledButton onClick={toggleModal} theme={themes}>
+              Delete
+            </StyledButton>
+          )}
+
           {taskProps.status === "Completed" ||
           taskProps.status === "Deleted" ? (
             <StyledButton
