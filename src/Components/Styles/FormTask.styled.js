@@ -15,21 +15,22 @@ export const FormBody = styled.div`
 
   h1 {
     padding: 1rem 0;
-    font-size: 1.8rem;
     color: ${(props) =>
       props.theme[0] === "black" ? props.theme[1] : "black"};
   }
 
   label {
-    padding: 1rem 3rem;
+    padding: 1rem 4rem;
     background-color: ${(props) => props.theme[1]};
     &:last-child {
+      padding-bottom: 3rem;
       border-bottom-left-radius: 0.5rem;
       border-bottom-right-radius: 0.5rem;
     }
   }
 
   input {
+    font-size: 0.8rem;
     min-width: 100%;
     border-radius: 0.25rem;
     border-color: transparent;

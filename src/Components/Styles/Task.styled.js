@@ -35,6 +35,7 @@ export const ContentTask = styled.div`
   }
 
   p {
+    font-size: 0.875rem;
     text-align: justify;
     margin-right: 2rem;
     &.highlight {

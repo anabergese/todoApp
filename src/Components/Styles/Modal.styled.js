@@ -9,6 +9,5 @@ export const StyledModal = styled.div`
 
   h1 {
     padding: 1rem 1.6rem;
-    font-size: 1.8rem;
   }
 `;

@@ -17,7 +17,6 @@ export const Sidenav = styled.div`
     text-decoration: none;
 
     h2 {
-      font-size: 1.2rem;
       color: ${(props) =>
         props.theme[0] === "black" ? props.theme[1] : "black"};
     }
