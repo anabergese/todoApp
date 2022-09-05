@@ -29,7 +29,7 @@ const Details = () => {
   };
 
   const deleteHandler = () => {
-    taskProps.status = "Deleted";
+    tasksHandler("Deleted");
     toggleModal();
   };
 
