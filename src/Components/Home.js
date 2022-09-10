@@ -9,20 +9,22 @@ const Home = () => {
 
   return (
     <Content>
-      <h1>What&apos;s the plan for today?</h1>
+      <header role="banner" aria-label="What is the plan for today?">
+        <h1>What&apos;s the plan for today?</h1>
+      </header>
       <StyledHome theme={themes}>
-        <h3>See all tasks</h3>
+        <h2>See all tasks</h2>
         <StyledButton theme={themes}>
           <StyledLink as="a" href="/tasks">
-            Go
+            Go Tasks
           </StyledLink>
         </StyledButton>
       </StyledHome>
       <StyledHome theme={themes}>
-        <h3>Create a new task</h3>
+        <h2>Create a new task</h2>
         <StyledButton theme={themes}>
           <StyledLink as="a" href="/task/create">
-            Go
+            Go Create
           </StyledLink>
         </StyledButton>
       </StyledHome>

@@ -1,5 +1,4 @@
 import { render } from "react-dom";
-import { ThemeProvider } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Task from "./Components/Task";
@@ -22,24 +21,24 @@ const App = () => {
   return (
     <AlltasksContext.Provider value={alltasks}>
       <ThemeContext.Provider value={{ themes, setThemes }}>
-        <ThemeProvider theme={{ themes }}>
-          <GlobalStyles />
-          <StyledApp>
-            <BrowserRouter>
-              <Navbar />
-              <Content>
-                <ColorTheme />
-                <Routes>
-                  <Route path="/details/:id" element={<Details />} />
-                  <Route path="/task/create" element={<FormTask />} />
-                  <Route path="/about" element={<About />} />
-                  <Route exact path="/tasks" element={<Task />} />
-                  <Route exact path="/" element={<Home />} />
-                </Routes>
-              </Content>
-            </BrowserRouter>
-          </StyledApp>
-        </ThemeProvider>
+        {console.log("theme context:", themes)}
+
+        <GlobalStyles />
+        <StyledApp>
+          <BrowserRouter>
+            <Navbar />
+            <Content>
+              <ColorTheme />
+              <Routes>
+                <Route path="/details/:id" element={<Details />} />
+                <Route path="/task/create" element={<FormTask />} />
+                <Route path="/about" element={<About />} />
+                <Route exact path="/tasks" element={<Task />} />
+                <Route exact path="/" element={<Home />} />
+              </Routes>
+            </Content>
+          </BrowserRouter>
+        </StyledApp>
       </ThemeContext.Provider>
     </AlltasksContext.Provider>
   );

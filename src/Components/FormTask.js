@@ -45,12 +45,16 @@ const FormTask = () => {
 
   return (
     <StyledFormTask
+      role="form"
+      aria-label="Create a new task"
       onSubmit={(e) => {
         submitTaskHandler(e);
       }}
     >
       <FormBody theme={themes}>
-        <h1>Create a new task</h1>
+        <header>
+          <h1>Create a new task</h1>
+        </header>
         <label>
           <h5>Title:</h5>
           <input

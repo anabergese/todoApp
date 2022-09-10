@@ -8,7 +8,7 @@ const Navbar = () => {
   const { themes } = useContext(ThemeContext);
 
   return (
-    <Sidenav theme={themes}>
+    <Sidenav theme={themes} role="navigation" aria-label="Main Menu">
       <Link to="/">
         <h2>Home page</h2>
       </Link>

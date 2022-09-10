@@ -18,8 +18,9 @@ const ColorTheme = () => {
   };
 
   return (
-    <StyledColorTheme>
+    <StyledColorTheme aria-label="App Colors Options">
       <ThemeButton
+        aria-label="pink theme"
         onClick={(e) => {
           changeColor(e);
         }}
@@ -29,6 +30,7 @@ const ColorTheme = () => {
         className={`${themes[0] == "#ffc7cd" ? "active" : ""}`}
       />
       <ThemeButton
+        aria-label="blue theme"
         onClick={(e) => {
           changeColor(e);
         }}
@@ -38,6 +40,7 @@ const ColorTheme = () => {
         className={`${themes[0] == "#d6e1ec" ? "active" : ""}`}
       />
       <ThemeButton
+        aria-label="brown theme"
         onClick={(e) => {
           changeColor(e);
         }}
@@ -47,6 +50,7 @@ const ColorTheme = () => {
         className={`${themes[0] == "#ece1d6" ? "active" : ""}`}
       />
       <ThemeButton
+        aria-label="purple theme"
         onClick={(e) => {
           changeColor(e);
         }}
@@ -56,6 +60,7 @@ const ColorTheme = () => {
         className={`${themes[0] == "#ecd6ec" ? "active" : ""}`}
       />
       <ThemeButton
+        aria-label="green theme"
         onClick={(e) => {
           changeColor(e);
         }}
@@ -65,6 +70,7 @@ const ColorTheme = () => {
         className={`${themes[0] == "#d6ecd6" ? "active" : ""}`}
       />
       <ThemeButton
+        aria-label="black theme"
         onClick={(e) => {
           changeColor(e);
         }}
