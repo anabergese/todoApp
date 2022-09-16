@@ -8,9 +8,9 @@ import Navbar from "./Components/Navbar";
 import About from "./Components/About";
 import ColorTheme from "./Components/ColorTheme";
 import FormTask from "./Components/FormTask";
+import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
-import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
 
 const App = () => {
   const [themes, setThemes] = useState(
