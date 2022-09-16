@@ -9,24 +9,18 @@ const Home = () => {
 
   return (
     <Content>
-      <header role="banner" aria-label="What is the plan for today?">
-        <h1>What&apos;s the plan for today?</h1>
-      </header>
+      <h1>What&apos;s the plan for today?</h1>
       <StyledHome theme={themes}>
         <h2>See all tasks</h2>
-        <StyledButton theme={themes}>
-          <StyledLink as="a" href="/tasks">
-            Go Tasks
-          </StyledLink>
-        </StyledButton>
+        <StyledLink as="a" href="/tasks">
+          <StyledButton theme={themes}>Go Tasks</StyledButton>
+        </StyledLink>
       </StyledHome>
       <StyledHome theme={themes}>
         <h2>Create a new task</h2>
-        <StyledButton theme={themes}>
-          <StyledLink as="a" href="/task/create">
-            Go Create
-          </StyledLink>
-        </StyledButton>
+        <StyledLink as="a" href="/task/create">
+          <StyledButton theme={themes}>Go Create</StyledButton>
+        </StyledLink>
       </StyledHome>
     </Content>
   );

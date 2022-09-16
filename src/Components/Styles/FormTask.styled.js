@@ -20,6 +20,9 @@ export const FormBody = styled.div`
   }
 
   label {
+    h2 {
+      text-align: left;
+    }
     padding: 1rem 4rem;
     background-color: ${(props) => props.theme[1]};
     &:last-child {

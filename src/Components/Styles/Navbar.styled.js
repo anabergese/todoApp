@@ -17,6 +17,7 @@ export const Sidenav = styled.div`
     text-decoration: none;
 
     h2 {
+      text-align: left;
       color: ${(props) =>
         props.theme[0] === "black" ? props.theme[1] : "black"};
     }

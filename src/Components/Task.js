@@ -55,18 +55,17 @@ const Task = () => {
 
   return (
     <>
+      <h1>All your tasks</h1>
       {allFilteredTask().map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
           <StyledTask>
             <TitleTask theme={themes}>
-              <h4>{task.title}</h4>
+              <h2>{task.title}</h2>
               <div>
-                <StyledButton theme={themes}>
-                  <StyledLink to={`/details/${task.id}`} state={task}>
-                    See details
-                  </StyledLink>
-                </StyledButton>
+                <StyledLink to={`/details/${task.id}`} state={task}>
+                  <StyledButton theme={themes}>See details</StyledButton>
+                </StyledLink>
                 {filter === "deleted" || task.status === "Deleted" ? (
                   <StyledButton
                     theme={themes}

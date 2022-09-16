@@ -49,98 +49,103 @@ const Details = () => {
   };
 
   return (
-    <StyledTask>
-      <TitleTask theme={themes}>
-        <h4>{taskProps.title}</h4>
-        <div>
-          <StyledButton theme={themes}>Edit</StyledButton>
-          {taskProps.status === "Deleted" ? (
-            <StyledButton onClick={permanentDeleteHandler} theme={themes}>
-              Permanent Delete
-            </StyledButton>
-          ) : (
-            <StyledButton onClick={toggleModal} theme={themes}>
-              Delete
-            </StyledButton>
-          )}
+    <>
+      <h1>Details Page</h1>
 
-          {taskProps.status === "Completed" ||
-          taskProps.status === "Deleted" ? (
-            <StyledButton
-              theme={themes}
-              onClick={() => {
-                redoHandler();
-              }}
+      <StyledTask>
+        <TitleTask theme={themes}>
+          <h2>{taskProps.title}</h2>
+          <div>
+            <StyledButton theme={themes}>Edit</StyledButton>
+            {taskProps.status === "Deleted" ? (
+              <StyledButton onClick={permanentDeleteHandler} theme={themes}>
+                Permanent Delete
+              </StyledButton>
+            ) : (
+              <StyledButton onClick={toggleModal} theme={themes}>
+                Delete
+              </StyledButton>
+            )}
+
+            {taskProps.status === "Completed" ||
+            taskProps.status === "Deleted" ? (
+              <StyledButton
+                theme={themes}
+                onClick={() => {
+                  redoHandler();
+                }}
+              >
+                Redo
+              </StyledButton>
+            ) : (
+              <StyledButton
+                theme={themes}
+                onClick={() => {
+                  completeHandler();
+                }}
+              >
+                Complete
+              </StyledButton>
+            )}
+
+            {showModal ? (
+              <Modal>
+                <StyledModal theme={themes}>
+                  <FocusScope contain restoreFocus autoFocus>
+                    <h1> Are you sure you want to delete this task?</h1>
+                    <p>{taskProps.title}</p>
+
+                    <div>
+                      <StyledButton
+                        theme={themes}
+                        onClick={() => {
+                          deleteHandler();
+                        }}
+                      >
+                        Yes
+                      </StyledButton>
+                      <StyledButton theme={themes} onClick={toggleModal}>
+                        No
+                      </StyledButton>
+                    </div>
+                  </FocusScope>
+                </StyledModal>
+              </Modal>
+            ) : null}
+          </div>
+        </TitleTask>
+        <ContentTask theme={themes} detail>
+          <div>
+            <p>{taskProps.description}</p>
+            <p>
+              <strong>Deadline:</strong> {taskProps.deadline}
+            </p>
+            <p
+              className={
+                taskProps.status === "Deleted" ||
+                taskProps.status === "Completed"
+                  ? "highlight"
+                  : ""
+              }
             >
-              Redo
-            </StyledButton>
-          ) : (
-            <StyledButton
-              theme={themes}
-              onClick={() => {
-                completeHandler();
-              }}
-            >
-              Complete
-            </StyledButton>
-          )}
-
-          {showModal ? (
-            <Modal>
-              <StyledModal theme={themes}>
-                <FocusScope contain restoreFocus autoFocus>
-                  <h1> Are you sure you want to delete this task?</h1>
-                  <p>{taskProps.title}</p>
-
-                  <div>
-                    <StyledButton
-                      theme={themes}
-                      onClick={() => {
-                        deleteHandler();
-                      }}
-                    >
-                      Yes
-                    </StyledButton>
-                    <StyledButton theme={themes} onClick={toggleModal}>
-                      No
-                    </StyledButton>
-                  </div>
-                </FocusScope>
-              </StyledModal>
-            </Modal>
-          ) : null}
-        </div>
-      </TitleTask>
-      <ContentTask theme={themes} detail>
-        <div>
-          <p>{taskProps.description}</p>
-          <p>
-            <strong>Deadline:</strong> {taskProps.deadline}
-          </p>
-          <p
-            className={
-              taskProps.status === "Deleted" || taskProps.status === "Completed"
-                ? "highlight"
-                : ""
-            }
-          >
-            <strong> Status: </strong>
-            {taskProps.status}
-          </p>
-        </div>
-        <div>
-          {taskProps.photo ? (
-            <img
-              src={URL.createObjectURL(taskProps.photo)}
-              alt={console.log(taskProps.photo.name)}
-            />
-          ) : null}
-          {taskProps.video ? (
-            <video src={video} width="750" height="500" controls></video>
-          ) : null}
-        </div>
-      </ContentTask>
-    </StyledTask>
+              <strong> Status: </strong>
+              {taskProps.status}
+            </p>
+          </div>
+          <div>
+            {taskProps.photo ? (
+              <img
+                src={URL.createObjectURL(taskProps.photo)}
+                alt={console.log(taskProps.photo.name)}
+              />
+            ) : null}
+            {taskProps.video ? (
+              <video src={video} width="750" height="500" controls></video>
+            ) : null}
+          </div>
+        </ContentTask>
+      </StyledTask>
+    </>
   );
 };
 

@@ -24,16 +24,13 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: "Roboto", sans-serif;
-    h1,
-    h3, h4 {
+    h1,h2 {
       font-size: 1rem;
       text-align: center;
       margin: 0 !important;
       color: black;
     }
-    h2, h5 {
-      font-size: 1rem;
-    }
+
     @media screen and (max-width: 400px) {
       * {
       font-size: 0.8rem !important;

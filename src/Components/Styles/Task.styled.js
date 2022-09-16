@@ -18,7 +18,7 @@ export const TitleTask = styled.div`
   border-radius: 0.5rem 0.5rem 0rem 0rem;
   background-color: ${(props) => props.theme[0]};
 
-  h4 {
+  h2 {
     color: ${(props) => (props.theme[0] == "black" ? "white" : "black")};
   }
 

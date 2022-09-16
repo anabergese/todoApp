@@ -21,8 +21,6 @@ const App = () => {
   return (
     <AlltasksContext.Provider value={alltasks}>
       <ThemeContext.Provider value={{ themes, setThemes }}>
-        {console.log("theme context:", themes)}
-
         <GlobalStyles />
         <StyledApp>
           <BrowserRouter>
