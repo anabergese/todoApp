@@ -21,7 +21,8 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "parcel": "^2.2.1",
-    "prettier": "2.5.1"
+    "prettier": "2.5.1",
+    "process": "^0.11.10"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
@@ -6,16 +6,74 @@ import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
 import { StyledButton } from "./Styles/Buttons.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 
+// Firebase imports
+import { db, storage } from "../Firebase";
+import { collection, addDoc, query, onSnapshot } from "firebase/firestore";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
+  const [urlPhoto, setUrlPhoto] = useState("");
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const { themes } = useContext(ThemeContext);
 
   const navigate = useNavigate();
+
+  // Firebase variables
+  const todosCol = collection(db, "todos");
+  /// End Firebase variables
+
+  useEffect(() => {
+    const q = query(todosCol);
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let todosArray = [];
+      querySnapshot.forEach((doc) => {
+        todosArray.push({ ...doc.data(), id: doc.id });
+        console.log(todosArray);
+      });
+      unsub;
+    });
+  }, [alltasks]);
+
+  useEffect(() => {
+    const uploadFile = () => {
+      const name = new Date().getTime() + inputPhoto.name;
+      const storageRef = ref(storage, name);
+      const uploadTask = uploadBytesResumable(storageRef, inputPhoto);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          console.log("error with image:", error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            setUrlPhoto(downloadURL);
+            console.log("urlPhoto", urlPhoto);
+          });
+        }
+      );
+    };
+    inputPhoto && uploadFile();
+  }, [inputPhoto]);
 
   const submitTaskHandler = (e) => {
     e.preventDefault();
@@ -25,6 +83,7 @@ const FormTask = () => {
       description:
         inputDescription.charAt(0).toUpperCase() + inputDescription.slice(1),
       photo: inputPhoto,
+      urlImage: urlPhoto,
       video: inputVideo,
       deadline: inputDeadline,
       status: "Uncompleted",
@@ -35,6 +94,17 @@ const FormTask = () => {
     setAlltasks([...alltasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
     navigate(`/details/${newTask.id}`, { state: newTask });
+
+    // Firebase start
+    if (inputTitle !== "") {
+      addDoc(todosCol, {
+        inputTitle,
+        inputDescription,
+        urlPhoto,
+      });
+    }
+
+    // Firebase end
 
     setInputTitle("");
     setInputDescription("");
@@ -78,6 +148,7 @@ const FormTask = () => {
           <input
             onChange={(e) => {
               setInputPhoto(e.target.files[0]);
+              console.log(e.target.files);
             }}
             type="file"
             name="file"

@@ -135,7 +135,7 @@ const Details = () => {
           <div>
             {taskProps.photo ? (
               <img
-                src={URL.createObjectURL(taskProps.photo)}
+                src={taskProps.urlImage}
                 alt={console.log(taskProps.photo.name)}
               />
             ) : null}
