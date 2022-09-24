@@ -1,22 +1,28 @@
-import { Link } from "react-router-dom";
+import { StyledHome } from "./Styles/Home.styled";
+import { Content } from "./Styles/Global";
+import { useContext } from "react";
+import ThemeContext from "../Contexts/ThemeContext";
+import { StyledLink, StyledButton } from "./Styles/Buttons.styled";
 
 const Home = () => {
+  const { themes } = useContext(ThemeContext);
+
   return (
-    <div className="content">
+    <Content>
       <h1>What&apos;s the plan for today?</h1>
-      <div className="home-content">
-        <h3>See all tasks</h3>
-        <Link to="/tasks" className="buttons home">
-          Go
-        </Link>
-      </div>
-      <div className="home-content">
-        <h3>Create a new task</h3>
-        <Link to="/task/create" className="buttons home">
-          Go
-        </Link>
-      </div>
-    </div>
+      <StyledHome theme={themes}>
+        <h2>See all tasks</h2>
+        <StyledLink as="a" href="/tasks">
+          <StyledButton theme={themes}>Go Tasks</StyledButton>
+        </StyledLink>
+      </StyledHome>
+      <StyledHome theme={themes}>
+        <h2>Create a new task</h2>
+        <StyledLink as="a" href="/task/create">
+          <StyledButton theme={themes}>Go Create</StyledButton>
+        </StyledLink>
+      </StyledHome>
+    </Content>
   );
 };
 

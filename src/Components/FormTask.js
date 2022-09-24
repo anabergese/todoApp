@@ -1,7 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
+import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
+import { StyledButton } from "./Styles/Buttons.styled";
+import ThemeContext from "../Contexts/ThemeContext";
 
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
@@ -10,9 +13,9 @@ const FormTask = () => {
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
+  const { themes } = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  // const { taskProps } = location.state;
   const submitTaskHandler = (e) => {
     e.preventDefault();
 
@@ -30,7 +33,7 @@ const FormTask = () => {
 
     setAlltasks([...alltasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
-    navigate(`/details/${newTask.id}`, { state: { taskProps: newTask } });
+    navigate(`/details/${newTask.id}`, { state: newTask });
 
     setInputTitle("");
     setInputDescription("");
@@ -39,83 +42,74 @@ const FormTask = () => {
     setInputDeadline("");
   };
 
-  useEffect(() => {
-    console.log("alltasks from Form:", alltasks);
-  }, [alltasks]);
-
   return (
-    <>
-      <form
-        className="form"
-        onSubmit={(e) => {
-          submitTaskHandler(e);
-        }}
-      >
-        <div className="form-create">
-          <h3>Create a new task</h3>
-          <label className="form-create__label">
-            <h5>Title:</h5>
-            <input
-              className="form-create__input"
-              value={inputTitle}
-              onChange={(e) => {
-                setInputTitle(e.target.value);
-              }}
-              type="text"
-            />
-          </label>
-          <label className="form-create__label">
-            <h5>Description:</h5>
-            <input
-              className="form-create__input"
-              value={inputDescription}
-              onChange={(e) => {
-                setInputDescription(e.target.value);
-              }}
-              type="textarea"
-            />
-          </label>
-          <label className="form-create__label">
-            <h5>Photo:</h5>
-            <input
-              className="form-create__input"
-              onChange={(e) => {
-                setInputPhoto(e.target.files[0]);
-              }}
-              type="file"
-              name="file"
-            />
-          </label>
-          <label className="form-create__label">
-            <h5>Video:</h5>
-            <input
-              className="form-create__input"
-              value={inputVideo}
-              onChange={(e) => {
-                setInputVideo(e.target.value);
-              }}
-              type="file"
-              name="video"
-            />
-          </label>
-          <label className="form-create__label">
-            <h5>Deadline:</h5>
-            <input
-              className="form-create__input"
-              value={inputDeadline}
-              onChange={(e) => {
-                setInputDeadline(e.target.value);
-              }}
-              type="date"
-              name="deadline"
-            />
-          </label>
-        </div>
-        <button type="submit" className="buttons">
-          <strong>I am done</strong>
-        </button>
-      </form>
-    </>
+    <StyledFormTask
+      role="form"
+      aria-label="Create a new task"
+      onSubmit={(e) => {
+        submitTaskHandler(e);
+      }}
+    >
+      <FormBody theme={themes}>
+        <h1>Create a new task</h1>
+        <label>
+          <h2>Title:</h2>
+          <input
+            value={inputTitle}
+            onChange={(e) => {
+              setInputTitle(e.target.value);
+            }}
+            type="text"
+          />
+        </label>
+        <label>
+          <h2>Description:</h2>
+          <input
+            value={inputDescription}
+            onChange={(e) => {
+              setInputDescription(e.target.value);
+            }}
+            type="textarea"
+          />
+        </label>
+        <label>
+          <h2>Photo:</h2>
+          <input
+            onChange={(e) => {
+              setInputPhoto(e.target.files[0]);
+              console.log(e.target.files);
+            }}
+            type="file"
+            name="file"
+          />
+        </label>
+        <label>
+          <h2>Video:</h2>
+          <input
+            value={inputVideo}
+            onChange={(e) => {
+              setInputVideo(e.target.value);
+            }}
+            type="file"
+            name="video"
+          />
+        </label>
+        <label>
+          <h2>Deadline:</h2>
+          <input
+            value={inputDeadline}
+            onChange={(e) => {
+              setInputDeadline(e.target.value);
+            }}
+            type="date"
+            name="deadline"
+          />
+        </label>
+      </FormBody>
+      <StyledButton type="submit" theme={themes} submit>
+        I am done
+      </StyledButton>
+    </StyledFormTask>
   );
 };
 

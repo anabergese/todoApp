@@ -1,19 +1,14 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
-
-const Button = ({ onClick, children, className }) => {
-  return (
-    <button className={className} onClick={onClick}>
-      {children}
-    </button>
-  );
-};
+import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
+import ThemeContext from "../Contexts/ThemeContext";
+import { StyledButton, StyledLink } from "./Styles/Buttons.styled";
 
 const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
-
+  const { themes } = useContext(ThemeContext);
   const filter = (
     new URLSearchParams(location.search).get("filter") || ""
   ).toLowerCase();
@@ -31,97 +26,92 @@ const Task = () => {
     }
   };
 
-  const completeHandler = (task, alltasks) => {
+  const tasksHandler = (status, task) => {
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
-    copy[taskIndex].status = "Completed";
+    copy[taskIndex].status = status;
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
-  const deleteHandler = (task, alltasks) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
-    const copy = [...alltasks];
-    copy[taskIndex].status = "Deleted";
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+  const completeHandler = (task) => {
+    tasksHandler("Completed", task);
   };
 
-  const permanentDeleteHandler = (task, alltasks) => {
+  const deleteHandler = (task) => {
+    tasksHandler("Deleted", task);
+  };
+
+  const redoHandler = (task) => {
+    tasksHandler("Uncompleted", task);
+  };
+
+  const permanentDeleteHandler = (task) => {
     const copy = alltasks.filter((item) => item.id !== task.id);
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
-  };
-
-  const redoHandler = (task, alltasks) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
-    const copy = [...alltasks];
-    copy[taskIndex].status = "Uncompleted";
     setAlltasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
   return (
     <>
+      <h1>All your tasks</h1>
       {allFilteredTask().map((task) => {
         return (
           // eslint-disable-next-line react/jsx-key
-          <div className="task">
-            <div className="task-title">
-              <h4>{task.title}</h4>
-              <div className="task-buttons">
-                <Link
-                  className="buttons btn-left"
-                  to={`/details/${task.id}`}
-                  state={{ taskProps: task }}
-                >
-                  See details
-                </Link>
+          <StyledTask>
+            <TitleTask theme={themes}>
+              <h2>{task.title}</h2>
+              <div>
+                <StyledLink to={`/details/${task.id}`} state={task}>
+                  <StyledButton theme={themes}>See details</StyledButton>
+                </StyledLink>
                 {filter === "deleted" || task.status === "Deleted" ? (
-                  <Button
-                    className={"buttons btn-center"}
+                  <StyledButton
+                    theme={themes}
                     onClick={() => {
-                      permanentDeleteHandler(task, alltasks);
+                      permanentDeleteHandler(task);
                     }}
                   >
                     Permanent Delete
-                  </Button>
+                  </StyledButton>
                 ) : (
-                  <Button
-                    className={"buttons btn-center"}
+                  <StyledButton
+                    theme={themes}
                     onClick={() => {
-                      deleteHandler(task, alltasks);
+                      deleteHandler(task);
                     }}
                   >
-                    Delete Task
-                  </Button>
+                    Delete
+                  </StyledButton>
                 )}
                 {filter === "deleted" ||
                 filter === "completed" ||
                 task.status === "Deleted" ||
                 task.status === "Completed" ? (
-                  <Button
-                    className={"buttons btn-right"}
+                  <StyledButton
+                    theme={themes}
                     onClick={() => {
-                      redoHandler(task, alltasks);
+                      redoHandler(task);
                     }}
                   >
                     Redo
-                  </Button>
+                  </StyledButton>
                 ) : (
-                  <Button
-                    className={"buttons btn-right"}
+                  <StyledButton
+                    theme={themes}
                     onClick={() => {
-                      completeHandler(task, alltasks);
+                      completeHandler(task);
                     }}
                   >
-                    Mark as Completed
-                  </Button>
+                    Complete
+                  </StyledButton>
                 )}
               </div>
-            </div>
-            <div className="task-content">
-              <p>Deadline: {task.deadline}</p>
+            </TitleTask>
+            <ContentTask theme={themes}>
+              <p>
+                <strong>Deadline:</strong> {task.deadline}
+              </p>
               <p
                 className={
                   task.status === "Deleted" || task.status === "Completed"
@@ -129,10 +119,11 @@ const Task = () => {
                     : ""
                 }
               >
-                Status: {task.status}
+                <strong>Status: </strong>
+                {task.status}
               </p>
-            </div>
-          </div>
+            </ContentTask>
+          </StyledTask>
         );
       })}
     </>

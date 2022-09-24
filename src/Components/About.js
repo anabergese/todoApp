@@ -1,5 +1,9 @@
 const About = () => {
-  return <h1>About this site</h1>;
+  return (
+    <header>
+      <h1 aria-label="title">Styled component branch</h1>
+    </header>
+  );
 };
 
 export default About;
