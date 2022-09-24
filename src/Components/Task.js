@@ -9,7 +9,6 @@ const Task = () => {
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
   const { themes } = useContext(ThemeContext);
-
   const filter = (
     new URLSearchParams(location.search).get("filter") || ""
   ).toLowerCase();

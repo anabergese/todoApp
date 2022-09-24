@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-autofocus */
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { FocusScope } from "react-aria";
@@ -135,8 +134,8 @@ const Details = () => {
           <div>
             {taskProps.photo ? (
               <img
-                src={taskProps.urlImage}
-                alt={console.log(taskProps.photo.name)}
+                src={URL.createObjectURL(taskProps.photo)}
+                alt={taskProps.photo.name}
               />
             ) : null}
             {taskProps.video ? (
