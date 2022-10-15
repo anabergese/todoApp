@@ -27,11 +27,12 @@ const Task = () => {
   };
 
   const tasksHandler = (status, task) => {
+    console.log("task", task);
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
     copy[taskIndex].status = status;
     setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    // localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
   const completeHandler = (task) => {
