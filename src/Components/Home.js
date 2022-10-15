@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <Content>
-      <h1>What&apos;s the plan for today?</h1>
+      <h1 data-testid="h1text">What&apos;s the plan for today?</h1>
       <StyledHome theme={themes}>
         <h2>See all tasks</h2>
         <StyledLink as="a" href="/tasks">
