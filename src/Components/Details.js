@@ -5,7 +5,6 @@ import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import { StyledModal } from "./Styles/Modal.styled";
-
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
 
