@@ -63,25 +63,18 @@ const Task = () => {
                 <StyledLink to={`/details/${task.id}`} state={task}>
                   <StyledButton theme={themes}>See details</StyledButton>
                 </StyledLink>
-                {filter === "deleted" || task.status === "Deleted" ? (
-                  <StyledButton
-                    theme={themes}
-                    onClick={() => {
-                      permanentDeleteHandler(task);
-                    }}
-                  >
-                    Permanent Delete
-                  </StyledButton>
-                ) : (
-                  <StyledButton
-                    theme={themes}
-                    onClick={() => {
-                      deleteHandler(task);
-                    }}
-                  >
-                    Delete
-                  </StyledButton>
-                )}
+                <StyledButton
+                  theme={themes}
+                  onClick={() => {
+                    filter === "deleted" || task.status === "Deleted"
+                      ? permanentDeleteHandler(task)
+                      : deleteHandler(task);
+                  }}
+                >
+                  {filter === "deleted" || task.status === "Deleted"
+                    ? "Permanent Delete"
+                    : "Delete"}
+                </StyledButton>
                 <StyledButton
                   theme={themes}
                   onClick={() => {

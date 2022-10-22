@@ -46,21 +46,21 @@ const Details = () => {
   return (
     <>
       <h1>Details Page</h1>
-
       <StyledTask>
         <TitleTask theme={themes}>
           <h2>{taskProps.title}</h2>
           <div>
             <StyledButton theme={themes}>Edit</StyledButton>
-            {taskProps.status === "Deleted" ? (
-              <StyledButton onClick={permanentDeleteHandler} theme={themes}>
-                Permanent Delete
-              </StyledButton>
-            ) : (
-              <StyledButton onClick={toggleModal} theme={themes}>
-                Delete
-              </StyledButton>
-            )}
+            <StyledButton
+              onClick={
+                taskProps.status === "Deleted"
+                  ? permanentDeleteHandler
+                  : toggleModal
+              }
+              theme={themes}
+            >
+              {taskProps.status === "Deleted" ? "Permanent Delete" : "Delete"}
+            </StyledButton>
             <StyledButton
               theme={themes}
               onClick={() => {
