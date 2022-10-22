@@ -39,12 +39,14 @@ const Details = () => {
   };
 
   const completeHandler = () => {
-    tasksHandler("Completed");
+    console.log("completeHandler pressed");
+    if (taskProps.status == "Uncompleted") tasksHandler("Completed");
+    else if (taskProps.status == "Completed") tasksHandler("Uncompleted");
   };
 
-  const redoHandler = () => {
-    tasksHandler("Uncompleted");
-  };
+  // const redoHandler = () => {
+  //   tasksHandler("Uncompleted");
+  // };
 
   return (
     <>
@@ -65,7 +67,7 @@ const Details = () => {
               </StyledButton>
             )}
 
-            {taskProps.status === "Completed" ||
+            {/* {taskProps.status === "Completed" ||
             taskProps.status === "Deleted" ? (
               <StyledButton
                 theme={themes}
@@ -84,7 +86,19 @@ const Details = () => {
               >
                 Complete
               </StyledButton>
-            )}
+            )} */}
+
+            <StyledButton
+              theme={themes}
+              onClick={() => {
+                completeHandler();
+              }}
+            >
+              {taskProps.status === "Completed" ||
+              taskProps.status === "Deleted"
+                ? "Redo"
+                : "Complete"}
+            </StyledButton>
 
             {showModal ? (
               <Modal>
