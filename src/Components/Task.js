@@ -36,15 +36,12 @@ const Task = () => {
   };
 
   const completeHandler = (task) => {
-    tasksHandler("Completed", task);
+    if (task.status == "Uncompleted") tasksHandler("Completed", task);
+    else if (task.status == "Completed") tasksHandler("Uncompleted", task);
   };
 
   const deleteHandler = (task) => {
     tasksHandler("Deleted", task);
-  };
-
-  const redoHandler = (task) => {
-    tasksHandler("Uncompleted", task);
   };
 
   const permanentDeleteHandler = (task) => {
@@ -85,28 +82,20 @@ const Task = () => {
                     Delete
                   </StyledButton>
                 )}
-                {filter === "deleted" ||
-                filter === "completed" ||
-                task.status === "Deleted" ||
-                task.status === "Completed" ? (
-                  <StyledButton
-                    theme={themes}
-                    onClick={() => {
-                      redoHandler(task);
-                    }}
-                  >
-                    Redo
-                  </StyledButton>
-                ) : (
-                  <StyledButton
-                    theme={themes}
-                    onClick={() => {
-                      completeHandler(task);
-                    }}
-                  >
-                    Complete
-                  </StyledButton>
-                )}
+                <StyledButton
+                  theme={themes}
+                  onClick={() => {
+                    completeHandler(task);
+                  }}
+                  data-testid="completeButton"
+                >
+                  {filter === "deleted" ||
+                  filter === "completed" ||
+                  task.status === "Deleted" ||
+                  task.status === "Completed"
+                    ? "Redo"
+                    : "Complete"}
+                </StyledButton>
               </div>
             </TitleTask>
             <ContentTask theme={themes}>
