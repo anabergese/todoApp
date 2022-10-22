@@ -39,14 +39,9 @@ const Details = () => {
   };
 
   const completeHandler = () => {
-    console.log("completeHandler pressed");
     if (taskProps.status == "Uncompleted") tasksHandler("Completed");
     else if (taskProps.status == "Completed") tasksHandler("Uncompleted");
   };
-
-  // const redoHandler = () => {
-  //   tasksHandler("Uncompleted");
-  // };
 
   return (
     <>
@@ -66,28 +61,6 @@ const Details = () => {
                 Delete
               </StyledButton>
             )}
-
-            {/* {taskProps.status === "Completed" ||
-            taskProps.status === "Deleted" ? (
-              <StyledButton
-                theme={themes}
-                onClick={() => {
-                  redoHandler();
-                }}
-              >
-                Redo
-              </StyledButton>
-            ) : (
-              <StyledButton
-                theme={themes}
-                onClick={() => {
-                  completeHandler();
-                }}
-              >
-                Complete
-              </StyledButton>
-            )} */}
-
             <StyledButton
               theme={themes}
               onClick={() => {
