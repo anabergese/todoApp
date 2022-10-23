@@ -27,7 +27,6 @@ const Task = () => {
   };
 
   const tasksHandler = (status, task) => {
-    console.log("task", task);
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
     copy[taskIndex].status = status;
@@ -54,12 +53,11 @@ const Task = () => {
     <>
       <h1>All your tasks</h1>
       {!alltasks.length ? (
-        <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
+        <h1 data-testid="h1task">You don&apos;t have tasks yet {alltasks}</h1>
       ) : (
         allFilteredTask().map((task) => {
           return (
-            // eslint-disable-next-line react/jsx-key
-            <StyledTask>
+            <StyledTask key={task.key}>
               <TitleTask theme={themes}>
                 <h2>{task.title}</h2>
                 <div>
@@ -80,7 +78,6 @@ const Task = () => {
                   </StyledButton>
                   <StyledButton
                     theme={themes}
-                    data-testid="complete-btn"
                     onClick={() => {
                       completeHandler(task);
                     }}
