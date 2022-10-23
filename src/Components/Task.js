@@ -53,62 +53,66 @@ const Task = () => {
   return (
     <>
       <h1>All your tasks</h1>
-      {allFilteredTask().map((task) => {
-        return (
-          // eslint-disable-next-line react/jsx-key
-          <StyledTask>
-            <TitleTask theme={themes}>
-              <h2>{task.title}</h2>
-              <div>
-                <StyledLink to={`/details/${task.id}`} state={task}>
-                  <StyledButton theme={themes}>See details</StyledButton>
-                </StyledLink>
-                <StyledButton
-                  theme={themes}
-                  onClick={() => {
-                    filter === "deleted" || task.status === "Deleted"
-                      ? permanentDeleteHandler(task)
-                      : deleteHandler(task);
-                  }}
+      {!alltasks.length ? (
+        <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
+      ) : (
+        allFilteredTask().map((task) => {
+          return (
+            // eslint-disable-next-line react/jsx-key
+            <StyledTask>
+              <TitleTask theme={themes}>
+                <h2>{task.title}</h2>
+                <div>
+                  <StyledLink to={`/details/${task.id}`} state={task}>
+                    <StyledButton theme={themes}>See details</StyledButton>
+                  </StyledLink>
+                  <StyledButton
+                    theme={themes}
+                    onClick={() => {
+                      filter === "deleted" || task.status === "Deleted"
+                        ? permanentDeleteHandler(task)
+                        : deleteHandler(task);
+                    }}
+                  >
+                    {filter === "deleted" || task.status === "Deleted"
+                      ? "Permanent Delete"
+                      : "Delete"}
+                  </StyledButton>
+                  <StyledButton
+                    theme={themes}
+                    data-testid="complete-btn"
+                    onClick={() => {
+                      completeHandler(task);
+                    }}
+                  >
+                    {filter === "deleted" ||
+                    filter === "completed" ||
+                    task.status === "Deleted" ||
+                    task.status === "Completed"
+                      ? "Redo"
+                      : "Complete"}
+                  </StyledButton>
+                </div>
+              </TitleTask>
+              <ContentTask theme={themes}>
+                <p>
+                  <strong>Deadline:</strong> {task.deadline}
+                </p>
+                <p
+                  className={
+                    task.status === "Deleted" || task.status === "Completed"
+                      ? "highlight"
+                      : ""
+                  }
                 >
-                  {filter === "deleted" || task.status === "Deleted"
-                    ? "Permanent Delete"
-                    : "Delete"}
-                </StyledButton>
-                <StyledButton
-                  theme={themes}
-                  onClick={() => {
-                    completeHandler(task);
-                  }}
-                  data-testid="completeButton"
-                >
-                  {filter === "deleted" ||
-                  filter === "completed" ||
-                  task.status === "Deleted" ||
-                  task.status === "Completed"
-                    ? "Redo"
-                    : "Complete"}
-                </StyledButton>
-              </div>
-            </TitleTask>
-            <ContentTask theme={themes}>
-              <p>
-                <strong>Deadline:</strong> {task.deadline}
-              </p>
-              <p
-                className={
-                  task.status === "Deleted" || task.status === "Completed"
-                    ? "highlight"
-                    : ""
-                }
-              >
-                <strong>Status: </strong>
-                {task.status}
-              </p>
-            </ContentTask>
-          </StyledTask>
-        );
-      })}
+                  <strong>Status: </strong>
+                  {task.status}
+                </p>
+              </ContentTask>
+            </StyledTask>
+          );
+        })
+      )}
     </>
   );
 };

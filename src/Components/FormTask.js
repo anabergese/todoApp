@@ -50,7 +50,7 @@ const FormTask = () => {
         submitTaskHandler(e);
       }}
     >
-      <FormBody theme={themes}>
+      <FormBody theme={themes} data-testid="form">
         <h1>Create a new task</h1>
         <label>
           <h2>Title:</h2>

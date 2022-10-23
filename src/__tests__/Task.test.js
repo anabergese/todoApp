@@ -1,32 +1,51 @@
 /**
  * @jest-environment jsdom
  */
-import { test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 import { render } from "@testing-library/react";
 import { StaticRouter } from "react-router-dom/server";
-import { createContext } from "react";
-
 import Task from "../Components/Task";
 
-test("Complete Button changes to Redo text, after click", async () => {
-  const task = {
-    title: "Task example",
-    description: "Description example",
-    status: "Uncompleted",
-    key: "key-1",
-    id: "task-1",
-  };
-  const AlltasksContext = createContext([task, () => {}]);
-
-  const tasks = render(
+test("In /tasks route render task component without tasks", async () => {
+  const task = render(
     <StaticRouter>
-      <Task alltasks={AlltasksContext} />
+      <Task />
     </StaticRouter>
   );
-  const completeButton = await task.findByTestId("completeButton");
-  // console.log(<Task key="x1" id="x2" status="Uncompleted" />);
-  console.log(task);
-  //fireEvent.click(completeButton);
-
-  // expect(h1text.innerHTML).toMatch("What's the plan for today?");
+  const h1text = await task.findByTestId("h1task");
+  expect(h1text.innerHTML).toMatch("You don't have tasks yet");
 });
+
+// const alltasks = [
+//   {
+//     title: "Task example",
+//     description: "Description example",
+//     status: "Uncompleted",
+//     key: "key-1",
+//     id: "task-1",
+//   },
+//   {
+//     title: "Task example 2",
+//     description: "Description example 2",
+//     status: "Uncompleted",
+//     key: "key-2",
+//     id: "task-2",
+//   },
+// ];
+
+// test("In /tasks route render task component with tasks", async () => {
+//   window.history.pushState({}, "", "/tasks");
+//   render(
+//     <StaticRouter>
+//       <Task alltasks={alltasks} key="key-1" />
+//     </StaticRouter>
+//   );
+// });
+
+// test("Complete/Redo text of button and status of task changes when is clicked", async () => {
+//   window.history.pushState({}, "", "/tasks");
+// });
+
+// test("Delete/Permanent delete text of button and status of task changes when is clicked", async () => {
+//   window.history.pushState({}, "", "/tasks");
+// });
