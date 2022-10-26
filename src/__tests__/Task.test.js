@@ -35,8 +35,10 @@ const alltasks = [
   },
 ];
 
+const setAlltasks = jest.fn();
+
 const AllTasksProvided = () => (
-  <AlltasksContext.Provider value={[alltasks]}>
+  <AlltasksContext.Provider value={[alltasks, setAlltasks]}>
     <StaticRouter>
       <Task />
     </StaticRouter>
@@ -44,21 +46,24 @@ const AllTasksProvided = () => (
 );
 
 test("In /tasks route render task component with tasks", () => {
-  window.history.pushState({}, "", "/tasks");
   const renderedTasks = render(<AllTasksProvided />);
   const h2Task1 = renderedTasks.getByText("Task example");
   expect(h2Task1).toBeDefined();
 });
 
-test("Complete/Redo text of button and status of task changes when is clicked", async () => {
-  window.history.pushState({}, "", "/tasks");
+test("Status of task changes when is clicked from Uncompleted to Completed", async () => {
   const renderedTasks = render(<AllTasksProvided />);
-  const completeBtn = renderedTasks.getAllByRole("button")[2];
+  expect(alltasks[0].status).toMatch("Uncompleted");
+
+  const completeBtn = renderedTasks.getAllByRole("button", {
+    name: "Complete",
+  })[0];
   completeBtn.click();
-  console.log(alltasks[0].status);
+
+  expect(setAlltasks).toBeCalled();
   expect(alltasks[0].status).toMatch("Completed");
 });
 
-// test("Delete/Permanent delete text of button and status of task changes when is clicked", async () => {
-//  window.history.pushState({}, "", "/tasks");
+// test("Delete/Permanent text of button", async () => {
+//window.history.pushState({}, "", "/completed");
 // });
