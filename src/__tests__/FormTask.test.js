@@ -2,17 +2,21 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import { expect, test, describe, jest } from "@jest/globals";
+import { createMemoryHistory } from "history";
+
+import { expect, test, describe } from "@jest/globals";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import FormTask from "../Components/FormTask";
 //import { Simulate } from "react-dom/test-utils";
 
-const submitTaskHandler = jest.fn();
+const history = createMemoryHistory();
+history.push("/task/create");
+
 const MockFormTask = () => (
-  <BrowserRouter>
-    <FormTask onSubmit={submitTaskHandler} />
+  <BrowserRouter history={history}>
+    <FormTask />
   </BrowserRouter>
 );
 
@@ -32,24 +36,23 @@ describe("Form component", () => {
     expect(titleInput.value).toBe("Go to supermarket");
   });
 
-  test("Form task should submit a task", async () => {
+  test("Form submit should redirect details of task", async () => {
     render(<MockFormTask />);
-    // const form = screen.getByRole("form", { name: "Create a new task" });
-    // const formId = screen.getByTestId("form");
-    const submitBtn = screen.getByText("I am done");
-    const titleInput = screen.getByRole("textbox", { name: /Title:/i });
-    fireEvent.change(titleInput, { target: { value: "Go to supermarket" } });
+    expect(history.location.pathname).toBe("/task/create");
+    const submitBtn = screen.getByRole("button", { name: "I am done" });
+    submitBtn.click();
     fireEvent.click(submitBtn);
-
-    expect(submitBtn.type).toBe("submit");
-    expect(submitTaskHandler).toBeCalled();
+    const detailsPage = screen.getByRole("heading", {
+      name: "Details Page",
+    });
+    expect(detailsPage).toBeInTheDocument();
   });
-
-  // test("Form submit should redirect to Details component", () => {
-  //   render(<MockFormTask />);
-  //   const titleInput = screen.getByRole("textbox", { name: /Title:/i });
-  //   //const submitBtn = screen.getByRole("button", { name: /I am done/i });
-  //   fireEvent.change(titleInput, { target: { value: "Go to supermarket" } });
-  //   expect(titleInput.innerText).toBeVisible();
-  //  });
 });
+
+// test("Form submit should redirect to Details component", () => {
+//   render(<MockFormTask />);
+//   const titleInput = screen.getByRole("textbox", { name: /Title:/i });
+//   //const submitBtn = screen.getByRole("button", { name: /I am done/i });
+//   fireEvent.change(titleInput, { target: { value: "Go to supermarket" } });
+//   expect(titleInput.innerText).toBeVisible();
+//  });

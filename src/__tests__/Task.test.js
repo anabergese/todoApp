@@ -2,8 +2,10 @@
  * @jest-environment jsdom
  */
 import React from "react";
+import { createMemoryHistory } from "history";
+
 import { expect, test, describe, jest } from "@jest/globals";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import Task from "../Components/Task";
@@ -27,16 +29,23 @@ const alltasks = [
 ];
 
 const mockSetAlltasks = jest.fn();
+const history = createMemoryHistory();
+history.push("/tasks");
 
 const AllTasksProvided = () => (
   <AlltasksContext.Provider value={[alltasks, mockSetAlltasks]}>
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Task />
     </BrowserRouter>
   </AlltasksContext.Provider>
 );
 
 describe("Task component", () => {
+  test("Render task component in /tasks route", () => {
+    render(<AllTasksProvided />);
+    expect(history.location.pathname).toBe("/tasks");
+  });
+
   test("Render task component without tasks", () => {
     render(
       <BrowserRouter>
@@ -59,7 +68,7 @@ describe("Task component", () => {
   });
 });
 
-describe("Task buttons in /tasks route", () => {
+describe("Task buttons", () => {
   test("Status of task changes when is clicked from Uncompleted to Completed", () => {
     const renderedTasks = render(<AllTasksProvided />);
     const completeBtn = renderedTasks.getAllByRole("button", {
@@ -76,5 +85,28 @@ describe("Task buttons in /tasks route", () => {
     })[0];
     completeBtn.click();
     expect(mockSetAlltasks).toBeCalled();
+  });
+
+  test("See details buttons redirect to Details page", () => {
+    const renderWithRouter = (ui, { route = "/" } = {}) => {
+      window.history.pushState({}, "Test page", route);
+      return {
+        ...render(ui),
+      };
+    };
+
+    const route = "/tasks";
+    renderWithRouter(<AllTasksProvided />, { route });
+    expect(history.location.pathname).toBe("/tasks");
+    const seeDetails = screen.getAllByRole("link", {
+      name: "See details",
+    })[0];
+    expect(seeDetails.href).toContain("/details/task-1");
+    fireEvent.click(seeDetails);
+    // expect(history.location.pathname).not.toMatch("/tasks");
+    // const detailsPage = screen.getByRole("heading", {
+    //   name: "Details Page",
+    // });
+    // expect(detailsPage).toBeInTheDocument();
   });
 });
