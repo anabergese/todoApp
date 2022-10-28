@@ -53,7 +53,7 @@ const Task = () => {
     <>
       <h1>All your tasks</h1>
       {!alltasks.length ? (
-        <h1 data-testid="h1task">You don&apos;t have tasks yet {alltasks}</h1>
+        <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
       ) : (
         allFilteredTask().map((task) => {
           return (

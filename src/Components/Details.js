@@ -46,7 +46,7 @@ const Details = () => {
   return (
     <>
       <h1>Details Page</h1>
-      <StyledTask>
+      <StyledTask data-testid="task-container">
         <TitleTask theme={themes}>
           <h2>{taskProps.title}</h2>
           <div>

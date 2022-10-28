@@ -2,21 +2,12 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import { expect, test } from "@jest/globals";
-import { render } from "@testing-library/react";
-import { StaticRouter } from "react-router-dom/server";
+import { expect, test, describe, jest } from "@jest/globals";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { BrowserRouter } from "react-router-dom";
 import Task from "../Components/Task";
 import AlltasksContext from "../Contexts/AlltasksContext";
-
-test("In /tasks route render task component without tasks", async () => {
-  const task = render(
-    <StaticRouter>
-      <Task />
-    </StaticRouter>
-  );
-  const h1text = await task.findByTestId("h1task");
-  expect(h1text.innerHTML).toMatch("You don't have tasks yet");
-});
 
 const alltasks = [
   {
@@ -35,35 +26,55 @@ const alltasks = [
   },
 ];
 
-const setAlltasks = jest.fn();
+const mockSetAlltasks = jest.fn();
 
 const AllTasksProvided = () => (
-  <AlltasksContext.Provider value={[alltasks, setAlltasks]}>
-    <StaticRouter>
+  <AlltasksContext.Provider value={[alltasks, mockSetAlltasks]}>
+    <BrowserRouter>
       <Task />
-    </StaticRouter>
+    </BrowserRouter>
   </AlltasksContext.Provider>
 );
 
-test("In /tasks route render task component with tasks", () => {
-  const renderedTasks = render(<AllTasksProvided />);
-  const h2Task1 = renderedTasks.getByText("Task example");
-  expect(h2Task1).toBeDefined();
+describe("Task component", () => {
+  test("Render task component without tasks", () => {
+    render(
+      <BrowserRouter>
+        <Task />
+      </BrowserRouter>
+    );
+    const h1text = screen.getByTestId("h1task");
+    expect(h1text.textContent).toBe("You don't have tasks yet");
+  });
+
+  test("Render task component with tasks", () => {
+    const renderedTasks = render(<AllTasksProvided />);
+    const h2Task1 = renderedTasks.getByText("Task example");
+    expect(h2Task1).toBeInTheDocument();
+  });
+
+  test("Tasks should have uncomplete status when initially rendered", () => {
+    render(<AllTasksProvided />);
+    expect(alltasks[0].status).toMatch(/Uncompleted/i);
+  });
 });
 
-test("Status of task changes when is clicked from Uncompleted to Completed", async () => {
-  const renderedTasks = render(<AllTasksProvided />);
-  expect(alltasks[0].status).toMatch("Uncompleted");
+describe("Task buttons in /tasks route", () => {
+  test("Status of task changes when is clicked from Uncompleted to Completed", () => {
+    const renderedTasks = render(<AllTasksProvided />);
+    const completeBtn = renderedTasks.getAllByRole("button", {
+      name: /Complete/i,
+    })[0];
+    completeBtn.click();
+    expect(alltasks[0].status).toMatch(/Completed/i);
+  });
 
-  const completeBtn = renderedTasks.getAllByRole("button", {
-    name: "Complete",
-  })[0];
-  completeBtn.click();
-
-  expect(setAlltasks).toBeCalled();
-  expect(alltasks[0].status).toMatch("Completed");
+  test("Function to set allTasksContext runs after Completed button is clicked", async () => {
+    const renderedTasks = render(<AllTasksProvided />);
+    const completeBtn = renderedTasks.getAllByRole("button", {
+      name: /Complete/i,
+    })[0];
+    completeBtn.click();
+    expect(mockSetAlltasks).toBeCalled();
+  });
 });
-
-// test("Delete/Permanent text of button", async () => {
-//window.history.pushState({}, "", "/completed");
-// });
