@@ -9,6 +9,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import Task from "../Components/Task";
+import App from "../Components/Details";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
 const alltasks = [
@@ -87,26 +88,6 @@ describe("Task buttons", () => {
     expect(mockSetAlltasks).toBeCalled();
   });
 
-  test("See details buttons redirect to Details page", () => {
-    const renderWithRouter = (ui, { route = "/" } = {}) => {
-      window.history.pushState({}, "Test page", route);
-      return {
-        ...render(ui),
-      };
-    };
-
-    const route = "/tasks";
-    renderWithRouter(<AllTasksProvided />, { route });
-    expect(history.location.pathname).toBe("/tasks");
-    const seeDetails = screen.getAllByRole("link", {
-      name: "See details",
-    })[0];
-    expect(seeDetails.href).toContain("/details/task-1");
-    fireEvent.click(seeDetails);
-    // expect(history.location.pathname).not.toMatch("/tasks");
-    // const detailsPage = screen.getByRole("heading", {
-    //   name: "Details Page",
-    // });
-    // expect(detailsPage).toBeInTheDocument();
-  });
+  // test("See details buttons redirect to Details page", () => {
+  // });
 });

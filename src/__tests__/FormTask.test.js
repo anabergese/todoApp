@@ -36,23 +36,8 @@ describe("Form component", () => {
     expect(titleInput.value).toBe("Go to supermarket");
   });
 
-  test("Form submit should redirect details of task", async () => {
-    render(<MockFormTask />);
-    expect(history.location.pathname).toBe("/task/create");
-    const submitBtn = screen.getByRole("button", { name: "I am done" });
-    submitBtn.click();
-    fireEvent.click(submitBtn);
-    const detailsPage = screen.getByRole("heading", {
-      name: "Details Page",
-    });
-    expect(detailsPage).toBeInTheDocument();
-  });
+  //   test("Form submit should redirect details of task", async () => {
+  //   });
+  //   test("Form submit should redirect to Details component", () => {
+  //   });
 });
-
-// test("Form submit should redirect to Details component", () => {
-//   render(<MockFormTask />);
-//   const titleInput = screen.getByRole("textbox", { name: /Title:/i });
-//   //const submitBtn = screen.getByRole("button", { name: /I am done/i });
-//   fireEvent.change(titleInput, { target: { value: "Go to supermarket" } });
-//   expect(titleInput.innerText).toBeVisible();
-//  });
