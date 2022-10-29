@@ -44,6 +44,7 @@ const FormTask = () => {
 
   return (
     <StyledFormTask
+      data-testid="form"
       role="form"
       aria-label="Create a new task"
       onSubmit={(e) => {
@@ -55,6 +56,7 @@ const FormTask = () => {
         <label>
           <h2>Title:</h2>
           <input
+            name="title"
             value={inputTitle}
             onChange={(e) => {
               setInputTitle(e.target.value);
@@ -65,6 +67,7 @@ const FormTask = () => {
         <label>
           <h2>Description:</h2>
           <input
+            name="description"
             value={inputDescription}
             onChange={(e) => {
               setInputDescription(e.target.value);

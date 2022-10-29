@@ -27,7 +27,6 @@ const Task = () => {
   };
 
   const tasksHandler = (status, task) => {
-    console.log("task", task);
     const taskIndex = alltasks.findIndex((item) => item.id === task.id);
     const copy = [...alltasks];
     copy[taskIndex].status = status;
@@ -36,15 +35,12 @@ const Task = () => {
   };
 
   const completeHandler = (task) => {
-    tasksHandler("Completed", task);
+    if (task.status == "Uncompleted") tasksHandler("Completed", task);
+    else if (task.status == "Completed") tasksHandler("Uncompleted", task);
   };
 
   const deleteHandler = (task) => {
     tasksHandler("Deleted", task);
-  };
-
-  const redoHandler = (task) => {
-    tasksHandler("Uncompleted", task);
   };
 
   const permanentDeleteHandler = (task) => {
@@ -56,77 +52,64 @@ const Task = () => {
   return (
     <>
       <h1>All your tasks</h1>
-      {allFilteredTask().map((task) => {
-        return (
-          // eslint-disable-next-line react/jsx-key
-          <StyledTask>
-            <TitleTask theme={themes}>
-              <h2>{task.title}</h2>
-              <div>
-                <StyledLink to={`/details/${task.id}`} state={task}>
-                  <StyledButton theme={themes}>See details</StyledButton>
-                </StyledLink>
-                {filter === "deleted" || task.status === "Deleted" ? (
+      {!alltasks.length ? (
+        <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
+      ) : (
+        allFilteredTask().map((task) => {
+          return (
+            <StyledTask key={task.key}>
+              <TitleTask theme={themes}>
+                <h2>{task.title}</h2>
+                <div>
+                  <StyledLink to={`/details/${task.id}`} state={task}>
+                    <StyledButton theme={themes}>See details</StyledButton>
+                  </StyledLink>
                   <StyledButton
                     theme={themes}
                     onClick={() => {
-                      permanentDeleteHandler(task);
+                      filter === "deleted" || task.status === "Deleted"
+                        ? permanentDeleteHandler(task)
+                        : deleteHandler(task);
                     }}
                   >
-                    Permanent Delete
+                    {filter === "deleted" || task.status === "Deleted"
+                      ? "Permanent Delete"
+                      : "Delete"}
                   </StyledButton>
-                ) : (
-                  <StyledButton
-                    theme={themes}
-                    onClick={() => {
-                      deleteHandler(task);
-                    }}
-                  >
-                    Delete
-                  </StyledButton>
-                )}
-                {filter === "deleted" ||
-                filter === "completed" ||
-                task.status === "Deleted" ||
-                task.status === "Completed" ? (
-                  <StyledButton
-                    theme={themes}
-                    onClick={() => {
-                      redoHandler(task);
-                    }}
-                  >
-                    Redo
-                  </StyledButton>
-                ) : (
                   <StyledButton
                     theme={themes}
                     onClick={() => {
                       completeHandler(task);
                     }}
                   >
-                    Complete
+                    {filter === "deleted" ||
+                    filter === "completed" ||
+                    task.status === "Deleted" ||
+                    task.status === "Completed"
+                      ? "Redo"
+                      : "Complete"}
                   </StyledButton>
-                )}
-              </div>
-            </TitleTask>
-            <ContentTask theme={themes}>
-              <p>
-                <strong>Deadline:</strong> {task.deadline}
-              </p>
-              <p
-                className={
-                  task.status === "Deleted" || task.status === "Completed"
-                    ? "highlight"
-                    : ""
-                }
-              >
-                <strong>Status: </strong>
-                {task.status}
-              </p>
-            </ContentTask>
-          </StyledTask>
-        );
-      })}
+                </div>
+              </TitleTask>
+              <ContentTask theme={themes}>
+                <p>
+                  <strong>Deadline:</strong> {task.deadline}
+                </p>
+                <p
+                  className={
+                    task.status === "Deleted" || task.status === "Completed"
+                      ? "highlight"
+                      : ""
+                  }
+                >
+                  <strong>Status: </strong>
+                  {task.status}
+                </p>
+              </ContentTask>
+            </StyledTask>
+          );
+        })
+      )}
     </>
   );
 };

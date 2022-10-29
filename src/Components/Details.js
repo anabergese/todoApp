@@ -39,52 +39,39 @@ const Details = () => {
   };
 
   const completeHandler = () => {
-    tasksHandler("Completed");
-  };
-
-  const redoHandler = () => {
-    tasksHandler("Uncompleted");
+    if (taskProps.status == "Uncompleted") tasksHandler("Completed");
+    else if (taskProps.status == "Completed") tasksHandler("Uncompleted");
   };
 
   return (
     <>
       <h1>Details Page</h1>
-
-      <StyledTask>
+      <StyledTask data-testid="task-container">
         <TitleTask theme={themes}>
           <h2>{taskProps.title}</h2>
           <div>
             <StyledButton theme={themes}>Edit</StyledButton>
-            {taskProps.status === "Deleted" ? (
-              <StyledButton onClick={permanentDeleteHandler} theme={themes}>
-                Permanent Delete
-              </StyledButton>
-            ) : (
-              <StyledButton onClick={toggleModal} theme={themes}>
-                Delete
-              </StyledButton>
-            )}
-
-            {taskProps.status === "Completed" ||
-            taskProps.status === "Deleted" ? (
-              <StyledButton
-                theme={themes}
-                onClick={() => {
-                  redoHandler();
-                }}
-              >
-                Redo
-              </StyledButton>
-            ) : (
-              <StyledButton
-                theme={themes}
-                onClick={() => {
-                  completeHandler();
-                }}
-              >
-                Complete
-              </StyledButton>
-            )}
+            <StyledButton
+              onClick={
+                taskProps.status === "Deleted"
+                  ? permanentDeleteHandler
+                  : toggleModal
+              }
+              theme={themes}
+            >
+              {taskProps.status === "Deleted" ? "Permanent Delete" : "Delete"}
+            </StyledButton>
+            <StyledButton
+              theme={themes}
+              onClick={() => {
+                completeHandler();
+              }}
+            >
+              {taskProps.status === "Completed" ||
+              taskProps.status === "Deleted"
+                ? "Redo"
+                : "Complete"}
+            </StyledButton>
 
             {showModal ? (
               <Modal>
