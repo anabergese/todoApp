@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const StyledButton = styled.button`
+type Props = {
+  submit: string;
+  theme: string[];
+};
+export const StyledButton = styled.button<Props>`
   font-size: ${(props) => (props.submit ? "1rem" : "0.8rem")};
   letter-spacing: 0.05rem;
   padding: 0.4rem 1.2rem;

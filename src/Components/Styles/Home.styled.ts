@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledHome = styled.div`
+type Props = {
+  theme: string[];
+};
+
+export const StyledHome = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: space-between;

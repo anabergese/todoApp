@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+type Props = {
+  theme: string[];
+};
+
+type PropsDetail = {
+  detail: string;
+};
+
 export const StyledTask = styled.div`
   align-self: center;
   width: 80%;
@@ -9,7 +17,7 @@ export const StyledTask = styled.div`
   }
 `;
 
-export const TitleTask = styled.div`
+export const TitleTask = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,7 +39,7 @@ export const TitleTask = styled.div`
   }
 `;
 
-export const ContentTask = styled.div`
+export const ContentTask = styled.div<PropsDetail>`
   display: ${(props) => (props.detail ? "flex" : "1")};
   align-items: center;
   justify-content: space-between;

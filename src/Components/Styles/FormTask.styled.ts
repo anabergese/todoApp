@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { flexColumn } from "./Global";
 
+type Props = {
+  theme: string[];
+};
+
 export const StyledFormTask = styled.form`
   ${flexColumn}
   align-items: center;
 `;
 
-export const FormBody = styled.div`
+export const FormBody = styled.div<Props>`
   ${flexColumn}
   border-radius: 0.5rem;
   min-width: 40%;
