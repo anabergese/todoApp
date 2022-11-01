@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, MouseEvent, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
@@ -9,10 +9,21 @@ import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
 
 const Details = () => {
+  type TaskProps = {
+    title: string;
+    description: string;
+    photo: string;
+    video: string;
+    deadline: string;
+    status: string;
+    key: string;
+    id: string;
+  };
+
   const [showModal, setShowModal] = useState(false);
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
-  const taskProps = location.state;
+  const taskProps = location.state as TaskProps;
   const toggleModal = () => setShowModal(!showModal);
   const { themes } = useContext(ThemeContext);
   const navigate = useNavigate();
