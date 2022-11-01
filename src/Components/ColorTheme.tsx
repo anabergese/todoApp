@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useContext } from "react";
+import { useContext, MouseEvent } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledColorTheme } from "./Styles/ColorTheme.styled";
 import { ThemeButton } from "./Styles/Buttons.styled";
@@ -9,12 +9,17 @@ import { ThemeButton } from "./Styles/Buttons.styled";
 const ColorTheme = () => {
   const { themes, setThemes } = useContext(ThemeContext);
 
-  const changeColor = (e) => {
-    setThemes([e.target.id, e.target.value]);
-    localStorage.setItem(
-      "theme-color",
-      JSON.stringify([e.target.id, e.target.value])
-    );
+  const changeColor = (e: MouseEvent<HTMLButtonElement>): void => {
+    if (!(e.target instanceof HTMLButtonElement)) {
+      return;
+    }
+    if (e.target) {
+      setThemes([e.target.id, e.target.value]);
+      localStorage.setItem(
+        "theme-color",
+        JSON.stringify([e.target.id, e.target.value])
+      );
+    }
   };
 
   return (
@@ -82,5 +87,4 @@ const ColorTheme = () => {
     </StyledColorTheme>
   );
 };
-
 export default ColorTheme;

@@ -1,7 +1,8 @@
 import { createContext } from "react";
 
 const themes = "";
-const ThemeContext = createContext<[string, (themes: string) => void]>([
+
+const ThemeContext = createContext<[string, (themes: string[]) => void]>([
   themes,
   () => {},
 ]);
