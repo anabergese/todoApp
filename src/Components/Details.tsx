@@ -8,7 +8,7 @@ import { StyledModal } from "./Styles/Modal.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
 
-const Details = () => {
+const Details: FunctionComponent = () => {
   type TaskProps = {
     title: string;
     description: string;
@@ -25,10 +25,10 @@ const Details = () => {
   const location = useLocation();
   const taskProps = location.state as TaskProps;
   const toggleModal = () => setShowModal(!showModal);
-  const { themes } = useContext(ThemeContext);
+  const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const tasksHandler = (status) => {
+  const tasksHandler = (status: string) => {
     const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
     const copy = [...alltasks];
     copy[taskIndex].status = status;

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
@@ -13,10 +13,10 @@ const FormTask = () => {
   const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
-  const { themes } = useContext(ThemeContext);
+  const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const submitTaskHandler = (e) => {
+  const submitTaskHandler = (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const newTask = {
@@ -109,7 +109,7 @@ const FormTask = () => {
           />
         </label>
       </FormBody>
-      <StyledButton type="submit" theme={themes} submit>
+      <StyledButton type="submit" theme={themes} submitbtn>
         I am done
       </StyledButton>
     </StyledFormTask>

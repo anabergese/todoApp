@@ -5,7 +5,7 @@ import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 
 const Navbar = () => {
-  const { themes } = useContext(ThemeContext);
+  const [themes] = useContext(ThemeContext);
 
   return (
     <Sidenav theme={themes} role="navigation" aria-label="Main Menu">

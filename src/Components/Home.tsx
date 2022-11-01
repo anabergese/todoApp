@@ -6,7 +6,7 @@ import ThemeContext from "../Contexts/ThemeContext";
 import { StyledLink, StyledButton } from "./Styles/Buttons.styled";
 
 const Home: FunctionComponent = () => {
-  const { themes } = useContext(ThemeContext);
+  const [themes] = useContext(ThemeContext);
 
   return (
     <Content>

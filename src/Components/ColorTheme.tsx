@@ -7,7 +7,7 @@ import { StyledColorTheme } from "./Styles/ColorTheme.styled";
 import { ThemeButton } from "./Styles/Buttons.styled";
 
 const ColorTheme = () => {
-  const { themes, setThemes } = useContext(ThemeContext);
+  const [themes, setThemes] = useContext(ThemeContext);
 
   const changeColor = (e: MouseEvent<HTMLButtonElement>): void => {
     if (!(e.target instanceof HTMLButtonElement)) {

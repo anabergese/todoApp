@@ -11,16 +11,33 @@ import FormTask from "./Components/FormTask";
 import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext from "./Contexts/AlltasksContext";
-// jest test branch
+
 const App = () => {
-  const [themes, setThemes] = useState(
-    JSON.parse(localStorage.getItem("theme-color")) || ["#ffc7cd", "#fff0f1"]
-  );
-  const alltasks = useState(JSON.parse(localStorage.getItem("allTasks")) || []);
+  type ITask = {
+    title: string;
+    description: string;
+    photo: string;
+    video: string;
+    deadline: string;
+    status: string;
+    key: string;
+    id: string;
+  };
+  type IAllTasks = ITask[];
+  const localTasks = localStorage.getItem("allTasks");
+  const tasks = JSON.parse(localTasks || "[]") as IAllTasks;
+  const [allTasks, setAllTasks] = useState(tasks);
+
+  type ParseThemes = string[];
+  const localColors = localStorage.getItem("theme-color");
+  const theme = JSON.parse(
+    localColors || '["#ffc7cd", "#fff0f1"]'
+  ) as ParseThemes;
+  const [themes, setThemes] = useState(theme);
 
   return (
-    <AlltasksContext.Provider value={alltasks}>
-      <ThemeContext.Provider value={{ themes, setThemes }}>
+    <AlltasksContext.Provider value={[allTasks, setAllTasks]}>
+      <ThemeContext.Provider value={[themes, setThemes]}>
         <GlobalStyles />
         <StyledApp>
           <BrowserRouter>
@@ -31,8 +48,8 @@ const App = () => {
                 <Route path="/details/:id" element={<Details />} />
                 <Route path="/task/create" element={<FormTask />} />
                 <Route path="/about" element={<About />} />
-                <Route exact path="/tasks" element={<Task />} />
-                <Route exact path="/" element={<Home />} />
+                <Route path="/tasks" element={<Task />} />
+                <Route path="/" element={<Home />} />
               </Routes>
             </Content>
           </BrowserRouter>

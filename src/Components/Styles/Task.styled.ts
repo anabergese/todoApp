@@ -2,10 +2,7 @@ import styled from "styled-components";
 
 type Props = {
   theme: string[];
-};
-
-type PropsDetail = {
-  detail: string;
+  detail?: boolean;
 };
 
 export const StyledTask = styled.div`
@@ -39,8 +36,8 @@ export const TitleTask = styled.div<Props>`
   }
 `;
 
-export const ContentTask = styled.div<PropsDetail>`
-  display: ${(props) => (props.detail ? "flex" : "1")};
+export const ContentTask = styled.div<Props>`
+  display: ${(props: Props) => (props.detail ? "flex" : "1")};
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 2rem;
@@ -63,7 +60,7 @@ export const ContentTask = styled.div<PropsDetail>`
   }
 
   @media screen and (max-width: 400px) {
-    flex-direction: ${(props) => (props.detail ? "column" : "row")};
+    flex-direction: ${(props: Props) => (props.detail ? "column" : "row")};
     img {
       margin: 0;
     }
