@@ -15,9 +15,9 @@ export const StyledButton = styled.button<Props>`
   border-width: 0;
   text-decoration: none;
   text-align: center;
-  background-color: ${(props) =>
+  background-color: ${(props: Props) =>
     props.submit ? props.theme[0] : props.theme[1]};
-  color: ${(props) =>
+  color: ${(props: Props) =>
     props.theme[0] == "black" && props.submit ? "white" : "black"};
 
   @media screen and (max-width: 400px) {

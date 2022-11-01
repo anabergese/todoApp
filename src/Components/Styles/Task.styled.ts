@@ -24,10 +24,10 @@ export const TitleTask = styled.div<Props>`
   max-height: 4rem;
   padding: 0.5rem 2rem;
   border-radius: 0.5rem 0.5rem 0rem 0rem;
-  background-color: ${(props) => props.theme[0]};
+  background-color: ${(props: Props) => props.theme[0]};
 
   h2 {
-    color: ${(props) => (props.theme[0] == "black" ? "white" : "black")};
+    color: ${(props: Props) => (props.theme[0] == "black" ? "white" : "black")};
   }
 
   @media screen and (max-width: 400px) {
@@ -45,7 +45,7 @@ export const ContentTask = styled.div<PropsDetail>`
   justify-content: space-between;
   padding: 0.5rem 2rem;
   border-radius: 0px 0px 0.5rem 0.5rem;
-  background-color: ${(props) => props.theme[1]};
+  background-color: ${(props: Props) => props.theme[1]};
 
   img {
     max-width: 10rem;

@@ -5,7 +5,7 @@ type Props = {
 };
 
 export const StyledModal = styled.div<Props>`
-  background-color: ${(props) =>
+  background-color: ${(props: Props) =>
     props.theme[0] == "black" ? "white" : props.theme[0]};
   text-align: center;
   border-radius: 8px;
