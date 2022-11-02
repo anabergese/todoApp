@@ -6,7 +6,7 @@ import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton, StyledLink } from "./Styles/Buttons.styled";
 
 const Task = () => {
-  const [alltasks, setAlltasks] = useContext(AlltasksContext);
+  const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const location = useLocation();
   const [themes] = useContext(ThemeContext);
   const filter = (
@@ -16,21 +16,21 @@ const Task = () => {
   const allFilteredTask = () => {
     switch (filter) {
       case "deleted":
-        return alltasks.filter((task) => task.status === "Deleted");
+        return allTasks.filter((task) => task.status === "Deleted");
       case "completed":
-        return alltasks.filter((task) => task.status === "Completed");
+        return allTasks.filter((task) => task.status === "Completed");
       case "uncompleted":
-        return alltasks.filter((task) => task.status === "Uncompleted");
+        return allTasks.filter((task) => task.status === "Uncompleted");
       default:
-        return alltasks;
+        return allTasks;
     }
   };
 
   const tasksHandler = (status, task) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
-    const copy = [...alltasks];
+    const taskIndex = allTasks.findIndex((item) => item.id === task.id);
+    const copy = [...allTasks];
     copy[taskIndex].status = status;
-    setAlltasks(copy);
+    setAllTasks(copy);
     // localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
@@ -44,15 +44,15 @@ const Task = () => {
   };
 
   const permanentDeleteHandler = (task) => {
-    const copy = alltasks.filter((item) => item.id !== task.id);
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    const copy = allTasks.filter((item) => item.id !== task.id);
+    setAllTasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
   };
 
   return (
     <>
       <h1>All your tasks</h1>
-      {!alltasks.length ? (
+      {!allTasks.length ? (
         <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
       ) : (
         allFilteredTask().map((task) => {

@@ -29,7 +29,7 @@ const Details: FunctionComponent = () => {
   };
 
   const [showModal, setShowModal] = useState(false);
-  const [alltasks, setAlltasks] = useContext(AlltasksContext);
+  const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const location = useLocation();
   const taskProps = location.state as ITaskProps;
   const toggleModal = () => setShowModal(!showModal);
@@ -38,12 +38,12 @@ const Details: FunctionComponent = () => {
   console.log(taskProps.photo);
 
   const tasksHandler = (status: string) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
-    const copy = [...alltasks];
+    const taskIndex = allTasks.findIndex((item) => item.id === taskProps.id);
+    const copy = [...allTasks];
     copy[taskIndex].status = status;
     taskProps.status = status;
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    setAllTasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
   };
 
   const deleteHandler = () => {
@@ -52,9 +52,9 @@ const Details: FunctionComponent = () => {
   };
 
   const permanentDeleteHandler = () => {
-    const copy = alltasks.filter((item) => item.id !== taskProps.id);
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    const copy = allTasks.filter((item) => item.id !== taskProps.id);
+    setAllTasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
     navigate(`/tasks`);
   };
 
