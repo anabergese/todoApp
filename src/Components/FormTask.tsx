@@ -1,4 +1,4 @@
-import { useState, useContext, MouseEvent } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
@@ -9,36 +9,31 @@ import ThemeContext from "../Contexts/ThemeContext";
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
-  const [inputPhoto, setInputPhoto] = useState("");
-  const [inputVideo, setInputVideo] = useState("");
+  const [inputPhoto, setInputPhoto] = useState({});
   const [inputDeadline, setInputDeadline] = useState("");
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const submitTaskHandler = (e: MouseEvent<HTMLFormElement>) => {
+  const submitTaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const newTask = {
       title: inputTitle.charAt(0).toUpperCase() + inputTitle.slice(1),
       description:
         inputDescription.charAt(0).toUpperCase() + inputDescription.slice(1),
       photo: inputPhoto,
-      video: inputVideo,
       deadline: inputDeadline,
       status: "Uncompleted",
       key: nextId("key-"),
       id: nextId("task-"),
     };
-
     setAlltasks([...alltasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
     navigate(`/details/${newTask.id}`, { state: newTask });
 
     setInputTitle("");
     setInputDescription("");
-    setInputPhoto("");
-    setInputVideo("");
+    setInputPhoto({});
     setInputDeadline("");
   };
 
@@ -79,22 +74,14 @@ const FormTask = () => {
           <h2>Photo:</h2>
           <input
             onChange={(e) => {
-              setInputPhoto(e.target.files[0]);
-              console.log(e.target.files);
+              if (!e.target.files) {
+                return;
+              } else {
+                setInputPhoto(e.target.files[0]);
+              }
             }}
             type="file"
             name="file"
-          />
-        </label>
-        <label>
-          <h2>Video:</h2>
-          <input
-            value={inputVideo}
-            onChange={(e) => {
-              setInputVideo(e.target.value);
-            }}
-            type="file"
-            name="video"
           />
         </label>
         <label>

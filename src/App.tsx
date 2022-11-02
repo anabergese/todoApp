@@ -17,7 +17,6 @@ const App = () => {
     title: string;
     description: string;
     photo: string;
-    video: string;
     deadline: string;
     status: string;
     key: string;

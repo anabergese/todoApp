@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useContext, MouseEvent, FunctionComponent } from "react";
+import { useState, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
@@ -9,11 +9,19 @@ import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
 
 const Details: FunctionComponent = () => {
-  type TaskProps = {
+  type IphotoProp = {
+    lastModified?: number;
+    lastModifiedDate?: Date;
+    name?: string;
+    size?: number;
+    type?: string;
+    webkitRelativePath?: string;
+  };
+
+  type ITaskProps = {
     title: string;
     description: string;
-    photo: string;
-    video: string;
+    photo?: IphotoProp;
     deadline: string;
     status: string;
     key: string;
@@ -23,10 +31,11 @@ const Details: FunctionComponent = () => {
   const [showModal, setShowModal] = useState(false);
   const [alltasks, setAlltasks] = useContext(AlltasksContext);
   const location = useLocation();
-  const taskProps = location.state as TaskProps;
+  const taskProps = location.state as ITaskProps;
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
+  console.log(taskProps.photo);
 
   const tasksHandler = (status: string) => {
     const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
@@ -134,9 +143,6 @@ const Details: FunctionComponent = () => {
                 src={URL.createObjectURL(taskProps.photo)}
                 alt={taskProps.photo.name}
               />
-            ) : null}
-            {taskProps.video ? (
-              <video src={video} width="750" height="500" controls></video>
             ) : null}
           </div>
         </ContentTask>

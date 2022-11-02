@@ -1,16 +1,25 @@
 import { createContext } from "react";
 
+type Iphoto = {
+  lastModified?: number;
+  lastModifiedDate?: Date;
+  name?: string;
+  size?: number;
+  type?: string;
+  webkitRelativePath?: string;
+};
+
 type ITask = {
   title: string;
   description: string;
-  photo: string;
-  video: string;
+  photo?: Iphoto;
   deadline: string;
   status: string;
   key: string;
   id: string;
 };
-type IAllTasks = ITask[];
+
+export type IAllTasks = ITask[];
 type SetAllTasks = (allTasks: ITask[]) => void;
 
 const tasks = localStorage.getItem("allTasks");
