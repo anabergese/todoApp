@@ -16,14 +16,14 @@ const alltasks = [
     title: "Task example",
     description: "Description example",
     status: "Uncompleted",
-    key: "key-1",
+    key: "1",
     id: "task-1",
   },
   {
     title: "Task example 2",
     description: "Description example 2",
     status: "Uncompleted",
-    key: "key-2",
+    key: "2",
     id: "task-2",
   },
 ];

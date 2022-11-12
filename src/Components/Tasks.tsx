@@ -58,9 +58,9 @@ const Task = () => {
       {!allTasks.length ? (
         <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
       ) : (
-        allFilteredTask().map((task) => {
+        allFilteredTask().map((task, index) => {
           return (
-            <StyledTask key={task.key}>
+            <StyledTask key={index}>
               <TitleTask theme={themes}>
                 <h2>{task.title}</h2>
                 <div>

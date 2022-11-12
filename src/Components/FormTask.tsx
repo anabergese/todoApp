@@ -24,7 +24,6 @@ const FormTask = () => {
       photo: inputPhoto,
       deadline: inputDeadline,
       status: "Uncompleted",
-      key: nextId("key-"),
       id: nextId("task-"),
     } as ITask;
     setAllTasks([...allTasks, newTask]);

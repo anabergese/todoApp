@@ -16,7 +16,6 @@ export type ITask = {
   photo?: Iphoto;
   deadline: string;
   status: TaskStatus;
-  key: string;
   id: string;
 };
 
