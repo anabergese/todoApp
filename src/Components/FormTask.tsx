@@ -1,10 +1,10 @@
 import { useState, useContext, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
 import { StyledButton } from "./Styles/Buttons.styled";
 import ThemeContext from "../Contexts/ThemeContext";
+import AlltasksContext, { ITask } from "../Contexts/AlltasksContext";
 
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
@@ -26,7 +26,7 @@ const FormTask = () => {
       status: "Uncompleted",
       key: nextId("key-"),
       id: nextId("task-"),
-    };
+    } as ITask;
     console.log("form:", inputPhoto);
     setAllTasks([...allTasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...allTasks, newTask]));
