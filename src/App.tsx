@@ -48,4 +48,9 @@ const App = () => {
   );
 };
 
-render(<App />, document.getElementById("root"));
+render(
+  <App />,
+  document.getElementById("root") || document.createElement("div")
+);
+
+export default App;

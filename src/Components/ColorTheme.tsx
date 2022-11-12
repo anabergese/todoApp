@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 import { useContext, MouseEvent } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledColorTheme } from "./Styles/ColorTheme.styled";

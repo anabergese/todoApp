@@ -5,11 +5,10 @@ import React from "react";
 import { createMemoryHistory } from "history";
 
 import { expect, test, describe, jest } from "@jest/globals";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import Task from "../Components/Task";
-import App from "../Components/Details";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
 const alltasks = [
@@ -60,34 +59,52 @@ describe("Task component", () => {
   test("Render task component with tasks", () => {
     const renderedTasks = render(<AllTasksProvided />);
     const h2Task1 = renderedTasks.getByText("Task example");
-    expect(h2Task1).toBeInTheDocument();
-  });
-
-  test("Tasks should have uncomplete status when initially rendered", () => {
-    render(<AllTasksProvided />);
-    expect(alltasks[0].status).toMatch(/Uncompleted/i);
+    expect(h2Task1.innerHTML).toMatch(/Task example/i);
   });
 });
 
-describe("Task buttons", () => {
-  test("Status of task changes when is clicked from Uncompleted to Completed", () => {
+describe("Tasks status", () => {
+  test("Tasks have Uncompleted status when initially rendered", () => {
+    render(<AllTasksProvided />);
+    expect(alltasks[0].status).toMatch(/Uncompleted/i);
+    expect(alltasks[1].status).toMatch(/Uncompleted/i);
+  });
+
+  test("Status of task changes to Completed when Complete button is clicked", () => {
     const renderedTasks = render(<AllTasksProvided />);
     const completeBtn = renderedTasks.getAllByRole("button", {
       name: /Complete/i,
     })[0];
+    expect(alltasks[0].status).toMatch(/Uncompleted/i);
     completeBtn.click();
     expect(alltasks[0].status).toMatch(/Completed/i);
   });
 
-  test("Function to set allTasksContext runs after Completed button is clicked", async () => {
+  test("Status of task changes to Deleted when Delete button is clicked", () => {
     const renderedTasks = render(<AllTasksProvided />);
     const completeBtn = renderedTasks.getAllByRole("button", {
-      name: /Complete/i,
+      name: /Delete/i,
     })[0];
     completeBtn.click();
-    expect(mockSetAlltasks).toBeCalled();
+    expect(alltasks[0].status).toMatch(/Deleted/i);
   });
+});
 
-  // test("See details buttons redirect to Details page", () => {
+describe("Text on task buttons", () => {
+  // test("Text of Complete button should change to Redo when is clicked", () => {
+  // const renderedTasks = render(<AllTasksProvided />);
+  // const completeBtn = renderedTasks.getAllByRole("button", {
+  //   name: /Complete/i,
+  // })[0];
+  // completeBtn.click();
+  // expect(completeBtn.innerHTML).toMatch(/Redo/i);
+  // });
+  // test("Text of Delete button should change to Permanent Delete when is clicked", () => {
+  // const renderedTasks = render(<AllTasksProvided />);
+  // const deleteBtin = renderedTasks.getAllByRole("button", {
+  //   name: /Delete/i,
+  // })[0];
+  // deleteBtin.click();
+  // expect(deleteBtin.innerHTML).toMatch(/Permanent Delete/i);
   // });
 });

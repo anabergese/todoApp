@@ -27,7 +27,6 @@ const FormTask = () => {
       key: nextId("key-"),
       id: nextId("task-"),
     } as ITask;
-    console.log("form:", inputPhoto);
     setAllTasks([...allTasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...allTasks, newTask]));
     navigate(`/details/${newTask.id}`, { state: newTask });
@@ -88,6 +87,7 @@ const FormTask = () => {
         <label>
           <h2>Deadline:</h2>
           <input
+            data-testid="date-picker"
             value={inputDeadline}
             onChange={(e) => {
               setInputDeadline(e.target.value);

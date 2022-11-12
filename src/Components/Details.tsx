@@ -65,7 +65,7 @@ const Details: FunctionComponent = () => {
 
   return (
     <>
-      <h1>Details Page</h1>
+      <h1 data-testid="h1Details">Details Page</h1>
       <StyledTask data-testid="task-container">
         <TitleTask theme={themes}>
           <h2>{taskProps.title}</h2>
