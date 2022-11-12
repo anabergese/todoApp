@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "./Modal";
-import AlltasksContext from "../Contexts/AlltasksContext";
+import AlltasksContext, { TaskStatus } from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import { StyledModal } from "./Styles/Modal.styled";
 import ThemeContext from "../Contexts/ThemeContext";
@@ -37,7 +37,7 @@ const Details: FunctionComponent = () => {
   const navigate = useNavigate();
   console.log(taskProps.photo);
 
-  const tasksHandler = (status: string) => {
+  const tasksHandler = (status: TaskStatus) => {
     const taskIndex = allTasks.findIndex((item) => item.id === taskProps.id);
     const copy = [...allTasks];
     copy[taskIndex].status = status;

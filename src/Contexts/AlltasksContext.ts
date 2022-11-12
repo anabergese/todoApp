@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-type Iphoto = {
+export type Iphoto = {
   lastModified?: number;
   lastModifiedDate?: Date;
   name?: string;
@@ -9,26 +9,20 @@ type Iphoto = {
   webkitRelativePath?: string;
 };
 
-type ITask = {
+export type TaskStatus = "Deleted" | "Uncompleted" | "Completed";
+export type ITask = {
   title: string;
   description: string;
   photo?: Iphoto;
   deadline: string;
-  status: string;
+  status: TaskStatus;
   key: string;
   id: string;
 };
 
 export type IAllTasks = ITask[];
-type SetAllTasks = (allTasks: ITask[]) => void;
+export type SetAllTasks = (allTasks: ITask[]) => void;
 
-const tasks = localStorage.getItem("allTasks");
-const allTasks = JSON.parse(tasks || "[]") as IAllTasks;
-const setAllTasks = (() => {}) as SetAllTasks;
-
-const AlltasksContext = createContext<[IAllTasks, SetAllTasks]>([
-  allTasks,
-  setAllTasks,
-]);
+const AlltasksContext = createContext<[IAllTasks, SetAllTasks]>([[], () => {}]);
 
 export default AlltasksContext;

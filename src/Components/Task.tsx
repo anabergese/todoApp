@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import AlltasksContext from "../Contexts/AlltasksContext";
+import AlltasksContext, {
+  ITask,
+  TaskStatus,
+} from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton, StyledLink } from "./Styles/Buttons.styled";
@@ -26,7 +29,7 @@ const Task = () => {
     }
   };
 
-  const tasksHandler = (status, task) => {
+  const tasksHandler = (status: TaskStatus, task: ITask) => {
     const taskIndex = allTasks.findIndex((item) => item.id === task.id);
     const copy = [...allTasks];
     copy[taskIndex].status = status;
@@ -34,16 +37,16 @@ const Task = () => {
     // localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
-  const completeHandler = (task) => {
+  const completeHandler = (task: ITask) => {
     if (task.status == "Uncompleted") tasksHandler("Completed", task);
     else if (task.status == "Completed") tasksHandler("Uncompleted", task);
   };
 
-  const deleteHandler = (task) => {
+  const deleteHandler = (task: ITask) => {
     tasksHandler("Deleted", task);
   };
 
-  const permanentDeleteHandler = (task) => {
+  const permanentDeleteHandler = (task: ITask) => {
     const copy = allTasks.filter((item) => item.id !== task.id);
     setAllTasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(allTasks));

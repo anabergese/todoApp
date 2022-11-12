@@ -9,7 +9,7 @@ import ThemeContext from "../Contexts/ThemeContext";
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
-  const [inputPhoto, setInputPhoto] = useState({});
+  const [inputPhoto, setInputPhoto] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const [themes] = useContext(ThemeContext);
@@ -27,13 +27,14 @@ const FormTask = () => {
       key: nextId("key-"),
       id: nextId("task-"),
     };
+    console.log("form:", inputPhoto);
     setAllTasks([...allTasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...allTasks, newTask]));
     navigate(`/details/${newTask.id}`, { state: newTask });
 
     setInputTitle("");
     setInputDescription("");
-    setInputPhoto({});
+    setInputPhoto("");
     setInputDeadline("");
   };
 

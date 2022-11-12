@@ -36,9 +36,12 @@ describe("Form component", () => {
     expect(titleInput.value).toBe("Go to supermarket");
   });
 
-  //   test("Form submit should redirect details of task", async () => {
-  //   needs integration tests
-  //   });
+  test("Form submit should redirect details of task", async () => {
+    render(<MockFormTask />);
+    const submitBtn = screen.getByRole("button", { name: /I am done/i });
+    fireEvent.click(submitBtn);
+    expect(history.pathname).toBe("h");
+  });
   //   test("Form submit should redirect to Details component", () => {
   //   });
 });

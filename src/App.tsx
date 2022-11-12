@@ -10,19 +10,9 @@ import ColorTheme from "./Components/ColorTheme";
 import FormTask from "./Components/FormTask";
 import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
 import ThemeContext from "./Contexts/ThemeContext";
-import AlltasksContext from "./Contexts/AlltasksContext";
+import AlltasksContext, { IAllTasks } from "./Contexts/AlltasksContext";
 
 const App = () => {
-  type ITask = {
-    title: string;
-    description: string;
-    photo: string;
-    deadline: string;
-    status: string;
-    key: string;
-    id: string;
-  };
-  type IAllTasks = ITask[];
   const localTasks = localStorage.getItem("allTasks");
   const tasks = JSON.parse(localTasks || "[]") as IAllTasks;
   const [allTasks, setAllTasks] = useState(tasks);
