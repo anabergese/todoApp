@@ -8,7 +8,7 @@ import { expect, test, describe, jest } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
-import Task from "../Components/Task";
+import Tasks from "../Components/Tasks";
 import AlltasksContext from "../Contexts/AlltasksContext";
 
 const alltasks = [
@@ -35,7 +35,7 @@ history.push("/tasks");
 const AllTasksProvided = () => (
   <AlltasksContext.Provider value={[alltasks, mockSetAlltasks]}>
     <BrowserRouter history={history}>
-      <Task />
+      <Tasks />
     </BrowserRouter>
   </AlltasksContext.Provider>
 );
@@ -49,7 +49,7 @@ describe("Task component", () => {
   test("Render task component without tasks", () => {
     render(
       <BrowserRouter>
-        <Task />
+        <Tasks />
       </BrowserRouter>
     );
     const h1text = screen.getByTestId("h1task");
@@ -91,20 +91,24 @@ describe("Tasks status", () => {
 });
 
 describe("Text on task buttons", () => {
-  // test("Text of Complete button should change to Redo when is clicked", () => {
-  // const renderedTasks = render(<AllTasksProvided />);
-  // const completeBtn = renderedTasks.getAllByRole("button", {
-  //   name: /Complete/i,
-  // })[0];
-  // completeBtn.click();
-  // expect(completeBtn.innerHTML).toMatch(/Redo/i);
-  // });
-  // test("Text of Delete button should change to Permanent Delete when is clicked", () => {
-  // const renderedTasks = render(<AllTasksProvided />);
-  // const deleteBtin = renderedTasks.getAllByRole("button", {
-  //   name: /Delete/i,
-  // })[0];
-  // deleteBtin.click();
-  // expect(deleteBtin.innerHTML).toMatch(/Permanent Delete/i);
-  // });
+  test("Text of Complete button should change to Redo when is clicked", () => {
+    const renderedTasks = render(<AllTasksProvided />);
+    const completeBtn = renderedTasks.getAllByRole("button", {
+      name: /Complete/i,
+    })[0];
+    completeBtn.click();
+    const completeBtnAfterClick = renderedTasks.getAllByRole("button", {
+      name: /Redo/i,
+    })[0];
+    expect(completeBtnAfterClick.innerHTML).toMatch(/Redo/i);
+  });
+
+  test("Text of Delete button should change to Permanent Delete when is clicked", () => {
+    const renderedTasks = render(<AllTasksProvided />);
+    const deleteBtn = renderedTasks.getAllByRole("button", {
+      name: /Delete/i,
+    })[0];
+    deleteBtn.click();
+    expect(deleteBtn.innerHTML).toMatch(/Permanent Delete/i);
+  });
 });

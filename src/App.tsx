@@ -1,7 +1,7 @@
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import Task from "./Components/Task";
+import Tasks from "./Components/Tasks";
 import Home from "./Components/Home";
 import Details from "./Components/Details";
 import Navbar from "./Components/Navbar";
@@ -37,7 +37,7 @@ const App = () => {
                 <Route path="/details/:id" element={<Details />} />
                 <Route path="/task/create" element={<FormTask />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/tasks" element={<Task />} />
+                <Route path="/tasks" element={<Tasks />} />
                 <Route path="/" element={<Home />} />
               </Routes>
             </Content>
