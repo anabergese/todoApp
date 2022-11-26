@@ -4,13 +4,14 @@ import {
   StyledCardMood,
   StyledSelectedMood,
 } from "./Styles/Mood.styled";
+import { IFeelings } from "../Types/index";
 
 class Moods extends Component {
   constructor(props: string) {
     super(props);
     this.state = {
       error: null,
-      loading: false,
+      loading: false as boolean,
       feelings: [],
       feel: null,
     };
@@ -21,13 +22,13 @@ class Moods extends Component {
     fetch("https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/feelings")
       .then((res) => res.json())
       .then(
-        (result) => {
+        (result: IFeelings) => {
           this.setState({
             loading: true,
-            feelings: result as IFeeling,
+            feelings: result,
           });
         },
-        (error) => {
+        (error: string) => {
           this.setState({
             isLoaded: true,
             error,
@@ -36,20 +37,21 @@ class Moods extends Component {
       );
   }
 
-  setMood = (feeling) => {
+  setMood = (feeling: IFeelings) => {
     console.log(feeling.Feel_id);
+    console.log("feeling", feeling);
     // get feeling by id: https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/feelings/1
     const id = feeling.Feel_id;
     fetch(`https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/feelings/${id}`)
       .then((res) => res.json())
       .then(
-        (result) => {
+        (result: string) => {
           console.log("result feel", result);
           this.setState({
             feel: result,
           });
         },
-        (error) => {
+        (error: string) => {
           this.setState({
             error,
           });
@@ -58,7 +60,6 @@ class Moods extends Component {
   };
 
   render() {
-    // feeling = ["Happy", "Sad", "Angry", "Scared", "Hungry", "Thirsty", "Tired", "Confident"]
     const feelings = this.state.feelings;
     const feel = this.state.feel;
     console.log("feel render", feel);
@@ -81,7 +82,7 @@ class Moods extends Component {
       <>
         <h1>How do you feel today?</h1>
         <StyledMood>
-          {feelings.map((feeling: IFeeling, index: number) => {
+          {feelings.map((feeling, index: number) => {
             return (
               <StyledCardMood
                 key={index}
