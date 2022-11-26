@@ -1,4 +1,4 @@
-import { useState, useContext, FormEvent } from "react";
+import { useState, useContext, FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
@@ -29,6 +29,32 @@ const FormTask = () => {
     setAllTasks([...allTasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...allTasks, newTask]));
     navigate(`/details/${newTask.id}`, { state: newTask });
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let raw = JSON.stringify({
+      title: `${inputTitle}`,
+      description: `${inputDescription}`,
+      photo: `${inputPhoto}`,
+      status: "Uncompleted",
+      deadline: `${inputDeadline}`,
+    });
+
+    let requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
 
     setInputTitle("");
     setInputDescription("");

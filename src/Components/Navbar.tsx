@@ -27,8 +27,8 @@ const Navbar = () => {
       <Link to="/tasks?filter=deleted">
         <h2>Recycle Bin</h2>
       </Link>
-      <Link to="/about">
-        <h2>About The Site</h2>
+      <Link to="/moods">
+        <h2>Mood Tracker</h2>
       </Link>
     </Sidenav>
   );
