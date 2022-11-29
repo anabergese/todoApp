@@ -1,12 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import AlltasksContext, {
-  ITask,
-  TaskStatus,
-} from "../Contexts/AlltasksContext";
+import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton, StyledLink } from "./Styles/Buttons.styled";
+import { ITask, TaskStatus } from "../Types/index";
 
 const Task = () => {
   const [allTasks, setAllTasks] = useContext(AlltasksContext);

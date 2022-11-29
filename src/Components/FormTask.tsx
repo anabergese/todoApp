@@ -1,10 +1,11 @@
-import { useState, useContext, FormEvent, useEffect } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
 import { StyledButton } from "./Styles/Buttons.styled";
 import ThemeContext from "../Contexts/ThemeContext";
-import AlltasksContext, { ITask } from "../Contexts/AlltasksContext";
+import AlltasksContext from "../Contexts/AlltasksContext";
+import { ITask } from "../Types/index";
 
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");

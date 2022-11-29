@@ -2,32 +2,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "./Modal";
-import AlltasksContext, { TaskStatus } from "../Contexts/AlltasksContext";
+import AlltasksContext from "../Contexts/AlltasksContext";
+import { TaskStatus, ITaskProps } from "../Types/index";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import { StyledModal } from "./Styles/Modal.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
 
 const Details: FunctionComponent = () => {
-  type IphotoProp = {
-    lastModified?: number;
-    lastModifiedDate?: Date;
-    name?: string;
-    size?: number;
-    type?: string;
-    webkitRelativePath?: string;
-  };
-
-  type ITaskProps = {
-    title: string;
-    description: string;
-    photo?: IphotoProp;
-    deadline: string;
-    status: string;
-    key: string;
-    id: string;
-  };
-
   const [showModal, setShowModal] = useState(false);
   const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const location = useLocation();
