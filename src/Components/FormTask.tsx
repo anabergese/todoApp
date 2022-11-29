@@ -1,44 +1,65 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import AlltasksContext from "../Contexts/AlltasksContext";
 import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
 import { StyledButton } from "./Styles/Buttons.styled";
 import ThemeContext from "../Contexts/ThemeContext";
+import AlltasksContext from "../Contexts/AlltasksContext";
+import { ITask } from "../Types/index";
 
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
-  const [inputVideo, setInputVideo] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
-  const [alltasks, setAlltasks] = useContext(AlltasksContext);
-  const { themes } = useContext(ThemeContext);
+  const [allTasks, setAllTasks] = useContext(AlltasksContext);
+  const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const submitTaskHandler = (e) => {
+  const submitTaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const newTask = {
       title: inputTitle.charAt(0).toUpperCase() + inputTitle.slice(1),
       description:
         inputDescription.charAt(0).toUpperCase() + inputDescription.slice(1),
       photo: inputPhoto,
-      video: inputVideo,
       deadline: inputDeadline,
       status: "Uncompleted",
-      key: nextId("key-"),
       id: nextId("task-"),
+    } as ITask;
+    setAllTasks([...allTasks, newTask]);
+    localStorage.setItem("allTasks", JSON.stringify([...allTasks, newTask]));
+    navigate(`/details/${newTask.id}`, { state: newTask });
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let raw = JSON.stringify({
+      title: `${inputTitle}`,
+      description: `${inputDescription}`,
+      photo: `${inputPhoto}`,
+      status: "Uncompleted",
+      deadline: `${inputDeadline}`,
+    });
+
+    let requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
     };
 
-    setAlltasks([...alltasks, newTask]);
-    localStorage.setItem("allTasks", JSON.stringify([...alltasks, newTask]));
-    navigate(`/details/${newTask.id}`, { state: newTask });
+    fetch(
+      "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
 
     setInputTitle("");
     setInputDescription("");
     setInputPhoto("");
-    setInputVideo("");
     setInputDeadline("");
   };
 
@@ -79,27 +100,20 @@ const FormTask = () => {
           <h2>Photo:</h2>
           <input
             onChange={(e) => {
-              setInputPhoto(e.target.files[0]);
-              console.log(e.target.files);
+              if (!e.target.files) {
+                return;
+              } else {
+                setInputPhoto(e.target.files[0]);
+              }
             }}
             type="file"
             name="file"
           />
         </label>
         <label>
-          <h2>Video:</h2>
-          <input
-            value={inputVideo}
-            onChange={(e) => {
-              setInputVideo(e.target.value);
-            }}
-            type="file"
-            name="video"
-          />
-        </label>
-        <label>
           <h2>Deadline:</h2>
           <input
+            data-testid="date-picker"
             value={inputDeadline}
             onChange={(e) => {
               setInputDeadline(e.target.value);
@@ -109,7 +123,7 @@ const FormTask = () => {
           />
         </label>
       </FormBody>
-      <StyledButton type="submit" theme={themes} submit>
+      <StyledButton type="submit" theme={themes} submitbtn>
         I am done
       </StyledButton>
     </StyledFormTask>

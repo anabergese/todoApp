@@ -5,7 +5,7 @@ import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 
 const Navbar = () => {
-  const { themes } = useContext(ThemeContext);
+  const [themes] = useContext(ThemeContext);
 
   return (
     <Sidenav theme={themes} role="navigation" aria-label="Main Menu">
@@ -27,8 +27,8 @@ const Navbar = () => {
       <Link to="/tasks?filter=deleted">
         <h2>Recycle Bin</h2>
       </Link>
-      <Link to="/about">
-        <h2>About The Site</h2>
+      <Link to="/moods">
+        <h2>Mood Tracker</h2>
       </Link>
     </Sidenav>
   );

@@ -1,29 +1,31 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
+import { TaskStatus, ITaskProps } from "../Types/index";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import { StyledModal } from "./Styles/Modal.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
 
-const Details = () => {
+const Details: FunctionComponent = () => {
   const [showModal, setShowModal] = useState(false);
-  const [alltasks, setAlltasks] = useContext(AlltasksContext);
+  const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const location = useLocation();
-  const taskProps = location.state;
+  const taskProps = location.state as ITaskProps;
   const toggleModal = () => setShowModal(!showModal);
-  const { themes } = useContext(ThemeContext);
+  const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
+  console.log(taskProps.photo);
 
-  const tasksHandler = (status) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === taskProps.id);
-    const copy = [...alltasks];
+  const tasksHandler = (status: TaskStatus) => {
+    const taskIndex = allTasks.findIndex((item) => item.id === taskProps.id);
+    const copy = [...allTasks];
     copy[taskIndex].status = status;
     taskProps.status = status;
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    setAllTasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
   };
 
   const deleteHandler = () => {
@@ -32,9 +34,9 @@ const Details = () => {
   };
 
   const permanentDeleteHandler = () => {
-    const copy = alltasks.filter((item) => item.id !== taskProps.id);
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    const copy = allTasks.filter((item) => item.id !== taskProps.id);
+    setAllTasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
     navigate(`/tasks`);
   };
 
@@ -45,7 +47,7 @@ const Details = () => {
 
   return (
     <>
-      <h1>Details Page</h1>
+      <h1 data-testid="h1Details">Details Page</h1>
       <StyledTask data-testid="task-container">
         <TitleTask theme={themes}>
           <h2>{taskProps.title}</h2>
@@ -123,9 +125,6 @@ const Details = () => {
                 src={URL.createObjectURL(taskProps.photo)}
                 alt={taskProps.photo.name}
               />
-            ) : null}
-            {taskProps.video ? (
-              <video src={video} width="750" height="500" controls></video>
             ) : null}
           </div>
         </ContentTask>

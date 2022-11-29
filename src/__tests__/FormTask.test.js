@@ -2,20 +2,14 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import { createMemoryHistory } from "history";
-
 import { expect, test, describe } from "@jest/globals";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import FormTask from "../Components/FormTask";
-//import { Simulate } from "react-dom/test-utils";
-
-const history = createMemoryHistory();
-history.push("/task/create");
 
 const MockFormTask = () => (
-  <BrowserRouter history={history}>
+  <BrowserRouter>
     <FormTask />
   </BrowserRouter>
 );
@@ -26,7 +20,7 @@ describe("Form component", () => {
     const h1FormTask = screen.getByRole("heading", {
       name: /Create a new task/i,
     });
-    expect(h1FormTask).toBeInTheDocument();
+    expect(h1FormTask.innerHTML).toMatch(/Create a new task/i);
   });
 
   test("Title input should change by user input", () => {
@@ -36,9 +30,23 @@ describe("Form component", () => {
     expect(titleInput.value).toBe("Go to supermarket");
   });
 
-  //   test("Form submit should redirect details of task", async () => {
-  //   needs integration tests
-  //   });
-  //   test("Form submit should redirect to Details component", () => {
-  //   });
+  test("Description input should change by user input", () => {
+    render(<MockFormTask />);
+    const descriptionInput = screen.getByRole("textbox", {
+      name: /Description:/i,
+    });
+    fireEvent.change(descriptionInput, {
+      target: { value: "Buy cereals and fruits" },
+    });
+    expect(descriptionInput.value).toBe("Buy cereals and fruits");
+  });
+
+  test("Deadline input should change by user input", () => {
+    render(<MockFormTask />);
+    const deadlineInput = screen.getByTestId("date-picker");
+    fireEvent.change(deadlineInput, {
+      target: { value: "2022-11-25" },
+    });
+    expect(deadlineInput.value).toBe("2022-11-25");
+  });
 });

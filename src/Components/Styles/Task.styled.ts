@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+type Props = {
+  theme: string[];
+  detail?: boolean;
+};
+
 export const StyledTask = styled.div`
   align-self: center;
   width: 80%;
@@ -9,17 +14,17 @@ export const StyledTask = styled.div`
   }
 `;
 
-export const TitleTask = styled.div`
+export const TitleTask = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-height: 4rem;
   padding: 0.5rem 2rem;
   border-radius: 0.5rem 0.5rem 0rem 0rem;
-  background-color: ${(props) => props.theme[0]};
+  background-color: ${(props: Props) => props.theme[0]};
 
   h2 {
-    color: ${(props) => (props.theme[0] == "black" ? "white" : "black")};
+    color: ${(props: Props) => (props.theme[0] == "black" ? "white" : "black")};
   }
 
   @media screen and (max-width: 400px) {
@@ -31,13 +36,13 @@ export const TitleTask = styled.div`
   }
 `;
 
-export const ContentTask = styled.div`
-  display: ${(props) => (props.detail ? "flex" : "1")};
+export const ContentTask = styled.div<Props>`
+  display: ${(props: Props) => (props.detail ? "flex" : "1")};
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 2rem;
   border-radius: 0px 0px 0.5rem 0.5rem;
-  background-color: ${(props) => props.theme[1]};
+  background-color: ${(props: Props) => props.theme[1]};
 
   img {
     max-width: 10rem;
@@ -55,7 +60,7 @@ export const ContentTask = styled.div`
   }
 
   @media screen and (max-width: 400px) {
-    flex-direction: ${(props) => (props.detail ? "column" : "row")};
+    flex-direction: ${(props: Props) => (props.detail ? "column" : "row")};
     img {
       margin: 0;
     }

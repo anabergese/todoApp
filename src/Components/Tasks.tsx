@@ -4,11 +4,12 @@ import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton, StyledLink } from "./Styles/Buttons.styled";
+import { ITask, TaskStatus } from "../Types/index";
 
 const Task = () => {
-  const [alltasks, setAlltasks] = useContext(AlltasksContext);
+  const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const location = useLocation();
-  const { themes } = useContext(ThemeContext);
+  const [themes] = useContext(ThemeContext);
   const filter = (
     new URLSearchParams(location.search).get("filter") || ""
   ).toLowerCase();
@@ -16,48 +17,48 @@ const Task = () => {
   const allFilteredTask = () => {
     switch (filter) {
       case "deleted":
-        return alltasks.filter((task) => task.status === "Deleted");
+        return allTasks.filter((task) => task.status === "Deleted");
       case "completed":
-        return alltasks.filter((task) => task.status === "Completed");
+        return allTasks.filter((task) => task.status === "Completed");
       case "uncompleted":
-        return alltasks.filter((task) => task.status === "Uncompleted");
+        return allTasks.filter((task) => task.status === "Uncompleted");
       default:
-        return alltasks;
+        return allTasks;
     }
   };
 
-  const tasksHandler = (status, task) => {
-    const taskIndex = alltasks.findIndex((item) => item.id === task.id);
-    const copy = [...alltasks];
+  const tasksHandler = (status: TaskStatus, task: ITask) => {
+    const taskIndex = allTasks.findIndex((item) => item.id === task.id);
+    const copy = [...allTasks];
     copy[taskIndex].status = status;
-    setAlltasks(copy);
+    setAllTasks(copy);
     // localStorage.setItem("allTasks", JSON.stringify(alltasks));
   };
 
-  const completeHandler = (task) => {
+  const completeHandler = (task: ITask) => {
     if (task.status == "Uncompleted") tasksHandler("Completed", task);
     else if (task.status == "Completed") tasksHandler("Uncompleted", task);
   };
 
-  const deleteHandler = (task) => {
+  const deleteHandler = (task: ITask) => {
     tasksHandler("Deleted", task);
   };
 
-  const permanentDeleteHandler = (task) => {
-    const copy = alltasks.filter((item) => item.id !== task.id);
-    setAlltasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(alltasks));
+  const permanentDeleteHandler = (task: ITask) => {
+    const copy = allTasks.filter((item) => item.id !== task.id);
+    setAllTasks(copy);
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
   };
 
   return (
     <>
       <h1>All your tasks</h1>
-      {!alltasks.length ? (
+      {!allTasks.length ? (
         <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
       ) : (
-        allFilteredTask().map((task) => {
+        allFilteredTask().map((task, index) => {
           return (
-            <StyledTask key={task.key}>
+            <StyledTask key={index}>
               <TitleTask theme={themes}>
                 <h2>{task.title}</h2>
                 <div>
