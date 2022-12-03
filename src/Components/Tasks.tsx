@@ -5,6 +5,11 @@ import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton, StyledLink } from "./Styles/Buttons.styled";
 import { ITask, TaskStatus } from "../Types/index";
+import {
+  getAllRequest,
+  permanentDeleteRequest,
+  updateRequest,
+} from "./API Requests/Requests";
 
 const Task = () => {
   const [allTasks, setAllTasks] = useContext(AlltasksContext);
@@ -27,55 +32,20 @@ const Task = () => {
     }
   };
 
-  // https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks
-  // GET ALL TASKS START
-  // check useContext for alltasks
   useEffect(() => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-    };
-
-    fetch(
-      "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => setAllTasks(result as ITask[]))
+    getAllRequest()
+      .then((result) => setAllTasks(result))
       .catch((error) => console.log("error", error));
   }, []);
 
-  // GET ALL TASKS FINISHED
   const tasksHandler = (status: TaskStatus, task: ITask) => {
     const taskIndex = allTasks.findIndex((item) => item.id === task.id);
     const copy = [...allTasks];
     copy[taskIndex].status = status;
     setAllTasks(copy);
-    // localStorage.setItem("allTasks", JSON.stringify(alltasks));
-    // que back solo cambie status de tasks when update
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
-      status: status,
-    });
-
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch(
-      `https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/${task.id}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => console.log(result))
+    updateRequest(status, task)
+      .then((result) => result)
       .catch((error) => console.log("error", error));
   };
 
@@ -90,25 +60,12 @@ const Task = () => {
   };
 
   const permanentDeleteHandler = (task: ITask) => {
-    // delete task in backend
     const copy = allTasks.filter((item) => item.id !== task.id);
     setAllTasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
 
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const requestOptions = {
-      method: "DELETE",
-      headers: myHeaders,
-    };
-
-    fetch(
-      `https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/${task.id}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => console.log(result))
+    permanentDeleteRequest(task)
+      .then((result) => result)
       .catch((error) => console.log("error", error));
   };
 

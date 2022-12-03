@@ -6,6 +6,7 @@ import { StyledButton } from "./Styles/Buttons.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import { ITask } from "../Types/index";
+import { createRequest } from "./API Requests/Requests";
 
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
@@ -31,30 +32,8 @@ const FormTask = () => {
     localStorage.setItem("allTasks", JSON.stringify([...allTasks, newTask]));
     navigate(`/details/${newTask.id}`, { state: newTask });
 
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    let raw = JSON.stringify({
-      title: `${inputTitle}`,
-      description: `${inputDescription}`,
-      photo: `${inputPhoto}`,
-      status: "Uncompleted",
-      deadline: `${inputDeadline}`,
-    });
-
-    let requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch(
-      "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
-      requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+    createRequest(inputTitle, inputDescription, inputPhoto, inputDeadline)
+      .then((result) => result)
       .catch((error) => console.log("error", error));
 
     setInputTitle("");
