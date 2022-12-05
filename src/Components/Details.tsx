@@ -8,6 +8,7 @@ import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import { StyledModal } from "./Styles/Modal.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
+import { permanentDeleteRequest, updateRequest } from "./API Requests/Requests";
 
 const Details: FunctionComponent = () => {
   const [showModal, setShowModal] = useState(false);
@@ -17,7 +18,7 @@ const Details: FunctionComponent = () => {
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
-  console.log(taskProps.photo);
+  console.log("details:", taskProps);
 
   const tasksHandler = (status: TaskStatus) => {
     const taskIndex = allTasks.findIndex((item) => item.id === taskProps.id);
@@ -26,6 +27,10 @@ const Details: FunctionComponent = () => {
     taskProps.status = status;
     setAllTasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
+
+    updateRequest(status, taskProps)
+      .then((result) => result)
+      .catch((error) => console.log("error", error));
   };
 
   const deleteHandler = () => {
@@ -37,7 +42,13 @@ const Details: FunctionComponent = () => {
     const copy = allTasks.filter((item) => item.id !== taskProps.id);
     setAllTasks(copy);
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
-    navigate(`/tasks`);
+
+    permanentDeleteRequest(taskProps)
+      .then((result) => {
+        result;
+        navigate(`/tasks`);
+      })
+      .catch((error) => console.log("error", error));
   };
 
   const completeHandler = () => {
@@ -121,10 +132,7 @@ const Details: FunctionComponent = () => {
           </div>
           <div>
             {taskProps.photo ? (
-              <img
-                src={URL.createObjectURL(taskProps.photo)}
-                alt={taskProps.photo.name}
-              />
+              <img src={taskProps.photo} alt={`${taskProps.title}`} />
             ) : null}
           </div>
         </ContentTask>

@@ -14,6 +14,7 @@ const FormTask = () => {
   const [inputPhoto, setInputPhoto] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
   const [allTasks, setAllTasks] = useContext(AlltasksContext);
+  const [task, setTask] = useState({});
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
 
@@ -30,10 +31,13 @@ const FormTask = () => {
     } as ITask;
     setAllTasks([...allTasks, newTask]);
     localStorage.setItem("allTasks", JSON.stringify([...allTasks, newTask]));
-    navigate(`/details/${newTask.id}`, { state: newTask });
 
     createRequest(inputTitle, inputDescription, inputPhoto, inputDeadline)
-      .then((result) => result)
+      .then((result) => {
+        console.log(result); // está el objeto completo
+        setTask(result);
+        navigate(`/details/${result.id}`, { state: result });
+      })
       .catch((error) => console.log("error", error));
 
     setInputTitle("");
@@ -82,7 +86,7 @@ const FormTask = () => {
               if (!e.target.files) {
                 return;
               } else {
-                setInputPhoto(e.target.files[0]);
+                setInputPhoto(URL.createObjectURL(e.target.files[0]));
               }
             }}
             type="file"

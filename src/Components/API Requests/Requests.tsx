@@ -86,7 +86,7 @@ export const createRequest = (
     "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
     requestOptions
   )
-    .then((response) => response.text())
+    .then((response) => response.json())
     .then((result) => result)
     .catch((error) => console.log("error", error));
 };
