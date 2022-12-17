@@ -4,7 +4,7 @@ import { useState, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "./Modal";
 import AlltasksContext from "../Contexts/AlltasksContext";
-import { TaskStatus, ITaskProps } from "../Types/index";
+import { TaskStatus, ITask } from "../Types/index";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import { StyledModal } from "./Styles/Modal.styled";
 import ThemeContext from "../Contexts/ThemeContext";
@@ -15,11 +15,10 @@ const Details: FunctionComponent = () => {
   const [showModal, setShowModal] = useState(false);
   const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const location = useLocation();
-  const taskProps = location.state as ITaskProps;
+  const taskProps = location.state as ITask;
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
-  console.log("details:", taskProps);
 
   const tasksHandler = (status: TaskStatus) => {
     const taskIndex = allTasks.findIndex((item) => item.id === taskProps.id);

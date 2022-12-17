@@ -33,7 +33,6 @@ const Modal: FunctionComponent = ({ children }) => {
     }
 
     modalRoot.appendChild(elRef.current);
-    // modalRoot.style = customStyles;
     modalRoot.setAttribute("style", customStyles);
 
     return () => {
