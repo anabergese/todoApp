@@ -5,7 +5,6 @@ import Tasks from "./Components/Tasks";
 import Home from "./Components/Home";
 import Details from "./Components/Details";
 import Navbar from "./Components/Navbar";
-import Moods from "./Components/Moods";
 import ColorTheme from "./Components/ColorTheme";
 import FormTask from "./Components/FormTask";
 import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
@@ -36,7 +35,6 @@ const App = () => {
               <Routes>
                 <Route path="/details/:id" element={<Details />} />
                 <Route path="/task/create" element={<FormTask />} />
-                <Route path="/moods" element={<Moods />} />
                 <Route path="/tasks" element={<Tasks />} />
                 <Route path="/" element={<Home />} />
               </Routes>

@@ -34,7 +34,9 @@ const Task = () => {
 
   useEffect(() => {
     getAllRequest()
-      .then((result) => setAllTasks(result))
+      .then((result) => {
+        setAllTasks(result as ITask[]);
+      })
       .catch((error) => console.log("error", error));
   }, []);
 
@@ -43,29 +45,33 @@ const Task = () => {
     const copy = [...allTasks];
     copy[taskIndex].status = status;
     setAllTasks(copy);
+    console.log("entered task handler");
 
-    updateRequest(status, task)
-      .then((result) => result)
+    return updateRequest(status, task)
+      .then((result) => {
+        result;
+      })
       .catch((error) => console.log("error", error));
   };
 
   const completeHandler = (task: ITask) => {
-    if (task.status == "Uncompleted") tasksHandler("Completed", task);
-    else if (task.status == "Completed") tasksHandler("Uncompleted", task);
+    console.log(task, "redo");
+    task.status == "Uncompleted"
+      ? tasksHandler("Completed", task)
+      : tasksHandler("Uncompleted", task);
   };
 
   const deleteHandler = (task: ITask) => {
-    // update to change status
+    console.log("delete button pressed");
     tasksHandler("Deleted", task);
   };
 
   const permanentDeleteHandler = (task: ITask) => {
     const copy = allTasks.filter((item) => item.id !== task.id);
     setAllTasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(allTasks));
 
     permanentDeleteRequest(task)
-      .then((result) => result)
+      .then((result) => result as null)
       .catch((error) => console.log("error", error));
   };
 

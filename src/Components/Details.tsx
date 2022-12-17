@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
@@ -26,7 +27,6 @@ const Details: FunctionComponent = () => {
     copy[taskIndex].status = status;
     taskProps.status = status;
     setAllTasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(allTasks));
 
     updateRequest(status, taskProps)
       .then((result) => result)
@@ -41,7 +41,6 @@ const Details: FunctionComponent = () => {
   const permanentDeleteHandler = () => {
     const copy = allTasks.filter((item) => item.id !== taskProps.id);
     setAllTasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(allTasks));
 
     permanentDeleteRequest(taskProps)
       .then((result) => {
@@ -92,7 +91,6 @@ const Details: FunctionComponent = () => {
                   <FocusScope contain restoreFocus autoFocus>
                     <h1> Are you sure you want to delete this task?</h1>
                     <p>{taskProps.title}</p>
-
                     <div>
                       <StyledButton
                         theme={themes}

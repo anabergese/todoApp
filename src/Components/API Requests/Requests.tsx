@@ -1,3 +1,5 @@
+import { ITask, TaskStatus } from "../../Types/index";
+
 export const getAllRequest = () => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -12,11 +14,11 @@ export const getAllRequest = () => {
     requestOptions
   )
     .then((response) => response.json())
-    .then((result) => result)
+    .then((result: ITask[]) => result as [])
     .catch((error) => console.log("error", error));
 };
 
-export const permanentDeleteRequest = (task) => {
+export const permanentDeleteRequest = (task: ITask) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -30,16 +32,16 @@ export const permanentDeleteRequest = (task) => {
     requestOptions
   )
     .then((response) => response.json())
-    .then((result) => result)
+    .then((result: null) => result)
     .catch((error) => console.log("error", error));
 };
 
-export const updateRequest = (status, task) => {
+export const updateRequest = (status: TaskStatus, task: ITask) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
   const raw = JSON.stringify({
-    status: status,
+    status: status as string,
   });
 
   const requestOptions = {
@@ -54,20 +56,20 @@ export const updateRequest = (status, task) => {
     requestOptions
   )
     .then((response) => response.json())
-    .then((result) => result)
+    .then((result) => result as ITask)
     .catch((error) => console.log("error", error));
 };
 
 export const createRequest = (
-  inputTitle,
-  inputDescription,
-  inputPhoto,
-  inputDeadline
+  inputTitle: string,
+  inputDescription: string,
+  inputPhoto: string,
+  inputDeadline: string
 ) => {
-  let myHeaders = new Headers();
+  const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-  let raw = JSON.stringify({
+  const raw = JSON.stringify({
     title: `${inputTitle}`,
     description: `${inputDescription}`,
     photo: `${inputPhoto}`,
@@ -75,7 +77,7 @@ export const createRequest = (
     deadline: `${inputDeadline}`,
   });
 
-  let requestOptions = {
+  const requestOptions = {
     method: "POST",
     headers: myHeaders,
     body: raw,
@@ -87,6 +89,6 @@ export const createRequest = (
     requestOptions
   )
     .then((response) => response.json())
-    .then((result) => result)
+    .then((result) => result as ITask)
     .catch((error) => console.log("error", error));
 };
