@@ -1,13 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { IButtonsProps } from "../../Types/index";
 
-type Props = {
-  submitbtn?: boolean;
-  theme: string[];
-};
-
-export const StyledButton = styled.button<Props>`
-  font-size: ${(props: Props) => (props.submitbtn ? "1rem" : "0.8rem")};
+export const StyledButton = styled.button<IButtonsProps>`
+  font-size: ${(props: IButtonsProps) => (props.submitbtn ? "1rem" : "0.8rem")};
   letter-spacing: 0.05rem;
   padding: 0.4rem 1.2rem;
   margin: 1rem 0.25rem;
@@ -16,13 +12,13 @@ export const StyledButton = styled.button<Props>`
   border-width: 0;
   text-decoration: none;
   text-align: center;
-  background-color: ${(props: Props) =>
+  background-color: ${(props: IButtonsProps) =>
     props.submitbtn ? props.theme[0] : props.theme[1]};
-  color: ${(props: Props) =>
+  color: ${(props: IButtonsProps) =>
     props.theme[0] == "black" && props.submitbtn ? "white" : "black"};
 
   @media screen and (max-width: 400px) {
-    font-size: ${(props: Props) =>
+    font-size: ${(props: IButtonsProps) =>
       props.submitbtn ? "0.8rem" : "0.6rem !important"};
     padding: 0.2rem 0.6rem;
     margin: 0.2rem;

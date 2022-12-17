@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import { flexColumn } from "./Global";
+import { IThemeProps } from "../../Types/index";
 
-type Props = {
-  theme: string[];
-};
-
-export const Sidenav = styled.div<Props>`
+export const Sidenav = styled.div<IThemeProps>`
   ${flexColumn}
   position: sticky;
   top: 0;
@@ -14,7 +11,7 @@ export const Sidenav = styled.div<Props>`
   min-width: 20%;
   overflow-x: auto;
   padding-top: 5.65rem;
-  background-color: ${(props: Props) => props.theme[0]};
+  background-color: ${(props: IThemeProps) => props.theme[0]};
 
   a {
     padding: 1rem 4rem 1rem 2rem;
@@ -22,7 +19,7 @@ export const Sidenav = styled.div<Props>`
 
     h2 {
       text-align: left;
-      color: ${(props: Props) =>
+      color: ${(props: IThemeProps) =>
         props.theme[0] === "black" ? props.theme[1] : "black"};
     }
 

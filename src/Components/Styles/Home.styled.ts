@@ -1,10 +1,7 @@
 import styled from "styled-components";
+import { IThemeProps } from "../../Types/index";
 
-type Props = {
-  theme: string[];
-};
-
-export const StyledHome = styled.div<Props>`
+export const StyledHome = styled.div<IThemeProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,10 +11,11 @@ export const StyledHome = styled.div<Props>`
   margin: 2rem 1rem;
   padding: 0.5rem 2rem;
   border-radius: 0.25rem;
-  background-color: ${(props: Props) => props.theme[0]};
+  background-color: ${(props: IThemeProps) => props.theme[0]};
 
   h2 {
-    color: ${(props: Props) => (props.theme[0] == "black" ? "white" : "black")};
+    color: ${(props: IThemeProps) =>
+      props.theme[0] == "black" ? "white" : "black"};
   }
 
   @media screen and (max-width: 400px) {

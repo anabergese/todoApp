@@ -16,3 +16,18 @@ export type ITask = {
   status: TaskStatus;
   id: string;
 };
+
+// Types related to Styles
+export type IButtonsProps = {
+  submitbtn?: boolean;
+  theme: string[];
+};
+
+export type IThemeProps = {
+  theme: string[];
+};
+
+export type ITaskProps = {
+  theme: string[];
+  detail?: boolean;
+};

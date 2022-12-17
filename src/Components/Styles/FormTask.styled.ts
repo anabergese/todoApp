@@ -1,25 +1,22 @@
 import styled from "styled-components";
 import { flexColumn } from "./Global";
-
-type Props = {
-  theme: string[];
-};
+import { IThemeProps } from "../../Types/index";
 
 export const StyledFormTask = styled.form`
   ${flexColumn}
   align-items: center;
 `;
 
-export const FormBody = styled.div<Props>`
+export const FormBody = styled.div<IThemeProps>`
   ${flexColumn}
   border-radius: 0.5rem;
   min-width: 40%;
   margin: 2rem 1rem;
-  background-color: ${(props: Props) => props.theme[0]};
+  background-color: ${(props: IThemeProps) => props.theme[0]};
 
   h1 {
     padding: 1rem 0;
-    color: ${(props: Props) =>
+    color: ${(props: IThemeProps) =>
       props.theme[0] === "black" ? props.theme[1] : "black"};
   }
 
@@ -28,7 +25,7 @@ export const FormBody = styled.div<Props>`
       text-align: left;
     }
     padding: 1rem 4rem;
-    background-color: ${(props: Props) => props.theme[1]};
+    background-color: ${(props: IThemeProps) => props.theme[1]};
     &:last-child {
       padding-bottom: 3rem;
       border-bottom-left-radius: 0.5rem;
