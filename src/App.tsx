@@ -10,11 +10,18 @@ import FormTask from "./Components/FormTask";
 import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
 import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext, { IAllTasks } from "./Contexts/AlltasksContext";
+import { Auth0Provider } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
+
+import { LoginButton } from "./Components/Login";
+import { LogoutButton } from "./Components/Logout";
+import { Profile } from "./Components/Profile";
 
 const App = () => {
   const localTasks = localStorage.getItem("allTasks");
   const tasks = JSON.parse(localTasks || "[]") as IAllTasks;
   const [allTasks, setAllTasks] = useState(tasks);
+  const { isAuthenticated } = useAuth0();
 
   type ParseThemes = string[];
   const localColors = localStorage.getItem("theme-color");
@@ -29,16 +36,24 @@ const App = () => {
         <GlobalStyles />
         <StyledApp>
           <BrowserRouter>
-            <Navbar />
-            <Content>
-              <ColorTheme />
-              <Routes>
-                <Route path="/details/:id" element={<Details />} />
-                <Route path="/task/create" element={<FormTask />} />
-                <Route path="/tasks" element={<Tasks />} />
-                <Route path="/" element={<Home />} />
-              </Routes>
-            </Content>
+            {isAuthenticated ? (
+              <>
+                <Profile />
+                <LogoutButton />
+                <Navbar />
+                <Content>
+                  <ColorTheme />
+                  <Routes>
+                    <Route path="/details/:id" element={<Details />} />
+                    <Route path="/task/create" element={<FormTask />} />
+                    <Route path="/tasks" element={<Tasks />} />
+                    <Route path="/" element={<Home />} />
+                  </Routes>
+                </Content>
+              </>
+            ) : (
+              <LoginButton />
+            )}
           </BrowserRouter>
         </StyledApp>
       </ThemeContext.Provider>
@@ -47,7 +62,13 @@ const App = () => {
 };
 
 render(
-  <App />,
+  <Auth0Provider
+    domain="dev-k7zkd8n7ph0j42j3.us.auth0.com"
+    clientId="NQ3dF4qcdtMA18vxJdgRQ9IB9mHCT3TW"
+    redirectUri={window.location.origin}
+  >
+    <App />
+  </Auth0Provider>,
   document.getElementById("root") || document.createElement("div")
 );
 
