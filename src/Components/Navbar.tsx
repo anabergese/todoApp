@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Sidenav } from "./Styles/Navbar.styled";
 import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
+import { Profile } from "./Profile";
 
 const Navbar = () => {
   const [themes] = useContext(ThemeContext);
@@ -27,9 +28,7 @@ const Navbar = () => {
       <Link to="/tasks?filter=deleted">
         <h2>Recycle Bin</h2>
       </Link>
-      <Link to="/moods">
-        <h2>Mood Tracker</h2>
-      </Link>
+      <Profile />
     </Sidenav>
   );
 };

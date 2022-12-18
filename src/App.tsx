@@ -12,10 +12,7 @@ import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext, { IAllTasks } from "./Contexts/AlltasksContext";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import { LoginButton } from "./Components/Login";
-import { LogoutButton } from "./Components/Logout";
-import { Profile } from "./Components/Profile";
 
 const App = () => {
   const localTasks = localStorage.getItem("allTasks");
@@ -38,8 +35,6 @@ const App = () => {
           <BrowserRouter>
             {isAuthenticated ? (
               <>
-                <Profile />
-                <LogoutButton />
                 <Navbar />
                 <Content>
                   <ColorTheme />
