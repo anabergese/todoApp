@@ -16,7 +16,6 @@ export const Profile = () => {
         <img src={user.picture} alt={user.name} />
         <div>
           <p>{user.name}</p>
-          <p>Email: {user.email}</p>
           <LogoutButton />
         </div>
       </StyledProfile>
