@@ -21,7 +21,6 @@ export const createRequest = (
     method: "POST",
     headers: myHeaders,
     body: raw,
-    redirect: "follow",
   };
 
   return fetch(
@@ -57,7 +56,6 @@ export const updateRequest = (status: TaskStatus, task: ITask) => {
     method: "POST",
     headers: myHeaders,
     body: raw,
-    redirect: "follow",
   };
 
   return fetch(

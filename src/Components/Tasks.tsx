@@ -38,6 +38,7 @@ const Task = () => {
         setAllTasks(result as ITask[]);
       })
       .catch((error) => console.log("error", error));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const tasksHandler = (status: TaskStatus, task: ITask) => {
@@ -47,7 +48,7 @@ const Task = () => {
     setAllTasks(copy);
     console.log("entered task handler");
 
-    return updateRequest(status, task)
+    updateRequest(status, task)
       .then((result) => {
         result;
       })
@@ -57,13 +58,13 @@ const Task = () => {
   const completeHandler = (task: ITask) => {
     console.log(task, "redo");
     task.status == "Uncompleted"
-      ? tasksHandler("Completed", task)
-      : tasksHandler("Uncompleted", task);
+      ? void tasksHandler("Completed", task)
+      : void tasksHandler("Uncompleted", task);
   };
 
   const deleteHandler = (task: ITask) => {
     console.log("delete button pressed");
-    tasksHandler("Deleted", task);
+    void tasksHandler("Deleted", task);
   };
 
   const permanentDeleteHandler = (task: ITask) => {
