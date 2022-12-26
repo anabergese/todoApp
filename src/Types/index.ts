@@ -17,7 +17,20 @@ export type ITask = {
   id: string;
 };
 
-// Types related to Styles
+export type IUser = {
+  email?: string;
+  email_verified?: boolean;
+  family_name?: string;
+  given_name?: string;
+  locale?: string;
+  name?: string;
+  nickname?: string;
+  picture?: string;
+  sub?: string;
+  updated_at?: string;
+};
+
+// Types related to Styles Folder
 export type IButtonsProps = {
   submitbtn?: boolean;
   theme: string[];

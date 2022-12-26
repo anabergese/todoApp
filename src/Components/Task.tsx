@@ -11,7 +11,7 @@ import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
 import { permanentDeleteRequest, updateRequest } from "./API Requests/Requests";
 
-const Details: FunctionComponent = () => {
+const Task: FunctionComponent = () => {
   const [showModal, setShowModal] = useState(false);
   const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const location = useLocation();
@@ -138,4 +138,4 @@ const Details: FunctionComponent = () => {
   );
 };
 
-export default Details;
+export default Task;

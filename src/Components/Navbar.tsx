@@ -10,6 +10,13 @@ const Navbar = () => {
 
   return (
     <Sidenav theme={themes} role="navigation" aria-label="Main Menu">
+      <div className="Navbar__Logo">
+        {themes[0] == "black" ? (
+          <img src={require("../Images/white-logo.png")} alt="app logotype" />
+        ) : (
+          <img src={require("../Images/black-logo.svg")} alt="app logotype" />
+        )}
+      </div>
       <Link to="/">
         <h2>Home page</h2>
       </Link>
@@ -28,6 +35,7 @@ const Navbar = () => {
       <Link to="/tasks?filter=deleted">
         <h2>Recycle Bin</h2>
       </Link>
+      <div className="Navbar__Separator"></div>
       <Profile />
     </Sidenav>
   );

@@ -8,13 +8,20 @@ export const Sidenav = styled.div<IThemeProps>`
   top: 0;
   left: 0;
   height: 100vh;
-  min-width: 20%;
+  width: 18%;
   overflow-x: auto;
-  padding-top: 5.65rem;
   background-color: ${(props: IThemeProps) => props.theme[0]};
 
+  .Navbar__Logo {
+    margin: 1rem 4rem 1rem 2rem;
+  }
+
+  .Navbar__Separator {
+    display: block;
+    flex: 1;
+  }
   a {
-    padding: 1rem 4rem 1rem 2rem;
+    margin: 1rem 4rem 1rem 2rem;
     text-decoration: none;
 
     h2 {
