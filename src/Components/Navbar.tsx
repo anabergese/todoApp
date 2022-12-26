@@ -1,20 +1,22 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { Sidenav } from "./Styles/Navbar.styled";
 import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
 import { Profile } from "./Profile";
+import whitelogo from "../Images/white-logo.png";
+import blacklogo from "../Images/black-logo.svg";
 
-const Navbar = () => {
+const Navbar: FunctionComponent = () => {
   const [themes] = useContext(ThemeContext);
 
   return (
     <Sidenav theme={themes} role="navigation" aria-label="Main Menu">
       <div className="Navbar__Logo">
         {themes[0] == "black" ? (
-          <img src={require("../Images/white-logo.png")} alt="app logotype" />
+          <img src={whitelogo as string} alt="app logotype" />
         ) : (
-          <img src={require("../Images/black-logo.svg")} alt="app logotype" />
+          <img src={blacklogo as string} alt="app logotype" />
         )}
       </div>
       <Link to="/">
