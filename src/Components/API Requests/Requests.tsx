@@ -81,3 +81,18 @@ export const permanentDeleteRequest = (task: ITask) => {
     .then((result: null) => result)
     .catch((error) => console.log("error", error));
 };
+
+export const getTaskRequest = (task: ITask) => {
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+  };
+
+  return fetch(
+    `https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/${task.id}`,
+    requestOptions
+  )
+    .then((response) => response.json())
+    .then((result: null) => result)
+    .catch((error) => console.log("error", error));
+};
