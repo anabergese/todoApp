@@ -12,7 +12,7 @@ import ThemeContext from "./Contexts/ThemeContext";
 import AlltasksContext, { IAllTasks } from "./Contexts/AlltasksContext";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoginButton } from "./Components/Login";
+import Landing from "./Components/Landing";
 
 const App = () => {
   const localTasks = localStorage.getItem("allTasks");
@@ -47,7 +47,7 @@ const App = () => {
                 </Content>
               </>
             ) : (
-              <LoginButton />
+              <Landing />
             )}
           </BrowserRouter>
         </StyledApp>
