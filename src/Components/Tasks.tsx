@@ -3,13 +3,14 @@ import { useContext, useEffect } from "react";
 import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
-import { StyledButton, StyledLink } from "./Styles/Buttons.styled";
+import { StyledButton } from "./Styles/Buttons.styled";
 import { ITask, TaskStatus } from "../Types/index";
 import {
   getAllRequest,
   permanentDeleteRequest,
   updateRequest,
 } from "./API Requests/Requests";
+import { useNavigate } from "react-router-dom";
 
 const Task = () => {
   const [allTasks, setAllTasks] = useContext(AlltasksContext);
@@ -18,6 +19,7 @@ const Task = () => {
   const filter = (
     new URLSearchParams(location.search).get("filter") || ""
   ).toLowerCase();
+  const navigate = useNavigate();
 
   const allFilteredTask = () => {
     switch (filter) {
@@ -76,6 +78,10 @@ const Task = () => {
       .catch((error) => console.log("error", error));
   };
 
+  const routeChange = (route: string, task: ITask) => {
+    navigate(route, { state: task });
+  };
+
   return (
     <>
       <h1>All your tasks</h1>
@@ -88,9 +94,12 @@ const Task = () => {
               <TitleTask theme={themes}>
                 <h2>{task.title}</h2>
                 <div>
-                  <StyledLink to={`/details/${task.id}`} state={task}>
-                    <StyledButton theme={themes}>See details</StyledButton>
-                  </StyledLink>
+                  <StyledButton
+                    theme={themes}
+                    onClick={() => routeChange(`/details/${task.id}`, task)}
+                  >
+                    See details
+                  </StyledButton>
                   <StyledButton
                     theme={themes}
                     onClick={() => {

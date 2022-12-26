@@ -26,14 +26,3 @@ export const StyledButton = styled.button<IButtonsProps>`
     line-height: normal;
   }
 `;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  &:hover {
-    color: black;
-  }
-  @media screen and (max-width: 400px) {
-    font-size: 0.6rem !important;
-  }
-`;
