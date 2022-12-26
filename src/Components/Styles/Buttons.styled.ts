@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { IButtonsProps } from "../../Types/index";
 
 export const StyledButton = styled.button<IButtonsProps>`
