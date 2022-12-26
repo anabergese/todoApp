@@ -1,27 +1,36 @@
 import { FunctionComponent } from "react";
 import { StyledHome } from "./Styles/Home.styled";
+import { StyledButton } from "./Styles/Buttons.styled";
 import { Content } from "./Styles/Global";
 import { useContext } from "react";
 import ThemeContext from "../Contexts/ThemeContext";
-import { StyledLink, StyledButton } from "./Styles/Buttons.styled";
+import { useNavigate } from "react-router-dom";
 
 const Home: FunctionComponent = () => {
   const [themes] = useContext(ThemeContext);
+  const navigate = useNavigate();
+
+  const routeChange = (route: string) => {
+    navigate(route);
+  };
 
   return (
     <Content>
       <h1 data-testid="h1home">What&apos;s the plan for today?</h1>
       <StyledHome theme={themes}>
         <h2>See all tasks</h2>
-        <StyledLink as="a" href="/tasks">
-          <StyledButton theme={themes}>Go Tasks</StyledButton>
-        </StyledLink>
+        <StyledButton theme={themes} onClick={() => routeChange("/tasks")}>
+          Go Tasks
+        </StyledButton>
       </StyledHome>
       <StyledHome theme={themes}>
         <h2>Create a new task</h2>
-        <StyledLink as="a" href="/task/create">
-          <StyledButton theme={themes}>Go Create</StyledButton>
-        </StyledLink>
+        <StyledButton
+          theme={themes}
+          onClick={() => routeChange("/task/create")}
+        >
+          Go Create
+        </StyledButton>
       </StyledHome>
     </Content>
   );
