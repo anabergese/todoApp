@@ -20,7 +20,9 @@ export const Profile = () => {
     isAuthenticated && (
       <StyledProfile theme={themes}>
         <img
-          src={userlogged.picture ? userlogged.picture : blankprofile}
+          src={
+            userlogged.picture ? userlogged.picture : (blankprofile as string)
+          }
           alt={userlogged.name}
         />
         <div>

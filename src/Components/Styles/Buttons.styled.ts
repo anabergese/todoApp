@@ -37,33 +37,3 @@ export const StyledLink = styled(Link)`
     font-size: 0.6rem !important;
   }
 `;
-
-export const ThemeButton = styled.button`
-  min-width: 1rem;
-  min-height: 1rem;
-  margin: 2rem 0.6rem;
-  border-radius: 0.25rem;
-  border: 0.06rem solid #dadce0;
-  cursor: pointer;
-  background-color: ${({ color }) => {
-    switch (color) {
-      case "#ffc7cd":
-        return "#ffc7cd";
-      case "#d6e1ec":
-        return "#d6e1ec";
-      case "#ece1d6":
-        return "#ece1d6";
-      case "#ecd6ec":
-        return "#ecd6ec";
-      case "#d6ecd6":
-        return "#d6ecd6";
-      default:
-        return "black";
-    }
-  }};
-
-  &.active {
-    min-width: 1.6rem;
-    min-height: 1.6rem;
-  }
-`;
