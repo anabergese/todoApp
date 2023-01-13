@@ -1,21 +1,21 @@
 import styled from "styled-components";
+import { border } from "./Global";
 
 export const StyledColorTheme = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-end;
 
   button {
-    min-width: 1rem;
-    min-height: 1rem;
-    margin: 2rem 0.6rem;
-    border-radius: 0.25rem;
-    border: 0.06rem solid #dadce0;
+    ${border}
     cursor: pointer;
+    margin: 2rem 0.6rem;
+    height: 1rem;
+    width: 1rem;
 
     &.active {
-      min-width: 1.6rem;
-      min-height: 1.6rem;
+      height: 1.6rem;
+      width: 1.6rem;
     }
   }
 

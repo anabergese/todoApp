@@ -6,9 +6,20 @@ display: flex;
 flex-direction: column;
 `;
 
+export const borderRadius = `0.188rem`;
+
+export const border = `
+border-radius: ${borderRadius};
+border-width: 0;
+`;
+
+export const letterSpacing = `
+letter-spacing: 0.05rem;
+`;
+
 export const StyledApp = styled.div`
   display: flex;
-  height: 100%;
+  height: 100vh;
 `;
 
 export const Content = styled.div`
@@ -19,16 +30,16 @@ export const Content = styled.div`
 export const GlobalStyles = createGlobalStyle`
   html {
     font-size: 100%;
-    letter-spacing: 0.05rem;
   }
 
   body {
     font-family: 'Roboto', sans-serif;
     h1,h2 {
-      font-size: 1rem;
-      text-align: center;
-      margin: 0 !important;
       color: black;
+      font-size: 1rem;
+      ${letterSpacing}
+      margin: 0 !important;
+      text-align: center;
     }
 
     @media screen and (max-width: 400px) {

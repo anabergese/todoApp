@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { ITaskProps } from "../../Types/index";
+import { borderRadius } from "./Global";
 
 export const StyledTask = styled.div`
   align-self: center;
-  width: 80%;
   margin: 2rem 1rem;
+  width: 80%;
   @media screen and (max-width: 400px) {
     margin: 1rem;
   }
@@ -13,11 +14,11 @@ export const StyledTask = styled.div`
 export const TitleTask = styled.div<ITaskProps>`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  max-height: 4rem;
-  padding: 0.5rem 2rem;
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
   background-color: ${(props: ITaskProps) => props.theme[0]};
+  border-radius: ${borderRadius} ${borderRadius} 0rem 0rem;
+  justify-content: space-between;
+  height: 4rem;
+  padding: 0.5rem 2rem;
 
   h2 {
     color: ${(props: ITaskProps) =>
@@ -36,21 +37,22 @@ export const TitleTask = styled.div<ITaskProps>`
 export const ContentTask = styled.div<ITaskProps>`
   display: ${(props: ITaskProps) => (props.detail ? "flex" : "1")};
   align-items: center;
+  background-color: ${(props: ITaskProps) => props.theme[1]};
+  border-radius: 0px 0px ${borderRadius} ${borderRadius};
   justify-content: space-between;
   padding: 0.5rem 2rem;
-  border-radius: 0px 0px 0.5rem 0.5rem;
-  background-color: ${(props: ITaskProps) => props.theme[1]};
 
   img {
-    max-width: 10rem;
-    border-radius: 0.25rem;
+    border-radius: ${borderRadius};
     margin-right: 0.25rem;
+    width: 10rem;
   }
 
   p {
     font-size: 0.875rem;
-    text-align: justify;
     margin-right: 2rem;
+    text-align: justify;
+
     &.highlight {
       font-weight: 700;
     }

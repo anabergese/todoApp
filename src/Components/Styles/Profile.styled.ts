@@ -4,34 +4,34 @@ import { IThemeProps } from "../../Types/index";
 export const StyledProfile = styled.div<IThemeProps>`
   display: flex;
   align-items: center;
-  margin: 1rem 4rem 1rem 2rem;
+  padding: 1rem;
 
   img {
     border-radius: 50%;
-    width: 48px;
     heigth: 48px;
+    width: 48px;
   }
 
   div {
     flex-grow: 1;
     margin-left: 1rem;
     p {
-      text-transform: capitalize;
+      color: ${(props: IThemeProps) =>
+        props.theme[0] === "black" ? props.theme[1] : "black"};
       font-weight: bold;
       font-size: 0.8rem;
       margin: 0;
-      color: ${(props: IThemeProps) =>
-        props.theme[0] === "black" ? props.theme[1] : "black"};
+      text-transform: capitalize;
     }
     button {
-      coursor: pointer !important;
-      font-size: 0.8rem;
-      border: none;
-      padding: 0;
-      margin: 0;
       background-color: transparent;
+      border: none;
       color: ${(props: IThemeProps) =>
         props.theme[0] === "black" ? props.theme[1] : "black"};
+      coursor: pointer !important;
+      font-size: 0.8rem;
+      margin: 0;
+      padding: 0;
     }
   }
 `;
