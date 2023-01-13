@@ -23,7 +23,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     h1,h2 {
       font-size: 1rem;
       text-align: center;

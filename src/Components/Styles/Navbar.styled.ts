@@ -13,7 +13,7 @@ export const Sidenav = styled.div<IThemeProps>`
   background-color: ${(props: IThemeProps) => props.theme[0]};
 
   .Navbar__Logo {
-    margin: 1rem 4rem 1rem 2rem;
+    padding: 1rem 4rem 1rem 2rem;
   }
 
   .Navbar__Separator {
@@ -21,8 +21,10 @@ export const Sidenav = styled.div<IThemeProps>`
     flex: 1;
   }
   a {
-    margin: 1rem 4rem 1rem 2rem;
+    padding: 1rem 4rem 1rem 2rem;
     text-decoration: none;
+    transition-duration: 185ms;
+    transition-timing-function: ease;
 
     h2 {
       text-align: left;

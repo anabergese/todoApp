@@ -7,6 +7,7 @@
 //   webkitRelativePath?: string;
 // };
 
+// Types related Components
 export type TaskStatus = "Deleted" | "Uncompleted" | "Completed";
 export type ITask = {
   title: string;
@@ -30,7 +31,7 @@ export type IUser = {
   updated_at?: string;
 };
 
-// Types related to Styles Folder
+// Types related to Styles
 export type IButtonsProps = {
   submitbtn?: boolean;
   theme: string[];
