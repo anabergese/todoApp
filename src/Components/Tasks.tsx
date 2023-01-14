@@ -98,7 +98,7 @@ const Task = () => {
                     theme={themes}
                     onClick={() => routeChange(`/details/${task.id}`, task)}
                   >
-                    See details
+                    Details
                   </StyledButton>
                   <StyledButton
                     theme={themes}

@@ -40,12 +40,12 @@ export const Sidenav = styled.div<IThemeProps>`
   }
 
   @media screen and (max-width: 400px) {
-    padding-top: 4rem;
-    width: 120px;
-
+    width: 32%;
     a {
-      padding: 0.8rem 1rem;
-      width: 120px;
+      padding: 0.6rem 0.8rem 0.6rem;
+    }
+    .Navbar__Logo {
+      padding: 0.8rem;
     }
   }
 `;

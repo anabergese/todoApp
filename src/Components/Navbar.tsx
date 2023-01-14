@@ -20,13 +20,13 @@ const Navbar: FunctionComponent = () => {
         )}
       </div>
       <Link to="/">
-        <h2>Home page</h2>
+        <h2>Home</h2>
       </Link>
       <Link to="/tasks">
-        <h2>See All Tasks</h2>
+        <h2>All Tasks</h2>
       </Link>
       <Link to="/task/create">
-        <h2>Create New Task</h2>
+        <h2>Create Task</h2>
       </Link>
       <Link to="/tasks?filter=completed">
         <h2>Completed Tasks</h2>

@@ -7,7 +7,7 @@ export const StyledTask = styled.div`
   margin: 2rem 1rem;
   width: 80%;
   @media screen and (max-width: 400px) {
-    margin: 1rem;
+    margin: 1rem 0rem;
   }
 `;
 

@@ -1,92 +1,90 @@
 import styled from "styled-components";
+import { flexColumn } from "./Global";
 
-export const StyledCallButton = styled.button`
-  height: 38px;
-  width: 160px;
-  left: 748px;
-  top: 364px;
+export const StyledCTAButton = styled.button`
+  background-color: #ff4f5a;
   border-radius: 8px;
   border-style: none;
-  background-color: #ff4f5a;
-  font-size: 1.2rem;
-  font-weight: bold;
   color: white;
   cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  left: 748px;
+  height: 38px;
+  top: 364px;
+  width: 160px;
 `;
 
 export const StyledLanding = styled.div`
-  width: 100vw;
+  ${flexColumn}
+  align-items: center;
   height: 100vh;
   margin: 1% 4%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+  width: 100vw;
 
-export const StyledDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  img {
-    width: 72%;
-  }
-`;
-
-export const StyledLogin = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  h1 {
-    font-size: 1.8rem;
-    width: 35rem;
-    margin-top: 72px !important;
-    margin-bottom: 12px !important;
+  .landing_nav {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 72%;
+    }
   }
 
-  img {
-    width: 54%;
-    margin-top: 48px;
-  }
-`;
+  .landing_cta {
+    ${flexColumn}
+    align-items: center;
 
-export const StyledFeatures = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    h1 {
+      font-size: 1.8rem;
+      margin-top: 72px !important;
+      margin-bottom: 12px !important;
+      width: 35rem;
+    }
 
-  h2 {
-    font-size: 1.8rem;
-    width: 35rem;
-    margin-top: 180px !important;
-    margin-bottom: 56px !important;
-  }
-  img {
-    width: 64%;
-  }
-`;
-
-export const StyledGoal = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 180px;
-  margin-bottom: 200px;
-
-  img {
-    margin-left: 200px;
-    margin-rigth: 180px;
-    width: 30%;
+    img {
+      margin-top: 48px;
+      width: 54%;
+    }
   }
 
-  div {
-    margin-left: 60px;
+  .landing_features {
+    ${flexColumn}
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 180px !important;
+      margin-bottom: 56px !important;
+      width: 35rem;
+    }
+    img {
+      width: 64%;
+    }
   }
 
-  h3 {
-    font-size: 1.8rem;
-    width: 35rem;
-    margin-top: 48px !important;
-    margin-bottom: 28px !important;
+  .landing_goal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 180px;
+    margin-bottom: 200px;
+
+    img {
+      margin-left: 200px;
+      margin-rigth: 180px;
+      width: 30%;
+    }
+
+    div {
+      margin-left: 60px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-top: 48px !important;
+      margin-bottom: 28px !important;
+      width: 35rem;
+    }
   }
 `;
