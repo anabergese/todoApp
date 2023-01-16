@@ -19,7 +19,6 @@ letter-spacing: 0.05rem;
 
 export const StyledApp = styled.div`
   display: flex;
-  height: 100vh;
 `;
 
 export const Content = styled.div`

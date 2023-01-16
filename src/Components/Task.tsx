@@ -16,27 +16,27 @@ import {
 
 const Task: FunctionComponent = () => {
   const [showModal, setShowModal] = useState(false);
-  const location = useLocation();
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
-  const [taskProps, setTaskProps] = useState(location.state as ITask);
+  const location = useLocation();
+  const [task, setTask] = useState(location.state as ITask);
 
   useEffect(() => {
     if (shouldUpdate) {
-      getTaskRequest(taskProps)
+      getTaskRequest(task)
         .then((result) => {
-          return setTaskProps(result);
+          return setTask(result);
         })
         .catch((error) => console.log("error", error));
 
       setShouldUpdate(false);
     }
-  }, [shouldUpdate, taskProps]);
+  }, [shouldUpdate, task]);
 
-  const tasksHandler = (status: TaskStatus, taskProps: ITask) => {
-    updateRequest(status, taskProps)
+  const tasksHandler = (status: TaskStatus, task: ITask) => {
+    updateRequest(status, task)
       .then((result) => {
         setShouldUpdate(true);
         return result;
@@ -44,13 +44,13 @@ const Task: FunctionComponent = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const deleteHandler = (taskProps: ITask) => {
-    tasksHandler("Deleted", taskProps);
+  const deleteHandler = (task: ITask) => {
+    tasksHandler("Deleted", task);
     toggleModal();
   };
 
-  const permanentDeleteHandler = (taskProps: ITask) => {
-    permanentDeleteRequest(taskProps)
+  const permanentDeleteHandler = (task: ITask) => {
+    permanentDeleteRequest(task)
       .then((result) => {
         result;
         navigate(`/tasks`);
@@ -58,10 +58,9 @@ const Task: FunctionComponent = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const completeHandler = (taskProps: ITask) => {
-    if (taskProps.status == "Uncompleted") tasksHandler("Completed", taskProps);
-    else if (taskProps.status == "Completed")
-      tasksHandler("Uncompleted", taskProps);
+  const completeHandler = (task: ITask) => {
+    if (task.status == "Uncompleted") tasksHandler("Completed", task);
+    else if (task.status == "Completed") tasksHandler("Uncompleted", task);
   };
 
   return (
@@ -69,29 +68,28 @@ const Task: FunctionComponent = () => {
       <h1 data-testid="h1Details">Details Page</h1>
       <StyledTask data-testid="task-container">
         <TitleTask theme={themes}>
-          <h2>{taskProps.title}</h2>
+          <h2>{task.title}</h2>
           <div>
             <StyledButton theme={themes}>Edit</StyledButton>
             <StyledButton
               onClick={
-                taskProps.status === "Deleted"
+                task.status === "Deleted"
                   ? () => {
-                      permanentDeleteHandler(taskProps);
+                      permanentDeleteHandler(task);
                     }
                   : toggleModal
               }
               theme={themes}
             >
-              {taskProps.status === "Deleted" ? "Permanent Delete" : "Delete"}
+              {task.status === "Deleted" ? "Permanent Delete" : "Delete"}
             </StyledButton>
             <StyledButton
               theme={themes}
               onClick={() => {
-                completeHandler(taskProps);
+                completeHandler(task);
               }}
             >
-              {taskProps.status === "Completed" ||
-              taskProps.status === "Deleted"
+              {task.status === "Completed" || task.status === "Deleted"
                 ? "Redo"
                 : "Complete"}
             </StyledButton>
@@ -101,12 +99,12 @@ const Task: FunctionComponent = () => {
                 <StyledModal theme={themes}>
                   <FocusScope contain restoreFocus autoFocus>
                     <h1> Are you sure you want to delete this task?</h1>
-                    <p>{taskProps.title}</p>
+                    <p>{task.title}</p>
                     <div>
                       <StyledButton
                         theme={themes}
                         onClick={() => {
-                          deleteHandler(taskProps);
+                          deleteHandler(task);
                         }}
                       >
                         Yes
@@ -123,26 +121,23 @@ const Task: FunctionComponent = () => {
         </TitleTask>
         <ContentTask theme={themes} detail>
           <div>
-            <p>{taskProps.description}</p>
+            <p>{task.description}</p>
             <p>
-              <strong>Deadline:</strong> {taskProps.deadline}
+              <strong>Deadline:</strong> {task.deadline}
             </p>
             <p
               className={
-                taskProps.status === "Deleted" ||
-                taskProps.status === "Completed"
+                task.status === "Deleted" || task.status === "Completed"
                   ? "highlight"
                   : ""
               }
             >
               <strong>Status:</strong>
-              {taskProps.status}
+              {task.status}
             </p>
           </div>
           <div>
-            {taskProps.photo ? (
-              <img src={taskProps.photo} alt={`${taskProps.title}`} />
-            ) : null}
+            {task.photo ? <img src={task.photo} alt={`${task.title}`} /> : null}
           </div>
         </ContentTask>
       </StyledTask>

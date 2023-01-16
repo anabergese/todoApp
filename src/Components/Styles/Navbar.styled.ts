@@ -8,6 +8,7 @@ export const Sidenav = styled.div<IThemeProps>`
   top: 0;
   position: sticky;
   width: 18%;
+  height: 100vh;
 
   .Navbar__Logo {
     display: flex;
