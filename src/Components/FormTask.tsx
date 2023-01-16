@@ -24,7 +24,7 @@ const FormTask = () => {
       photo: inputPhoto,
       deadline: inputDeadline,
       status: "Uncompleted",
-      id: nextId("task-"),
+      id: nextId("task-"), // not necesary
     } as ITask;
 
     createRequest(

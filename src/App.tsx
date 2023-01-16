@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Tasks from "./Components/Tasks";
 import Home from "./Components/Home";
-import Task from "./Components/Task";
+import Details from "./Components/Details";
 import Navbar from "./Components/Navbar";
 import ColorTheme from "./Components/ColorTheme";
 import FormTask from "./Components/FormTask";
@@ -34,10 +34,10 @@ const App = () => {
               <Content>
                 <ColorTheme />
                 <Routes>
-                  <Route path="/details/:id" element={<Task />} />
+                  <Route path="/" element={<Home />} />
+                  <Route path="/details/:id" element={<Details />} />
                   <Route path="/task/create" element={<FormTask />} />
                   <Route path="/tasks" element={<Tasks />} />
-                  <Route path="/" element={<Home />} />
                 </Routes>
               </Content>
             </>
