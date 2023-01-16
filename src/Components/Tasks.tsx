@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import AlltasksContext from "../Contexts/AlltasksContext";
+import { useContext, useEffect, useState } from "react";
+//import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";
@@ -13,7 +13,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const Task = () => {
-  const [allTasks, setAllTasks] = useContext(AlltasksContext);
+  const [allTasks, setAllTasks] = useState("");
+  const [shouldUpdate, setShouldUpdate] = useState(true);
   const location = useLocation();
   const [themes] = useContext(ThemeContext);
   const filter = (
@@ -35,46 +36,42 @@ const Task = () => {
   };
 
   useEffect(() => {
-    getAllRequest()
-      .then((result) => {
-        setAllTasks(result as ITask[]);
-      })
-      .catch((error) => console.log("error", error));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (shouldUpdate) {
+      getAllRequest()
+        .then((result) => {
+          setAllTasks(result as ITask[]);
+        })
+        .catch((error) => console.log("error", error));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      setShouldUpdate(false);
+    }
+  }, [shouldUpdate]);
 
   const tasksHandler = (status: TaskStatus, task: ITask) => {
-    const taskIndex = allTasks.findIndex((item) => item.id === task.id);
-    const copy = [...allTasks];
-    copy[taskIndex].status = status;
-    setAllTasks(copy);
-    console.log("entered task handler");
-
     updateRequest(status, task)
       .then((result) => {
-        result;
+        setShouldUpdate(true);
+        return result;
       })
       .catch((error) => console.log("error", error));
   };
 
   const completeHandler = (task: ITask) => {
-    console.log(task, "redo");
     task.status == "Uncompleted"
       ? void tasksHandler("Completed", task)
       : void tasksHandler("Uncompleted", task);
   };
 
   const deleteHandler = (task: ITask) => {
-    console.log("delete button pressed");
     void tasksHandler("Deleted", task);
   };
 
   const permanentDeleteHandler = (task: ITask) => {
-    const copy = allTasks.filter((item) => item.id !== task.id);
-    setAllTasks(copy);
-
     permanentDeleteRequest(task)
-      .then((result) => result as null)
+      .then((result) => {
+        setShouldUpdate(true);
+        result as null;
+      })
       .catch((error) => console.log("error", error));
   };
 
