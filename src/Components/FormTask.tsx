@@ -4,15 +4,14 @@ import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
 import { StyledButton } from "./Styles/Buttons.styled";
 import ThemeContext from "../Contexts/ThemeContext";
-import AlltasksContext from "../Contexts/AlltasksContext";
 import { ITask } from "../Types/index";
+import { createRequest } from "./API Requests/Requests";
 
 const FormTask = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
-  const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
 
@@ -27,34 +26,18 @@ const FormTask = () => {
       status: "Uncompleted",
       id: nextId("task-"),
     } as ITask;
-    setAllTasks([...allTasks, newTask]);
-    localStorage.setItem("allTasks", JSON.stringify([...allTasks, newTask]));
-    navigate(`/details/${newTask.id}`, { state: newTask });
 
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    let raw = JSON.stringify({
-      title: `${inputTitle}`,
-      description: `${inputDescription}`,
-      photo: `${inputPhoto}`,
-      status: "Uncompleted",
-      deadline: `${inputDeadline}`,
-    });
-
-    let requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch(
-      "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
-      requestOptions
+    createRequest(
+      newTask.title,
+      newTask.description,
+      newTask.photo,
+      newTask.deadline
     )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+      .then((result) => {
+        result as ITask;
+        const taskId = result.id as string;
+        navigate(`/details/${taskId}`, { state: result });
+      })
       .catch((error) => console.log("error", error));
 
     setInputTitle("");
@@ -77,6 +60,7 @@ const FormTask = () => {
         <label>
           <h2>Title:</h2>
           <input
+            required
             name="title"
             value={inputTitle}
             onChange={(e) => {
@@ -103,7 +87,7 @@ const FormTask = () => {
               if (!e.target.files) {
                 return;
               } else {
-                setInputPhoto(e.target.files[0]);
+                setInputPhoto(URL.createObjectURL(e.target.files[0]));
               }
             }}
             type="file"

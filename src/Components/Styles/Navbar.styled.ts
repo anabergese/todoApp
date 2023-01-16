@@ -1,29 +1,35 @@
 import styled from "styled-components";
 import { flexColumn } from "./Global";
+import { IThemeProps } from "../../Types/index";
 
-type Props = {
-  theme: string[];
-};
-
-export const Sidenav = styled.div<Props>`
+export const Sidenav = styled.div<IThemeProps>`
   ${flexColumn}
-  position: sticky;
+  background-color: ${(props: IThemeProps) => props.theme[0]};
   top: 0;
-  left: 0;
+  position: sticky;
+  width: 18%;
   height: 100vh;
-  min-width: 20%;
-  overflow-x: auto;
-  padding-top: 5.65rem;
-  background-color: ${(props: Props) => props.theme[0]};
+
+  .Navbar__Logo {
+    display: flex;
+    padding: 1rem;
+  }
+
+  .Navbar__Separator {
+    display: block;
+    flex: 1;
+  }
 
   a {
-    padding: 1rem 4rem 1rem 2rem;
     text-decoration: none;
+    transition-duration: 185ms;
+    transition-timing-function: ease;
+    padding: 1rem;
 
     h2 {
-      text-align: left;
-      color: ${(props: Props) =>
+      color: ${(props: IThemeProps) =>
         props.theme[0] === "black" ? props.theme[1] : "black"};
+      text-align: left;
     }
 
     &:hover {
@@ -35,14 +41,12 @@ export const Sidenav = styled.div<Props>`
   }
 
   @media screen and (max-width: 400px) {
-    min-width: 120px;
-    max-width: 120px;
-
-    padding-top: 4rem;
+    width: 32%;
     a {
-      min-width: 120px;
-      max-width: 120px;
-      padding: 0.8rem 1rem;
+      padding: 0.6rem 0.8rem 0.6rem;
+    }
+    .Navbar__Logo {
+      padding: 0.8rem;
     }
   }
 `;

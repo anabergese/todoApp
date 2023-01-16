@@ -1,73 +1,30 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { IButtonsProps } from "../../Types/index";
+import { border, letterSpacing } from "./Global";
 
-type Props = {
-  submitbtn?: boolean;
-  theme: string[];
-};
-
-export const StyledButton = styled.button<Props>`
-  font-size: ${(props: Props) => (props.submitbtn ? "1rem" : "0.8rem")};
-  letter-spacing: 0.05rem;
-  padding: 0.4rem 1.2rem;
-  margin: 1rem 0.25rem;
-  min-height: 8px;
-  border-radius: 0.25rem;
-  border-width: 0;
-  text-decoration: none;
-  text-align: center;
-  background-color: ${(props: Props) =>
+export const StyledButton = styled.button<IButtonsProps>`
+  background-color: ${(props: IButtonsProps) =>
     props.submitbtn ? props.theme[0] : props.theme[1]};
-  color: ${(props: Props) =>
+  ${border}
+  color: ${(props: IButtonsProps) =>
     props.theme[0] == "black" && props.submitbtn ? "white" : "black"};
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+  font-weight: ${(props: IButtonsProps) =>
+    props.submitbtn ? "700" : "normal"};
+
+  ${letterSpacing}
+  margin: 1rem 0.25rem;
+  padding: 0.4rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
 
   @media screen and (max-width: 400px) {
-    font-size: ${(props: Props) =>
+    font-size: ${(props: IButtonsProps) =>
       props.submitbtn ? "0.8rem" : "0.6rem !important"};
     padding: 0.2rem 0.6rem;
     margin: 0.2rem;
-    letter-spacing: 0;
     line-height: normal;
-  }
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  &:hover {
-    color: black;
-  }
-  @media screen and (max-width: 400px) {
-    font-size: 0.6rem !important;
-  }
-`;
-
-export const ThemeButton = styled.button`
-  min-width: 1rem;
-  min-height: 1rem;
-  margin: 2rem 0.6rem;
-  border-radius: 0.25rem;
-  border: 0.06rem solid #dadce0;
-  cursor: pointer;
-  background-color: ${({ color }) => {
-    switch (color) {
-      case "#ffc7cd":
-        return "#ffc7cd";
-      case "#d6e1ec":
-        return "#d6e1ec";
-      case "#ece1d6":
-        return "#ece1d6";
-      case "#ecd6ec":
-        return "#ecd6ec";
-      case "#d6ecd6":
-        return "#d6ecd6";
-      default:
-        return "black";
-    }
-  }};
-
-  &.active {
-    min-width: 1.6rem;
-    min-height: 1.6rem;
   }
 `;

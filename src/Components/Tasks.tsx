@@ -1,18 +1,25 @@
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
-import AlltasksContext from "../Contexts/AlltasksContext";
+import { useContext, useEffect, useState } from "react";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
-import { StyledButton, StyledLink } from "./Styles/Buttons.styled";
+import { StyledButton } from "./Styles/Buttons.styled";
 import { ITask, TaskStatus } from "../Types/index";
+import {
+  getAllRequest,
+  permanentDeleteRequest,
+  updateRequest,
+} from "./API Requests/Requests";
+import { useNavigate } from "react-router-dom";
 
 const Task = () => {
-  const [allTasks, setAllTasks] = useContext(AlltasksContext);
+  const [allTasks, setAllTasks] = useState([] as ITask[]);
+  const [shouldUpdate, setShouldUpdate] = useState(true);
   const location = useLocation();
   const [themes] = useContext(ThemeContext);
   const filter = (
     new URLSearchParams(location.search).get("filter") || ""
   ).toLowerCase();
+  const navigate = useNavigate();
 
   const allFilteredTask = () => {
     switch (filter) {
@@ -27,27 +34,47 @@ const Task = () => {
     }
   };
 
+  useEffect(() => {
+    if (shouldUpdate) {
+      getAllRequest()
+        .then((result) => {
+          return setAllTasks(result as ITask[]);
+        })
+        .catch((error) => console.log("error", error));
+      setShouldUpdate(false);
+    }
+  }, [shouldUpdate]);
+
   const tasksHandler = (status: TaskStatus, task: ITask) => {
-    const taskIndex = allTasks.findIndex((item) => item.id === task.id);
-    const copy = [...allTasks];
-    copy[taskIndex].status = status;
-    setAllTasks(copy);
-    // localStorage.setItem("allTasks", JSON.stringify(alltasks));
+    updateRequest(status, task)
+      .then((result) => {
+        setShouldUpdate(true);
+        return result;
+      })
+      .catch((error) => console.log("error", error));
   };
 
   const completeHandler = (task: ITask) => {
-    if (task.status == "Uncompleted") tasksHandler("Completed", task);
-    else if (task.status == "Completed") tasksHandler("Uncompleted", task);
+    task.status == "Uncompleted"
+      ? void tasksHandler("Completed", task)
+      : void tasksHandler("Uncompleted", task);
   };
 
   const deleteHandler = (task: ITask) => {
-    tasksHandler("Deleted", task);
+    void tasksHandler("Deleted", task);
   };
 
   const permanentDeleteHandler = (task: ITask) => {
-    const copy = allTasks.filter((item) => item.id !== task.id);
-    setAllTasks(copy);
-    localStorage.setItem("allTasks", JSON.stringify(allTasks));
+    permanentDeleteRequest(task)
+      .then((result) => {
+        setShouldUpdate(true);
+        result as null;
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  const routeChange = (route: string, task: ITask) => {
+    navigate(route, { state: task });
   };
 
   return (
@@ -62,9 +89,12 @@ const Task = () => {
               <TitleTask theme={themes}>
                 <h2>{task.title}</h2>
                 <div>
-                  <StyledLink to={`/details/${task.id}`} state={task}>
-                    <StyledButton theme={themes}>See details</StyledButton>
-                  </StyledLink>
+                  <StyledButton
+                    theme={themes}
+                    onClick={() => routeChange(`/details/${task.id}`, task)}
+                  >
+                    Details
+                  </StyledButton>
                   <StyledButton
                     theme={themes}
                     onClick={() => {

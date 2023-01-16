@@ -1,46 +1,46 @@
 import styled from "styled-components";
-import { flexColumn } from "./Global";
-
-type Props = {
-  theme: string[];
-};
+import { IThemeProps } from "../../Types/index";
+import { border, borderRadius, flexColumn } from "./Global";
 
 export const StyledFormTask = styled.form`
   ${flexColumn}
   align-items: center;
 `;
 
-export const FormBody = styled.div<Props>`
+export const FormBody = styled.div<IThemeProps>`
   ${flexColumn}
-  border-radius: 0.5rem;
-  min-width: 40%;
-  margin: 2rem 1rem;
-  background-color: ${(props: Props) => props.theme[0]};
+  ${border}
+  background-color: ${(props: IThemeProps) => props.theme[0]};
 
   h1 {
-    padding: 1rem 0;
-    color: ${(props: Props) =>
+    color: ${(props: IThemeProps) =>
       props.theme[0] === "black" ? props.theme[1] : "black"};
+    padding: 1.5rem 0;
   }
 
   label {
+    background-color: ${(props: IThemeProps) => props.theme[1]};
+    padding: 1rem 3rem;
     h2 {
+      padding-bottom: 0.5rem;
       text-align: left;
     }
-    padding: 1rem 4rem;
-    background-color: ${(props: Props) => props.theme[1]};
-    &:last-child {
+
+    &:nth-child(2) {
+      padding-top: 3rem;
+    }
+
+    &:nth-child(5) {
+      border-bottom-left-radius: ${borderRadius};
+      border-bottom-right-radius: ${borderRadius};
       padding-bottom: 3rem;
-      border-bottom-left-radius: 0.5rem;
-      border-bottom-right-radius: 0.5rem;
     }
   }
 
   input {
-    font-size: 0.8rem;
-    min-width: 100%;
-    border-radius: 0.25rem;
-    border-color: transparent;
+    ${border}
+    height: 2rem;
+    width: 100%;
   }
 
   @media screen and (max-width: 400px) {
@@ -55,7 +55,7 @@ export const FormBody = styled.div<Props>`
 
     input {
       font-size: 0.8rem;
-      max-width: 8rem;
+      width: 8rem;
     }
   }
 `;
