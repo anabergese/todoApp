@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-//import AlltasksContext from "../Contexts/AlltasksContext";
 import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
 import ThemeContext from "../Contexts/ThemeContext";
 import { StyledButton } from "./Styles/Buttons.styled";

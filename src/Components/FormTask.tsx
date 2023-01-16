@@ -4,7 +4,6 @@ import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./Styles/FormTask.styled";
 import { StyledButton } from "./Styles/Buttons.styled";
 import ThemeContext from "../Contexts/ThemeContext";
-import AlltasksContext from "../Contexts/AlltasksContext";
 import { ITask } from "../Types/index";
 import { createRequest } from "./API Requests/Requests";
 
@@ -13,7 +12,6 @@ const FormTask = () => {
   const [inputDescription, setInputDescription] = useState("");
   const [inputPhoto, setInputPhoto] = useState("");
   const [inputDeadline, setInputDeadline] = useState("");
-  const [allTasks, setAllTasks] = useContext(AlltasksContext);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
 
@@ -28,9 +26,13 @@ const FormTask = () => {
       status: "Uncompleted",
       id: nextId("task-"),
     } as ITask;
-    setAllTasks([...allTasks, newTask]);
 
-    createRequest(inputTitle, inputDescription, inputPhoto, inputDeadline)
+    createRequest(
+      newTask.title,
+      newTask.description,
+      newTask.photo,
+      newTask.deadline
+    )
       .then((result) => {
         navigate(`/details/${result.id}`, { state: result });
       })
