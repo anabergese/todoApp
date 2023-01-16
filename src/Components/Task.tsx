@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "./Modal";
@@ -14,20 +14,20 @@ import {
   getTaskRequest,
 } from "./API Requests/Requests";
 
-const Task: FunctionComponent = () => {
+const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
-  const location = useLocation();
-  const [task, setTask] = useState(location.state as ITask);
+  const [task, setTask] = useState(taskProp);
 
   useEffect(() => {
     if (shouldUpdate) {
       getTaskRequest(task)
         .then((result) => {
-          return setTask(result);
+          console.log("result", result);
+          return result;
         })
         .catch((error) => console.log("error", error));
 
@@ -38,8 +38,10 @@ const Task: FunctionComponent = () => {
   const tasksHandler = (status: TaskStatus, task: ITask) => {
     updateRequest(status, task)
       .then((result) => {
+        const taskUpdated = result as ITask;
+        setTask(taskUpdated);
         setShouldUpdate(true);
-        return result;
+        return task;
       })
       .catch((error) => console.log("error", error));
   };
@@ -53,6 +55,7 @@ const Task: FunctionComponent = () => {
     permanentDeleteRequest(task)
       .then((result) => {
         result;
+        setShouldUpdate(true);
         navigate(`/tasks`);
       })
       .catch((error) => console.log("error", error));
@@ -61,16 +64,25 @@ const Task: FunctionComponent = () => {
   const completeHandler = (task: ITask) => {
     if (task.status == "Uncompleted") tasksHandler("Completed", task);
     else if (task.status == "Completed") tasksHandler("Uncompleted", task);
+    else if (task.status == "Deleted") tasksHandler("Uncompleted", task);
+  };
+
+  const routeChange = (route: string, task: ITask) => {
+    navigate(route, { state: task });
   };
 
   return (
     <>
-      <h1 data-testid="h1Details">Details Page</h1>
       <StyledTask data-testid="task-container">
         <TitleTask theme={themes}>
           <h2>{task.title}</h2>
           <div>
-            <StyledButton theme={themes}>Edit</StyledButton>
+            <StyledButton
+              theme={themes}
+              onClick={() => routeChange(`/details/${task.id}`, task)}
+            >
+              Edit
+            </StyledButton>
             <StyledButton
               onClick={
                 task.status === "Deleted"
