@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const Task = () => {
-  const [allTasks, setAllTasks] = useState("");
+  const [allTasks, setAllTasks] = useState([] as ITask[]);
   const [shouldUpdate, setShouldUpdate] = useState(true);
   const location = useLocation();
   const [themes] = useContext(ThemeContext);
@@ -38,10 +38,9 @@ const Task = () => {
     if (shouldUpdate) {
       getAllRequest()
         .then((result) => {
-          setAllTasks(result as ITask[]);
+          return setAllTasks(result as ITask[]);
         })
         .catch((error) => console.log("error", error));
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       setShouldUpdate(false);
     }
   }, [shouldUpdate]);

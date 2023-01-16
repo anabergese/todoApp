@@ -20,25 +20,20 @@ const Task: FunctionComponent = () => {
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
-  // añades un estado que diga "toca refrescar":
   const [shouldUpdate, setShouldUpdate] = useState(false);
-  const [taskProps, setTaskProps] = useState(location.state);
+  const [taskProps, setTaskProps] = useState(location.state as ITask);
 
   useEffect(() => {
     if (shouldUpdate) {
-      // en este ejemplo hace fetch de la DB, pero
-      // también podrías hacer que en vez de decirle
-      // al componente "toca refrescar" le digas
-      // _qué_ refrescar (por evitar consultar la DB)
       getTaskRequest(taskProps)
         .then((result) => {
-          setTaskProps(result);
+          return setTaskProps(result);
         })
         .catch((error) => console.log("error", error));
 
       setShouldUpdate(false);
     }
-  }, [shouldUpdate]);
+  }, [shouldUpdate, taskProps]);
 
   const tasksHandler = (status: TaskStatus, taskProps: ITask) => {
     updateRequest(status, taskProps)
