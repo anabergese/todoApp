@@ -19,7 +19,7 @@ const ColorTheme = () => {
   };
 
   return (
-    <StyledColorTheme role="toolbar" aria-label="App Colors Options">
+    <StyledColorTheme role="toolbar" aria-label="App Colors Picker">
       <button
         aria-label="pink theme"
         onClick={(e) => {

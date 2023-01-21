@@ -22,7 +22,7 @@ export const StyledLanding = styled.div`
   margin: 1% 4%;
   width: 100vw;
 
-  .landing_nav {
+  .Landing__nav {
     display: flex;
     justify-content: center;
     img {
@@ -30,7 +30,7 @@ export const StyledLanding = styled.div`
     }
   }
 
-  .landing_cta {
+  .Landing__cta {
     ${flexColumn}
     align-items: center;
 
@@ -47,7 +47,7 @@ export const StyledLanding = styled.div`
     }
   }
 
-  .landing_features {
+  .Landing__features {
     ${flexColumn}
     align-items: center;
     justify-content: center;
@@ -63,7 +63,7 @@ export const StyledLanding = styled.div`
     }
   }
 
-  .landing_goal {
+  .Landing__goal {
     display: flex;
     align-items: center;
     justify-content: center;

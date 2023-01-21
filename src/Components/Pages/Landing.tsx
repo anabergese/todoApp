@@ -12,10 +12,10 @@ const Landing = () => {
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   return (
     <StyledLanding>
-      <div className="landing_nav">
+      <div className="Landing__nav">
         <img src={navbarimg as string} alt="app logotype" />
       </div>
-      <div className="landing_cta">
+      <div className="Landing__cta">
         <h1>
           Organizing your day activity
           <br />
@@ -26,11 +26,11 @@ const Landing = () => {
         </StyledCTAButton>
         <img src={organizing as string} alt="app logotype" />
       </div>
-      <div className="landing_features">
+      <div className="Landing__features">
         <h2>Don’t let your day doing nothing</h2>
         <img src={features as string} alt="app logotype" />
       </div>
-      <div className="landing_goal">
+      <div className="Landing__goal">
         <img src={goal as string} alt="app logotype" />
         <div>
           <h3>
@@ -42,7 +42,7 @@ const Landing = () => {
           </StyledCTAButton>
         </div>
       </div>
-      <div className="landing_nav">
+      <div className="Landing__nav">
         <img src={footer as string} alt="app logotype" />
       </div>
     </StyledLanding>
