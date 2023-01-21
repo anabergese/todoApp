@@ -1,9 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { StyledProfile } from "./Styles/Profile.styled";
+import { StyledProfile } from "./Profile.styled";
 import { useContext } from "react";
-import ThemeContext from "../Contexts/ThemeContext";
-import { IUser } from "../Types/index";
-import blankprofile from "../Images/blank-profile.png";
+import ThemeContext from "../../Contexts/ThemeContext";
+import { IUser } from "../../Types/index";
+import blankprofile from "../../Img/blank-profile.png";
 
 export const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();

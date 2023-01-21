@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { border } from "./Global";
+import { border } from "../App/Global";
 
 export const StyledColorTheme = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ITaskProps } from "../../Types/index";
-import { borderRadius } from "./Global";
+import { borderRadius } from "../App/Global";
 
 export const StyledTask = styled.div`
   align-self: center;

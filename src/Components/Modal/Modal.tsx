@@ -5,7 +5,7 @@ import React, {
   useRef,
 } from "react";
 import { createPortal } from "react-dom";
-import { customStylesModal } from "./Styles/Modal.styled";
+import { customStylesModal } from "./Modal.styled";
 
 const Modal: FunctionComponent = ({ children }) => {
   const elRef: MutableRefObject<HTMLDivElement | null> = useRef(null);

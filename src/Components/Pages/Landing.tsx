@@ -1,17 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import {
-  StyledLanding,
-  // StyledDiv,
-  // StyledLogin,
-  // StyledFeatures,
-  // StyledGoal,
-  StyledCTAButton,
-} from "./Styles/Landing.styled";
-import navbarimg from "../Images/navbar.png";
-import organizing from "../Images/organizing.png";
-import features from "../Images/features.png";
-import goal from "../Images/goal.png";
-import footer from "../Images/footer.png";
+import { StyledLanding, StyledCTAButton } from "./Landing.styled";
+import navbarimg from "../../Img/navbar.png";
+import organizing from "../../Img/organizing.png";
+import features from "../../Img/features.png";
+import goal from "../../Img/goal.png";
+import footer from "../../Img/footer.png";
 
 const Landing = () => {
   const { loginWithRedirect } = useAuth0();

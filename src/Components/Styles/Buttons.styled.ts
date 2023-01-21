@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IButtonsProps } from "../../Types/index";
-import { border, letterSpacing } from "./Global";
+import { border, letterSpacing } from "../App/Global";
 
 export const StyledButton = styled.button<IButtonsProps>`
   background-color: ${(props: IButtonsProps) =>

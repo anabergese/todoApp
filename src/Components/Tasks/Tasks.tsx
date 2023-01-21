@@ -1,9 +1,9 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ITask } from "../Types/index";
-import { getAllRequest } from "./API Requests/Requests";
-import Task from "././Task";
+import { ITask } from "../../Types/index";
+import { getAllRequest } from "../API Requests/Requests";
+import Task from "../Task/Task";
 
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([] as ITask[]);

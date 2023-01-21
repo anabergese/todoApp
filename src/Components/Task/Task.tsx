@@ -2,17 +2,17 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
-import Modal from "./Modal";
-import { TaskStatus, ITask } from "../Types/index";
-import { StyledTask, TitleTask, ContentTask } from "./Styles/Task.styled";
-import { StyledModal } from "./Styles/Modal.styled";
-import ThemeContext from "../Contexts/ThemeContext";
-import { StyledButton } from "./Styles/Buttons.styled";
+import Modal from "../Modal/Modal";
+import { TaskStatus, ITask } from "../../Types/index";
+import { StyledTask, TitleTask, ContentTask } from "./Task.styled";
+import { StyledModal } from "../Modal/Modal.styled";
+import ThemeContext from "../../Contexts/ThemeContext";
+import { StyledButton } from "../Styles/Buttons.styled";
 import {
   permanentDeleteRequest,
   updateRequest,
   getTaskRequest,
-} from "./API Requests/Requests";
+} from "../API Requests/Requests";
 
 const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const [showModal, setShowModal] = useState(false);

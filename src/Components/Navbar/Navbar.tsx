@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { Sidenav } from "./Styles/Navbar.styled";
+import { Sidenav } from "./Navbar.styled";
 import { useContext } from "react";
-import ThemeContext from "../Contexts/ThemeContext";
-import { Profile } from "./Profile";
-import whitelogo from "../Images/white-logo.png";
-import blacklogo from "../Images/black-logo.svg";
+import ThemeContext from "../../Contexts/ThemeContext";
+import { Profile } from "../Profile/Profile";
+import whitelogo from "../../Img/white-logo.png";
+import blacklogo from "../../Img/black-logo.svg";
 
 const Navbar: FunctionComponent = () => {
   const [themes] = useContext(ThemeContext);

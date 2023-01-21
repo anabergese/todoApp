@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexColumn } from "./Global";
+import { flexColumn } from "../App/Global";
 import { IThemeProps } from "../../Types/index";
 
 export const Sidenav = styled.div<IThemeProps>`

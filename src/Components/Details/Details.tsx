@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import { useLocation } from "react-router-dom";
 import { FunctionComponent } from "react";
-import Task from "././Task";
-import { ITask } from "../Types/index";
+import Task from "../Task/Task";
+import { ITask } from "../../Types/index";
 
 const Details: FunctionComponent = () => {
   const location = useLocation();

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexColumn } from "./Global";
+import { flexColumn } from "../App/Global";
 
 export const StyledCTAButton = styled.button`
   background-color: #ff4f5a;
