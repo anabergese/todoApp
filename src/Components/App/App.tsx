@@ -58,7 +58,7 @@ render(
   >
     <App />
   </Auth0Provider>,
-  document.getElementById("root") || document.createElement("div")
+  document.getElementById("app") || document.createElement("div")
 );
 
 export default App;

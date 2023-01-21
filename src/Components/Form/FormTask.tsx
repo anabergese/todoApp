@@ -2,7 +2,7 @@ import { useState, useContext, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import nextId from "react-id-generator";
 import { StyledFormTask, FormBody } from "./FormTask.styled";
-import { StyledButton } from "../Styles/Buttons.styled";
+import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { ITask } from "../../Types/index";
 import { createRequest } from "../API Requests/Requests";

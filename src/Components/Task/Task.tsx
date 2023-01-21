@@ -7,7 +7,7 @@ import { TaskStatus, ITask } from "../../Types/index";
 import { StyledTask, TitleTask, ContentTask } from "./Task.styled";
 import { StyledModal } from "../Modal/Modal.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
-import { StyledButton } from "../Styles/Buttons.styled";
+import { StyledButton } from "../Buttons/Buttons.styled";
 import {
   permanentDeleteRequest,
   updateRequest,

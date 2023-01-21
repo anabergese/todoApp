@@ -17,11 +17,15 @@ export const letterSpacing = `
 letter-spacing: 0.05rem;
 `;
 
-export const StyledApp = styled.div`
+export const StyledApp = styled.div.attrs({
+  className: "App",
+})`
   display: flex;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div.attrs({
+  className: "App__Content",
+})`
   ${flexColumn}
   flex-grow: 1;
 `;

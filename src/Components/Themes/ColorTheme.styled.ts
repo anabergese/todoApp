@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { border } from "../App/Global";
 
-export const StyledColorTheme = styled.div`
+export const StyledColorTheme = styled.div.attrs({
+  className: "App__Content__ColorThemes",
+})`
   display: flex;
   align-items: center;
   justify-content: flex-end;

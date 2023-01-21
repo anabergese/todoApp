@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { StyledHome } from "./Home.styled";
-import { StyledButton } from "../Styles/Buttons.styled";
+import { StyledButton } from "../Buttons/Buttons.styled";
 import { Content } from "../App/Global";
 import { useContext } from "react";
 import ThemeContext from "../../Contexts/ThemeContext";
