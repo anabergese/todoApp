@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { ITask } from "../Types/index";
 import { getAllRequest } from "./API Requests/Requests";
 import Task from "././Task";
+import { useSearchParams } from "react-router-dom";
 
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([] as ITask[]);
+  const [params, setParams] = useSearchParams();
+  const filter = params.get("filter") ?? "";
 
-  const location = useLocation();
-  const filter = new URLSearchParams(location.search).get("filter") || "";
   useEffect(() => {
     getAllRequest()
       .then((result) => {
@@ -17,10 +18,11 @@ const Tasks = () => {
         return allTasks;
       })
       .catch((error) => console.log("error", error));
-  }, []);
+    setParams(filter);
+  }, [filter]);
 
   const allFilteredTask = () => {
-    switch (filter) {
+    switch (params) {
       case "Deleted":
         return allTasks.filter((task) => task.status === "Deleted");
       case "Completed":
@@ -39,6 +41,9 @@ const Tasks = () => {
         <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
       ) : (
         allFilteredTask().map((task, index) => {
+          console.log("filter:", filter);
+          console.log("params:", params.get("filter"));
+
           return <Task taskProp={task} key={index} />;
         })
       )}
