@@ -28,13 +28,28 @@ const Navbar: FunctionComponent = () => {
       <Link to="/task/create">
         <h2>Create Task</h2>
       </Link>
-      <Link to="/tasks?filter=completed">
+      <Link
+        to={{
+          pathname: "/tasks",
+          search: "?filter=Completed",
+        }}
+      >
         <h2>Completed Tasks</h2>
       </Link>
-      <Link to="/tasks?filter=uncompleted">
+      <Link
+        to={{
+          pathname: "/tasks",
+          search: "?filter=Uncompleted",
+        }}
+      >
         <h2>Uncompleted Tasks</h2>
       </Link>
-      <Link to="/tasks?filter=deleted">
+      <Link
+        to={{
+          pathname: "/tasks",
+          search: "?filter=Deleted",
+        }}
+      >
         <h2>Recycle Bin</h2>
       </Link>
       <div className="Navbar__Separator"></div>

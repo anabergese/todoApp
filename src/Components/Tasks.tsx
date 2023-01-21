@@ -1,3 +1,4 @@
+import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ITask } from "../Types/index";
@@ -6,35 +7,30 @@ import Task from "././Task";
 
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([] as ITask[]);
-  const [shouldUpdate, setShouldUpdate] = useState(true);
+
   const location = useLocation();
-  const filter = (
-    new URLSearchParams(location.search).get("filter") || ""
-  ).toLowerCase();
+  const filter = new URLSearchParams(location.search).get("filter") || "";
+  useEffect(() => {
+    getAllRequest()
+      .then((result) => {
+        setAllTasks(result as ITask[]);
+        return allTasks;
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
 
   const allFilteredTask = () => {
     switch (filter) {
-      case "deleted":
+      case "Deleted":
         return allTasks.filter((task) => task.status === "Deleted");
-      case "completed":
+      case "Completed":
         return allTasks.filter((task) => task.status === "Completed");
-      case "uncompleted":
+      case "Uncompleted":
         return allTasks.filter((task) => task.status === "Uncompleted");
       default:
         return allTasks;
     }
   };
-
-  useEffect(() => {
-    if (shouldUpdate) {
-      getAllRequest()
-        .then((result) => {
-          return setAllTasks(result as ITask[]);
-        })
-        .catch((error) => console.log("error", error));
-      setShouldUpdate(false);
-    }
-  }, [shouldUpdate]);
 
   return (
     <>
