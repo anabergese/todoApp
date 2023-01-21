@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
-import { StyledHome } from "./Styles/Home.styled";
-import { StyledButton } from "./Styles/Buttons.styled";
-import { Content } from "./Styles/Global";
+import { StyledHome } from "./Home.styled";
+import { StyledButton } from "../Buttons/Buttons.styled";
+import { Content } from "../App/Global";
 import { useContext } from "react";
-import ThemeContext from "../Contexts/ThemeContext";
+import ThemeContext from "../../Contexts/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
 const Home: FunctionComponent = () => {

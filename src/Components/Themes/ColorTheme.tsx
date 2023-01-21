@@ -1,6 +1,6 @@
 import React, { useContext, MouseEvent } from "react";
-import ThemeContext from "../Contexts/ThemeContext";
-import { StyledColorTheme } from "./Styles/ColorTheme.styled";
+import ThemeContext from "../../Contexts/ThemeContext";
+import { StyledColorTheme } from "./ColorTheme.styled";
 
 const ColorTheme = () => {
   const [themes, setThemes] = useContext(ThemeContext);
@@ -19,7 +19,7 @@ const ColorTheme = () => {
   };
 
   return (
-    <StyledColorTheme role="toolbar" aria-label="App Colors Options">
+    <StyledColorTheme role="toolbar" aria-label="App Colors Picker">
       <button
         aria-label="pink theme"
         onClick={(e) => {

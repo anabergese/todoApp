@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IThemeProps } from "../../Types/index";
-import { border } from "./Global";
+import { border } from "../App/Global";
 
 export const StyledModal = styled.div<IThemeProps>`
   background-color: ${(props: IThemeProps) =>

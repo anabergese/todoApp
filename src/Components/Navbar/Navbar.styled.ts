@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { flexColumn } from "./Global";
+import { flexColumn } from "../App/Global";
 import { IThemeProps } from "../../Types/index";
 
-export const Sidenav = styled.div<IThemeProps>`
+export const Sidenav = styled.div.attrs({
+  className: "App__Navbar",
+})<IThemeProps>`
   ${flexColumn}
   background-color: ${(props: IThemeProps) => props.theme[0]};
   top: 0;

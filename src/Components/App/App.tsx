@@ -1,17 +1,17 @@
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import Tasks from "./Components/Tasks";
-import Home from "./Components/Home";
-import Details from "./Components/Details";
-import Navbar from "./Components/Navbar";
-import ColorTheme from "./Components/ColorTheme";
-import FormTask from "./Components/FormTask";
-import { StyledApp, Content, GlobalStyles } from "./Components/Styles/Global";
-import ThemeContext from "./Contexts/ThemeContext";
+import Tasks from "../Tasks/Tasks";
+import Home from "../Home/Home";
+import Details from "../Details/Details";
+import Navbar from "../Navbar/Navbar";
+import ColorTheme from "../Themes/ColorTheme";
+import FormTask from "../Form/FormTask";
+import { StyledApp, Content, GlobalStyles } from "./Global";
+import ThemeContext from "../../Contexts/ThemeContext";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Landing from "./Components/Landing";
+import Landing from "../Pages/Landing";
 
 const App = () => {
   const { isAuthenticated } = useAuth0();
@@ -58,7 +58,7 @@ render(
   >
     <App />
   </Auth0Provider>,
-  document.getElementById("root") || document.createElement("div")
+  document.getElementById("app") || document.createElement("div")
 );
 
 export default App;

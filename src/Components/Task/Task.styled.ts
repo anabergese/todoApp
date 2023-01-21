@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { ITaskProps } from "../../Types/index";
-import { borderRadius } from "./Global";
+import { borderRadius } from "../App/Global";
 
-export const StyledTask = styled.div`
+export const StyledTask = styled.div.attrs({
+  className: "App__Content__Task",
+})`
   align-self: center;
   margin: 2rem 1rem;
   width: 80%;
@@ -11,7 +13,9 @@ export const StyledTask = styled.div`
   }
 `;
 
-export const TitleTask = styled.div<ITaskProps>`
+export const TitleTask = styled.div.attrs({
+  className: "Task__Title",
+})<ITaskProps>`
   display: flex;
   align-items: center;
   background-color: ${(props: ITaskProps) => props.theme[0]};
@@ -34,7 +38,9 @@ export const TitleTask = styled.div<ITaskProps>`
   }
 `;
 
-export const ContentTask = styled.div<ITaskProps>`
+export const ContentTask = styled.div.attrs({
+  className: "Task__Description",
+})<ITaskProps>`
   display: ${(props: ITaskProps) => (props.detail ? "flex" : "1")};
   align-items: center;
   background-color: ${(props: ITaskProps) => props.theme[1]};

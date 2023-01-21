@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IThemeProps } from "../../Types/index";
-import { border, borderRadius, flexColumn } from "./Global";
+import { border, borderRadius, flexColumn } from "../App/Global";
 
 export const StyledFormTask = styled.form`
   ${flexColumn}

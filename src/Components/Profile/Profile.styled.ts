@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { IThemeProps } from "../../Types/index";
 
-export const StyledProfile = styled.div<IThemeProps>`
+export const StyledProfile = styled.div.attrs({
+  className: "Navbar__Profile",
+})<IThemeProps>`
   display: flex;
   align-items: center;
   padding: 1rem;

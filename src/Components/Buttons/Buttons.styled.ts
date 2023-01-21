@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { IButtonsProps } from "../../Types/index";
-import { border, letterSpacing } from "./Global";
+import { border, letterSpacing } from "../App/Global";
 
-export const StyledButton = styled.button<IButtonsProps>`
+export const StyledButton = styled.button.attrs({
+  className: "Tasks__Btn",
+})<IButtonsProps>`
   background-color: ${(props: IButtonsProps) =>
     props.submitbtn ? props.theme[0] : props.theme[1]};
   ${border}
