@@ -14,6 +14,8 @@ import {
   getTaskRequest,
 } from "../API Requests/Requests";
 
+import SubTask from "./SubTask";
+
 const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
@@ -81,7 +83,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
               theme={themes}
               onClick={() => routeChange(`/details/${task.id}`, task)}
             >
-              Edit
+              View
             </StyledButton>
             <StyledButton
               onClick={
@@ -147,6 +149,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
               <strong>Status:</strong>
               {task.status}
             </p>
+            <SubTask />
           </div>
           <div>
             {task.photo ? <img src={task.photo} alt={`${task.title}`} /> : null}
