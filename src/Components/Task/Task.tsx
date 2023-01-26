@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext, FunctionComponent } from "react";
 import { FocusScope } from "react-aria";
 import Modal from "../Modal/Modal";
@@ -23,6 +23,9 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
   const [task, setTask] = useState(taskProp);
+
+  const location = useLocation();
+  const pathname = location.pathname;
 
   useEffect(() => {
     if (shouldUpdate) {
@@ -135,7 +138,12 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
         </TitleTask>
         <ContentTask theme={themes} detail>
           <div>
-            <p>{task.description}</p>
+            {pathname.includes("/details") ? (
+              <p>
+                <strong>Description:</strong>
+                {task.description}
+              </p>
+            ) : null}
             <p>
               <strong>Deadline:</strong> {task.deadline}
             </p>
@@ -149,7 +157,9 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
               <strong>Status:</strong>
               {task.status}
             </p>
-            <SubTask />
+            {pathname.includes("/details") ? (
+              <SubTask taskID={task.id} />
+            ) : null}
           </div>
           <div>
             {task.photo ? <img src={task.photo} alt={`${task.title}`} /> : null}

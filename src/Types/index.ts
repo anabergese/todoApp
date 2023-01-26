@@ -31,6 +31,8 @@ export type IUser = {
   updated_at?: string;
 };
 
+export type ISubtasks = { id: string; name: string };
+
 // Types related to Styles
 export type IButtonsProps = {
   submitbtn?: boolean;
