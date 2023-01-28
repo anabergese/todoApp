@@ -2,24 +2,12 @@ import { useContext, useState } from "react";
 import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
+import { SubTaskStyled } from "../Task/Task.styled";
 
 const SubTask = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
   const [themes] = useContext(ThemeContext);
   const [inputName, setInputName] = useState("");
-  // const [shouldUpdate, setShouldUpdate] = useState(false);
-
-  // useEffect(() => {
-  //   if (shouldUpdate) {
-  //     getTaskRequest(task)
-  //       .then((result) => {
-  //         console.log("result", result);
-  //         return result;
-  //       })
-  //       .catch((error) => console.log("error", error));
-
-  //     setShouldUpdate(false);
-  //   }
-  // }, [shouldUpdate, task]);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const deleteHandler = (subtask, allsubtasks) => {
     console.log("delete", subtask);
@@ -67,16 +55,35 @@ const SubTask = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
   };
 
   return (
-    <li style={{ display: "flex" }}>
-      <p>
-        {subtaskProp.name} Task:{console.log("subtp:", subtaskProp.name)}
-      </p>
-      <textarea
-        value={subtaskProp.name ? subtaskProp.name : inputName}
-        onChange={(e) => {
-          setInputName(e.target.value);
-        }}
-      ></textarea>
+    <SubTaskStyled>
+      {isEditMode ? (
+        <>
+          <textarea
+            value={inputName}
+            onChange={(e) => {
+              setInputName(e.target.value);
+            }}
+          ></textarea>
+          <StyledButton
+            theme={themes[0]}
+            onClick={() => {
+              editHandler(subtaskProp, allsubtasksProp, inputName);
+              setIsEditMode(false);
+            }}
+          >
+            Done
+          </StyledButton>
+        </>
+      ) : (
+        <div
+          onClick={() => {
+            setIsEditMode(true);
+          }}
+        >
+          <p>{subtaskProp.name}</p>
+        </div>
+      )}
+
       <StyledButton
         theme={themes[0]}
         onClick={() => {
@@ -85,15 +92,7 @@ const SubTask = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
       >
         Delete
       </StyledButton>
-      <StyledButton
-        theme={themes[0]}
-        onClick={() => {
-          editHandler(subtaskProp, allsubtasksProp, inputName);
-        }}
-      >
-        edit
-      </StyledButton>
-    </li>
+    </SubTaskStyled>
   );
 };
 

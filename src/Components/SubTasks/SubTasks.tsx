@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getSubTaskRequest, updateSubtasks } from "../API Requests/Requests";
 import nextId from "react-id-generator";
-import SubTask from "./SubTask";
+import SubTask from "../SubTasks/SubTask";
 
 const SubTasks = ({ taskID }) => {
   const [inputSubtask, setInputSubtask] = useState("");
@@ -49,16 +49,19 @@ const SubTasks = ({ taskID }) => {
       {!allSubTasks.length ? (
         <p>You dont have subtasks</p>
       ) : (
-        allSubTasks.map((subtask) => {
-          return (
-            <SubTask
-              subtaskProp={subtask}
-              key={Math.random()}
-              allsubtasksProp={allSubTasks}
-              setAllSubtasksProp={setAllSubTasks}
-            />
-          );
-        })
+        <ol>
+          {allSubTasks.map((subtask) => {
+            return (
+              <li key={Math.random()}>
+                <SubTask
+                  subtaskProp={subtask}
+                  allsubtasksProp={allSubTasks}
+                  setAllSubtasksProp={setAllSubTasks}
+                />
+              </li>
+            );
+          })}
+        </ol>
       )}
 
       <form

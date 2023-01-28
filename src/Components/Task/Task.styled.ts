@@ -13,6 +13,15 @@ export const StyledTask = styled.div.attrs({
   }
 `;
 
+export const SubTaskStyled = styled.div.attrs({
+  className: "Task_Subtask",
+})`
+   {
+    display: flex;
+    align-items: center;
+  }
+`;
+
 export const TitleTask = styled.div.attrs({
   className: "Task__Title",
 })<ITaskProps>`
