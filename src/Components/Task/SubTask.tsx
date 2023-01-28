@@ -1,74 +1,99 @@
-import { useState, useEffect } from "react";
-import { updateSubtasks, getSubTaskRequest } from "../API Requests/Requests";
+import { useContext, useState } from "react";
+import { updateSubtasks } from "../API Requests/Requests";
+import { StyledButton } from "../Buttons/Buttons.styled";
+import ThemeContext from "../../Contexts/ThemeContext";
 
-let nextId = 0;
+const SubTask = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
+  const [themes] = useContext(ThemeContext);
+  const [inputName, setInputName] = useState("");
+  // const [shouldUpdate, setShouldUpdate] = useState(false);
 
-const SubTask = ({ taskID }) => {
-  const [subTask, setSubTask] = useState("");
-  const [allSubTasks, setAllSubTasks] = useState([]);
-  const [shouldUpdate, setShouldUpdate] = useState(false);
+  // useEffect(() => {
+  //   if (shouldUpdate) {
+  //     getTaskRequest(task)
+  //       .then((result) => {
+  //         console.log("result", result);
+  //         return result;
+  //       })
+  //       .catch((error) => console.log("error", error));
 
-  /// hay que hacer lista de subtasks y subtasks, igual que tasks y task component
-  useEffect(() => {
-    if (shouldUpdate) {
-      getSubTaskRequest(taskID)
-        .then((result) => {
-          console.log("getSubTaskRequest:", result.subtasks);
-          setAllSubTasks(result.subtasks);
-          return allSubTasks;
-        })
-        .catch((error) => console.log("error", error));
-      setShouldUpdate(false);
-    }
-  }, [shouldUpdate, subTask]);
+  //     setShouldUpdate(false);
+  //   }
+  // }, [shouldUpdate, task]);
 
-  const addSubTasks = (allSubTasks, newsubtask) => {
-    allnewsubtasks = [...allSubTasks, newsubtask];
-    const raws = JSON.stringify(allnewsubtasks);
-    updateSubtasks(raws, taskID)
+  const deleteHandler = (subtask, allsubtasks) => {
+    console.log("delete", subtask);
+    console.log("delete", allsubtasks);
+    const newAllSubTasks = allsubtasks.filter((st) => {
+      return st.id !== subtask.id;
+    });
+
+    const raws = JSON.stringify(newAllSubTasks);
+    updateSubtasks(raws, subtask.taskId)
       .then((result) => {
-        console.log("resultAdd", result);
-        setShouldUpdate(true);
+        console.log("deleteRequest", result);
+        const resultParsed = JSON.parse(result.subtasks);
+        setAllSubtasksProp(resultParsed);
+        return result;
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  const editHandler = (subtask, allsubtasks, inputName) => {
+    const newAllSubTasks = allsubtasks.map((st, index) => {
+      console.log("subtask", subtask);
+      console.log("inputName", inputName);
+      console.log("st", st);
+
+      if (st.id === subtask.id) {
+        allsubtasks[index].name = inputName;
+        return allsubtasks;
+      }
+    });
+
+    console.log("newsubtask:", newAllSubTasks[0]);
+
+    const raws = JSON.stringify(newAllSubTasks[0]);
+    console.log("raws:", raws);
+    updateSubtasks(raws, subtask.taskId)
+      .then((result) => {
+        console.log("updateResult:", result); // es toda la task
+        // re render subtasks list
+        const resultParsed = JSON.parse(result.subtasks);
+        setAllSubtasksProp(resultParsed);
         return result;
       })
       .catch((error) => console.log("error", error));
   };
 
   return (
-    <>
-      <p>{console.log("dd", allSubTasks)}</p>
-      <ol>
-        {allSubTasks.map((subtask) => (
-          <li key={subtask.id}>
-            {subtask.name}
-            {taskID}
-            <button
-              onClick={() => {
-                setAllSubTasks(allSubTasks.filter((s) => s.id !== subtask.id));
-              }}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ol>
-      <input
-        value={subTask}
-        onChange={(e) => setSubTask(e.target.value)}
-        placeholder="Add subtask..."
-      />
-      <button
+    <li style={{ display: "flex" }}>
+      <p>
+        {subtaskProp.name} Task:{console.log("subtp:", subtaskProp.name)}
+      </p>
+      <textarea
+        value={subtaskProp.name ? subtaskProp.name : inputName}
+        onChange={(e) => {
+          setInputName(e.target.value);
+        }}
+      ></textarea>
+      <StyledButton
+        theme={themes[0]}
         onClick={() => {
-          setSubTask("");
-          setAllSubTasks([...allSubTasks, { id: nextId++, name: subTask }]);
-          const newsubtask = { id: nextId++, name: subTask };
-          console.log("beforeadd:", newsubtask);
-          addSubTasks(allSubTasks, newsubtask);
+          deleteHandler(subtaskProp, allsubtasksProp);
         }}
       >
-        +
-      </button>
-    </>
+        Delete
+      </StyledButton>
+      <StyledButton
+        theme={themes[0]}
+        onClick={() => {
+          editHandler(subtaskProp, allsubtasksProp, inputName);
+        }}
+      >
+        edit
+      </StyledButton>
+    </li>
   );
 };
 

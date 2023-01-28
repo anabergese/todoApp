@@ -14,7 +14,7 @@ import {
   getTaskRequest,
 } from "../API Requests/Requests";
 
-import SubTask from "./SubTask";
+import SubTasks from "./SubTasks";
 
 const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const [showModal, setShowModal] = useState(false);
@@ -158,7 +158,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
               {task.status}
             </p>
             {pathname.includes("/details") ? (
-              <SubTask taskID={task.id} />
+              <SubTasks taskID={task.id} />
             ) : null}
           </div>
           <div>
