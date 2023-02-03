@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FunctionComponent, FormEvent } from "react";
 import { getSubTaskRequest, updateSubtasks } from "../API Requests/Requests";
 import nextId from "react-id-generator";
-import SubTask from "../SubTasks/SubTask";
+import SubTask from "../SubTask/SubTask";
 
-const SubTasks = ({ taskID }) => {
+const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
   const [inputSubtask, setInputSubtask] = useState("");
   const [allSubTasks, setAllSubTasks] = useState([]);
 
   useEffect(() => {
     getSubTaskRequest(taskID)
       .then((result) => {
+        console.log("reult to parse:", typeof result.subtasks);
+
         const resultParsed = JSON.parse(result.subtasks);
         setAllSubTasks(resultParsed);
         return allSubTasks;
@@ -17,10 +19,8 @@ const SubTasks = ({ taskID }) => {
       .catch((error) => console.log("error", error));
   }, []);
 
-  const submitSubtaskHandler = (e) => {
+  const submitSubtaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("inputsubtask:", inputSubtask);
-    console.log("task ID:", taskID);
 
     const newSubtask = {
       name: inputSubtask.charAt(0).toUpperCase() + inputSubtask.slice(1),

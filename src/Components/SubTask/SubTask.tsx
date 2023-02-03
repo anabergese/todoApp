@@ -1,15 +1,20 @@
-import { useContext, useState } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
-import { SubTaskStyled } from "../Task/Task.styled";
+import { SubTaskStyled } from "../SubTask/SubTask.styled";
+import { ISubtasks } from "../../Types";
 
-const SubTask = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
+const SubTask: FunctionComponent<{
+  allsubtasksProp: ISubtasks[];
+  subtaskProp: ISubtasks;
+  setAllSubtasksProp: Function; // See fix
+}> = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
   const [themes] = useContext(ThemeContext);
   const [inputName, setInputName] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const deleteHandler = (subtask, allsubtasks) => {
+  const deleteHandler = (subtask: ISubtasks, allsubtasks: ISubtasks[]) => {
     console.log("delete", subtask);
     console.log("delete", allsubtasks);
     const newAllSubTasks = allsubtasks.filter((st) => {
@@ -27,12 +32,12 @@ const SubTask = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
       .catch((error) => console.log("error", error));
   };
 
-  const editHandler = (subtask, allsubtasks, inputName) => {
+  const editHandler = (
+    subtask: ISubtasks,
+    allsubtasks: ISubtasks[],
+    inputName: string
+  ) => {
     const newAllSubTasks = allsubtasks.map((st, index) => {
-      console.log("subtask", subtask);
-      console.log("inputName", inputName);
-      console.log("st", st);
-
       if (st.id === subtask.id) {
         allsubtasks[index].name = inputName;
         return allsubtasks;
@@ -59,7 +64,7 @@ const SubTask = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
       {isEditMode ? (
         <>
           <textarea
-            value={inputName}
+            value={inputName || subtaskProp.name}
             onChange={(e) => {
               setInputName(e.target.value);
             }}
@@ -75,13 +80,13 @@ const SubTask = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
           </StyledButton>
         </>
       ) : (
-        <div
+        <button
           onClick={() => {
             setIsEditMode(true);
           }}
         >
           <p>{subtaskProp.name}</p>
-        </div>
+        </button>
       )}
 
       <StyledButton
