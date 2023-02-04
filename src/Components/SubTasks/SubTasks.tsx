@@ -2,17 +2,16 @@ import { useState, useEffect, FunctionComponent, FormEvent } from "react";
 import { getSubTaskRequest, updateSubtasks } from "../API Requests/Requests";
 import nextId from "react-id-generator";
 import SubTask from "../SubTask/SubTask";
+import { ISubtask } from "../../Types";
 
 const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
   const [inputSubtask, setInputSubtask] = useState("");
-  const [allSubTasks, setAllSubTasks] = useState([]);
+  const [allSubTasks, setAllSubTasks] = useState<ISubtask[]>([]);
 
   useEffect(() => {
     getSubTaskRequest(taskID)
       .then((result) => {
-        console.log("reult to parse:", typeof result.subtasks);
-
-        const resultParsed = JSON.parse(result.subtasks);
+        const resultParsed = JSON.parse(result.subtasks) as ISubtask[];
         setAllSubTasks(resultParsed);
         return allSubTasks;
       })
@@ -29,9 +28,9 @@ const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
       taskId: taskID,
     };
 
-    allnewSubtasks = [...allSubTasks, newSubtask];
     setAllSubTasks([...allSubTasks, newSubtask]);
-    console.log("allsubtask:", allSubTasks);
+    const allnewSubtasks = [...allSubTasks, newSubtask] as ISubtask[];
+    console.log("allsubtask:", allnewSubtasks);
 
     const raws = JSON.stringify(allnewSubtasks);
     updateSubtasks(raws, taskID)

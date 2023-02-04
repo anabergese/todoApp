@@ -3,29 +3,27 @@ import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { SubTaskStyled } from "../SubTask/SubTask.styled";
-import { ISubtasks } from "../../Types";
+import { ISubtask, SubtaskProps } from "../../Types";
 
 const SubTask: FunctionComponent<{
-  allsubtasksProp: ISubtasks[];
-  subtaskProp: ISubtasks;
-  setAllSubtasksProp: Function; // See fix
+  allsubtasksProp: SubtaskProps["allSubtasksProp"];
+  subtaskProp: ISubtask;
+  setAllSubtasksProp: SubtaskProps["setAllSubtasksProps"];
 }> = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
   const [themes] = useContext(ThemeContext);
   const [inputName, setInputName] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const deleteHandler = (subtask: ISubtasks, allsubtasks: ISubtasks[]) => {
-    console.log("delete", subtask);
-    console.log("delete", allsubtasks);
+  const deleteHandler = (subtask: ISubtask, allsubtasks: ISubtask[]) => {
     const newAllSubTasks = allsubtasks.filter((st) => {
       return st.id !== subtask.id;
     });
 
+    const idString = JSON.stringify(subtask.taskId);
     const raws = JSON.stringify(newAllSubTasks);
-    updateSubtasks(raws, subtask.taskId)
+    updateSubtasks(raws, idString)
       .then((result) => {
-        console.log("deleteRequest", result);
-        const resultParsed = JSON.parse(result.subtasks);
+        const resultParsed = JSON.parse(result.subtasks) as ISubtask[];
         setAllSubtasksProp(resultParsed);
         return result;
       })
@@ -33,8 +31,8 @@ const SubTask: FunctionComponent<{
   };
 
   const editHandler = (
-    subtask: ISubtasks,
-    allsubtasks: ISubtasks[],
+    subtask: ISubtask,
+    allsubtasks: ISubtask[],
     inputName: string
   ) => {
     const newAllSubTasks = allsubtasks.map((st, index) => {
@@ -44,15 +42,10 @@ const SubTask: FunctionComponent<{
       }
     });
 
-    console.log("newsubtask:", newAllSubTasks[0]);
-
     const raws = JSON.stringify(newAllSubTasks[0]);
-    console.log("raws:", raws);
     updateSubtasks(raws, subtask.taskId)
       .then((result) => {
-        console.log("updateResult:", result); // es toda la task
-        // re render subtasks list
-        const resultParsed = JSON.parse(result.subtasks);
+        const resultParsed = JSON.parse(result.subtasks) as ISubtask[];
         setAllSubtasksProp(resultParsed);
         return result;
       })

@@ -1,4 +1,4 @@
-import { ITask, TaskStatus, ISubtasks } from "../../Types/index";
+import { ITask, TaskStatus } from "../../Types/index";
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -67,7 +67,7 @@ export const updateRequest = (status: TaskStatus, task: ITask) => {
     .catch((error) => console.log("error", error));
 };
 
-export const updateSubtasks = (subtasks: ISubtasks[], taskID: number) => {
+export const updateSubtasks = (subtasks: string, taskID: string) => {
   const raw = JSON.stringify({
     subtasks: subtasks,
   });
@@ -117,7 +117,7 @@ export const getTaskRequest = (task: ITask) => {
     .catch((error) => console.log("error", error));
 };
 
-export const getSubTaskRequest = (task: ITask) => {
+export const getSubTaskRequest = (task: string) => {
   const requestOptions = {
     method: "GET",
     headers: myHeaders,

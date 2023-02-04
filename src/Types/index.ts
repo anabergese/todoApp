@@ -16,6 +16,7 @@ export type ITask = {
   deadline: string;
   status: TaskStatus;
   id: string;
+  subtasks?: ISubtask;
 };
 
 export type IUser = {
@@ -31,7 +32,18 @@ export type IUser = {
   updated_at?: string;
 };
 
-export type ISubtasks = { id: string; name: string };
+export type ISubtask = {
+  name: string;
+  id: string;
+  key: string;
+  taskId: string;
+};
+
+export interface SubtaskProps {
+  allSubtasksProp: ISubtask[];
+  subtaskProp: ISubtask;
+  setAllSubtasksProps: React.Dispatch<React.SetStateAction<ISubtask[]>>;
+}
 
 // Types related to Styles
 export type IButtonsProps = {
