@@ -48,6 +48,7 @@ export interface SubtaskProps {
 // Types related to Styles
 export type IButtonsProps = {
   submitbtn?: boolean;
+  subtaskbtn?: boolean;
   theme: string[];
 };
 

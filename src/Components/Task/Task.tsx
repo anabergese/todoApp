@@ -157,12 +157,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
               {task.status}
             </p>
             {pathname.includes("/details") ? (
-              <div>
-                <p>
-                  <strong>Subtasks</strong>
-                </p>
-                <SubTasks taskID={task.id} />
-              </div>
+              <SubTasks taskID={task.id} />
             ) : null}
           </div>
           <div>

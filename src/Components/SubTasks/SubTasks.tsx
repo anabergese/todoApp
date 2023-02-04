@@ -1,12 +1,21 @@
-import { useState, useEffect, FunctionComponent, FormEvent } from "react";
+import {
+  useState,
+  useEffect,
+  FunctionComponent,
+  FormEvent,
+  useContext,
+} from "react";
 import { getSubTaskRequest, updateSubtasks } from "../API Requests/Requests";
 import nextId from "react-id-generator";
 import SubTask from "../SubTask/SubTask";
 import { ISubtask } from "../../Types";
+import { SubTaskForm } from "./SubTasks.styled";
+import ThemeContext from "../../Contexts/ThemeContext";
 
 const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
   const [inputSubtask, setInputSubtask] = useState("");
   const [allSubTasks, setAllSubTasks] = useState<ISubtask[]>([]);
+  const [themes] = useContext(ThemeContext);
 
   useEffect(() => {
     getSubTaskRequest(taskID)
@@ -63,7 +72,8 @@ const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
         </ol>
       )}
 
-      <form
+      <SubTaskForm
+        theme={themes}
         onSubmit={(e) => {
           submitSubtaskHandler(e);
         }}
@@ -74,7 +84,7 @@ const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
           placeholder="Add subtask..."
         />
         <button>+</button>
-      </form>
+      </SubTaskForm>
     </>
   );
 };

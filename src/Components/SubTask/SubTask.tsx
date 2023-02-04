@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext, useState } from "react";
+import { FunctionComponent, useContext, useState, useCallback } from "react";
 import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
@@ -13,6 +13,13 @@ const SubTask: FunctionComponent<{
   const [themes] = useContext(ThemeContext);
   const [inputName, setInputName] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
+
+  const textAreaInput = useCallback((areaElement) => {
+    if (areaElement) {
+      areaElement.focus();
+      areaElement.setSelectionRange(0, -1);
+    }
+  }, []);
 
   const deleteHandler = (subtask: ISubtask, allsubtasks: ISubtask[]) => {
     const newAllSubTasks = allsubtasks.filter((st) => {
@@ -53,7 +60,7 @@ const SubTask: FunctionComponent<{
   };
 
   return (
-    <SubTaskStyled>
+    <SubTaskStyled theme={themes}>
       {isEditMode ? (
         <>
           <textarea
@@ -61,11 +68,22 @@ const SubTask: FunctionComponent<{
             onChange={(e) => {
               setInputName(e.target.value);
             }}
+            onBlur={(e) => {
+              if (e.currentTarget === e.target) {
+                setIsEditMode(false);
+              }
+            }}
+            ref={textAreaInput}
           ></textarea>
           <StyledButton
-            theme={themes[0]}
+            theme={themes}
+            className="Task__SubTask__Done"
             onClick={() => {
-              editHandler(subtaskProp, allsubtasksProp, inputName);
+              editHandler(
+                subtaskProp,
+                allsubtasksProp,
+                inputName || subtaskProp.name
+              );
               setIsEditMode(false);
             }}
           >
@@ -74,19 +92,22 @@ const SubTask: FunctionComponent<{
         </>
       ) : (
         <button
+          className="Task__SubTask__Name"
           onClick={() => {
             setIsEditMode(true);
           }}
         >
-          <p>{subtaskProp.name}</p>
+          {subtaskProp.name}
         </button>
       )}
 
       <StyledButton
-        theme={themes[0]}
+        theme={themes}
+        className="Task__SubTask__Delete"
         onClick={() => {
           deleteHandler(subtaskProp, allsubtasksProp);
         }}
+        subtaskbtn
       >
         Delete
       </StyledButton>
