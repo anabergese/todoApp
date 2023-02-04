@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext, useState, useCallback } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
@@ -13,13 +13,6 @@ const SubTask: FunctionComponent<{
   const [themes] = useContext(ThemeContext);
   const [inputName, setInputName] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
-
-  const textAreaInput = useCallback((areaElement) => {
-    if (areaElement) {
-      areaElement.focus();
-      areaElement.setSelectionRange(0, -1);
-    }
-  }, []);
 
   const deleteHandler = (subtask: ISubtask, allsubtasks: ISubtask[]) => {
     const newAllSubTasks = allsubtasks.filter((st) => {
@@ -50,6 +43,8 @@ const SubTask: FunctionComponent<{
     });
 
     const raws = JSON.stringify(newAllSubTasks[0]);
+    console.log(raws);
+
     updateSubtasks(raws, subtask.taskId)
       .then((result) => {
         const resultParsed = JSON.parse(result.subtasks) as ISubtask[];
@@ -68,22 +63,14 @@ const SubTask: FunctionComponent<{
             onChange={(e) => {
               setInputName(e.target.value);
             }}
-            onBlur={(e) => {
-              if (e.currentTarget === e.target) {
-                setIsEditMode(false);
-              }
-            }}
-            ref={textAreaInput}
           ></textarea>
           <StyledButton
             theme={themes}
             className="Task__SubTask__Done"
             onClick={() => {
-              editHandler(
-                subtaskProp,
-                allsubtasksProp,
-                inputName || subtaskProp.name
-              );
+              console.log("inputn:", subtaskProp.name);
+              const nameToAdd = inputName ? inputName : subtaskProp.name;
+              editHandler(subtaskProp, allsubtasksProp, nameToAdd);
               setIsEditMode(false);
             }}
           >
