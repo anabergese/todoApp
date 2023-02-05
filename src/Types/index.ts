@@ -16,7 +16,7 @@ export type ITask = {
   deadline: string;
   status: TaskStatus;
   id: string;
-  subtasks?: ISubtask;
+  subtasks?: ISubtask[];
 };
 
 export type IUser = {
@@ -36,7 +36,7 @@ export type ISubtask = {
   name: string;
   id: string;
   key: string;
-  taskId: string;
+  task_id: string;
 };
 
 export interface SubtaskProps {

@@ -6,10 +6,10 @@ import { SubTaskStyled } from "../SubTask/SubTask.styled";
 import { ISubtask, SubtaskProps } from "../../Types";
 
 const SubTask: FunctionComponent<{
-  allsubtasksProp: SubtaskProps["allSubtasksProp"];
-  subtaskProp: ISubtask;
-  setAllSubtasksProp: SubtaskProps["setAllSubtasksProps"];
-}> = ({ subtaskProp, allsubtasksProp, setAllSubtasksProp }) => {
+  allSubTasks: SubtaskProps["allSubtasksProp"];
+  subtask: ISubtask;
+  setAllSubTasks: SubtaskProps["setAllSubtasksProps"];
+}> = ({ subtask, allSubTasks, setAllSubTasks }) => {
   const [themes] = useContext(ThemeContext);
   const [inputName, setInputName] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
@@ -19,13 +19,10 @@ const SubTask: FunctionComponent<{
       return st.id !== subtask.id;
     });
 
-    const idString = JSON.stringify(subtask.taskId);
-    const raws = JSON.stringify(newAllSubTasks);
-    updateSubtasks(raws, idString)
+    updateSubtasks(newAllSubTasks, subtask.task_id)
       .then((result) => {
-        const resultParsed = JSON.parse(result.subtasks) as ISubtask[];
-        setAllSubtasksProp(resultParsed);
-        return result;
+        setAllSubTasks(result.subtasks);
+        return allSubTasks;
       })
       .catch((error) => console.log("error", error));
   };
@@ -35,21 +32,17 @@ const SubTask: FunctionComponent<{
     allsubtasks: ISubtask[],
     inputName: string
   ) => {
-    const newAllSubTasks = allsubtasks.map((st, index) => {
+    allsubtasks.map((st, index) => {
       if (st.id === subtask.id) {
         allsubtasks[index].name = inputName;
         return allsubtasks;
       }
     });
 
-    const raws = JSON.stringify(newAllSubTasks[0]);
-    console.log(raws);
-
-    updateSubtasks(raws, subtask.taskId)
+    updateSubtasks(allsubtasks, subtask.task_id)
       .then((result) => {
-        const resultParsed = JSON.parse(result.subtasks) as ISubtask[];
-        setAllSubtasksProp(resultParsed);
-        return result;
+        setAllSubTasks(result.subtasks);
+        return allSubTasks;
       })
       .catch((error) => console.log("error", error));
   };
@@ -59,7 +52,7 @@ const SubTask: FunctionComponent<{
       {isEditMode ? (
         <>
           <textarea
-            value={inputName || subtaskProp.name}
+            value={inputName || subtask.name}
             onChange={(e) => {
               setInputName(e.target.value);
             }}
@@ -68,9 +61,10 @@ const SubTask: FunctionComponent<{
             theme={themes}
             className="Task__SubTask__Done"
             onClick={() => {
-              console.log("inputn:", subtaskProp.name);
-              const nameToAdd = inputName ? inputName : subtaskProp.name;
-              editHandler(subtaskProp, allsubtasksProp, nameToAdd);
+              const nameToAdd = inputName ? inputName : subtask.name;
+              console.log("nametoADD", nameToAdd);
+
+              editHandler(subtask, allSubTasks, nameToAdd);
               setIsEditMode(false);
             }}
           >
@@ -84,7 +78,7 @@ const SubTask: FunctionComponent<{
             setIsEditMode(true);
           }}
         >
-          {subtaskProp.name}
+          {subtask.name}
         </button>
       )}
 
@@ -92,7 +86,7 @@ const SubTask: FunctionComponent<{
         theme={themes}
         className="Task__SubTask__Delete"
         onClick={() => {
-          deleteHandler(subtaskProp, allsubtasksProp);
+          deleteHandler(subtask, allSubTasks);
         }}
         subtaskbtn
       >

@@ -25,6 +25,7 @@ const FormTask = () => {
       deadline: inputDeadline,
       status: "Uncompleted",
       id: nextId("task-"), // not necesary
+      subtasks: [],
     } as ITask;
 
     createRequest(

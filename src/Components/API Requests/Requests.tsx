@@ -1,4 +1,4 @@
-import { ITask, TaskStatus } from "../../Types/index";
+import { ISubtask, ITask, TaskStatus } from "../../Types/index";
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -67,7 +67,7 @@ export const updateRequest = (status: TaskStatus, task: ITask) => {
     .catch((error) => console.log("error", error));
 };
 
-export const updateSubtasks = (subtasks: string, taskID: string) => {
+export const updateSubtasks = (subtasks: ISubtask[], task_id: string) => {
   const raw = JSON.stringify({
     subtasks: subtasks,
   });
@@ -79,7 +79,7 @@ export const updateSubtasks = (subtasks: string, taskID: string) => {
   };
 
   return fetch(
-    `https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/${taskID}`,
+    `https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/${task_id}`,
     requestOptions
   )
     .then((response) => response.json())
@@ -117,14 +117,14 @@ export const getTaskRequest = (task: ITask) => {
     .catch((error) => console.log("error", error));
 };
 
-export const getSubTaskRequest = (task: string) => {
+export const getSubTaskRequest = (task_id: string) => {
   const requestOptions = {
     method: "GET",
     headers: myHeaders,
   };
 
   return fetch(
-    `https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/${task}`,
+    `https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/${task_id}`,
     requestOptions
   )
     .then((response) => response.json())

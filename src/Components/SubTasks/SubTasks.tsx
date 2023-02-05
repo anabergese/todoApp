@@ -12,43 +12,46 @@ import { ISubtask } from "../../Types";
 import { SubTaskForm } from "./SubTasks.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 
-const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
+const SubTasks: FunctionComponent<{
+  task_id: string;
+  subtasks: ISubtask[];
+}> = ({ task_id, subtasks }) => {
   const [inputSubtask, setInputSubtask] = useState("");
-  const [allSubTasks, setAllSubTasks] = useState<ISubtask[]>([]);
+  const [shouldUpdate, setShouldUpdate] = useState(false);
+  const [allSubTasks, setAllSubTasks] = useState<ISubtask[]>(subtasks);
   const [themes] = useContext(ThemeContext);
 
   useEffect(() => {
-    getSubTaskRequest(taskID)
-      .then((result) => {
-        const resultParsed = JSON.parse(result.subtasks) as ISubtask[];
-        setAllSubTasks(resultParsed);
-        return allSubTasks;
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
+    if (shouldUpdate) {
+      getSubTaskRequest(task_id)
+        .then((result) => {
+          setAllSubTasks(result.subtasks);
+          return allSubTasks;
+        })
+        .catch((error) => console.log("error", error));
+      setShouldUpdate(false);
+    }
+  }, [shouldUpdate]);
 
   const submitSubtaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const newSubtask = {
       name: inputSubtask.charAt(0).toUpperCase() + inputSubtask.slice(1),
-      id: nextId("id-"),
-      key: nextId("key-"),
-      taskId: taskID,
+      id: nextId(),
+      key: nextId(),
+      task_id: task_id,
     };
 
-    setAllSubTasks([...allSubTasks, newSubtask]);
     const allnewSubtasks = [...allSubTasks, newSubtask] as ISubtask[];
-    console.log("allsubtask:", allnewSubtasks);
-
-    const raws = JSON.stringify(allnewSubtasks);
-    updateSubtasks(raws, taskID)
+    updateSubtasks(allnewSubtasks, task_id)
       .then((result) => {
-        console.log("resultAdd", result);
-        return result;
+        const subTasksUpdated = result.subtasks as ISubtask[];
+        setAllSubTasks(subTasksUpdated);
+        return allSubTasks;
       })
       .catch((error) => console.log("error", error));
-
+    setShouldUpdate(true);
     setInputSubtask("");
   };
 
@@ -62,9 +65,9 @@ const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
             return (
               <li key={Math.random()}>
                 <SubTask
-                  subtaskProp={subtask}
-                  allsubtasksProp={allSubTasks}
-                  setAllSubtasksProp={setAllSubTasks}
+                  subtask={subtask}
+                  allSubTasks={allSubTasks}
+                  setAllSubTasks={setAllSubTasks}
                 />
               </li>
             );
@@ -83,7 +86,7 @@ const SubTasks: FunctionComponent<{ taskID: string }> = ({ taskID }) => {
           onChange={(e) => setInputSubtask(e.target.value)}
           placeholder="Add subtask..."
         />
-        <button>+</button>
+        <button type="submit">+</button>
       </SubTaskForm>
     </>
   );
