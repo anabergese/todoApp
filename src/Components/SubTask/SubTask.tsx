@@ -1,4 +1,10 @@
-import { FunctionComponent, useContext, useState } from "react";
+import {
+  FunctionComponent,
+  useContext,
+  useState,
+  useRef,
+  useEffect,
+} from "react";
 import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
@@ -13,6 +19,18 @@ const SubTask: FunctionComponent<{
   const [themes] = useContext(ThemeContext);
   const [inputName, setInputName] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+      textareaRef.current.setSelectionRange(0, -1);
+    }
+  }, [isEditMode]);
+
+  const handleSubmitEdit = () => {
+    setIsEditMode(true);
+  };
 
   const deleteHandler = (subtask: ISubtask, allsubtasks: ISubtask[]) => {
     const newAllSubTasks = allsubtasks.filter((st) => {
@@ -42,6 +60,7 @@ const SubTask: FunctionComponent<{
     updateSubtasks(allsubtasks, subtask.task_id)
       .then((result) => {
         setAllSubTasks(result.subtasks);
+        setIsEditMode(false);
         return allSubTasks;
       })
       .catch((error) => console.log("error", error));
@@ -52,9 +71,13 @@ const SubTask: FunctionComponent<{
       {isEditMode ? (
         <>
           <textarea
+            ref={textareaRef}
             value={inputName || subtask.name}
             onChange={(e) => {
               setInputName(e.target.value);
+            }}
+            onBlur={() => {
+              setIsEditMode(false);
             }}
           ></textarea>
           <StyledButton
@@ -62,22 +85,14 @@ const SubTask: FunctionComponent<{
             className="Task__SubTask__Done"
             onClick={() => {
               const nameToAdd = inputName ? inputName : subtask.name;
-              console.log("nametoADD", nameToAdd);
-
               editHandler(subtask, allSubTasks, nameToAdd);
-              setIsEditMode(false);
             }}
           >
             Done
           </StyledButton>
         </>
       ) : (
-        <button
-          className="Task__SubTask__Name"
-          onClick={() => {
-            setIsEditMode(true);
-          }}
-        >
+        <button className="Task__SubTask__Name" onClick={handleSubmitEdit}>
           {subtask.name}
         </button>
       )}
