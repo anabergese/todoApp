@@ -17,6 +17,7 @@ const FormTask = () => {
 
   const submitTaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const newTask = {
       title: inputTitle.charAt(0).toUpperCase() + inputTitle.slice(1),
       description:

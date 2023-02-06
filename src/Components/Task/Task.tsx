@@ -23,7 +23,6 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
   const [task, setTask] = useState(taskProp);
-
   const location = useLocation();
   const pathname = location.pathname;
 
