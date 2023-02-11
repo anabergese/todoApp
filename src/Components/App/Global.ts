@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
+import { IButtonsProps } from "../../Types/index";
 
 export const flexColumn = `
 display: flex;
@@ -25,9 +26,11 @@ export const StyledApp = styled.div.attrs({
 
 export const Content = styled.div.attrs({
   className: "App__Content",
-})`
+})<IButtonsProps>`
   ${flexColumn}
   flex-grow: 1;
+  background-color: ${(props: IButtonsProps) =>
+    props.submitbtn ? props.theme[0] : props.theme[1]};
 `;
 
 export const GlobalStyles = createGlobalStyle`

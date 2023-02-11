@@ -31,7 +31,7 @@ const App = () => {
           {isAuthenticated ? (
             <>
               <Navbar />
-              <Content>
+              <Content theme={themes}>
                 <ColorTheme />
                 <Routes>
                   <Route path="/" element={<Home />} />
