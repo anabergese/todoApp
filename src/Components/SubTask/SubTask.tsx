@@ -35,10 +35,7 @@ const SubTask: FunctionComponent<{
 
   const handleBlur = useCallback((e) => {
     const currentTarget = e.currentTarget;
-    console.log(e.currentTarget);
-    // Give browser time to focus the next element
     requestAnimationFrame(() => {
-      // Check if the new focused element is a child of the original container
       if (!currentTarget.contains(document.activeElement)) {
         setIsEditMode(false);
       }
