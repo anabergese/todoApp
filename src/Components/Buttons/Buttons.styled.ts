@@ -2,9 +2,7 @@ import styled from "styled-components";
 import { IButtonsProps } from "../../Types/index";
 import { border, letterSpacing } from "../App/Global";
 
-export const StyledButton = styled.button.attrs({
-  className: "Tasks__Btn",
-})<IButtonsProps>`
+export const StyledButton = styled.button<IButtonsProps>`
   background-color: ${(props: IButtonsProps) =>
     props.submitbtn ? props.theme[0] : props.theme[1]};
   ${border}
@@ -17,7 +15,7 @@ export const StyledButton = styled.button.attrs({
     props.submitbtn ? "700" : "normal"};
 
   ${letterSpacing}
-  margin: 1rem 0.25rem;
+  margin: ${(props: IButtonsProps) => (props.subtaskbtn ? 0 : "1rem 0.25rem")};
   padding: 0.4rem 1.2rem;
   text-align: center;
   text-decoration: none;

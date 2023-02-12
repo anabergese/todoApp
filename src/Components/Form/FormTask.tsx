@@ -17,6 +17,7 @@ const FormTask = () => {
 
   const submitTaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const newTask = {
       title: inputTitle.charAt(0).toUpperCase() + inputTitle.slice(1),
       description:
@@ -25,6 +26,7 @@ const FormTask = () => {
       deadline: inputDeadline,
       status: "Uncompleted",
       id: nextId("task-"), // not necesary
+      subtasks: [],
     } as ITask;
 
     createRequest(

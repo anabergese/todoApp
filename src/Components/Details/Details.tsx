@@ -7,7 +7,7 @@ import { ITask } from "../../Types/index";
 const Details: FunctionComponent = () => {
   const location = useLocation();
   const task = location.state as ITask;
-
+  console.log(task);
   return (
     <>
       <h1 data-testid="h1Details">Details Page</h1>

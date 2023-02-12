@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { IThemeProps } from "../../Types/index";
 import { border, borderRadius, flexColumn } from "../App/Global";
 
-export const StyledFormTask = styled.form`
+export const StyledFormTask = styled.form.attrs({
+  className: "App__Content__Form",
+})`
   ${flexColumn}
   align-items: center;
 `;

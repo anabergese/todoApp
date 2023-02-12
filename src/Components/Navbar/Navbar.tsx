@@ -25,6 +25,9 @@ const Navbar: FunctionComponent = () => {
       <Link to="/tasks">
         <h2>All Tasks</h2>
       </Link>
+      <Link to="/tasks?filter=Today">
+        <h2>Tasks for Today</h2>
+      </Link>
       <Link to="/task/create">
         <h2>Create Task</h2>
       </Link>

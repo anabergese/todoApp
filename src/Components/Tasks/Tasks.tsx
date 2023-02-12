@@ -28,6 +28,9 @@ const Tasks = () => {
         return allTasks.filter((task) => task.status === "Completed");
       case "Uncompleted":
         return allTasks.filter((task) => task.status === "Uncompleted");
+      case "Today":
+        const today = new Date().toISOString().slice(0, 10);
+        return allTasks.filter((task) => task.deadline === today);
       default:
         return allTasks;
     }
