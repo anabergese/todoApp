@@ -4,11 +4,16 @@ import { IButtonsProps } from "../../Types/index";
 export const SubTaskStyled = styled.div.attrs({
   className: "Task_Subtask",
 })<IButtonsProps>`
-   {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .Task__SubTask__Edit {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
   button,
   textarea {
     background-color: ${(props: IButtonsProps) => props.theme[1]};

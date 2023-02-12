@@ -4,6 +4,7 @@ import {
   useState,
   useRef,
   useEffect,
+  useCallback,
 } from "react";
 import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
@@ -31,6 +32,18 @@ const SubTask: FunctionComponent<{
   const handleSubmitEdit = () => {
     setIsEditMode(true);
   };
+
+  const handleBlur = useCallback((e) => {
+    const currentTarget = e.currentTarget;
+    console.log(e.currentTarget);
+    // Give browser time to focus the next element
+    requestAnimationFrame(() => {
+      // Check if the new focused element is a child of the original container
+      if (!currentTarget.contains(document.activeElement)) {
+        setIsEditMode(false);
+      }
+    });
+  }, []);
 
   const deleteHandler = (subtask: ISubtask, allsubtasks: ISubtask[]) => {
     const newAllSubTasks = allsubtasks.filter((st) => {
@@ -69,15 +82,12 @@ const SubTask: FunctionComponent<{
   return (
     <SubTaskStyled theme={themes}>
       {isEditMode ? (
-        <>
+        <div className="Task__SubTask__Edit" onBlur={handleBlur}>
           <textarea
             ref={textareaRef}
             value={inputName || subtask.name}
             onChange={(e) => {
               setInputName(e.target.value);
-            }}
-            onBlur={() => {
-              setIsEditMode(false);
             }}
           ></textarea>
           <StyledButton
@@ -90,7 +100,7 @@ const SubTask: FunctionComponent<{
           >
             Done
           </StyledButton>
-        </>
+        </div>
       ) : (
         <button className="Task__SubTask__Name" onClick={handleSubmitEdit}>
           {subtask.name}
