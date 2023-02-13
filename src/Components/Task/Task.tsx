@@ -70,9 +70,9 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
     else if (task.status == "Deleted") tasksHandler("Uncompleted", task);
   };
 
-  const routeChange = (route: string, task: ITask) => {
-    navigate(route, { state: task });
-  };
+  // const routeChange = (route: string, task: ITask) => {
+  //   navigate(route, { state: task });
+  // };
 
   return (
     <>
@@ -82,7 +82,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
           <div>
             <StyledButton
               theme={themes}
-              onClick={() => routeChange(`/details/${task.id}`, task)}
+              onClick={() => navigate(`/details/${task.id}`, { state: task })}
             >
               View
             </StyledButton>
