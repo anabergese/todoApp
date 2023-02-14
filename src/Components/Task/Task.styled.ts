@@ -38,12 +38,13 @@ export const TitleTask = styled.div.attrs({
   }
 `;
 
-export const ContentTask = styled.div.attrs({
+export const StyledContentTask = styled.div.attrs({
   className: "Task__Description",
 })<ITaskProps>`
   display: ${(props: ITaskProps) => (props.detail ? "flex" : "1")};
   align-items: center;
-  background-color: ${(props: ITaskProps) => props.theme[1]};
+  background-color: ${(props: ITaskProps) =>
+    props.theme[0] === "black" ? "#00000080" : `${props.theme[0]}80`};
   border-radius: 0px 0px ${borderRadius} ${borderRadius};
   justify-content: space-between;
   padding: 0.5rem 2rem;

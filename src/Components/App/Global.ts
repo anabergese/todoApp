@@ -29,8 +29,7 @@ export const Content = styled.div.attrs({
 })<IButtonsProps>`
   ${flexColumn}
   flex-grow: 1;
-  background-color: ${(props: IButtonsProps) =>
-    props.submitbtn ? props.theme[0] : props.theme[1]};
+  background-color: ${(props: IButtonsProps) => props.theme[1]};
 `;
 
 export const GlobalStyles = createGlobalStyle`
@@ -41,7 +40,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;
     h1,h2 {
-      color: black;
+      color: #000000;
       font-size: 1rem;
       ${letterSpacing}
       margin: 0 !important;

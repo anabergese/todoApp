@@ -38,7 +38,7 @@ const Navbar: FunctionComponent = () => {
         <h2>Uncompleted Tasks</h2>
       </Link>
       <Link to="/tasks?filter=Deleted">
-        <h2>Recycle Bin</h2>
+        <h2>Deleted Tasks</h2>
       </Link>
       <div className="Navbar__Separator"></div>
       <Profile />

@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext, FunctionComponent } from "react";
-import { FocusScope } from "react-aria";
 import Modal from "../Modal/Modal";
 import { TaskStatus, ITask } from "../../Types/index";
-import { StyledTask, TitleTask, ContentTask } from "./Task.styled";
-import { StyledModal } from "../Modal/Modal.styled";
+import { StyledTask, TitleTask } from "./Task.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import {
@@ -14,8 +12,8 @@ import {
   getTaskRequest,
 } from "../API Requests/Requests";
 
-import SubTasks from "../SubTasks/SubTasks";
-
+import Content from "./Content";
+import DeleteModal from "../Modal/DeleteModal";
 const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
@@ -23,8 +21,6 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
   const [task, setTask] = useState(taskProp);
-  const location = useLocation();
-  const pathname = location.pathname;
 
   useEffect(() => {
     if (shouldUpdate) {
@@ -70,10 +66,6 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
     else if (task.status == "Deleted") tasksHandler("Uncompleted", task);
   };
 
-  // const routeChange = (route: string, task: ITask) => {
-  //   navigate(route, { state: task });
-  // };
-
   return (
     <>
       <StyledTask data-testid="task-container">
@@ -81,8 +73,8 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
           <h2>{task.title}</h2>
           <div>
             <StyledButton
-              theme={themes}
               onClick={() => navigate(`/details/${task.id}`, { state: task })}
+              theme={themes}
             >
               View
             </StyledButton>
@@ -108,61 +100,19 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
                 ? "Redo"
                 : "Complete"}
             </StyledButton>
-
             {showModal ? (
               <Modal>
-                <StyledModal theme={themes}>
-                  <FocusScope contain restoreFocus autoFocus>
-                    <h1> Are you sure you want to delete this task?</h1>
-                    <p>{task.title}</p>
-                    <div>
-                      <StyledButton
-                        theme={themes}
-                        onClick={() => {
-                          deleteHandler(task);
-                        }}
-                      >
-                        Yes
-                      </StyledButton>
-                      <StyledButton theme={themes} onClick={toggleModal}>
-                        No
-                      </StyledButton>
-                    </div>
-                  </FocusScope>
-                </StyledModal>
+                <DeleteModal
+                  task={task}
+                  setShowModal={setShowModal}
+                  showModal={showModal}
+                  deleteHandler={deleteHandler}
+                />
               </Modal>
             ) : null}
           </div>
         </TitleTask>
-        <ContentTask theme={themes} detail>
-          <div>
-            {pathname.includes("/details") ? (
-              <p>
-                <strong>Description:</strong>
-                {task.description}
-              </p>
-            ) : null}
-            <p>
-              <strong>Deadline:</strong> {task.deadline}
-            </p>
-            <p
-              className={
-                task.status === "Deleted" || task.status === "Completed"
-                  ? "highlight"
-                  : ""
-              }
-            >
-              <strong>Status:</strong>
-              {task.status}
-            </p>
-            {pathname.includes("/details") ? (
-              <SubTasks task_id={task.id} subtasks={task.subtasks} />
-            ) : null}
-          </div>
-          <div>
-            {task.photo ? <img src={task.photo} alt={`${task.title}`} /> : null}
-          </div>
-        </ContentTask>
+        <Content theme={themes} task={task} />
       </StyledTask>
     </>
   );
