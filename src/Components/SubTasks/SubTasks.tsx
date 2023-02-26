@@ -25,7 +25,8 @@ const SubTasks: FunctionComponent<{
     if (shouldUpdate) {
       getSubTaskRequest(task_id)
         .then((result) => {
-          setAllSubTasks(result.subtasks);
+          const taskUpdated = result.subtasks as ISubtask[];
+          setAllSubTasks(taskUpdated);
           return allSubTasks;
         })
         .catch((error) => console.log("error", error));

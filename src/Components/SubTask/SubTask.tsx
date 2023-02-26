@@ -24,7 +24,6 @@ const SubTask: FunctionComponent<{
 
   useEffect(() => {
     if (textareaRef.current) {
-      // typescript errors:
       textareaRef.current.focus();
       textareaRef.current.setSelectionRange(0, -1);
     }
