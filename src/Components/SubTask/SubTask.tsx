@@ -10,17 +10,17 @@ import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { SubTaskStyled } from "../SubTask/SubTask.styled";
-import { ISubtask, SubtaskProps } from "../../Types";
+import { ISubtask, ISubtaskProps, ITask } from "../../Types";
 
 const SubTask: FunctionComponent<{
-  allSubTasks: SubtaskProps["allSubtasksProp"];
+  allSubTasks: ISubtaskProps["allSubtasksProp"];
   subtask: ISubtask;
-  setAllSubTasks: SubtaskProps["setAllSubtasksProps"];
+  setAllSubTasks: ISubtaskProps["setAllSubtasksProps"];
 }> = ({ subtask, allSubTasks, setAllSubTasks }) => {
   const [themes] = useContext(ThemeContext);
   const [inputName, setInputName] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
-  const textareaRef = useRef(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -33,7 +33,7 @@ const SubTask: FunctionComponent<{
     setIsEditMode(true);
   };
 
-  const handleBlur = useCallback((e) => {
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     const currentTarget = e.currentTarget;
     requestAnimationFrame(() => {
       if (!currentTarget.contains(document.activeElement)) {
@@ -49,7 +49,8 @@ const SubTask: FunctionComponent<{
 
     updateSubtasks(newAllSubTasks, subtask.task_id)
       .then((result) => {
-        setAllSubTasks(result.subtasks);
+        const taskUpdated = result as ITask;
+        setAllSubTasks(taskUpdated.subtasks as ISubtask[]);
         return allSubTasks;
       })
       .catch((error) => console.log("error", error));
@@ -69,7 +70,8 @@ const SubTask: FunctionComponent<{
 
     updateSubtasks(allsubtasks, subtask.task_id)
       .then((result) => {
-        setAllSubTasks(result.subtasks);
+        const taskUpdated = result as ITask;
+        setAllSubTasks(taskUpdated.subtasks as ISubtask[]);
         setIsEditMode(false);
         return allSubTasks;
       })

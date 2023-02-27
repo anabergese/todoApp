@@ -1,9 +1,4 @@
-import React, {
-  FunctionComponent,
-  MutableRefObject,
-  useEffect,
-  useRef,
-} from "react";
+import { FunctionComponent, MutableRefObject, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { customStylesModal } from "./Modal.styled";
 
@@ -30,7 +25,7 @@ const Modal: FunctionComponent = ({ children }) => {
     };
   }, []);
 
-  return createPortal(<div>{children}</div>, elRef.current);
+  return createPortal(children, elRef.current);
 };
 
 export default Modal;

@@ -1,13 +1,4 @@
-// export type IphotoProp = {
-//   lastModified?: number;
-//   lastModifiedDate?: Date;
-//   name?: string;
-//   size?: number;
-//   type?: string;
-//   webkitRelativePath?: string;
-// };
-
-// Types related Components
+// Start Types related Components
 export type TaskStatus = "Deleted" | "Uncompleted" | "Completed";
 export type ITask = {
   title: string;
@@ -39,13 +30,20 @@ export type ISubtask = {
   task_id: string;
 };
 
-export interface SubtaskProps {
+export interface ISubtaskProps {
   allSubtasksProp: ISubtask[];
   subtaskProp: ISubtask;
   setAllSubtasksProps: React.Dispatch<React.SetStateAction<ISubtask[]>>;
 }
 
-// Types related to Styles
+export interface IModalProps {
+  showModal: (a: string) => void;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteHandler: (a: ITask) => void;
+}
+// End Types related to Styles
+
+// Start Types related to Styles
 export type IButtonsProps = {
   submitbtn?: boolean;
   subtaskbtn?: boolean;
@@ -60,3 +58,4 @@ export type ITaskProps = {
   theme: string[];
   detail?: boolean;
 };
+// End Types related to Styles

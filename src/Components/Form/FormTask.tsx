@@ -36,8 +36,8 @@ const FormTask = () => {
       newTask.deadline
     )
       .then((result) => {
-        result as ITask;
-        const taskId = result.id as string;
+        const taskcreated = result as ITask;
+        const taskId = taskcreated.id;
         navigate(`/details/${taskId}`, { state: result });
       })
       .catch((error) => console.log("error", error));

@@ -11,17 +11,18 @@ export const StyledFormTask = styled.form.attrs({
 
 export const FormBody = styled.div<IThemeProps>`
   ${flexColumn}
-  ${border}
-  background-color: ${(props: IThemeProps) => props.theme[0]};
 
   h1 {
+    background-color: ${(props: IThemeProps) => props.theme[0]};
+    ${border}
     color: ${(props: IThemeProps) =>
       props.theme[0] === "black" ? props.theme[1] : "black"};
     padding: 1.5rem 0;
   }
 
   label {
-    background-color: ${(props: IThemeProps) => props.theme[1]};
+    background-color: ${(props: ITaskProps) =>
+      props.theme[0] === "black" ? "#00000080" : `${props.theme[0]}80`};
     padding: 1rem 3rem;
     h2 {
       padding-bottom: 0.5rem;
