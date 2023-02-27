@@ -26,7 +26,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
     if (shouldUpdate) {
       getTaskRequest(task)
         .then((result) => {
-          return result;
+          return result as ITask;
         })
         .catch((error) => console.log("error", error));
 

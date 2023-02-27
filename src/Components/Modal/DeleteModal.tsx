@@ -1,19 +1,18 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import { FunctionComponent, useContext } from "react";
-import { ITask } from "../../Types/index";
+import { ITask, IModalProps } from "../../Types/index";
 import { StyledModal } from "../Modal/Modal.styled";
 import { FocusScope } from "react-aria";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 
-const DeleteModal: FunctionComponent<{ task: ITask }> = ({
-  task,
-  showModal,
-  setShowModal,
-  deleteHandler,
-}) => {
+const DeleteModal: FunctionComponent<{
+  task: ITask;
+  showModal: IModalProps["showModal"];
+  setShowModal: IModalProps["setShowModal"];
+  deleteHandler: IModalProps["deleteHandler"];
+}> = ({ task, showModal, setShowModal, deleteHandler }) => {
   const [themes] = useContext(ThemeContext);
-  console.log(themes);
   const toggleModal = () => setShowModal(!showModal);
 
   return (

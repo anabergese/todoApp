@@ -8,7 +8,7 @@ import {
 import { getSubTaskRequest, updateSubtasks } from "../API Requests/Requests";
 import nextId from "react-id-generator";
 import SubTask from "../SubTask/SubTask";
-import { ISubtask } from "../../Types";
+import { ISubtask, ITask } from "../../Types";
 import { SubTaskForm } from "./SubTasks.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 
@@ -25,8 +25,8 @@ const SubTasks: FunctionComponent<{
     if (shouldUpdate) {
       getSubTaskRequest(task_id)
         .then((result) => {
-          const taskUpdated = result.subtasks as ISubtask[];
-          setAllSubTasks(taskUpdated);
+          const taskUpdated = result as ITask;
+          setAllSubTasks(taskUpdated.subtasks as ISubtask[]);
           return allSubTasks;
         })
         .catch((error) => console.log("error", error));
@@ -47,8 +47,8 @@ const SubTasks: FunctionComponent<{
     const allnewSubtasks = [...allSubTasks, newSubtask] as ISubtask[];
     updateSubtasks(allnewSubtasks, task_id)
       .then((result) => {
-        const subTasksUpdated = result.subtasks as ISubtask[];
-        setAllSubTasks(subTasksUpdated);
+        const taskUpdated = result as ITask;
+        setAllSubTasks(taskUpdated.subtasks as ISubtask[]);
         return allSubTasks;
       })
       .catch((error) => console.log("error", error));

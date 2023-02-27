@@ -98,7 +98,6 @@ export const permanentDeleteRequest = (task: ITask) => {
     requestOptions
   )
     .then((response) => response.json())
-    .then((result: null) => result)
     .catch((error) => console.log("error", error));
 };
 
@@ -113,7 +112,6 @@ export const getTaskRequest = (task: ITask) => {
     requestOptions
   )
     .then((response) => response.json())
-    .then((result: null) => result)
     .catch((error) => console.log("error", error));
 };
 
@@ -128,6 +126,5 @@ export const getSubTaskRequest = (task_id: string) => {
     requestOptions
   )
     .then((response) => response.json())
-    .then((result: null) => result)
     .catch((error) => console.log("error", error));
 };
