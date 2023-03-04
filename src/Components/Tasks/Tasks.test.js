@@ -1,43 +1,39 @@
+/* eslint-disable @typescript-eslint/await-thenable */
 /**
  * @jest-environment jsdom
  */
 import React from "react";
 import { createMemoryHistory } from "history";
-
-import { expect, test, describe, jest } from "@jest/globals";
+import { expect, test, describe } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
-import Tasks from "../Components/Tasks";
-import AlltasksContext from "../Contexts/AlltasksContext";
+import Tasks from "./Tasks";
 
-const alltasks = [
-  {
-    title: "Task example",
-    description: "Description example",
-    status: "Uncompleted",
-    key: "1",
-    id: "task-1",
-  },
-  {
-    title: "Task example 2",
-    description: "Description example 2",
-    status: "Uncompleted",
-    key: "2",
-    id: "task-2",
-  },
-];
+// const alltasks = [
+//   {
+//     title: "Task example",
+//     description: "Description example",
+//     status: "Uncompleted",
+//     key: "1",
+//     id: "task-1",
+//   },
+//   {
+//     title: "Task example 2",
+//     description: "Description example 2",
+//     status: "Uncompleted",
+//     key: "2",
+//     id: "task-2",
+//   },
+// ];
 
-const mockSetAlltasks = jest.fn();
 const history = createMemoryHistory();
 history.push("/tasks");
 
 const AllTasksProvided = () => (
-  <AlltasksContext.Provider value={[alltasks, mockSetAlltasks]}>
-    <BrowserRouter history={history}>
-      <Tasks />
-    </BrowserRouter>
-  </AlltasksContext.Provider>
+  <BrowserRouter history={history}>
+    <Tasks />
+  </BrowserRouter>
 );
 
 describe("Task component", () => {

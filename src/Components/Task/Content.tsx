@@ -40,7 +40,9 @@ const Content: FunctionComponent<{ task: ITask }> = ({ task }) => {
         ) : null}
       </div>
       <div>
-        {task.photo ? <img src={task.photo} alt={`${task.title}`} /> : null}
+        {pathname.includes("/details") && task.photo ? (
+          <img src={task.photo} alt={`${task.title}`} />
+        ) : null}
       </div>
     </StyledContentTask>
   );

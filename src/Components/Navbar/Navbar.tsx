@@ -40,8 +40,8 @@ const Navbar: FunctionComponent = () => {
       <Link to="/tasks?filter=Deleted">
         <h2>Deleted Tasks</h2>
       </Link>
-      <Link to="/tasks?filter=Deleted">
-        <h2>Personal Coach</h2>
+      <Link to="/assistant">
+        <h2>Personal Assistant</h2>
       </Link>
       <div className="Navbar__Separator"></div>
       <Profile />

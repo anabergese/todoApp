@@ -7,6 +7,7 @@ import Details from "../Details/Details";
 import Navbar from "../Navbar/Navbar";
 import ColorTheme from "../Themes/ColorTheme";
 import FormTask from "../Form/FormTask";
+import Assistant from "../AI Assistant/Assistant";
 import { StyledApp, Content, GlobalStyles } from "./Global";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { Auth0Provider } from "@auth0/auth0-react";
@@ -38,6 +39,7 @@ const App = () => {
                   <Route path="/details/:id" element={<Details />} />
                   <Route path="/task/create" element={<FormTask />} />
                   <Route path="/tasks" element={<Tasks />} />
+                  <Route path="/assistant" element={<Assistant />} />
                 </Routes>
               </Content>
             </>

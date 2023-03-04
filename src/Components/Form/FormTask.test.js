@@ -6,7 +6,7 @@ import { expect, test, describe } from "@jest/globals";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
-import FormTask from "../Components/FormTask";
+import FormTask from "./FormTask";
 
 const MockFormTask = () => (
   <BrowserRouter>

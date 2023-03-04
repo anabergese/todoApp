@@ -5,7 +5,7 @@ import React from "react";
 import { expect, test, describe } from "@jest/globals";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import App from "../App";
+import App from "./App";
 
 describe("Integration tests", () => {
   test("Nav Link redirect to FormTask Component when clicked", () => {
