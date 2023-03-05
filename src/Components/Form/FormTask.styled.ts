@@ -29,6 +29,11 @@ export const FormBody = styled.div<IThemeProps>`
       text-align: left;
     }
 
+    .errorText {
+      color: red;
+      font-size: 0.8rem;
+    }
+
     &:nth-child(2) {
       padding-top: 3rem;
     }

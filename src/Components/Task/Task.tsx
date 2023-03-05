@@ -100,7 +100,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
                 ? "Redo"
                 : "Complete"}
             </StyledButton>
-            {showModal ? (
+            {showModal && (
               <Modal>
                 <DeleteModal
                   task={task}
@@ -109,7 +109,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
                   deleteHandler={deleteHandler}
                 />
               </Modal>
-            ) : null}
+            )}
           </div>
         </TitleTask>
         <Content theme={themes} task={task} />
