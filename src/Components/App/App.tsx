@@ -39,7 +39,12 @@ const App = () => {
                   <Route path="/details/:id" element={<Details />} />
                   <Route path="/task/create" element={<FormTask2 />} />
                   <Route path="/tasks" element={<Tasks />} />
-                  <Route path="/assistant" element={<Assistant />} />
+                  <Route
+                    path="/assistant"
+                    element={
+                      <Assistant url="https://storage.googleapis.com/landbot.pro/v3/H-1506463-VCYG6GJ3NNWS56WV/index.json" />
+                    }
+                  />
                 </Routes>
               </Content>
             </>

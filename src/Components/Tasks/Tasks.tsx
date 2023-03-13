@@ -43,7 +43,14 @@ const Tasks = () => {
         <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
       ) : (
         allFilteredTask().map((task) => {
-          return <Task taskProp={task} key={task.id} />;
+          return (
+            <Task
+              taskProp={task}
+              key={task.id}
+              allTasks={allTasks}
+              setAllTasks={setAllTasks}
+            />
+          );
         })
       )}
     </>

@@ -10,16 +10,23 @@ import {
   permanentDeleteRequest,
   updateRequest,
   getTaskRequest,
+  getAllRequest,
 } from "../API Requests/Requests";
 
 import Content from "./Content";
 import DeleteModal from "../Modal/DeleteModal";
-const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
+const Task: FunctionComponent<{ taskProp: ITask; allTasks: ITask[] }> = ({
+  taskProp,
+  allTasks,
+  setAllTasks,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
+  const [shouldUpdateAll, setShouldUpdateAll] = useState(false);
+
   const [task, setTask] = useState(taskProp);
 
   useEffect(() => {
@@ -31,6 +38,16 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
         .catch((error) => console.log("error", error));
 
       setShouldUpdate(false);
+    }
+
+    if (shouldUpdateAll) {
+      getAllRequest()
+        .then((result) => {
+          setAllTasks(result as ITask[]);
+          return allTasks;
+        })
+        .catch((error) => console.log("error", error));
+      setShouldUpdateAll(false);
     }
   }, [shouldUpdate, task]);
 
@@ -55,6 +72,8 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
       .then((result) => {
         result;
         setShouldUpdate(true);
+        setShouldUpdateAll(true);
+        console.log("navigate"); //llega a este punto. necesitamos re-render alltasks
         navigate(`/tasks`);
       })
       .catch((error) => console.log("error", error));

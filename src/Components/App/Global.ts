@@ -41,7 +41,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     h1,h2 {
       color: #000000;
-      font-size: 1rem;
+      font-size: 0.8rem;
+      font-weight: 400;
       ${letterSpacing}
       margin: 0 !important;
       text-align: center;
