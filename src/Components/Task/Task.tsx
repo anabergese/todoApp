@@ -71,9 +71,8 @@ const Task: FunctionComponent<{ taskProp: ITask; allTasks: ITask[] }> = ({
     permanentDeleteRequest(task)
       .then((result) => {
         result;
-        setShouldUpdate(true);
         setShouldUpdateAll(true);
-        console.log("navigate"); //llega a este punto. necesitamos re-render alltasks
+        console.log("task deleted in DB");
         navigate(`/tasks`);
       })
       .catch((error) => console.log("error", error));

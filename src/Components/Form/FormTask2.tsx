@@ -6,6 +6,7 @@ import ThemeContext from "../../Contexts/ThemeContext";
 import { ITask } from "../../Types/index";
 import { createRequest } from "../API Requests/Requests";
 import { useForm } from "react-hook-form";
+import { PlaceholderButton } from "react-bootstrap";
 
 const FormTask2 = () => {
   const [themes] = useContext(ThemeContext);
@@ -17,13 +18,18 @@ const FormTask2 = () => {
   } = useForm();
 
   const submitTaskHandler = (data) => {
+    let photo = data.photo[0];
+    photo
+      ? (photo = URL.createObjectURL(data.photo[0]) as ITask["photo"])
+      : (photo =
+          "https://pbxsangoma.com/front/template/default/public/image/icon/none-img.png");
+
     const title = (data.title.charAt(0).toUpperCase() +
       data.title.slice(1)) as ITask["title"];
     const description = (data.description.charAt(0).toUpperCase() +
       data.description.slice(1)) as ITask["description"];
-    const photo = URL.createObjectURL(data.photo[0]) as ITask["photo"];
-    const deadline = data.deadline as ITask["deadline"];
 
+    const deadline = data.deadline as ITask["deadline"];
     createRequest(title, description, photo, deadline)
       .then((result) => {
         const taskcreated = result as ITask;
