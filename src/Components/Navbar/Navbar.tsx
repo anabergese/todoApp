@@ -12,7 +12,7 @@ const Navbar: FunctionComponent = () => {
 
   return (
     <Sidenav theme={themes} role="navigation" aria-label="Main Menu">
-      <div className="Navbar__Logo">
+      <div className="Navbar__Logo" theme={themes}>
         {themes[0] == "black" ? (
           <img src={whitelogo as string} alt="app logotype" />
         ) : (

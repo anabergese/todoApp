@@ -9,7 +9,7 @@ export const Sidenav = styled.div.attrs({
   background-color: ${(props: IThemeProps) => props.theme[0]};
   top: 0;
   position: sticky;
-  width: 18%;
+  width: 16%;
   height: 100vh;
 
   .Navbar__Logo {
@@ -26,7 +26,8 @@ export const Sidenav = styled.div.attrs({
     text-decoration: none;
     transition-duration: 185ms;
     transition-timing-function: ease;
-    padding: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0.75rem;
 
     h2 {
       color: ${(props: IThemeProps) =>
@@ -35,9 +36,19 @@ export const Sidenav = styled.div.attrs({
     }
 
     &:hover {
-      background-color: white;
+      background-color: ${(props: IThemeProps) => props.theme[1]};
+      border-radius: 8px;
       h2 {
         color: black;
+      }
+    }
+
+    &:focus {
+      background-color: white;
+      border-radius: 8px;
+      h2 {
+        color: black;
+        font-weight: bold;
       }
     }
   }

@@ -10,24 +10,24 @@ import {
   permanentDeleteRequest,
   updateRequest,
   getTaskRequest,
-  getAllRequest,
 } from "../API Requests/Requests";
-
 import Content from "./Content";
 import DeleteModal from "../Modal/DeleteModal";
+import { useSWRConfig } from "swr";
+
+const url = "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks";
+
 const Task: FunctionComponent<{ taskProp: ITask; allTasks: ITask[] }> = ({
   taskProp,
-  allTasks,
-  setAllTasks,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
-  const [shouldUpdateAll, setShouldUpdateAll] = useState(false);
-
   const [task, setTask] = useState(taskProp);
+
+  const { mutate } = useSWRConfig();
 
   useEffect(() => {
     if (shouldUpdate) {
@@ -38,16 +38,6 @@ const Task: FunctionComponent<{ taskProp: ITask; allTasks: ITask[] }> = ({
         .catch((error) => console.log("error", error));
 
       setShouldUpdate(false);
-    }
-
-    if (shouldUpdateAll) {
-      getAllRequest()
-        .then((result) => {
-          setAllTasks(result as ITask[]);
-          return allTasks;
-        })
-        .catch((error) => console.log("error", error));
-      setShouldUpdateAll(false);
     }
   }, [shouldUpdate, task]);
 
@@ -71,11 +61,11 @@ const Task: FunctionComponent<{ taskProp: ITask; allTasks: ITask[] }> = ({
     permanentDeleteRequest(task)
       .then((result) => {
         result;
-        setShouldUpdateAll(true);
         console.log("task deleted in DB");
         navigate(`/tasks`);
       })
       .catch((error) => console.log("error", error));
+    mutate(url);
   };
 
   const completeHandler = (task: ITask) => {
