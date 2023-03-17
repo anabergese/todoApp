@@ -19,7 +19,7 @@ const Landing = () => {
         <h1>
           Organizing your day activity
           <br />
-          with Todo App
+          with TaskMate
         </h1>
         <StyledCTAButton onClick={() => void loginWithRedirect()}>
           Get started
