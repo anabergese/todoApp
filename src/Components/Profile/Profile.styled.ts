@@ -30,7 +30,7 @@ export const StyledProfile = styled.div.attrs({
       border: none;
       color: ${(props: IThemeProps) =>
         props.theme[0] === "black" ? props.theme[1] : "black"};
-      coursor: pointer !important;
+      cursor: pointer !important;
       font-size: 0.8rem;
       margin: 0;
       padding: 0;

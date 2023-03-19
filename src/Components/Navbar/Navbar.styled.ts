@@ -15,6 +15,10 @@ export const Sidenav = styled.div.attrs({
   .Navbar__Logo {
     display: flex;
     padding: 1rem;
+    img {
+      width: 28%;
+      border-radius: 1rem;
+    }
   }
 
   .Navbar__Separator {
