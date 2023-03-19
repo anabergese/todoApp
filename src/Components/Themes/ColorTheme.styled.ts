@@ -10,6 +10,9 @@ export const StyledColorTheme = styled.div.attrs({
 
   button {
     ${border}
+    border-style: solid;
+    border-color: #65605f;
+    border-width: 0.5px;
     cursor: pointer;
     margin: 2rem 0.6rem;
     height: 1rem;
