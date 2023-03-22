@@ -49,7 +49,7 @@ const FormTask2 = () => {
       <FormBody theme={themes}>
         <h1>Create a new task</h1>
         <label className="form-label" htmlFor="title">
-          <h2>Título</h2>
+          <h2>Title</h2>
           <input
             type="text"
             id="title"

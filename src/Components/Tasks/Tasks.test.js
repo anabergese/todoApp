@@ -4,28 +4,19 @@
  */
 import React from "react";
 import { createMemoryHistory } from "history";
-import { expect, test, describe } from "@jest/globals";
+import { expect, test, describe, jest } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import Tasks from "./Tasks";
 
-// const alltasks = [
-//   {
-//     title: "Task example",
-//     description: "Description example",
-//     status: "Uncompleted",
-//     key: "1",
-//     id: "task-1",
-//   },
-//   {
-//     title: "Task example 2",
-//     description: "Description example 2",
-//     status: "Uncompleted",
-//     key: "2",
-//     id: "task-2",
-//   },
-// ];
+const localStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  clear: jest.fn(),
+};
+
+global.localStorage = localStorageMock;
 
 const history = createMemoryHistory();
 history.push("/tasks");
