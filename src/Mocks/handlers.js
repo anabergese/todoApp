@@ -7,6 +7,7 @@ export const handlers = [
     "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
     (req, res, ctx) => {
       return res(
+        ctx.status(200),
         ctx.json([
           {
             id: 1,
@@ -45,6 +46,7 @@ export const handlers = [
     "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
     (req, res, ctx) => {
       return res(
+        ctx.status(200),
         ctx.json({
           id: 3,
           created_at: 1673888457325,

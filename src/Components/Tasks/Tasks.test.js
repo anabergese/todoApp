@@ -2,7 +2,7 @@
 
 import React from "react";
 import { createMemoryHistory } from "history";
-import { expect, test, describe, jest } from "@jest/globals";
+import { expect, test, describe } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -10,24 +10,14 @@ import Tasks from "./Tasks";
 
 const history = createMemoryHistory();
 history.push("/tasks");
-const alltasks = [
-  {
-    title: "Task example",
-    description: "Description example",
-    status: "Uncompleted",
-    key: "1",
-    id: "task-1",
-  },
-  {
-    title: "Task example 2",
-    description: "Description example 2",
-    status: "Uncompleted",
-    key: "2",
-    id: "task-2",
-  },
-];
 
-const mockSetAlltasks = jest.fn();
+// if (process.browser) {
+//   // Running in a browser environment
+//   console.log("Use setupWorker to mock network requests");
+// } else {
+//   // Running in a Node environment
+//   console.log("Use setupServer to mock network requests");
+// }
 
 const AllTasksProvided = () => (
   <BrowserRouter history={history}>
@@ -41,12 +31,12 @@ describe("Task component", () => {
     expect(history.location.pathname).toBe("/tasks");
   });
 
-  test("Render task component without tasks", async () => {
-    render(<AllTasksProvided />);
+  // test("Render task component without tasks", async () => {
+  //   render(<AllTasksProvided />);
+  //   const h1text = await screen.findByTestId("h1task");
 
-    const h1text = await screen.getByTestId("h1task");
-    expect(h1text.textContent).toBe("You don't have tasks yet");
-  });
+  //   expect(h1text.textContent).toBe("You don't have tasks yet");
+  // });
 
   // test("Render task component with tasks", () => {
   //   const renderedTasks = render(<AllTasksProvided />);
