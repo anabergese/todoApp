@@ -16,19 +16,18 @@ const FormTask = () => {
     handleSubmit,
   } = useForm();
 
-  const submitTaskHandler = (data) => {
+  const submitTaskHandler = (data: ITask) => {
     let photo = data.photo[0];
     photo
-      ? (photo = URL.createObjectURL(data.photo[0]) as ITask["photo"])
+      ? (photo = URL.createObjectURL(data.photo[0]))
       : (photo =
           "https://pbxsangoma.com/front/template/default/public/image/icon/none-img.png");
 
-    const title = (data.title.charAt(0).toUpperCase() +
-      data.title.slice(1)) as ITask["title"];
-    const description = (data.description.charAt(0).toUpperCase() +
-      data.description.slice(1)) as ITask["description"];
+    const title = data.title.charAt(0).toUpperCase() + data.title.slice(1);
+    const description =
+      data.description.charAt(0).toUpperCase() + data.description.slice(1);
 
-    const deadline = data.deadline as ITask["deadline"];
+    const deadline = data.deadline;
     createRequest(title, description, photo, deadline)
       .then((result) => {
         const taskcreated = result as ITask;

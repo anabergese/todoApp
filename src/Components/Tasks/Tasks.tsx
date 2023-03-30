@@ -2,20 +2,19 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import Task from "../Task/Task";
 import useSWR from "swr";
+import { ITask } from "../../Types/index";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const url = "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks";
 const Tasks = () => {
   const [searchParams] = useSearchParams();
+  const { data, error, isLoading } = useSWR<ITask[], Error>(url, fetcher);
 
-  const { data, error, isLoading } = useSWR(url, fetcher);
-
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (error) return <div style={{ textAlign: "center" }}>Failed to load</div>;
+  if (isLoading) return <div style={{ textAlign: "center" }}>Loading...</div>;
 
   const allFilteredTask = () => {
     const filter = searchParams.get("filter");
-
     switch (filter) {
       case "Deleted":
         return data.filter((task) => task.status === "Deleted");
@@ -37,7 +36,7 @@ const Tasks = () => {
       {!data.length ? (
         <h1 data-testid="h1task">You don&apos;t have tasks yet</h1>
       ) : (
-        allFilteredTask().map((task) => {
+        allFilteredTask().map((task: ITask) => {
           return <Task taskProp={task} key={task.id} />;
         })
       )}

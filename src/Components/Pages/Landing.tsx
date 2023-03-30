@@ -85,19 +85,19 @@ const Landing = () => {
         <div className="info-container">
           <p>123 Main Street, Anytown Spain</p>
           <p>&copy; 2023 TaskMate. All Rights Reserved.</p>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Contact Us</a>
+          <a href="https://commission.europa.eu/">Privacy Policy</a>
+          <a href="https://commission.europa.eu/">Contact Us</a>
         </div>
         <div className="social-container">
-          <a href="#">
+          <a href="https://www.facebook.com/">
             {" "}
             <img src={facebook as string} alt="Facebook Logo" />
           </a>
-          <a href="#">
+          <a href="https://www.instagram.com/">
             {" "}
             <img src={instagram as string} alt="Instagram Logo" />
           </a>
-          <a href="#">
+          <a href="https://www.linkedin.com/">
             {" "}
             <img src={linkedin as string} alt="Linkedin Logo" />
           </a>
