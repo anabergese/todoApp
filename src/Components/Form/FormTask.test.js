@@ -6,12 +6,12 @@ import { expect, test, describe } from "@jest/globals";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
-import FormTask2 from "./FormTask2";
+import FormTask from "./FormTask";
 import { act } from "react-dom/test-utils";
 
 const MockFormTask = () => (
   <BrowserRouter>
-    <FormTask2 />
+    <FormTask />
   </BrowserRouter>
 );
 
@@ -78,3 +78,14 @@ describe("Form component", () => {
   //     expect(h1Details).toBeInTheDocument();
   //   });
 });
+
+// jest.config.js
+// module.exports = {
+//   testEnvironment: "jsdom",
+//   setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"],
+//   moduleNameMapper: {
+//     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+//       "<rootDir>/__mocks__/fileMock.js",
+//     "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+//   },
+// };

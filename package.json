@@ -62,5 +62,11 @@
   },
   "browserslist": [
     "last 2 Chrome versions"
-  ]
+  ],
+  "jest": {
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
+      "\\.(png|jpg|jpeg|gif|svg)$": "<rootDir>/src/fileTransformer.js"
+    }
+  }
 }
