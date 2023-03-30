@@ -14,7 +14,8 @@ export const FormBody = styled.div<IThemeProps>`
 
   h1 {
     background-color: ${(props: IThemeProps) => props.theme[0]};
-    ${border}
+    border-top-left-radius: ${borderRadius};
+    border-top-right-radius: ${borderRadius};
     color: ${(props: IThemeProps) =>
       props.theme[0] === "black" ? props.theme[1] : "black"};
     padding: 1.5rem 0;

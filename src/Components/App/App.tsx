@@ -12,7 +12,7 @@ import ThemeContext from "../../Contexts/ThemeContext";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Landing from "../Pages/Landing";
-import FormTask2 from "../Form/FormTask2";
+import FormTask from "../Form/FormTask";
 
 const App = () => {
   const { isAuthenticated } = useAuth0();
@@ -37,7 +37,7 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/details/:id" element={<Details />} />
-                  <Route path="/task/create" element={<FormTask2 />} />
+                  <Route path="/task/create" element={<FormTask />} />
                   <Route path="/tasks" element={<Tasks />} />
                   <Route
                     path="/assistant"
