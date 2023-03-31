@@ -61,9 +61,15 @@ export const Sidenav = styled.div.attrs({
     width: 32%;
     a {
       padding: 0.6rem 0.8rem 0.6rem;
+      margin-bottom: 0;
+      margin-top: 0;
     }
     .Navbar__Logo {
-      padding: 0.8rem;
+      padding: 0.6rem 0.8rem 0.6rem;
+      margin: 1.5rem 0.75rem 1rem 0.75rem;
+      img {
+        border-radius: 0.4rem;
+      }
     }
   }
 `;

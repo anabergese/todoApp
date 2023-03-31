@@ -31,18 +31,6 @@ describe("Task component", () => {
     expect(history.location.pathname).toBe("/tasks");
   });
 
-  // test("Render task component without tasks", async () => {
-  //   render(<AllTasksProvided />);
-  //   const h1text = await screen.findByTestId("h1task");
-
-  //   expect(h1text.textContent).toBe("You don't have tasks yet");
-  // });
-
-  // test("Render task component with tasks", async () => {
-  //   render(<AllTasksProvided />);
-  //   const h2Task1 = await screen.getByText(/Task example/i);
-  //   expect(h2Task1.innerHTML).toMatch(/Task example/i);
-  // });
   test("Render task component with tasks", async () => {
     render(<AllTasksProvided />);
     const h2Task1 = await waitFor(() => screen.getByText("Task example"));
