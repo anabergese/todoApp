@@ -64,6 +64,10 @@
     "last 2 Chrome versions"
   ],
   "jest": {
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ],
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
       "\\.(png|jpg|jpeg|gif|svg)$": "<rootDir>/src/fileTransformer.js"

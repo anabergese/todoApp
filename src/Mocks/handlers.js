@@ -1,4 +1,6 @@
 // src/mocks/handlers.js
+import "whatwg-fetch";
+
 import { rest } from "msw";
 
 export const handlers = [

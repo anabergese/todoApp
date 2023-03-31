@@ -1,4 +1,6 @@
-/* eslint-disable @typescript-eslint/await-thenable */
+/**
+ * @jest-environment jsdom
+ */
 
 import React from "react";
 import { createMemoryHistory } from "history";
@@ -11,12 +13,10 @@ import Tasks from "./Tasks";
 const history = createMemoryHistory();
 history.push("/tasks");
 
-// if (process.browser) {
-//   // Running in a browser environment
-//   console.log("Use setupWorker to mock network requests");
+// if (typeof window !== "undefined") {
+//   console.log("Running in a browser environment");
 // } else {
-//   // Running in a Node environment
-//   console.log("Use setupServer to mock network requests");
+//   console.log("Running in a Node environment");
 // }
 
 const AllTasksProvided = () => (
@@ -38,11 +38,11 @@ describe("Task component", () => {
   //   expect(h1text.textContent).toBe("You don't have tasks yet");
   // });
 
-  // test("Render task component with tasks", () => {
-  //   const renderedTasks = render(<AllTasksProvided />);
-  //   const h2Task1 = renderedTasks.getByText("Task example");
-  //   expect(h2Task1.innerHTML).toMatch(/Task example/i);
-  // });
+  test("Render task component with tasks", async () => {
+    render(<AllTasksProvided />);
+    const h2Task1 = await screen.getByText(/Task example/i);
+    expect(h2Task1.innerHTML).toMatch(/Task example/i);
+  });
 });
 
 // describe("Tasks status", () => {
