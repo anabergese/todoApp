@@ -56,7 +56,7 @@ export const handlers = [
           description: "Description example 3",
           photo: "",
           status: "Uncompleted",
-          deadline: "",
+          deadline: "2022-11-25",
           subtasks: [
             {
               id: "id1",
