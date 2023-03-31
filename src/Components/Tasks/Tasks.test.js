@@ -5,7 +5,7 @@
 import React from "react";
 import { createMemoryHistory } from "history";
 import { expect, test, describe } from "@jest/globals";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import Tasks from "./Tasks";
@@ -38,9 +38,14 @@ describe("Task component", () => {
   //   expect(h1text.textContent).toBe("You don't have tasks yet");
   // });
 
+  // test("Render task component with tasks", async () => {
+  //   render(<AllTasksProvided />);
+  //   const h2Task1 = await screen.getByText(/Task example/i);
+  //   expect(h2Task1.innerHTML).toMatch(/Task example/i);
+  // });
   test("Render task component with tasks", async () => {
     render(<AllTasksProvided />);
-    const h2Task1 = await screen.getByText(/Task example/i);
+    const h2Task1 = await waitFor(() => screen.getByText("Task example"));
     expect(h2Task1.innerHTML).toMatch(/Task example/i);
   });
 });
