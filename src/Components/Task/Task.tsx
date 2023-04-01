@@ -61,7 +61,6 @@ const Task: FunctionComponent<{ taskProp: ITask; allTasks: ITask[] }> = ({
     permanentDeleteRequest(task)
       .then((result) => {
         result;
-        console.log("task deleted in DB");
         navigate(`/tasks`);
       })
       .catch((error) => console.log("error", error));
