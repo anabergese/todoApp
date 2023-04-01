@@ -3,7 +3,6 @@ import { StyledProfile } from "./Profile.styled";
 import { useContext } from "react";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { IUser } from "../../Types/index";
-import blankprofile from "../../Img/blank-profile.png";
 
 export const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -19,12 +18,7 @@ export const Profile = () => {
     <>
       {isAuthenticated && (
         <StyledProfile theme={themes}>
-          <img
-            src={
-              userlogged.picture ? userlogged.picture : (blankprofile as string)
-            }
-            alt={userlogged.name}
-          />
+          <img src={userlogged.picture} alt={userlogged.name} />
           <div>
             <p>{userlogged.name}</p>
             <button

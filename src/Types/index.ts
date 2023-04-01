@@ -37,7 +37,7 @@ export interface ISubtaskProps {
 }
 
 export interface IModalProps {
-  showModal: (a: string) => void;
+  showModal: (a: boolean) => void;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   deleteHandler: (a: ITask) => void;
 }

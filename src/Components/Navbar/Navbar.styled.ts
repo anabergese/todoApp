@@ -9,12 +9,16 @@ export const Sidenav = styled.div.attrs({
   background-color: ${(props: IThemeProps) => props.theme[0]};
   top: 0;
   position: sticky;
-  width: 18%;
+  width: 16%;
   height: 100vh;
 
   .Navbar__Logo {
     display: flex;
     padding: 1rem;
+    img {
+      width: 28%;
+      border-radius: 1rem;
+    }
   }
 
   .Navbar__Separator {
@@ -26,7 +30,8 @@ export const Sidenav = styled.div.attrs({
     text-decoration: none;
     transition-duration: 185ms;
     transition-timing-function: ease;
-    padding: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0.75rem;
 
     h2 {
       color: ${(props: IThemeProps) =>
@@ -35,9 +40,19 @@ export const Sidenav = styled.div.attrs({
     }
 
     &:hover {
-      background-color: white;
+      background-color: ${(props: IThemeProps) => props.theme[1]};
+      border-radius: 8px;
       h2 {
         color: black;
+      }
+    }
+
+    &:focus {
+      background-color: white;
+      border-radius: 8px;
+      h2 {
+        color: black;
+        font-weight: bold;
       }
     }
   }
@@ -46,9 +61,15 @@ export const Sidenav = styled.div.attrs({
     width: 32%;
     a {
       padding: 0.6rem 0.8rem 0.6rem;
+      margin-bottom: 0;
+      margin-top: 0;
     }
     .Navbar__Logo {
-      padding: 0.8rem;
+      padding: 0.6rem 0.8rem 0.6rem;
+      margin: 1.5rem 0.75rem 1rem 0.75rem;
+      img {
+        border-radius: 0.4rem;
+      }
     }
   }
 `;

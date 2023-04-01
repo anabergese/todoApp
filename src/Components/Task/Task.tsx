@@ -11,16 +11,23 @@ import {
   updateRequest,
   getTaskRequest,
 } from "../API Requests/Requests";
-
 import Content from "./Content";
 import DeleteModal from "../Modal/DeleteModal";
-const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
+import { useSWRConfig } from "swr";
+
+const url = "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks";
+
+const Task: FunctionComponent<{ taskProp: ITask; allTasks: ITask[] }> = ({
+  taskProp,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
   const [task, setTask] = useState(taskProp);
+
+  const { mutate } = useSWRConfig();
 
   useEffect(() => {
     if (shouldUpdate) {
@@ -54,10 +61,10 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
     permanentDeleteRequest(task)
       .then((result) => {
         result;
-        setShouldUpdate(true);
         navigate(`/tasks`);
       })
       .catch((error) => console.log("error", error));
+    mutate(url);
   };
 
   const completeHandler = (task: ITask) => {
@@ -100,7 +107,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
                 ? "Redo"
                 : "Complete"}
             </StyledButton>
-            {showModal ? (
+            {showModal && (
               <Modal>
                 <DeleteModal
                   task={task}
@@ -109,7 +116,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
                   deleteHandler={deleteHandler}
                 />
               </Modal>
-            ) : null}
+            )}
           </div>
         </TitleTask>
         <Content theme={themes} task={task} />

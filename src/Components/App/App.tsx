@@ -6,12 +6,13 @@ import Home from "../Home/Home";
 import Details from "../Details/Details";
 import Navbar from "../Navbar/Navbar";
 import ColorTheme from "../Themes/ColorTheme";
-import FormTask from "../Form/FormTask";
+import Assistant from "../AI Assistant/Assistant";
 import { StyledApp, Content, GlobalStyles } from "./Global";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Landing from "../Pages/Landing";
+import FormTask from "../Form/FormTask";
 
 const App = () => {
   const { isAuthenticated } = useAuth0();
@@ -38,6 +39,12 @@ const App = () => {
                   <Route path="/details/:id" element={<Details />} />
                   <Route path="/task/create" element={<FormTask />} />
                   <Route path="/tasks" element={<Tasks />} />
+                  <Route
+                    path="/assistant"
+                    element={
+                      <Assistant url="https://storage.googleapis.com/landbot.pro/v3/H-1506463-VCYG6GJ3NNWS56WV/index.json" />
+                    }
+                  />
                 </Routes>
               </Content>
             </>
