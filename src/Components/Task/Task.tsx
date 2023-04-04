@@ -19,7 +19,7 @@ const url = "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks";
 
 const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const toggleModal: IModalProps["showModal"] = () => setShowModal(!showModal);
+  const toggleModal = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);
@@ -117,7 +117,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
             )}
           </div>
         </TitleTask>
-        <Content theme={themes} task={task} />
+        <Content task={task} />
       </StyledTask>
     </>
   );

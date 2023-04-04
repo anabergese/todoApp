@@ -4,14 +4,23 @@ import Task from "../Task/Task";
 import useSWR from "swr";
 import { ITask } from "../../Types/index";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (...args: Parameters<typeof fetch>) =>
+  fetch(...args).then((res) => res.json());
+
 const url = "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks";
+
 const Tasks = () => {
   const [searchParams] = useSearchParams();
   const { data, error, isLoading } = useSWR<ITask[], Error>(url, fetcher);
 
   if (error) return <div style={{ textAlign: "center" }}>Failed to load</div>;
   if (isLoading) return <div style={{ textAlign: "center" }}>Loading...</div>;
+
+  // Added when build the app
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+  // finish Added when build the app
 
   const allFilteredTask = () => {
     const filter = searchParams.get("filter");
