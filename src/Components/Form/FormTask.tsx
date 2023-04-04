@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { StyledFormTask, FormBody } from "./FormTask.styled";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
-import { ITask } from "../../Types/index";
+import { ITask, IFormData } from "../../Types/index";
 import { createRequest } from "../API Requests/Requests";
 import { useForm } from "react-hook-form";
 
@@ -14,14 +14,17 @@ const FormTask = () => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm<IFormData>();
 
-  const submitTaskHandler = (data: ITask) => {
-    let photo = data.photo[0];
-    photo
-      ? (photo = URL.createObjectURL(data.photo[0]))
-      : (photo =
-          "https://pbxsangoma.com/front/template/default/public/image/icon/none-img.png");
+  const submitTaskHandler = (data: IFormData) => {
+    let photo = "";
+    if (data.photo && data.photo[0]) {
+      const image = data.photo[0] as File;
+      photo = URL.createObjectURL(image);
+    } else {
+      photo =
+        "https://pbxsangoma.com/front/template/default/public/image/icon/none-img.png";
+    }
 
     const title = data.title.charAt(0).toUpperCase() + data.title.slice(1);
     const description =

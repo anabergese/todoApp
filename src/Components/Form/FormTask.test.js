@@ -49,29 +49,4 @@ describe("Form component", () => {
     });
     expect(deadlineInput.value).toBe("2022-11-25");
   });
-
-  // test("Creates a task and redirects to Details component", async () => {
-  //   render(<MockFormTask />);
-  //   const titleInput = screen.getByRole("textbox", { name: "Title" });
-  //   fireEvent.change(titleInput, { target: { value: "Task example 3" } });
-
-  //   const descriptionInput = screen.getByRole("textbox", {
-  //     name: /Description:/i,
-  //   });
-  //   fireEvent.change(descriptionInput, {
-  //     target: { value: "Description example 3" },
-  //   });
-
-  //   const deadlineInput = screen.getByTestId("date-picker");
-  //   fireEvent.change(deadlineInput, {
-  //     target: { value: "2022-11-25" },
-  //   });
-  //   const submitBtn = screen.getByRole("button", { name: "I am done" });
-
-  //   fireEvent.click(submitBtn);
-
-  //   await waitFor(() => {
-  //     expect(screen.queryByTestId("h1Details")).toBeInTheDocument();
-  //   });
-  // });
 });

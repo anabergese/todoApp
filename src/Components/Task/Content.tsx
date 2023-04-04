@@ -2,7 +2,7 @@
 import { useLocation } from "react-router-dom";
 import { useContext, FunctionComponent } from "react";
 
-import { ITask } from "../../Types/index";
+import { ITask, ISubtask } from "../../Types/index";
 import { StyledContentTask } from "./Task.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 
@@ -36,7 +36,7 @@ const Content: FunctionComponent<{ task: ITask }> = ({ task }) => {
           {task.status}
         </p>
         {pathname.includes("/details") ? (
-          <SubTasks task_id={task.id} subtasks={task.subtasks} />
+          <SubTasks task_id={task.id} subtasks={task.subtasks as ISubtask[]} />
         ) : null}
       </div>
       <div>

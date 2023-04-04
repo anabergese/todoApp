@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IThemeProps } from "../../Types/index";
+import { IThemeProps, ITaskProps } from "../../Types/index";
 import { border, borderRadius, flexColumn } from "../App/Global";
 
 export const StyledFormTask = styled.form.attrs({

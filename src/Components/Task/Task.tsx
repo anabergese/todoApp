@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext, FunctionComponent } from "react";
 import Modal from "../Modal/Modal";
-import { TaskStatus, ITask } from "../../Types/index";
+import { TaskStatus, ITask, IModalProps } from "../../Types/index";
 import { StyledTask, TitleTask } from "./Task.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { StyledButton } from "../Buttons/Buttons.styled";
@@ -17,11 +17,9 @@ import { useSWRConfig } from "swr";
 
 const url = "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks";
 
-const Task: FunctionComponent<{ taskProp: ITask; allTasks: ITask[] }> = ({
-  taskProp,
-}) => {
-  const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => setShowModal(!showModal);
+const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const toggleModal: IModalProps["showModal"] = () => setShowModal(!showModal);
   const [themes] = useContext(ThemeContext);
   const navigate = useNavigate();
   const [shouldUpdate, setShouldUpdate] = useState(false);

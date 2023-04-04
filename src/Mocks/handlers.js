@@ -3,7 +3,35 @@ import "whatwg-fetch";
 
 import { rest } from "msw";
 
+const task = { id: 1 };
 export const handlers = [
+  // Update task status
+  rest.post(
+    `https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/${task.id}`,
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          id: 1,
+          created_at: 1673888457325,
+          title: "Task example",
+          description: "Description example",
+          photo: "",
+          status: "Completed",
+          deadline: "",
+          subtasks: [
+            {
+              id: "id1",
+              key: "id2",
+              name: "Buy birthday present",
+              task_id: "1",
+            },
+          ],
+        })
+      );
+    }
+  ),
+
   // Handles a GET /tasks request
   rest.get(
     "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
@@ -44,6 +72,7 @@ export const handlers = [
     }
   ),
 
+  // Submit Form
   rest.post(
     "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks",
     (req, res, ctx) => {
@@ -63,33 +92,6 @@ export const handlers = [
               key: "id2",
               name: "Buy birthday present",
               task_id: "3",
-            },
-          ],
-        })
-      );
-    }
-  ),
-
-  // Update task status
-  rest.post(
-    "https://x8ki-letl-twmt.n7.xano.io/api:NVDikdaO/tasks/1",
-    (req, res, ctx) => {
-      return res(
-        ctx.status(200),
-        ctx.json({
-          id: 1,
-          created_at: 1673888457325,
-          title: "Task example",
-          description: "Description example",
-          photo: "",
-          status: "Uncompleted",
-          deadline: "",
-          subtasks: [
-            {
-              id: "id1",
-              key: "id2",
-              name: "Buy birthday present",
-              task_id: "1",
             },
           ],
         })

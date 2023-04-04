@@ -41,7 +41,16 @@ export interface IModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   deleteHandler: (a: ITask) => void;
 }
-// End Types related to Styles
+
+export type IFormData = {
+  title: string;
+  description: string;
+  photo: FileList;
+  deadline: string;
+  status: TaskStatus;
+  id: string;
+};
+// End Types related to Components
 
 // Start Types related to Styles
 export type IButtonsProps = {
