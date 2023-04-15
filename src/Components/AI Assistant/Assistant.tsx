@@ -9,7 +9,7 @@ const Assistant: FunctionComponent<{ url: string }> = ({ url }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const Landbot = (window as any).Landbot; //@ts-ignore
+    const Landbot = (window as any).Landbot;
     const _landbot = new Landbot.Container({
       container: containerRef.current,
       configUrl: url,
