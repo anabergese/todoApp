@@ -8,7 +8,7 @@ import {
 import { getSubTaskRequest, updateSubtasks } from "../API Requests/Requests";
 import nextId from "react-id-generator";
 import SubTask from "../SubTask/SubTask";
-import { ISubtask, ITask } from "../../Types";
+import { ISubtask } from "../../Types";
 import { SubTaskForm } from "./SubTasks.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 
@@ -25,8 +25,8 @@ const SubTasks: FunctionComponent<{
     if (shouldUpdate) {
       getSubTaskRequest(task_id)
         .then((result) => {
-          const taskUpdated = result as ITask;
-          setAllSubTasks(taskUpdated.subtasks as ISubtask[]);
+          const taskUpdated: { subtasks: ISubtask[] } = result;
+          setAllSubTasks(taskUpdated.subtasks);
           return allSubTasks;
         })
         .catch((error) => console.log("error", error));
@@ -47,11 +47,20 @@ const SubTasks: FunctionComponent<{
     const allnewSubtasks = [...allSubTasks, newSubtask] as ISubtask[];
     updateSubtasks(allnewSubtasks, task_id)
       .then((result) => {
-        const taskUpdated = result as ITask;
-        setAllSubTasks(taskUpdated.subtasks as ISubtask[]);
-        return allSubTasks;
+        if (
+          typeof result === "object" &&
+          result !== null &&
+          "subtasks" in result
+        ) {
+          const taskUpdated = result;
+          setAllSubTasks(taskUpdated.subtasks);
+          return allSubTasks;
+        } else {
+          throw new Error("Invalid task update");
+        }
       })
       .catch((error) => console.log("error", error));
+
     setShouldUpdate(true);
     setInputSubtask("");
   };

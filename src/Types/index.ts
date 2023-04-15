@@ -1,5 +1,13 @@
 // Start Types related Components
 export type TaskStatus = "Deleted" | "Uncompleted" | "Completed";
+
+export type ISubtask = {
+  name: string;
+  id: string;
+  key: string;
+  task_id: string;
+};
+
 export type ITask = {
   title: string;
   description: string;
@@ -21,13 +29,6 @@ export type IUser = {
   picture?: string;
   sub?: string;
   updated_at?: string;
-};
-
-export type ISubtask = {
-  name: string;
-  id: string;
-  key: string;
-  task_id: string;
 };
 
 export interface ISubtaskProps {

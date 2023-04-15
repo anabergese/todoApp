@@ -10,7 +10,7 @@ import { updateSubtasks } from "../API Requests/Requests";
 import { StyledButton } from "../Buttons/Buttons.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { SubTaskStyled } from "../SubTask/SubTask.styled";
-import { ISubtask, ISubtaskProps, ITask } from "../../Types";
+import { ISubtask, ISubtaskProps } from "../../Types";
 
 const SubTask: FunctionComponent<{
   allSubTasks: ISubtaskProps["allSubtasksProp"];
@@ -49,9 +49,17 @@ const SubTask: FunctionComponent<{
 
     updateSubtasks(newAllSubTasks, subtask.task_id)
       .then((result) => {
-        const taskUpdated = result as ITask;
-        setAllSubTasks(taskUpdated.subtasks as ISubtask[]);
-        return allSubTasks;
+        if (
+          typeof result === "object" &&
+          result !== null &&
+          "subtasks" in result
+        ) {
+          const taskUpdated = result;
+          setAllSubTasks(taskUpdated.subtasks);
+          return allSubTasks;
+        } else {
+          throw new Error("Invalid task update");
+        }
       })
       .catch((error) => console.log("error", error));
   };
@@ -70,10 +78,19 @@ const SubTask: FunctionComponent<{
 
     updateSubtasks(allsubtasks, subtask.task_id)
       .then((result) => {
-        const taskUpdated = result as ITask;
-        setAllSubTasks(taskUpdated.subtasks as ISubtask[]);
-        setIsEditMode(false);
-        return allSubTasks;
+        if (
+          typeof result === "object" &&
+          result !== null &&
+          "subtasks" in result
+        ) {
+          const taskUpdated = result;
+          setAllSubTasks(taskUpdated.subtasks);
+          setIsEditMode(false);
+
+          return allSubTasks;
+        } else {
+          throw new Error("Invalid task update");
+        }
       })
       .catch((error) => console.log("error", error));
   };
