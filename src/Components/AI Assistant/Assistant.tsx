@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useRef, useEffect, FunctionComponent } from "react";
 import { StyledLandBot } from "./Assistant.styled";
 
@@ -5,8 +9,7 @@ const Assistant: FunctionComponent<{ url: string }> = ({ url }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const Landbot = (window as any).Landbot;
+    const Landbot = (window as any).Landbot; //@ts-ignore
     const _landbot = new Landbot.Container({
       container: containerRef.current,
       configUrl: url,
