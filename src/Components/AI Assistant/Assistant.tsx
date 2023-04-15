@@ -7,9 +7,6 @@ const Assistant: FunctionComponent<{ url: string }> = ({ url }) => {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const Landbot = (window as any).Landbot;
-
-    // const test: any = window.Landbot as ;
-
     const _landbot = new Landbot.Container({
       container: containerRef.current,
       configUrl: url,

@@ -13,7 +13,6 @@ import instagram from "../../Img/instagram.png";
 
 const Landing = () => {
   const { loginWithRedirect } = useAuth0();
-  console.log("LOCATION", window.location.origin);
 
   return (
     <StyledLanding>
