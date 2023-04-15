@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext, FunctionComponent } from "react";
 import Modal from "../Modal/Modal";
-import { TaskStatus, ITask, IModalProps } from "../../Types/index";
+import { TaskStatus, ITask } from "../../Types/index";
 import { StyledTask, TitleTask } from "./Task.styled";
 import ThemeContext from "../../Contexts/ThemeContext";
 import { StyledButton } from "../Buttons/Buttons.styled";
@@ -62,7 +62,7 @@ const Task: FunctionComponent<{ taskProp: ITask }> = ({ taskProp }) => {
         navigate(`/tasks`);
       })
       .catch((error) => console.log("error", error));
-    mutate(url);
+    void mutate(url);
   };
 
   const completeHandler = (task: ITask) => {

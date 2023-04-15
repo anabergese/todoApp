@@ -25,15 +25,25 @@ const Tasks = () => {
   const allFilteredTask = () => {
     const filter = searchParams.get("filter");
     switch (filter) {
-      case "Deleted":
-        return data.filter((task) => task.status === "Deleted");
-      case "Completed":
-        return data.filter((task) => task.status === "Completed");
-      case "Uncompleted":
-        return data.filter((task) => task.status === "Uncompleted");
-      case "Today":
+      case "Deleted": {
+        const filteredData = data.filter((task) => task.status === "Deleted");
+        return filteredData;
+      }
+      case "Completed": {
+        const filteredData = data.filter((task) => task.status === "Completed");
+        return filteredData;
+      }
+      case "Uncompleted": {
+        const filteredData = data.filter(
+          (task) => task.status === "Uncompleted"
+        );
+        return filteredData;
+      }
+      case "Today": {
         const today = new Date().toISOString().slice(0, 10);
-        return data.filter((task) => task.deadline === today);
+        const filteredData = data.filter((task) => task.deadline === today);
+        return filteredData;
+      }
       default:
         return data;
     }

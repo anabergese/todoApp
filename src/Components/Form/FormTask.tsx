@@ -13,13 +13,12 @@ const FormTask = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit,
   } = useForm<IFormData>();
 
-  const submitTaskHandler = (data: IFormData) => {
+  const submitTaskHandler = async (data: IFormData) => {
     let photo = "";
     if (data.photo && data.photo[0]) {
-      const image = data.photo[0] as File;
+      const image = data.photo[0];
       photo = URL.createObjectURL(image);
     } else {
       photo =
@@ -31,13 +30,14 @@ const FormTask = () => {
       data.description.charAt(0).toUpperCase() + data.description.slice(1);
 
     const deadline = data.deadline;
-    createRequest(title, description, photo, deadline)
-      .then((result) => {
-        const taskcreated = result as ITask;
-        const taskId = taskcreated.id;
-        navigate(`/details/${taskId}`, { state: result });
-      })
-      .catch((error) => console.log("error", error));
+    try {
+      const result = await createRequest(title, description, photo, deadline);
+      const taskcreated = result as ITask;
+      const taskId = taskcreated.id;
+      navigate(`/details/${taskId}`, { state: result });
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   return (
@@ -45,7 +45,9 @@ const FormTask = () => {
       data-testid="form"
       role="form"
       aria-label="Create a new task"
-      onSubmit={handleSubmit(submitTaskHandler)}
+      onSubmit={() => {
+        submitTaskHandler;
+      }}
     >
       <FormBody theme={themes}>
         <h1>Create a new task</h1>
