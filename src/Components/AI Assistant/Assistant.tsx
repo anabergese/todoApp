@@ -1,16 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useRef, useEffect, FunctionComponent } from "react";
 import { StyledLandBot } from "./Assistant.styled";
+
+interface LandbotContainer {
+  new (options: { container: HTMLElement; configUrl: string }): any;
+}
+
+declare global {
+  interface Window {
+    Landbot: {
+      Container: LandbotContainer;
+    };
+  }
+}
+
+interface LandbotContainerWithDestroy extends LandbotContainer {
+  destroy: () => void;
+}
 
 const Assistant: FunctionComponent<{ url: string }> = ({ url }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const Landbot = (window as any).Landbot;
-    const _landbot = new Landbot.Container({
+    const globalWindow: Window & typeof globalThis = window;
+    const Landbot = globalWindow.Landbot;
+    const _landbot: LandbotContainerWithDestroy = new Landbot.Container({
       container: containerRef.current,
       configUrl: url,
     });
