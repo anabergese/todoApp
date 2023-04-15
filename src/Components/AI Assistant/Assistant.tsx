@@ -2,7 +2,7 @@ import React, { useRef, useEffect, FunctionComponent } from "react";
 import { StyledLandBot } from "./Assistant.styled";
 
 interface LandbotContainer {
-  new (options: { container: HTMLElement; configUrl: string }): any;
+  new (options: { container: HTMLElement; configUrl: string }): never;
 }
 
 declare global {
