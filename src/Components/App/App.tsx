@@ -9,7 +9,7 @@ import ColorTheme from "../Themes/ColorTheme";
 import Assistant from "../AI Assistant/Assistant";
 import { StyledApp, Content, GlobalStyles } from "./Global";
 import ThemeContext from "../../Contexts/ThemeContext";
-import { Auth0Provider } from "@auth0/auth0-react";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import Landing from "../Pages/Landing";
 import FormTask from "../Form/FormTask";
@@ -56,16 +56,5 @@ const App = () => {
     </ThemeContext.Provider>
   );
 };
-
-render(
-  <Auth0Provider
-    domain="dev-k7zkd8n7ph0j42j3.us.auth0.com"
-    clientId="NQ3dF4qcdtMA18vxJdgRQ9IB9mHCT3TW"
-    redirectUri={window.location.origin}
-  >
-    <App />
-  </Auth0Provider>,
-  document.getElementById("app") || document.createElement("div")
-);
 
 export default App;
