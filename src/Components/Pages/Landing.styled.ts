@@ -213,4 +213,94 @@ export const StyledLanding = styled.div`
   .social-container a:hover {
     transform: scale(1.2);
   }
+
+  /* Mobile devices */
+  @media only screen and (max-width: 768px) {
+    .section1 h1 {
+      font-size: 1.5rem;
+      margin-top: 80px !important;
+      margin-bottom: 16px !important;
+      width: 80%;
+    }
+
+    .section1 img {
+      margin-top: 24px;
+      width: 80%;
+    }
+
+    .section2 h2 {
+      font-size: 1.5rem;
+      margin-top: 120px !important;
+      margin-bottom: 32px !important;
+      width: 80%;
+    }
+
+    .icon {
+      width: 150px;
+      height: 150px;
+    }
+
+    .icon img {
+      width: 40%;
+      margin-bottom: 10px;
+    }
+
+    .icon h3 {
+      font-size: 16px;
+    }
+
+    .image-container img {
+      width: 100%;
+    }
+
+    .content-container {
+      margin: 20px;
+      width: 100%;
+    }
+
+    .content-container h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px !important;
+    }
+
+    footer {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+    }
+
+    .brand-container img {
+      height: 25px !important;
+    }
+
+    .info-container {
+      margin: 10px;
+    }
+
+    .info-container p {
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .info-container a {
+      font-size: 12px;
+      margin-right: 5px;
+    }
+
+    .social-container {
+      margin: 10px;
+    }
+
+    .social-container a {
+      width: 30px;
+      height: 30px;
+      line-height: 36px;
+      margin-right: 5px;
+
+      img {
+        width: 15px;
+      }
+    }
+  }
 `;
