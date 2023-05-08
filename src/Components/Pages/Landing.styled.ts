@@ -237,6 +237,10 @@ export const StyledLanding = styled.div`
       width: 80%;
     }
 
+    .icon-container {
+      flex-wrap: wrap;
+    }
+
     .icon {
       width: 150px;
       height: 150px;
