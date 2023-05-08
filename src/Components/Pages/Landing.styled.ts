@@ -195,7 +195,9 @@ export const StyledLanding = styled.div`
   }
 
   .social-container a {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
     background-color: #327f6b;
@@ -293,6 +295,9 @@ export const StyledLanding = styled.div`
     }
 
     .social-container a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 30px;
       height: 30px;
       line-height: 36px;
