@@ -50,7 +50,7 @@ export const GlobalStyles = createGlobalStyle`
 
     @media screen and (max-width: 400px) {
       * {
-      font-size: 0.6rem !important;
+      font-size: 0.6rem;
       }
       }
   }

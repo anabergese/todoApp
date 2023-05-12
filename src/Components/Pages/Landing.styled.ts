@@ -220,9 +220,9 @@ export const StyledLanding = styled.div`
   @media only screen and (max-width: 768px) {
     .section1 h1 {
       font-size: 1.5rem;
-      margin-top: 80px !important;
-      margin-bottom: 16px !important;
       width: 80%;
+      margin-top: 180px !important;
+      margin-bottom: 16px !important;
     }
 
     .section1 img {
@@ -230,9 +230,13 @@ export const StyledLanding = styled.div`
       width: 80%;
     }
 
+    .section2 {
+      height: 500px;
+    }
+
     .section2 h2 {
-      font-size: 1.5rem;
-      margin-top: 120px !important;
+      font-size: 1rem;
+      margin-top: 200px !important;
       margin-bottom: 32px !important;
       width: 80%;
     }
@@ -265,8 +269,12 @@ export const StyledLanding = styled.div`
     }
 
     .content-container h2 {
-      font-size: 1.5rem;
+      font-size: 1rem;
       margin-bottom: 20px !important;
+    }
+
+    .section3 {
+      height: 500px;
     }
 
     footer {
