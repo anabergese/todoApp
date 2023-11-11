@@ -16,7 +16,7 @@ const FormTask = () => {
   } = useForm<IFormData>();
 
   const submitTaskHandler = async (data: IFormData) => {
-    console.log("submitTaskHandler pressed");
+    console.log("submitTaskHandler 2");
     let photo = "";
     if (data.photo && data.photo[0]) {
       const image = data.photo[0];
@@ -31,6 +31,7 @@ const FormTask = () => {
 
     const deadline = data.deadline;
     try {
+      console.log("submitTaskHandler 3");
       const result = await createRequest(title, description, photo, deadline);
       const taskcreated = result as ITask;
       const taskId = taskcreated.id;
@@ -46,6 +47,7 @@ const FormTask = () => {
       role="form"
       aria-label="Create a new task"
       onSubmit={() => {
+        console.log("submitTaskHandler 1");
         submitTaskHandler;
       }}
     >
