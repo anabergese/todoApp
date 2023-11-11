@@ -13,10 +13,9 @@ const FormTask = () => {
   const {
     register,
     formState: { errors },
-    submitTaskHandler,
   } = useForm<IFormData>();
 
-  const onSubmit = async (data: IFormData) => {
+  const submitTaskHandler = async (data: IFormData) => {
     console.log("submitTaskHandler pressed");
     let photo = "";
     if (data.photo && data.photo[0]) {
@@ -46,7 +45,9 @@ const FormTask = () => {
       data-testid="form"
       role="form"
       aria-label="Create a new task"
-      onSubmit={submitTaskHandler(onSubmit)}
+      onSubmit={() => {
+        submitTaskHandler;
+      }}
     >
       <FormBody theme={themes}>
         <h1>Create a new task</h1>
