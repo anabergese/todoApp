@@ -16,6 +16,7 @@ const FormTask = () => {
   } = useForm<IFormData>();
 
   const submitTaskHandler = async (data: IFormData) => {
+    console.log("submitTaskHandler pressed");
     let photo = "";
     if (data.photo && data.photo[0]) {
       const image = data.photo[0];
