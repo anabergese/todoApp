@@ -21,8 +21,7 @@ const FormTask = () => {
       const image = data.photo[0];
       photo = URL.createObjectURL(image);
     } else {
-      photo =
-        "https://pbxsangoma.com/front/template/default/public/image/icon/none-img.png";
+      photo = "https://birac.nic.in/images/no_image.png";
     }
 
     const title = data.title.charAt(0).toUpperCase() + data.title.slice(1);
